@@ -1,0 +1,6 @@
+com/ecs160/AppTest$TestMicroservice.class
+com/ecs160/AppTest$AnotherTestMicroservice.class
+com/ecs160/AppTest$InvalidParameterMicroservice.class
+com/ecs160/AppTest.class
+com/ecs160/AppTest$MultiEndpointMicroservice.class
+com/ecs160/AppTest$InvalidReturnTypeMicroservice.class

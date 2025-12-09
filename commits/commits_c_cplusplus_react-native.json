@@ -1,0 +1,617 @@
+{
+  "name": "react-native",
+  "ownerLogin": "facebook",
+  "language": "C++",
+  "commits": [
+    {
+      "sha": "b823b26a3765cbf4506df0981e3350e0bae3ad62",
+      "message": "Add support for rootMargin (#54176)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54176\n\nChangelog: [Internal] - Add support for `rootMargin` for IntersectionObserver.\n\nReference:\n- https://www.w3.org/TR/intersection-observer/#dom-intersectionobserver-rootmargin\n- https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin\n\nReviewed By: rubennorte\n\nDifferential Revision: D84787370\n\nfbshipit-source-id: 752a9a32becde73d1a92469f9b74240918519b24",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/react/nativemodule/intersectionobserver/NativeIntersectionObserver.cpp",
+        "packages/react-native/ReactCommon/react/nativemodule/intersectionobserver/NativeIntersectionObserver.h",
+        "packages/react-native/ReactCommon/react/renderer/observers/intersection/IntersectionObserver.cpp",
+        "packages/react-native/ReactCommon/react/renderer/observers/intersection/IntersectionObserver.h",
+        "packages/react-native/ReactCommon/react/renderer/observers/intersection/IntersectionObserverManager.cpp",
+        "packages/react-native/ReactCommon/react/renderer/observers/intersection/IntersectionObserverManager.h",
+        "packages/react-native/src/private/webapis/intersectionobserver/IntersectionObserver.js",
+        "packages/react-native/src/private/webapis/intersectionobserver/__tests__/IntersectionObserver-benchmark-itest.js",
+        "packages/react-native/src/private/webapis/intersectionobserver/__tests__/IntersectionObserver-itest.js",
+        "packages/react-native/src/private/webapis/intersectionobserver/internals/IntersectionObserverManager.js",
+        "packages/react-native/src/private/webapis/intersectionobserver/specs/NativeIntersectionObserver.js"
+      ]
+    },
+    {
+      "sha": "ed75963c0d14ba0b7c85b0aaed8fe635d60d1b99",
+      "message": "Run flingAndSnap logic from ACTION_SCROLL events (#54226)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54226\n\nhttps://github.com/facebook/react-native/pull/54226\n\nJoysticks, mouse wheels, and trackpads can issue an `ACTION_SCROLL` event when performing scroll. However, the `ACTION_SCROLL` generic motion event does not run the post touch runnable and paging/snap alignment is not honored when these events are received. To fix this, both ScrollView implementations should call `handlePostTouchScrolling` with a 0 velocity, ensuring that momentum events are sent, fabric scroll state is updated, and `flingAndSnap` is properly called to align to a page.\n\nThis change adds some checks to queue a runnable that calls `handlePostTouchScrolling` after no more `ACTION_SCROLL` events are received in the same 20ms delay it uses to determine a stable frame. The end result is that snap alignments are correctly honored\n\nChangelog: [Android][Fixed] - Controller-driven scroll events now honor paging/snap alignment\n\nReviewed By: javache\n\nDifferential Revision: D85172309\n\nfbshipit-source-id: 5818777b3c371b3da4aa925a8c840e0da89bf6a4",
+      "modifiedFiles": [
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/scroll/ReactHorizontalScrollView.java",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/scroll/ReactScrollView.java"
+      ]
+    },
+    {
+      "sha": "6f8432330c009e9c95199f10bc9b80a53be55323",
+      "message": "Hotfix VirtualViewContainerStateExperimental delete (#54236)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54236\n\nChangelog[Internal] -\nFix faulty changes made to Interval Tree in previous diff.\n\nThe issue was in the right-right rotation case of the internal Interval Tree implementation:\n\n```\n// Right heavy\n    if (bf \u003c -1) {\n      if (balanceFactor(node.right) \u003e 0) {\n        node.right \u003d\n            rotateRight(...)\n```\n\nThis diff also includes a minor update to logic in IntervalTree\u0027s `delete` operation.  There was previously a missing `balance` operation.\n\nReviewed By: lunaleaps\n\nDifferential Revision: D85263661\n\nfbshipit-source-id: 8636984161a8668d74973b6aebad9842d4d7f34f",
+      "modifiedFiles": [
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/scroll/VirtualViewContainerStateExperimental.kt"
+      ]
+    },
+    {
+      "sha": "9f7a3bb2ffd3d89c65ffaef67792baf69705809e",
+      "message": "Allow passing down frameRateListenerCallback in cxx animated (#54142)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54142\n\n## Changelog:\n\n[Internal] [Added] - Allow passing down frameRateListenerCallback in cxx animated\n\nexposing `frameRateListenerCallback` to add instrumentation at animation frame and stop\nwe\u0027re deferring the actual implementation of frame rate listening/logging to app/platform side\n\nReviewed By: sammy-SC\n\nDifferential Revision: D84510183\n\nfbshipit-source-id: d8835542e8e50c5018032c951a510fec27b5a4d5",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/react/renderer/animated/NativeAnimatedNodesManagerProvider.cpp",
+        "packages/react-native/ReactCommon/react/renderer/animated/NativeAnimatedNodesManagerProvider.h"
+      ]
+    },
+    {
+      "sha": "4c7351d9b10a63f2fdd78a912757fed9348e16cb",
+      "message": "always invoke onRender via UIManagerNativeAnimatedDelegate (#54211)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54211\n\n## Changelog:\n\n[Internal] [Added] - always invoke onRender via UIManagerNativeAnimatedDelegate\n\nPreviously only android invokes `onRender` via UIManagerNativeAnimatedDelegate::runAnimationFrame()\nconsolidating so it\u0027s easier for debugging, also in cases where we want to add extra work per frame (e.g. add performance logging) in AnimatedNodesManagerProvider\n\nReviewed By: sammy-SC\n\nDifferential Revision: D85071075\n\nfbshipit-source-id: 770df523de506c8442d063c417229e36bcf5dd31",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/react/renderer/animated/NativeAnimatedNodesManager.cpp",
+        "packages/react-native/ReactCommon/react/renderer/animated/NativeAnimatedNodesManager.h",
+        "packages/react-native/ReactCommon/react/renderer/animated/NativeAnimatedNodesManagerProvider.cpp",
+        "packages/react-native/ReactCommon/react/renderer/animated/NativeAnimatedNodesManagerProvider.h"
+      ]
+    },
+    {
+      "sha": "a6fab2192a8271952adbe62ecb6f800db56f288c",
+      "message": "remove isomorphic version checks from legacy react native renderers (#54232)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54232\n\nWe\u0027re not syncing the legacy renderers, which means the React package will continue to move forward while these stay frozen. That means we need to remove the version compatibility checks between react and the legacy ReactNativeRenderers.\n\nChangelog:\n[Internal]\n\nReviewed By: cortinico, cipolleschi\n\nDifferential Revision: D85248891\n\nfbshipit-source-id: 19e0812c59f69301e2666e6272c10ac56ecbde1f",
+      "modifiedFiles": [
+        "packages/react-native/Libraries/Renderer/implementations/ReactNativeRenderer-dev.js",
+        "packages/react-native/Libraries/Renderer/implementations/ReactNativeRenderer-prod.js",
+        "packages/react-native/Libraries/Renderer/implementations/ReactNativeRenderer-profiling.js",
+        "packages/react-native/Libraries/Renderer/shims/ReactNative.js"
+      ]
+    },
+    {
+      "sha": "5fcbd64986d98457b8fc4225e7cdc12a81ab989d",
+      "message": "Clean up hermes-utils (#54208)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54208\n\nChangelog: [Internal]\n\nReviewed By: cortinico\n\nDifferential Revision: D85047132\n\nfbshipit-source-id: 859ca41e5513e914a708b43c0cd795cb665a5ea4",
+      "modifiedFiles": [
+        "packages/react-native/scripts/hermes/__tests__/hermes-utils-test.js",
+        "packages/react-native/scripts/hermes/create-tarball.js",
+        "packages/react-native/scripts/hermes/get-tarball-name.js",
+        "packages/react-native/scripts/hermes/hermes-utils.js",
+        "scripts/release-testing/test-release-local.js",
+        "scripts/release-testing/utils/testing-utils.js",
+        "scripts/releases/utils/release-utils.js"
+      ]
+    },
+    {
+      "sha": "77164aaa2927b79bd563cd8f0bfd89c126f1c054",
+      "message": "Don\u0027t publish Hermes artifacts from the React Native Repository (#53986)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/53986\n\nChangelog: [Internal]\n\nReviewed By: cortinico\n\nDifferential Revision: D83137498\n\nfbshipit-source-id: 63203406002a31d0f2d9cf7577274f6e33544c74",
+      "modifiedFiles": [
+        "build.gradle.kts",
+        "packages/react-native/ReactAndroid/external-artifacts/build.gradle.kts",
+        "packages/react-native/ReactAndroid/hermes-engine/build.gradle.kts"
+      ]
+    },
+    {
+      "sha": "e2165619dd4ec924ab5591a50896dcadad501bbd",
+      "message": "Remove steps related to building hermes (#53901)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/53901\n\nChangelog: [Internal]\n\nReviewed By: cortinico, cipolleschi\n\nDifferential Revision: D83051151\n\nfbshipit-source-id: a88efd5ff908568a7b85ce6a6812103ee963766e",
+      "modifiedFiles": [
+        ".github/actions/build-apple-slices-hermes/action.yml",
+        ".github/actions/build-hermes-macos/action.yml",
+        ".github/actions/build-hermesc-apple/action.yml",
+        ".github/actions/build-hermesc-linux/action.yml",
+        ".github/actions/build-hermesc-windows/action.yml",
+        ".github/actions/build-npm-package/action.yml",
+        ".github/actions/prepare-hermes-workspace/action.yml",
+        ".github/actions/restore-hermes-workspace/action.yml",
+        ".github/actions/test-ios-helloworld/action.yml",
+        ".github/actions/test-ios-rntester/action.yml",
+        ".github/workflows/nightly.yml",
+        ".github/workflows/publish-release.yml",
+        ".github/workflows/test-all.yml",
+        "packages/react-native/scripts/hermes/prepare-hermes-for-build.js"
+      ]
+    },
+    {
+      "sha": "e3287d96992c71b056cf8e420a8d7ca4b2c4a1a2",
+      "message": "Use the Hermes artifacts in actions (#53837)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/53837\n\nChangelog: [Internal]\n\nReplaces usage of Hermes built inside the React Native repository with the release published from the Hermes repo.\n\nReviewed By: cipolleschi\n\nDifferential Revision: D82721725\n\nfbshipit-source-id: 357d5e2b914675ec6e60f810c382a945aa461732",
+      "modifiedFiles": [
+        ".github/actions/test-ios-helloworld/action.yml",
+        ".github/actions/test-ios-rntester/action.yml",
+        ".github/workflows/nightly.yml",
+        ".github/workflows/prebuild-ios-core.yml",
+        ".github/workflows/test-all.yml",
+        "packages/react-native/scripts/ios-prebuild/hermes.js",
+        "packages/react-native/scripts/ios-prebuild/utils.js",
+        "private/helloworld/android/app/build.gradle",
+        "scripts/releases/use-hermes-nightly.js"
+      ]
+    },
+    {
+      "sha": "27bb34c006bb5daaac639d065aaa4c963528814e",
+      "message": "Always use Hermes artifacts published from Hermes repository (#53833)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/53833\n\nChangelog: [GENERAL][CHANGED] - Use Hermes artifacts published independently from React Native\n\nReviewed By: cortinico\n\nDifferential Revision: D82626463\n\nfbshipit-source-id: 99a34a34c53b7f8f1c0da3da8a0e750e42a2e9b7",
+      "modifiedFiles": [
+        "build.gradle.kts",
+        "packages/gradle-plugin/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/TaskConfiguration.kt",
+        "packages/gradle-plugin/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/tasks/BundleHermesCTask.kt",
+        "packages/gradle-plugin/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/DependencyUtils.kt",
+        "packages/gradle-plugin/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/PathUtils.kt",
+        "packages/gradle-plugin/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/PropertyUtils.kt",
+        "packages/gradle-plugin/react-native-gradle-plugin/src/test/kotlin/com/facebook/react/utils/DependencyUtilsTest.kt",
+        "packages/gradle-plugin/react-native-gradle-plugin/src/test/kotlin/com/facebook/react/utils/PathUtilsTest.kt",
+        "packages/react-native/sdks/hermes-engine/hermes-engine.podspec",
+        "packages/react-native/sdks/hermes-engine/hermes-utils.rb"
+      ]
+    },
+    {
+      "sha": "406dd8729034bde5d300ff8427eee39611dd6c74",
+      "message": "Update release processes to update the Hermes versions independently from React Native (#53985)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/53985\n\nChangelog: [Internal]\n\nUpdates the release scripts to set the Hermes version independently from React Native.\n\nReviewed By: cipolleschi\n\nDifferential Revision: D82438054\n\nfbshipit-source-id: 154c19d1d0d16fd5879ad663428d803ceadc5a1f",
+      "modifiedFiles": [
+        "packages/react-native/scripts/hermes/__tests__/hermes-utils-test.js",
+        "packages/react-native/scripts/hermes/bump-hermes-version.js",
+        "packages/react-native/scripts/hermes/hermes-utils.js",
+        "packages/react-native/sdks/hermes-engine/version.properties",
+        "scripts/releases-ci/__tests__/publish-npm-test.js",
+        "scripts/releases-ci/publish-npm.js",
+        "scripts/releases/set-rn-artifacts-version.js",
+        "scripts/releases/utils/hermes-utils.js",
+        "scripts/releases/utils/npm-utils.js"
+      ]
+    },
+    {
+      "sha": "93c17cd0c43ba7fe3bc09f547b64771984992fbb",
+      "message": "Add changelog for 0.79.7 (#54224)\n\nSummary:\nAdd changelog for 0.79.7\n\n## Changelog:\n[Internal] -\n\nPull Request resolved: https://github.com/facebook/react-native/pull/54224\n\nTest Plan: N/A\n\nReviewed By: christophpurrer\n\nDifferential Revision: D85168976\n\nPulled By: cipolleschi\n\nfbshipit-source-id: 6807d1df9da62043f87bedf0d0209cd81fda816c",
+      "modifiedFiles": [
+        "CHANGELOG-0.7x.md",
+        "CHANGELOG.md"
+      ]
+    },
+    {
+      "sha": "0c5a22003ba1bce4c8a351d99bc9dc30c77bfc6d",
+      "message": "Apply fixup patch to fbsource\n\nSummary:\nThis is an automatically generated fixup patch to bring fbsource back into sync with\nfacebook/react\u0027s builds/facebook-fbsource branch on GitHub. Land this patch as soon as possible, as the difference\nreflected on here is already on GitHub and future changes may depend on these\nchanges!\n\n\u003c\u003c DO NOT EDIT BELOW THIS LINE \u003e\u003e\ndiff-train-skip-merge\n\nGenerated by: https://www.internalfb.com/intern/sandcastle/job/9007201517475550/\n\nGitHub Repo: facebook/react\n\n# Changelog: [Internal]\n\nReviewed By: hoxyq\n\nDifferential Revision: D84722100\n\nfbshipit-source-id: cbc6f4cdec01124b00ca011b1667c4f7bdb98a37",
+      "modifiedFiles": [
+        "packages/react-native/Libraries/Renderer/shims/ReactFabric.js",
+        "packages/react-native/Libraries/Renderer/shims/ReactFeatureFlags.js",
+        "packages/react-native/Libraries/Renderer/shims/ReactNative.js",
+        "packages/react-native/Libraries/Renderer/shims/ReactNativeTypes.js",
+        "packages/react-native/Libraries/Renderer/shims/ReactNativeViewConfigRegistry.js",
+        "packages/react-native/Libraries/Renderer/shims/createReactNativeComponentClass.js"
+      ]
+    },
+    {
+      "sha": "e2c803435cc8f2a43171d73b43db96a3ba2f3acc",
+      "message": "c++: Simplify native module lookup (#54227)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54227\n\nAll these flags were introduced for rollout purposes. We no longer need them. Let\u0027s get rid of them\n\nChangelog: [Internal]\n\nReviewed By: christophpurrer\n\nDifferential Revision: D85171189\n\nfbshipit-source-id: 4bd0531dfc3a9841fbe7db9a8f80329e04896e08",
+      "modifiedFiles": [
+        "packages/react-native/Libraries/TurboModule/TurboModuleRegistry.js",
+        "packages/react-native/ReactCommon/react/nativemodule/core/ReactCommon/TurboModuleBinding.cpp"
+      ]
+    },
+    {
+      "sha": "1a02e8bffe26198926f5e2d89ac00616a68f6dc2",
+      "message": "Simplify tests passing refs to Fantom instead of nodes (#54222)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54222\n\nChangelog: [internal]\n\nReduce boilerplate in some tests now that we can pass refs to some Fantom APIs.\n\nReviewed By: javache\n\nDifferential Revision: D85143176\n\nfbshipit-source-id: 0e107891f1027a185821e21e5fa76f019cec5bb1",
+      "modifiedFiles": [
+        "packages/react-native/Libraries/Components/ScrollView/__tests__/ScrollView-itest.js",
+        "packages/react-native/Libraries/Components/ScrollView/__tests__/ScrollView-viewCulling-itest.js",
+        "packages/react-native/Libraries/Components/TextInput/__tests__/TextInput-itest.js",
+        "packages/react-native/src/private/renderer/core/__tests__/EventDispatching-itest.js",
+        "packages/react-native/src/private/renderer/mounting/__tests__/MountingIntermediateCommits-itest.js"
+      ]
+    },
+    {
+      "sha": "e58bbbcd8e89ed9ae955c0d36aa778f9b430d992",
+      "message": "Allow passing refs where nodes are expected (#54221)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54221\n\nChangelog: [internal]\n\nSmall change in the Fantom API to accept refs and reduce boilerplate. See next diff for examples\n\nReviewed By: javache\n\nDifferential Revision: D85143177\n\nfbshipit-source-id: fd65abcc1b107df8726fee172b284f5dc96e88a6",
+      "modifiedFiles": [
+        "private/react-native-fantom/src/__tests__/Fantom-itest.js",
+        "private/react-native-fantom/src/index.js"
+      ]
+    },
+    {
+      "sha": "bd004e0c1211801f0b36b220df4e9ca93c5fed1e",
+      "message": "Add changelog for v0.82.1 (#54216)\n\nSummary:\nAdd Changelog for 0.82.1\n\n## Changelog:\n[Internal] - Add Changelog for 0.82.1\n\nPull Request resolved: https://github.com/facebook/react-native/pull/54216\n\nTest Plan: N/A\n\nReviewed By: cipolleschi\n\nDifferential Revision: D85137528\n\nPulled By: cortinico\n\nfbshipit-source-id: 3705a91227874f3ac5e006b8b3e2d26acaf91a2f",
+      "modifiedFiles": [
+        "CHANGELOG.md"
+      ]
+    },
+    {
+      "sha": "74d3472e2fb8577f5180257f33d9d6e3d6f40f95",
+      "message": "Better source locations for EXPECT_CALL failures (#54129)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54129\n\nChangelog: [Internal]\n\nThe team maintaining gmock is [uninterested, as a matter of principle,](https://github.com/google/googletest/issues/2646#issuecomment-630919122) in improving the ergonomics of writing helper functions around `EXPECT_CALL`. However, such helpers have proven very useful for the `jsinspector-modern` C++ test suite. The out-of-the-box ergonomics *are* pretty bad, though, so this diff tries to improve the situation.\n\nThe biggest offender in our test suite is the `expectMessageFromPage` helper function - if a test fails because an expectation isn\u0027t met, the error message points to the `EXPECT_CALL` line inside `expectMessageFromPage`, which is utterly useless compared to the line of test code that *called* `expectMessageFromPage`.\n\nHere, we reach into gmock\u0027s internals slightly to create a variant of the `EXPECT_CALL` macro that allows passing in a [`std::source_location`](https://en.cppreference.com/w/cpp/utility/source_location.html) (thanks, C++20!). We then teach `expectMessageFromPage` and other such helpers to capture a source location at the call site (using a parameter with a default value to `source_location::current()`) and use the modified macro to pass it into gmock.\n\nReviewed By: huntie\n\nDifferential Revision: D84368993\n\nfbshipit-source-id: 62f64b6c5f626a54bc3da7143d84ee2d75d16ac6",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/jsinspector-modern/tests/ConsoleApiTest.cpp",
+        "packages/react-native/ReactCommon/jsinspector-modern/tests/GmockHelpers.h",
+        "packages/react-native/ReactCommon/jsinspector-modern/tests/JsiIntegrationTest.h"
+      ]
+    },
+    {
+      "sha": "f7cc2e565a56cd0ef002671c12f8842ad9e05812",
+      "message": "Add tests for Tracing domain reporting of network requests (#54128)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54128\n\nChangelog: [Internal]\n\nAdds an integration test for `NetworkReporter`\u0027s CDP Tracing domain output (via `PerformanceTracer` behind the scenes), i.e. the traces that power the Network track in the Performance panel in React Native DevTools.\n\nThe test covers the `Tracing` and `Network` domains being enabled simultaneously, as well as `Tracing` on its own.\n\nReviewed By: huntie\n\nDifferential Revision: D84337901\n\nfbshipit-source-id: f82af33575806fc3b99636cdb1eb9803c04c8c07",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/jsinspector-modern/tests/NetworkReporterTest.cpp",
+        "packages/react-native/ReactCommon/jsinspector-modern/tests/engines/JsiIntegrationTestHermesEngineAdapter.cpp"
+      ]
+    },
+    {
+      "sha": "708f527ec79f2b4a108e3f2d7b662bae069b353e",
+      "message": "Ensure JVM thread is attached when destroying FabricMountingManager (#54218)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54218\n\nObserved some crashes coming from `schedulerDidRequestPreliminaryViewAllocation` which seemed to point at the FabricMountingManager being destroyed from the Hades GC thread. That thread is not attached to the JVM, so would crash when trying to destroy this global_ref.\n\nChangelog: [Internal]\n\nReviewed By: lenaic\n\nDifferential Revision: D85143603\n\nfbshipit-source-id: 2ecd42d57188e6f3d69a6124e21ee8913b3d5b89",
+      "modifiedFiles": [
+        "packages/react-native/ReactAndroid/src/main/jni/react/fabric/FabricMountingManager.cpp",
+        "packages/react-native/ReactAndroid/src/main/jni/react/fabric/FabricMountingManager.h"
+      ]
+    },
+    {
+      "sha": "f4a942254a413f4901af5562e7570a6c868a5756",
+      "message": "fix: add clearMarks and clearMeasures to performance global stub (#54214)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54214\n\n# Changelog: [Internal]\n\nReact started using `clearMeasures` in https://github.com/facebook/react/pull/34803. It only does it if `performance.measure()` is defined. This should be enough for a  feature check of User Timings API presence, but out stub doesn\u0027t follow the same spec.\n\nAdding `clearMarks()` and `clearMeasures()` stubs to the object.\n\nReviewed By: rubennorte\n\nDifferential Revision: D85082720\n\nfbshipit-source-id: 3b117a6545e131cdbb2d5efb73d500a928469864",
+      "modifiedFiles": [
+        "packages/react-native/Libraries/Core/setUpPerformance.js"
+      ]
+    },
+    {
+      "sha": "4ddf2ce64f8c6886a575c69872273005fd4d90cd",
+      "message": "Android: Add new configuration for `DevSupportManager` (#53557)\n\nSummary:\nFollowing the [RFC](https://github.com/react-native-community/discussions-and-proposals/pull/925), this PR adds new `DevMenuConfiguration` object and extends `ReactHost` API for passing settings to the particular `DevSupportManager`.  The `DevMenuConfiguration` includes:\n\n- isDevMenuEnabled,\n- isShakeGestureEnabled,\n- areKeyboardShortcutsEnabled,\n\n## Changelog:\n\n[ANDROID][ADDED] - Add new configuration for `RCTDevMenu`\n\nPull Request resolved: https://github.com/facebook/react-native/pull/53557\n\nTest Plan:\nTested with different configuration on `DevMenuConfiguration`:\n\n\u003cdetails\u003e\n\u003csummary\u003eClick to view code\u003c/summary\u003e\n\n```kt\noverride fun onCreate(savedInstanceState: Bundle?) {\n    super.onCreate(savedInstanceState)\n\n    fullyDrawnReporter.addReporter()\n    maybeUpdateBackgroundColor()\n\n    reactDelegate?.reactHost?.let { reactHost -\u003e\n      val devMenuConfiguration \u003d DevMenuConfiguration(\n        isDevMenuEnabled \u003d true,\n        isShakeGestureEnabled \u003d false,\n        areKeyboardShortcutsEnabled \u003d false,\n      )\n      reactHost.setDevMenuConfiguration(devMenuConfiguration)\n    }\n\n    // register insets listener to update margins on the ReactRootView to avoid overlap w/ system\n    // bars\n    reactDelegate?.reactRootView?.let { rootView -\u003e\n      val insetsType: Int \u003d\n          WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()\n\n      val windowInsetsListener \u003d { view: View, windowInsets: WindowInsetsCompat -\u003e\n        val insets \u003d windowInsets.getInsets(insetsType)\n\n        (view.layoutParams as FrameLayout.LayoutParams).apply {\n          setMargins(insets.left, insets.top, insets.right, insets.bottom)\n        }\n\n        WindowInsetsCompat.CONSUMED\n      }\n      ViewCompat.setOnApplyWindowInsetsListener(rootView, windowInsetsListener)\n    }\n  }\n```\n\n\u003c/details\u003e\n\nReviewed By: vzaidman, cortinico\n\nDifferential Revision: D81684310\n\nPulled By: coado\n\nfbshipit-source-id: 4e2c27ffc68037432587f4920b243f3dfdccb2fb",
+      "modifiedFiles": [
+        "packages/react-native/ReactAndroid/api/ReactAndroid.api",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/ReactDelegate.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/ReactHost.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/devsupport/DevMenuConfiguration.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/devsupport/DevSupportManagerBase.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/devsupport/ReleaseDevSupportManager.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/devsupport/interfaces/DevSupportManager.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/runtime/ReactHostImpl.kt",
+        "packages/rn-tester/android/app/src/main/java/com/facebook/react/uiapp/RNTesterActivity.kt"
+      ]
+    },
+    {
+      "sha": "328d07a30de84a02c23b7cd88b60fee8aa81698c",
+      "message": "Implement VirtualViewContainerStateExperimental (interval tree, updateModes optimization) (#54213)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54213\n\n## Changelog: [Internal]\nModifies `VirtualViewContainerStateExperimental` to use an interval tree to store the container\u0027s VirtualViews. Interval tree\u0027s query allows us to lower the frequently-used updateModes() operation from `O(n)` to `O(m + log n)`, where `m` is the number of VirtualViews in the hysteresis range. General layout changes incur a penalty due to the requirement of maintaining a balanced BST.\n\nPerformance Changes:\n* updateModes(): `O(n) -\u003e O(m + log n)` (new algo)\n* updateMode(): `O(1) -\u003e O(1)`\n* add VV: `O(1) -\u003e O(log n)`\n* update VV: `O(1) -\u003e O(log n)`\n* delete VV: `O(1) -\u003e O(log n)`\n\nWe expect scrolling to be much more frequent than a total layout change/updating many of the elements in the container at once. However, the initial load of a page will take `O(n log n)` time rather than `O(n)` time.\n\nWe also include some bookkeeping sets for \"old\" hysteresis, prerender, and visible VVs. This will increase the memory footprint of `VirtualViewContainerState` by `O(m)`.\n\nMore details are in https://docs.google.com/document/d/1Cmamx6fNfruoHLApX8tedqNVZsCEUyoBvQWpMvBsfcY/edit?tab\u003dt.gqla6vu3231k.\n\n### Note\nThis diff only covers the Android version. iOS may follow after experimentation.\n\nReviewed By: lunaleaps\n\nDifferential Revision: D83783201\n\nfbshipit-source-id: 93a7a93784d668e09d8ddacc7e30d289ccd8b7a2",
+      "modifiedFiles": [
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/scroll/VirtualViewContainer.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/scroll/VirtualViewContainerStateExperimental.kt"
+      ]
+    },
+    {
+      "sha": "793f99d949049c7ab9a7991af0a19010d5444b9f",
+      "message": "Split VirtualViewContainerState into classic, experimental versions [Android] (#54162)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54162\n\nChangelog [Internal]:\n\nSplits VirtualViewContainerState implementation into three parts: (1) an abstract parent class, (2) the \"classic\" version (existing version), and (3) the \"experimental\" version (new changes to be made). The experimental version is a copy of the classic version for now.\n\nReviewed By: lunaleaps\n\nDifferential Revision: D84569206\n\nfbshipit-source-id: b41cd9faf06d2de0dff17148ded72193107e5b9e",
+      "modifiedFiles": [
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/scroll/ReactHorizontalScrollView.java",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/scroll/ReactScrollView.java",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/scroll/VirtualViewContainer.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/scroll/VirtualViewContainerStateClassic.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/scroll/VirtualViewContainerStateExperimental.kt"
+      ]
+    },
+    {
+      "sha": "f4acf23374b2a7e9d78c96060ec573d31f1772d3",
+      "message": "Refactor debugLog in ReactVirtualViewExperimental.kt (#54157)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54157\n\nChangelog [Internal]\nRemoves unnecessary `debugLog` import in ReactVirtualViewExperimental and refactors the debug function\n\nReviewed By: lunaleaps\n\nDifferential Revision: D84608555\n\nfbshipit-source-id: 548076537c26a4fffba2c47be47d1cee4cf6f3ef",
+      "modifiedFiles": [
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/virtual/viewexperimental/ReactVirtualViewExperimental.kt"
+      ]
+    },
+    {
+      "sha": "0b05253dec1c73542ed993fb31e94a102d3cee1d",
+      "message": "Add VirtualViewContainerState version native feature flag (#54156)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54156\n\nChangelog: [Internal]\n\nIntroduces new React Native feature flag for VirtualViewContainerState versioning changes.\n\nFollow up diffs will create classic and experimental versions of VirtualViewContainerState. This feature flag is meant to eventually be overridden with MetaConfig variables.\n\nReviewed By: lunaleaps\n\nDifferential Revision: D84569199\n\nfbshipit-source-id: aaca31bd1946c56f7de3d7fd52a126b0165e59d4",
+      "modifiedFiles": [
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/internal/featureflags/ReactNativeFeatureFlags.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/internal/featureflags/ReactNativeFeatureFlagsCxxAccessor.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/internal/featureflags/ReactNativeFeatureFlagsCxxInterop.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/internal/featureflags/ReactNativeFeatureFlagsDefaults.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/internal/featureflags/ReactNativeFeatureFlagsLocalAccessor.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/internal/featureflags/ReactNativeFeatureFlagsProvider.kt",
+        "packages/react-native/ReactAndroid/src/main/jni/react/featureflags/JReactNativeFeatureFlagsCxxInterop.cpp",
+        "packages/react-native/ReactAndroid/src/main/jni/react/featureflags/JReactNativeFeatureFlagsCxxInterop.h",
+        "packages/react-native/ReactCommon/react/featureflags/ReactNativeFeatureFlags.cpp",
+        "packages/react-native/ReactCommon/react/featureflags/ReactNativeFeatureFlags.h",
+        "packages/react-native/ReactCommon/react/featureflags/ReactNativeFeatureFlagsAccessor.cpp",
+        "packages/react-native/ReactCommon/react/featureflags/ReactNativeFeatureFlagsAccessor.h",
+        "packages/react-native/ReactCommon/react/featureflags/ReactNativeFeatureFlagsDefaults.h",
+        "packages/react-native/ReactCommon/react/featureflags/ReactNativeFeatureFlagsDynamicProvider.h",
+        "packages/react-native/ReactCommon/react/featureflags/ReactNativeFeatureFlagsProvider.h",
+        "packages/react-native/ReactCommon/react/nativemodule/featureflags/NativeReactNativeFeatureFlags.cpp",
+        "packages/react-native/ReactCommon/react/nativemodule/featureflags/NativeReactNativeFeatureFlags.h",
+        "packages/react-native/scripts/featureflags/ReactNativeFeatureFlags.config.js",
+        "packages/react-native/src/private/featureflags/ReactNativeFeatureFlags.js",
+        "packages/react-native/src/private/featureflags/specs/NativeReactNativeFeatureFlags.js"
+      ]
+    },
+    {
+      "sha": "a63262f4bd29a3c4f79e7c397a82fe09e435bb55",
+      "message": "use ThemedReactContext for resource prefetching (#54201)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54201\n\nChangelog: [Internal]\n\nReviewed By: lenaic\n\nDifferential Revision: D85015776\n\nfbshipit-source-id: 1a237aa7cae39ddb242c09f202f3566c03baefed",
+      "modifiedFiles": [
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/uimanager/ViewManager.java"
+      ]
+    },
+    {
+      "sha": "6a37389e28e19443527557ff13ef85485cff2d55",
+      "message": "Image prefetcher \u003e Correctly set blurRadius data type (#54200)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54200\n\nChangelog: [Internal]\n\nReviewed By: lenaic\n\nDifferential Revision: D85014621\n\nfbshipit-source-id: f4ff244443ce0fef5b9cdd6005da002445f3f632",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/react/renderer/imagemanager/platform/android/react/renderer/imagemanager/conversions.h"
+      ]
+    },
+    {
+      "sha": "05ec7e0ad13cce59e7e3161aa1005392584d6c59",
+      "message": "Add basic definition of DOM APIs in legacy TypeScript types (#54124)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54124\n\nChangelog: [General][Fixed] Fixed missing type definitions for new DOM APIs in legacy TypeScript types.\n\nFixes https://github.com/facebook/react-native/issues/54103.\n\nReviewed By: huntie\n\nDifferential Revision: D84363784\n\nfbshipit-source-id: f92362c78c72da986b26ea18c673f90fd4b48fca",
+      "modifiedFiles": [
+        "packages/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts",
+        "packages/react-native/Libraries/Components/DrawerAndroid/DrawerLayoutAndroid.d.ts",
+        "packages/react-native/Libraries/Components/ProgressBarAndroid/ProgressBarAndroid.d.ts",
+        "packages/react-native/Libraries/Components/RefreshControl/RefreshControl.d.ts",
+        "packages/react-native/Libraries/Components/SafeAreaView/SafeAreaView.d.ts",
+        "packages/react-native/Libraries/Components/Switch/Switch.d.ts",
+        "packages/react-native/Libraries/Components/TextInput/TextInput.d.ts",
+        "packages/react-native/Libraries/Components/View/View.d.ts",
+        "packages/react-native/Libraries/Image/Image.d.ts",
+        "packages/react-native/Libraries/Text/Text.d.ts",
+        "packages/react-native/types/public/ReactNativeTypes.d.ts"
+      ]
+    },
+    {
+      "sha": "2f8392387bbdec802cc2f7cd7198a9ed45b0bd33",
+      "message": "Revert D84624705 (#54209)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54209\n\nChangelog: [Internal]\n\nThis diff reverts D84624705\nThe marker is logged even if there is a full bundle reload.\n\nDepends on D84624705\n\nReviewed By: hoxyq\n\nDifferential Revision: D85048405\n\nfbshipit-source-id: 0d634a034efe42b404abe1992a4f82280dbeedec",
+      "modifiedFiles": [
+        "packages/react-native/Libraries/Utilities/HMRClient.js"
+      ]
+    },
+    {
+      "sha": "50b1bec2d56cd1b06ceb0be284a30fd90e39c342",
+      "message": "RNGP - Move matchingFallbacks to be called inside `maybeCreate(\"debugOptimized\")` (#54186)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54186\n\nThe `marchingFallback` directive is applied directly on the build type.\nHowever here is invoked inside the `externalNativeBuild` making it confusing, because in reality\nit has nothing to do with `externalNativeBuild`. So I\u0027m moving it to the correct location\n(this has no effect on the build setup, is just to make the code easier to read).\n\nChangelog:\n[Internal] [Changed] -\n\nReviewed By: cipolleschi\n\nDifferential Revision: D84921628\n\nfbshipit-source-id: 064336ad64a8e1de20b747276f6e5ca7ce7cb677",
+      "modifiedFiles": [
+        "packages/gradle-plugin/react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/AgpConfiguratorUtils.kt"
+      ]
+    },
+    {
+      "sha": "bc906488aef57056020337932c6c1ba5b20a2377",
+      "message": "Add Fantom test for backgroundImage parsing (#54185)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54185\n\nValidate that the changes in D83341309 work across both experiment variants.\n\nChangelog: [Internal]\n\nReviewed By: andrewdacenko\n\nDifferential Revision: D84924308\n\nfbshipit-source-id: 7bf13d00f32c7af778b142ff3abdd0c2f7a5ba24",
+      "modifiedFiles": [
+        "packages/react-native/Libraries/Components/View/__tests__/View-itest.js",
+        "packages/react-native/ReactCommon/react/renderer/components/view/BackgroundImagePropsConversions.h",
+        "packages/react-native/ReactCommon/react/renderer/components/view/BaseViewProps.cpp",
+        "packages/react-native/ReactCommon/react/renderer/components/view/conversions.h",
+        "packages/react-native/ReactCommon/react/renderer/core/graphicsConversions.h",
+        "packages/react-native/ReactCommon/react/renderer/graphics/BackgroundImage.h",
+        "packages/react-native/ReactCommon/react/renderer/graphics/Color.cpp",
+        "packages/react-native/ReactCommon/react/renderer/graphics/Color.h",
+        "packages/react-native/ReactCommon/react/renderer/graphics/ColorStop.h",
+        "packages/react-native/ReactCommon/react/renderer/graphics/DoubleConversions.cpp",
+        "packages/react-native/ReactCommon/react/renderer/graphics/LinearGradient.cpp",
+        "packages/react-native/ReactCommon/react/renderer/graphics/LinearGradient.h",
+        "packages/react-native/ReactCommon/react/renderer/graphics/RadialGradient.cpp",
+        "packages/react-native/ReactCommon/react/renderer/graphics/RadialGradient.h",
+        "packages/react-native/ReactCommon/react/renderer/graphics/ValueUnit.cpp",
+        "packages/react-native/ReactCommon/react/renderer/graphics/ValueUnit.h"
+      ]
+    },
+    {
+      "sha": "a9780f9102800a53e381271bcf27542eaea4a46e",
+      "message": "feat: background image native CSS parser (#53609)\n\nSummary:\nThis PR adds native CSS parser for `backgroundImage` property. Currently, it supports linear-gradient and radial-gradient spec compliant CSS syntax.\n\n## Changelog:\n\n[GENERAL] [ADDED] - background image native parser.\n\n\u003c!-- Help reviewers and the release process by writing your own changelog entry.\n\nPick one each for the category and type tags:\n\nFor more details, see:\nhttps://reactnative.dev/contributing/changelogs-in-pull-requests\n\nPull Request resolved: https://github.com/facebook/react-native/pull/53609\n\nTest Plan:\n- Replicated existing testcases from JS. Currently i\u0027ve added CSS syntax testcases. Checkout `CSSBackgroundImageTest.cpp`\n\n### Verify example screens in RNTester\n- Set `enableNativeCSSParsing` to true in `ReactNativeFeatureFlags.config.js` and run `yarn featureflags --update`\n- Rebuild the project and verify `LinearGradientExample` and `RadialGradientExample` screens on both platforms.\n\n### Notes\n- Currently it is difficult to run CSS renderer tests. I made a custom cmake config to get it working, some steps would be helpful.\n- Right now the new CSS renderer seems to be only working on iOS. NickGerleman mentioned there is some WIP to get it working on android. So please test this PR on iOS.\n\nReviewed By: mdvacca\n\nDifferential Revision: D83341309\n\nPulled By: javache\n\nfbshipit-source-id: 91b88e3df164766c1f0021283697b1e5f9b44bfc",
+      "modifiedFiles": [
+        "packages/react-native/Libraries/Components/View/ReactNativeStyleAttributes.js",
+        "packages/react-native/Libraries/NativeComponent/BaseViewConfig.android.js",
+        "packages/react-native/React/Fabric/Utils/RCTGradientUtils.mm",
+        "packages/react-native/ReactCommon/react/renderer/components/view/BackgroundImagePropsConversions.cpp",
+        "packages/react-native/ReactCommon/react/renderer/components/view/BackgroundImagePropsConversions.h",
+        "packages/react-native/ReactCommon/react/renderer/components/view/BaseViewProps.cpp",
+        "packages/react-native/ReactCommon/react/renderer/components/view/conversions.h",
+        "packages/react-native/ReactCommon/react/renderer/css/CSSBackgroundImage.h",
+        "packages/react-native/ReactCommon/react/renderer/css/tests/CSSBackgroundImageTest.cpp",
+        "packages/react-native/ReactCommon/react/renderer/graphics/LinearGradient.h",
+        "packages/react-native/ReactCommon/react/renderer/graphics/RadialGradient.h",
+        "packages/rn-tester/js/examples/LinearGradient/LinearGradientExample.js"
+      ]
+    },
+    {
+      "sha": "4c4270d6c76857fd9698000d103a0916a40ec2d6",
+      "message": "Add endFillColor prop to scroll view (#54203)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54203\n\nAdding the Android `endFillColor` property to the scroll view props, setting the default value to `TRANSPARENT`.\n\nChangelog: [Internal]\n\nReviewed By: christophpurrer\n\nDifferential Revision: D85021077\n\nfbshipit-source-id: 73eb12671035b1b2e2ca95a08b7c73b55ce2c0da",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/react/renderer/components/scrollview/platform/android/react/renderer/components/scrollview/HostPlatformScrollViewProps.cpp",
+        "packages/react-native/ReactCommon/react/renderer/components/scrollview/platform/android/react/renderer/components/scrollview/HostPlatformScrollViewProps.h"
+      ]
+    },
+    {
+      "sha": "df7508db58f15c35a02fb45669bc3c73a3b68717",
+      "message": "Add overScrollMode prop to scroll view (#54202)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54202\n\nAdding the `overScrollMode` property to the Android scroll view props.\n\nChangelog: [Internal]\n\nDifferential Revision: D85019462\n\nfbshipit-source-id: 2809743a89e80ad851fce4f90da6a8f7a67e1501",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/react/renderer/components/scrollview/platform/android/react/renderer/components/scrollview/HostPlatformScrollViewProps.cpp",
+        "packages/react-native/ReactCommon/react/renderer/components/scrollview/platform/android/react/renderer/components/scrollview/HostPlatformScrollViewProps.h"
+      ]
+    },
+    {
+      "sha": "d9ea1b24531faad7ca62b2035401a9b92595863e",
+      "message": "Delete unused imports (#54195)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54195\n\nDelete unused imports\n\nchangelog: [internal] internal\n\nReviewed By: cortinico\n\nDifferential Revision: D84955362\n\nfbshipit-source-id: 1d89271b72080690a139d9dc99f1bf1576e3f4e9",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/react/renderer/uimanager/UIManagerUpdateShadowTree.cpp"
+      ]
+    },
+    {
+      "sha": "eafc472b7e75090635662e86d6c68fa94dd78de7",
+      "message": "Explicitly set default values for fields of ShadowNodeUpdateInfo (#54194)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54194\n\nExplicitly set default values for fields of ShadowNodeUpdateInfo\n\nchangelog: [internal] internal\n\nReviewed By: cortinico\n\nDifferential Revision: D84954459\n\nfbshipit-source-id: 0b2fc7d35ec8e515db91f86cea85bb78cf746cd1",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/react/renderer/uimanager/UIManagerUpdateShadowTree.cpp"
+      ]
+    },
+    {
+      "sha": "62378820551b58ee1ec58ded1fe375597919d314",
+      "message": "Explicitly set default values for fields of ShadowViewNodePair (#54193)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54193\n\nExplicitly set default values for fields of ShadowViewNodePair\n\nchangelog: [internal] internal\n\nReviewed By: cortinico\n\nDifferential Revision: D84954458\n\nfbshipit-source-id: 7ca2ed92d5622cf4dc01088d4e53b946d1bbd279",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/react/renderer/mounting/internal/ShadowViewNodePair.h"
+      ]
+    },
+    {
+      "sha": "0a3344c31f9fc004961cbcf3bf07d1295d2099ee",
+      "message": "Explicitly set default values for fields of ResourceTimingData (#54192)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54192\n\nExplicitly set default values for fields of ResourceTimingData\n\nchangelog: [internal] internal\n\nReviewed By: cortinico\n\nDifferential Revision: D84954457\n\nfbshipit-source-id: 9f121a9e8567b851fa74756a2fa58dab9fd60827",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/react/networking/NetworkReporter.h"
+      ]
+    },
+    {
+      "sha": "82826f24d595df3ad60c2bd5502c505569513645",
+      "message": "Explicitly set default values for fields of NetworkResource (#54191)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54191\n\nExplicitly set default values for fields of NetworkResource\n\nchangelog: [internal] internal\n\nReviewed By: cortinico\n\nDifferential Revision: D84954456\n\nfbshipit-source-id: 27f48ca0c174045023da4d87429973b26a788103",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/jsinspector-modern/NetworkIOAgent.h"
+      ]
+    },
+    {
+      "sha": "9d172c0b378c84a4edf53fa548b95dfb5e63de3d",
+      "message": "Explicitly set default values for field of structTraceEvent (#54190)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54190\n\nExplicitly set default values for field of structTraceEvent\n\nchangelog: [internal] internal\n\nReviewed By: cortinico\n\nDifferential Revision: D84954461\n\nfbshipit-source-id: 51b950d26d4236ff561b77751983defaccd799b0",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/jsinspector-modern/tracing/TraceEvent.h"
+      ]
+    },
+    {
+      "sha": "ff50b29050ae5885ac70d501aa28b34e8d952e15",
+      "message": "Explicitly set default values for fields of struct JSRuntimeFlags (#54189)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54189\n\nExplicitly set default values for fields of struct JSRuntimeFlags\n\nchangelog: [internal] internal\n\nReviewed By: cortinico\n\nDifferential Revision: D84952242\n\nfbshipit-source-id: 41de7eb791c9880c83573d670f4a777bf0a753d9",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/react/runtime/ReactInstance.h"
+      ]
+    },
+    {
+      "sha": "c3868e5e4c7a395bb476525e4dfe6c689542cf23",
+      "message": "Explicitly set default values for fields of HostTargetMetadata struct (#54188)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54188\n\nExplicitly set default values for fields of HostTargetMetadata struct\n\nchangelog: [internal] internal\n\nReviewed By: cortinico\n\nDifferential Revision: D84952243\n\nfbshipit-source-id: e01b8137dac571a6e001681184bca2eef7cc9ee8",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/jsinspector-modern/HostTarget.h"
+      ]
+    },
+    {
+      "sha": "535efc1403e53bde190ce5ddb7ecf97918c5e5fd",
+      "message": "Fixed tint color for action sheets (#54180)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54180\n\nin iOS 26, the tintColor prop is not applied by default to the action sheets buttons.\n\nThis change fixes it by restoring the same behavior we had before iOS 26.\n\n## Changelog:\n[iOS][Fixed] - Apply tint color to Actions sheets buttons\n\nReviewed By: cortinico\n\nDifferential Revision: D84844319\n\nfbshipit-source-id: e211d0a735ea2da35f825c3568d66ba83e4ad832",
+      "modifiedFiles": [
+        "packages/react-native/React/CoreModules/RCTActionSheetManager.mm"
+      ]
+    },
+    {
+      "sha": "82d2352b19b5255c74d17efea467bdad2ba93f29",
+      "message": "Fix ActionSheet presented with an interactive background (#54179)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54179\n\niOS 26 changed how the `popoverPresentationController.sourceView`and the `popoverPresentationController.sourceRect` are handled by iOS.\n\nBefore iOS 26, those two properties were ignored by iPhones but used by iPads.\n\nAfter iOS 26, those two properties are used by both iPhones and iPads.\n\nThis introduced an issue where users presenting an action sheet were actually able to interact with the back button on iPhone even ehwn they were not supposed to.\n\nThis change adds a condition over the idiom used (iPhone/iPad) to make sure that we use the anchors only with the iPad idions as it used to be before.\n\n## Changelog:\n[iOS][Fixed] - Revert action sheet behavior not to break apps on iOS 26\n\nReviewed By: RSNara\n\nDifferential Revision: D84842625\n\nfbshipit-source-id: 347dfc21ee478abd02ba26078cb27d05e9cb64c5",
+      "modifiedFiles": [
+        "packages/react-native/React/CoreModules/RCTActionSheetManager.mm"
+      ]
+    },
+    {
+      "sha": "be4fcdafb13c2cee702bb120b0feb9b5966ca50e",
+      "message": "Improve decoding full-sized images in `RCTImageLoader` (#54184)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54184\n\nIn Expo, someone reported (https://github.com/expo/expo/issues/40158) that `expo-image-manipulator` causes memory crashes when processing large images (\u003e 30MB).\nImage manipulator uses `RCTImageLoader` to load and decode images. As opposed to the Image component, it always requests for images in full size. For large images it may crash at `CGImageSourceCreateThumbnailAtIndex` which in the provided repro slowly increases memory usage until it finally crashes after a few seconds of running.\nI figured out that not including the `kCGImageSourceThumbnailMaxPixelSize` option works much better, but using `CGImageSourceCreateImageAtIndex` instead of `CGImageSourceCreateThumbnailAtIndex` works even better – it\u0027s faster and consumes less memory during decoding. This is more or less what `SDWebImage` library does, see [`SDImageIOAnimatedCoder`](https://github.com/SDWebImage/SDWebImage/blob/master/SDWebImage/Core/SDImageIOAnimatedCoder.m#L488-L509).\nWith the proposed changes, it\u0027s still crashing but only for the largest image (64MB), other images (40MB and 50MB) are now working fine. Obviously, it cannot be fixed entirely and it\u0027s not recommended to load such big images without downscaling them.\n\n## Changelog:\n\n[IOS] [CHANGED] - Use `CGImageSourceCreateImageAtIndex` instead of `CGImageSourceCreateThumbnailAtIndex` to decode full-sized images\n\nPull Request resolved: https://github.com/facebook/react-native/pull/54127\n\nTest Plan: I\u0027ve tested the examples of the `Image` component in RNTester as well as the repro provided in https://github.com/expo/expo/issues/40158\n\nReviewed By: javache\n\nDifferential Revision: D84835416\n\nPulled By: cipolleschi\n\nfbshipit-source-id: a182dd00f00194f0463ad4f583cc695647414fca",
+      "modifiedFiles": [
+        "packages/react-native/Libraries/Image/RCTImageUtils.mm"
+      ]
+    },
+    {
+      "sha": "269b0bd877b018e9d54e7b08ab9b4d265daaaef3",
+      "message": "fix(android): displaying dev menu items in light mode (#54119)\n\nSummary:\nFixes displaying dev menu items to also take into account the current theme mode. Previously, in light mode, items were not visible because the text was white on a white background for enabled options.\n\n## Changelog:\n\n[ANDROID][FIXED] - fixed displaying dev menu items in light mode.\n\nPull Request resolved: https://github.com/facebook/react-native/pull/54119\n\nTest Plan:\nChecked in light and dark mode with all options enabled except for \"Open DevTools\" being disabled.\n\n| Before | After |\n|:------:|:-----:|\n|\u003cimg  alt\u003d\"before-light\" src\u003d\"https://github.com/user-attachments/assets/5a08cb92-8822-4af3-976d-c20db408bcaa\" /\u003e |\u003cimg alt\u003d\"after-light\" src\u003d\"https://github.com/user-attachments/assets/02561c15-b6ec-499a-bf83-99bc0c2a9471\" /\u003e|\n\n| Before | After |\n|:------:|:-----:|\n| \u003cimg alt\u003d\"before-dark\" src\u003d\"https://github.com/user-attachments/assets/44b2c59e-2fc2-41cc-a599-136ac455afbb\" /\u003e |\u003cimg alt\u003d\"after-dark\" src\u003d\"https://github.com/user-attachments/assets/51e6167b-4d3a-4686-a20e-eca17c3b0e10\" /\u003e|\n\nReviewed By: sbuggay, cortinico\n\nDifferential Revision: D84346125\n\nPulled By: coado\n\nfbshipit-source-id: e082d1985fdcafe8620cbd02a78a1b122fb08e53",
+      "modifiedFiles": [
+        "packages/react-native/ReactAndroid/api/ReactAndroid.api",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/devsupport/DevSupportManagerBase.kt",
+        "packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/text/DefaultStyleValuesUtil.kt",
+        "packages/rn-tester/android/app/src/main/res/values-night/colors.xml",
+        "packages/rn-tester/android/app/src/main/res/values-night/styles.xml",
+        "packages/rn-tester/android/app/src/main/res/values/colors.xml",
+        "packages/rn-tester/android/app/src/main/res/values/styles.xml"
+      ]
+    },
+    {
+      "sha": "802e1a7726346eba8727471c71ab46c5c3904ddf",
+      "message": "Support edge-adjacent intersections (#54175)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54175\n\nChangelog: [Internal] - Fix a bug with IntersectionObserver where we weren\u0027t considering edge-adjacent intersections.\n\nSo it is valid for `intersectionRatio` to be 0, but still be intersecting.\n\nReviewed By: mdvacca\n\nDifferential Revision: D84787414\n\nfbshipit-source-id: ef6ab35be594f5b734c8c25d2475ee2a6dba1fe5",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/react/renderer/observers/intersection/IntersectionObserver.cpp",
+        "packages/react-native/src/private/webapis/intersectionobserver/__tests__/IntersectionObserver-itest.js"
+      ]
+    },
+    {
+      "sha": "9d6fa7d77e2cfcc23183d7924a30e3d7b0bbfa04",
+      "message": "Use \u0027explicit root\u0027 instead of \u0027custom root\u0027 terminology (#54177)\n\nSummary:\nPull Request resolved: https://github.com/facebook/react-native/pull/54177\n\nChangelog: [Internal] - Rename the term \"custom root\" to \"explicit root\" to align with w3c spec. And \"implicit root\" for the document root.\n\nReviewed By: mdvacca\n\nDifferential Revision: D84795887\n\nfbshipit-source-id: afec23f6763af56c6de1d3fce2f9501187559fb9",
+      "modifiedFiles": [
+        "packages/react-native/ReactCommon/react/renderer/observers/intersection/IntersectionObserver.cpp",
+        "packages/react-native/src/private/webapis/intersectionobserver/__tests__/IntersectionObserver-itest.js"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "react-native",
+      "ownerLogin": "yasser77gaber",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "WatuJoytush",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "St-Mudo",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "harapanjay4",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "friyiajr",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "maitruongan2005",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "Dev-Pardo",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "ncwuguowei",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native-Fabebook",
+      "ownerLogin": "LeandraFernanda",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "COMPU-GLOBALHYPERMEGANET",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "jomo06",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "Starr365",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "silasjmatson",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "kalpitnepal",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "RudyBlack",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "hist008",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "wojciechloboda",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "davidliu",
+      "commitCount": 100
+    },
+    {
+      "name": "react-native",
+      "ownerLogin": "Dianababaei",
+      "commitCount": 100
+    },
+    {
+      "name": "sahil-react-native",
+      "ownerLogin": "SahilSingh20022003",
+      "commitCount": 100
+    }
+  ]
+}

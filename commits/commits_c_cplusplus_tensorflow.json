@@ -1,0 +1,577 @@
+{
+  "name": "tensorflow",
+  "ownerLogin": "tensorflow",
+  "language": "C++",
+  "commits": [
+    {
+      "sha": "03be5156fe82c1768280768d2f7bfba502d3eded",
+      "message": "[XLA:CPU] Split IntrinsicFunction into its own lib for later use.\n\nPiperOrigin-RevId: 822800836",
+      "modifiedFiles": [
+        "third_party/xla/xla/codegen/BUILD",
+        "third_party/xla/xla/codegen/intrinsic/BUILD",
+        "third_party/xla/xla/codegen/intrinsic/intrinsic.h",
+        "third_party/xla/xla/codegen/intrinsic/vec_name_mangler.h",
+        "third_party/xla/xla/codegen/intrinsic_function.h",
+        "third_party/xla/xla/codegen/intrinsic_lib.cc",
+        "third_party/xla/xla/codegen/intrinsic_lib.h"
+      ]
+    },
+    {
+      "sha": "6bd65b3630aa54ccfe636d7e1c8dd1e3e670cbb0",
+      "message": "[XLA] Refactor HloSchedule::Verify to allow per-computation verification.\n\nPiperOrigin-RevId: 822796366",
+      "modifiedFiles": [
+        "third_party/xla/xla/hlo/ir/hlo_schedule.cc",
+        "third_party/xla/xla/hlo/ir/hlo_schedule.h"
+      ]
+    },
+    {
+      "sha": "ac8332f616366f6edb67724d57acd0cd01a46cb0",
+      "message": "[jax:ffi] Do not pass uninitialized type_id value to type registration API\n\nSetting type_id value to 0 is required for XLA to assign unique type id, otherwise type gets assigned a random value that happens to be on the caller stack.\n\nPiperOrigin-RevId: 822782898",
+      "modifiedFiles": [
+        "third_party/xla/xla/ffi/ffi_api.cc"
+      ]
+    },
+    {
+      "sha": "cf3e49ba23c56bfaf76880f357c76e4f0a5f364a",
+      "message": "Delete unused PjRtStreamExecutorBuffer::ScopedHold related code.\n\nPiperOrigin-RevId: 822779025",
+      "modifiedFiles": [
+        "third_party/xla/xla/pjrt/gpu/se_gpu_pjrt_client.cc",
+        "third_party/xla/xla/pjrt/gpu/se_gpu_pjrt_client.h",
+        "third_party/xla/xla/pjrt/pjrt_stream_executor_client.cc",
+        "third_party/xla/xla/pjrt/pjrt_stream_executor_client.h"
+      ]
+    },
+    {
+      "sha": "bcc803eeb66704e81fa07cb9404a9caf815839a2",
+      "message": "Remove usage of mirrored `tar` files from CI because hermetic `xz` tool helps to unpack `tar.xz` faster.\n\nPiperOrigin-RevId: 822773874",
+      "modifiedFiles": [
+        ".bazelrc",
+        "third_party/xla/tensorflow.bazelrc"
+      ]
+    },
+    {
+      "sha": "13ea97f3a98542c0ecd02d4fc68cc0f00fce8458",
+      "message": "Update PjRtStreamExecutorClient main execute path to use CommonPjRtBuffer::ScopedHold. Crucially\nthis now passes reference_held\u003dtrue always. This is fine because the only time\nthis was ever passed as false was if this was already on the compute stream and\nthis bool is basically ignored if the stream is the compute stream (see\nMaybeWaitForEventOnStream).\n\nPiperOrigin-RevId: 822758577",
+      "modifiedFiles": [
+        "third_party/xla/xla/pjrt/gpu/BUILD",
+        "third_party/xla/xla/pjrt/gpu/se_gpu_pjrt_client.cc",
+        "third_party/xla/xla/pjrt/pjrt_stream_executor_client.cc",
+        "third_party/xla/xla/pjrt/pjrt_stream_executor_client.h"
+      ]
+    },
+    {
+      "sha": "880f245b569354bd82d855a26f4c59c613f0885d",
+      "message": "Allow TSL CellReader to work with lazy metrics.\n\nPiperOrigin-RevId: 822757884",
+      "modifiedFiles": [
+        "tensorflow/core/lib/monitoring/cell_reader_test.cc",
+        "third_party/xla/xla/tsl/lib/monitoring/cell_reader-inl.h",
+        "third_party/xla/xla/tsl/lib/monitoring/cell_reader.h"
+      ]
+    },
+    {
+      "sha": "420ca15b61b42b885d6e6042bc48daf2ffc2b746",
+      "message": "Promote check to connection close.\n\nPiperOrigin-RevId: 822746430",
+      "modifiedFiles": [
+        "third_party/xla/xla/python/transfer/socket-server.cc"
+      ]
+    },
+    {
+      "sha": "2cdd8ff5ce642e94bd206306af00fac1d34ec2a0",
+      "message": "[xla:ffi] Keep FFI handler metadata with handler registration\n\nPiperOrigin-RevId: 822741325",
+      "modifiedFiles": [
+        "third_party/xla/xla/backends/gpu/runtime/command_buffer_conversion_pass.cc",
+        "third_party/xla/xla/ffi/api/api.h",
+        "third_party/xla/xla/ffi/ffi_api.cc",
+        "third_party/xla/xla/ffi/ffi_api.h",
+        "third_party/xla/xla/ffi/ffi_test.cc",
+        "third_party/xla/xla/service/gpu/transforms/command_buffer_scheduling.cc"
+      ]
+    },
+    {
+      "sha": "70111bb38fa8790390423f2633381d73657aea74",
+      "message": "Reverts 16064a6c080c323610e7cd4cd267fb5f9a9ef82a\n\nPiperOrigin-RevId: 822724128",
+      "modifiedFiles": [
+        "third_party/xla/xla/pjrt/c/CHANGELOG.md",
+        "third_party/xla/xla/pjrt/c/pjrt_c_api.h",
+        "third_party/xla/xla/pjrt/c/pjrt_c_api_layouts_extension.h",
+        "third_party/xla/xla/pjrt/c/pjrt_c_api_wrapper_impl.cc",
+        "third_party/xla/xla/pjrt/c/pjrt_c_api_wrapper_impl.h",
+        "third_party/xla/xla/pjrt/c_api_client/pjrt_c_api_client.cc",
+        "third_party/xla/xla/pjrt/c_api_client/pjrt_c_api_client.h"
+      ]
+    },
+    {
+      "sha": "aeda5dabd40aff0e8561701522745fdc60e9ddae",
+      "message": "[XLA] Handle nested while loops in CollectivePipeliner.\n\nThis CL modifies the collective pipeliner to generate unique body and condition computations for newly generated while loop instructions.\n\nPiperOrigin-RevId: 822719229",
+      "modifiedFiles": [
+        "third_party/xla/xla/service/BUILD",
+        "third_party/xla/xla/service/collective_pipeliner.cc",
+        "third_party/xla/xla/service/collective_pipeliner_test.cc"
+      ]
+    },
+    {
+      "sha": "7b277367dc1d5e9c01d2d05f30b21a587138af8f",
+      "message": "Remove inheritance of GpuComputeCapability from std::variant\n\nPiperOrigin-RevId: 822701900",
+      "modifiedFiles": [
+        "third_party/xla/xla/stream_executor/device_description.h"
+      ]
+    },
+    {
+      "sha": "a6889b6922f72f5e00853399569895deeb3581f5",
+      "message": "Switch to using CommonAsyncHostToDeviceTransferManager.\n\nPiperOrigin-RevId: 822701589",
+      "modifiedFiles": [
+        "third_party/xla/xla/pjrt/gpu/BUILD",
+        "third_party/xla/xla/pjrt/gpu/se_gpu_pjrt_client.cc"
+      ]
+    },
+    {
+      "sha": "6d1a7019f042d85bad0427d594e385ea1f06b2ba",
+      "message": "Fix issues in optimization patterns for `broadcast_in_dim` and `pad` ops.\n\n- Prioritize replacing `broadcast_in_dim` with `reshape` over merging nested `broadcast_in_dim` ops. The new behavior matches the relevant MHLO optimization behavior, which proved to be preferable.\n- Fix an issue where `pad` ops that didn\u0027t change the dimensions would be removed even if they shifted elements around within the tensor (e.g. padding by -1 on one side and +1 on the opposite side).\n\nPiperOrigin-RevId: 822701252",
+      "modifiedFiles": [
+        "third_party/xla/third_party/stablehlo/temporary.patch"
+      ]
+    },
+    {
+      "sha": "a5524d43e6ad7922a826373c1a569df7e63669ef",
+      "message": "PR #33008: [ROCm] Add CI specific bazelrc file\n\nImported from GitHub PR https://github.com/openxla/xla/pull/33008\n\n📝 Summary of Changes\nAdd CI-specific bazelrc that will import both `rocm.bazelrc` from `/usertools` and `rocm_xla.bazelrc`\n\n🎯 Justification\nTemporary workaround until split logic in CI (which relies on `/usertools/rocm.bazelrc`) is removed\n\nCopybara import of the project:\n\n--\nbb4cbf0c4fbf2c171110040c5c1470bddced203b by Milica Makevic \u003cMilica.Makevic@amd.com\u003e:\n\nAdd CI specific bazelrc\n\nMerging this change closes #33008\n\nPiperOrigin-RevId: 822700005",
+      "modifiedFiles": [
+        "third_party/xla/build_tools/rocm/rocm_xla_ci.bazelrc",
+        "third_party/xla/build_tools/rocm/run_xla_ci_build.sh"
+      ]
+    },
+    {
+      "sha": "4d53eda2feea6dba76c2e592057300838dd1023f",
+      "message": "Refactor spmd partitioner.\n\nPiperOrigin-RevId: 822689391",
+      "modifiedFiles": [
+        "third_party/xla/xla/service/spmd/BUILD",
+        "third_party/xla/xla/service/spmd/spmd_partitioner.cc",
+        "third_party/xla/xla/service/spmd/spmd_partitioner.h",
+        "third_party/xla/xla/service/spmd/spmd_partitioner_util.cc",
+        "third_party/xla/xla/service/spmd/spmd_partitioner_util.h"
+      ]
+    },
+    {
+      "sha": "1b08f96abf7d11e9af7a5f40f1aa84d98886f818",
+      "message": "Port to new GpuComputeCapability API. Last part\n\nPiperOrigin-RevId: 822676102",
+      "modifiedFiles": [
+        "third_party/xla/xla/backends/gpu/codegen/dynamic_slice_fusion_test.cc",
+        "third_party/xla/xla/service/gpu/autotuning/autotune_cache_key.cc",
+        "third_party/xla/xla/service/gpu/autotuning/conv_algorithm_picker_test.cc",
+        "third_party/xla/xla/service/gpu/autotuning/gemm_fusion_autotuner.h",
+        "third_party/xla/xla/service/gpu/autotuning/gemm_fusion_autotuner_cuda.cc",
+        "third_party/xla/xla/service/gpu/autotuning/gemm_fusion_autotuner_test.cc",
+        "third_party/xla/xla/service/gpu/transforms/cudnn_fused_conv_rewriter_test.cc",
+        "third_party/xla/xla/service/gpu/transforms/layout_assignment_test.cc",
+        "third_party/xla/xla/stream_executor/cuda/cuda_executor_test.cc",
+        "third_party/xla/xla/stream_executor/device_description.cc",
+        "third_party/xla/xla/stream_executor/gpu/tma_metadata.cc",
+        "third_party/xla/xla/stream_executor/rocm/rocm_compute_capability.h"
+      ]
+    },
+    {
+      "sha": "3503a6128233f2398ba85333fd1b5470edeae842",
+      "message": "[XLA:GPU] Combine metadata AllToAlls in RaggedAllToAllMultiHostDecomposer.\n\nInstead of performing four separate AllToAll operations, the metadata tensors are reshaped, concatenated, and then a single AllToAll is executed. The result is then sliced back into the individual metadata tensors. This reduces latency required to initiate separate collective operations.\n\nPiperOrigin-RevId: 822674605",
+      "modifiedFiles": [
+        "third_party/xla/xla/service/gpu/transforms/ragged_all_to_all_multi_host_decomposer.cc",
+        "third_party/xla/xla/service/gpu/transforms/ragged_all_to_all_multi_host_decomposer_test.cc"
+      ]
+    },
+    {
+      "sha": "85c99b1ecb953424a031f172820efacfe73f9613",
+      "message": "Reverts 2d4dd837737e8cfb7864a91dc04a7f94aba562b3\n\nPiperOrigin-RevId: 822637158",
+      "modifiedFiles": [
+        "third_party/xla/xla/debug_options_flags.cc",
+        "third_party/xla/xla/debug_options_parsers_test.cc",
+        "third_party/xla/xla/service/gpu/autotuning/gemm_fusion_autotuner.cc",
+        "third_party/xla/xla/service/gpu/determinism_test.cc",
+        "third_party/xla/xla/service/gpu/transforms/nest_gemm_fusion_test.cc"
+      ]
+    },
+    {
+      "sha": "4827802e7c2f9fb0943105a3efa497877cb9cc96",
+      "message": "[xla:pjrt:ffi] Remove unused type id registration API\n\nPiperOrigin-RevId: 822630041",
+      "modifiedFiles": [
+        "third_party/xla/xla/pjrt/c/pjrt_c_api_ffi_extension.h",
+        "third_party/xla/xla/pjrt/c/pjrt_c_api_ffi_internal.cc"
+      ]
+    },
+    {
+      "sha": "d8dcad1639abccb63b6ae9c89342bd7d9ef2c5ed",
+      "message": "[XLA:CPU] Reenable new fusions in xla_ops_test.\n\nPiperOrigin-RevId: 822608974",
+      "modifiedFiles": [
+        "tensorflow/compiler/tests/BUILD"
+      ]
+    },
+    {
+      "sha": "3353eeeab7c82b73ce06c91ab1af66899295deca",
+      "message": "[XLA:CPU] Only add reassoc flag to reductions with a single floating point op.\n\nPiperOrigin-RevId: 822598746",
+      "modifiedFiles": [
+        "third_party/xla/xla/backends/cpu/codegen/emitters/transforms/add_reduction_fast_math_flags.cc",
+        "third_party/xla/xla/backends/cpu/codegen/emitters/transforms/tests/add_reduction_fast_math.mlir"
+      ]
+    },
+    {
+      "sha": "bbea04967a1b5f435c632b62f9a16d6d754834f4",
+      "message": "Reverts c28d80ae666abf6ac0f1ec9e72c9bfab4adee1b9\n\nPiperOrigin-RevId: 822586242",
+      "modifiedFiles": [
+        "third_party/xla/xla/hlo/ir/hlo_computation.cc",
+        "third_party/xla/xla/hlo/ir/hlo_computation.h",
+        "third_party/xla/xla/hlo/ir/hlo_instruction.h",
+        "third_party/xla/xla/hlo/ir/hlo_instructions.cc",
+        "third_party/xla/xla/hlo/ir/hlo_instructions.h",
+        "third_party/xla/xla/hlo/ir/hlo_schedule.cc",
+        "third_party/xla/xla/hlo/transforms/simplifiers/flatten_call_graph.cc"
+      ]
+    },
+    {
+      "sha": "94d00be0e6aaafa241337cdc9941eb54b2432460",
+      "message": "[XLA:GPU] Fix incorrect namespace in buffer_debug_log.*\n\nIt was moved to stream_executor/gpu, but code remained in stream_executor::cuda namespace.\n\nPiperOrigin-RevId: 822584666",
+      "modifiedFiles": [
+        "third_party/xla/xla/backends/gpu/runtime/buffers_checksum_thunk.cc",
+        "third_party/xla/xla/backends/gpu/runtime/buffers_checksum_thunk_test.cc",
+        "third_party/xla/xla/backends/gpu/runtime/thunk_checksum_tracing_pass.cc",
+        "third_party/xla/xla/stream_executor/cuda/buffer_debug_xor_checksum_kernel_cuda_test.cc",
+        "third_party/xla/xla/stream_executor/gpu/buffer_debug_log.cc",
+        "third_party/xla/xla/stream_executor/gpu/buffer_debug_log.h",
+        "third_party/xla/xla/stream_executor/gpu/buffer_debug_log_test.cc"
+      ]
+    },
+    {
+      "sha": "53499fe9d0cf31f72d8f108059f737d753ca0a97",
+      "message": "[XLA:GPU] Move offset correction logic in a helper function.\n\nPiperOrigin-RevId: 822572708",
+      "modifiedFiles": [
+        "third_party/xla/xla/service/gpu/transforms/ragged_all_to_all_multi_host_decomposer.cc"
+      ]
+    },
+    {
+      "sha": "a34be3eb68a0e040b1424a38bfe5cf8aa7fd381c",
+      "message": "[XLA:GPU] Ignore zero-sized constants in layout normalization.\n\nPiperOrigin-RevId: 822571991",
+      "modifiedFiles": [
+        "third_party/xla/xla/service/layout_normalization.cc",
+        "third_party/xla/xla/service/layout_normalization_test.cc"
+      ]
+    },
+    {
+      "sha": "39506ad1cd333de28aa9c46b7c134d88c83d8861",
+      "message": "Deduplicate functions on the one with largest number of call sites.\n\nInstead of picking arbitrarily.\n\nPiperOrigin-RevId: 822566069",
+      "modifiedFiles": [
+        "third_party/xla/xla/service/spmd/shardy/round_trip_common/export_named_computations.cc",
+        "third_party/xla/xla/service/spmd/shardy/test/export_named_computations_deduplicate_functions_fully.mlir"
+      ]
+    },
+    {
+      "sha": "83b84b3c46d73b187f0c439ce97f9579c5e1a2dd",
+      "message": "[XLA:GPU] Add tests for transpose ops inserted by DotDecomposer.\n\nAlso be more precise about what is considered normal form and what is not.\n\nPiperOrigin-RevId: 822554350",
+      "modifiedFiles": [
+        "third_party/xla/xla/hlo/transforms/expanders/BUILD",
+        "third_party/xla/xla/hlo/transforms/expanders/dot_decomposer.cc",
+        "third_party/xla/xla/hlo/transforms/expanders/dot_decomposer_test.cc"
+      ]
+    },
+    {
+      "sha": "b5d09010cd0402486bdc75c98ee79feffacb3edf",
+      "message": "Make adding missing shardings to control flow configurable in StableHLO export.\n\nIntroduce `addMissingShardingToControlFlow` option in `StablehloExportPipelineOptions` to control whether `ExportStablehloShardingsPass` adds missing shardings to control flow ops. Disable this option in `mlir_to_hlo.cc` when converting MLIR to HLO.\n\nPiperOrigin-RevId: 822542288",
+      "modifiedFiles": [
+        "third_party/xla/xla/pjrt/mlir_to_hlo.cc",
+        "third_party/xla/xla/service/spmd/shardy/stablehlo_round_trip/stablehlo_export.cc",
+        "third_party/xla/xla/service/spmd/shardy/stablehlo_round_trip/stablehlo_export.h"
+      ]
+    },
+    {
+      "sha": "3cc86433e3d1900d01ccf8777e2a47ed052ecc8f",
+      "message": "Correctly set dnn_version in device_description when parsing from proto.\n\nRemoving the setting from the other 2 places as it is no longer necessary.\n\nPiperOrigin-RevId: 822533070",
+      "modifiedFiles": [
+        "third_party/xla/xla/service/compiler.cc",
+        "third_party/xla/xla/service/gpu/autotuning/autotuner_pass.cc",
+        "third_party/xla/xla/service/gpu/gpu_compiler.cc"
+      ]
+    },
+    {
+      "sha": "dfea7bb9a7f5e72351c82399083b9dfec3e36067",
+      "message": "Automated Code Change\n\nPiperOrigin-RevId: 822524939",
+      "modifiedFiles": [
+        "tensorflow/core/util/tensor_bundle/tensor_bundle.cc"
+      ]
+    },
+    {
+      "sha": "e5e060f167f3c7ab458fd2ed830e335e6583cd59",
+      "message": "Refactor Dynamic_Update_Slice operator in preparation for porting to TFLM.\n\nPiperOrigin-RevId: 822494887",
+      "modifiedFiles": [
+        "tensorflow/lite/core/api/flatbuffer_conversions.cc",
+        "tensorflow/lite/core/api/flatbuffer_conversions.h"
+      ]
+    },
+    {
+      "sha": "85eff6042f2c1e8647b949e25b7ca2501e5f17fe",
+      "message": "Update GraphDef version to 2388.\n\nPiperOrigin-RevId: 822485942",
+      "modifiedFiles": [
+        "tensorflow/core/public/version.h"
+      ]
+    },
+    {
+      "sha": "8f8707055c0319de697bacf40e44b4d8979b911a",
+      "message": "compat: Update forward compatibility horizon to 2025-10-22\n\nPiperOrigin-RevId: 822485927",
+      "modifiedFiles": [
+        "tensorflow/python/compat/compat.py"
+      ]
+    },
+    {
+      "sha": "75fa34bbde6f4b82eea07e5c336a06eed446f63e",
+      "message": "PR #32231: Support forward conv with dilation and add basic heuristic for differ…\n\nImported from GitHub PR https://github.com/openxla/xla/pull/32231\n\n📝 Summary of Changes\nThe changes enable native support for forward convolutions with window dilation in XLA\u0027s GPU backend. Previously, all dilated convolutions were treated as non-canonical and required explicit padding materialization. Now, forward convolutions with window dilation (but not base dilation) are preserved and handled natively by cuDNN, avoiding unnecessary padding overhead.\n\n🎯 Justification\nPerformance Problem: JAX shows 15-23x slower performance than PyTorch for dilated convolutions (33.5ms vs 1.4ms at dilation rate 2). This is because XLA materializes dilated convolutions as padded convolutions instead of using cuDNN\u0027s native support.\nSolution: Allow forward convolutions with window dilation to bypass padding materialization and use cuDNN\u0027s native dilated convolution kernels directly.\n\n🚀 Kind of Contribution\nPerformance Improvement\n\n📊 Benchmark (for Performance Improvements)\ndilation 1:\n\tprev: 1.08 ms\n\tnow: 1.07 ms\ndilation 2:\n\tprev: 25.79 ms\n\tnow: 0.91 ms\ndilation 1024:\n\tprev: 26.24 ms\n\tnow: 2.34 ms\n\nCopybara import of the project:\n\n--\nb5a38df2ed4715b43fc8ca8d652005a35290d47e by Chenhao Jiang \u003cchenhaoj@nvidia.com\u003e:\n\nSupport forward conv with dilation and add basic heuristic for differentiating forward/backward\n\nMerging this change closes #32231\n\nPiperOrigin-RevId: 822482265",
+      "modifiedFiles": [
+        "third_party/xla/xla/service/gpu/transforms/conv_padding_legalization.cc",
+        "third_party/xla/xla/service/gpu/transforms/conv_padding_legalization_test.cc",
+        "third_party/xla/xla/service/gpu/transforms/conv_rewriter.cc",
+        "third_party/xla/xla/service/gpu/transforms/conv_rewriter_test.cc"
+      ]
+    },
+    {
+      "sha": "95d3b6fe36429a116ecc287e8ed513c1037f2a1b",
+      "message": "[XLA][Numerics][HLO Value Tracking] Handle original values in while loop fusible sinking pass\n\nThis reconstructs the original value for while loops with a rewritten input/output shape during the pass.\n\nPiperOrigin-RevId: 822465131",
+      "modifiedFiles": [
+        "third_party/xla/xla/service/while_loop_fusible_sinking.cc",
+        "third_party/xla/xla/service/while_loop_fusible_sinking_test.cc"
+      ]
+    },
+    {
+      "sha": "add51a87c35ed36de399012205677bd4476f839b",
+      "message": "[XLA:GPU] Update latency hiding scheduler cost models for B200/H100 FP8 matmul\n\nPiperOrigin-RevId: 822446122",
+      "modifiedFiles": [
+        "third_party/xla/xla/service/gpu/model/matmul_interpolator_data.h",
+        "third_party/xla/xla/service/gpu/model/matmul_interpolator_test.cc",
+        "third_party/xla/xla/service/gpu/model/sol_latency_estimator_test.cc"
+      ]
+    },
+    {
+      "sha": "ca2365df3205417f194d58e0c7d8b91c50b7bb41",
+      "message": "Make ApproxTopK Op don\u0027t fail with kMhloFrontendAttributes.\n\nPiperOrigin-RevId: 822427505",
+      "modifiedFiles": [
+        "third_party/xla/xla/hlo/translate/mhlo_to_hlo/mlir_hlo_to_hlo.cc",
+        "third_party/xla/xla/hlo/translate/mhlo_to_hlo/tests/export.mlir"
+      ]
+    },
+    {
+      "sha": "64f382ac25a02088edebfad2c297f30e488f3490",
+      "message": "Add support for kTfLiteInt2 (srq) in tfl.fully_connected.\n\nPiperOrigin-RevId: 822405584",
+      "modifiedFiles": [
+        "tensorflow/compiler/mlir/lite/ir/tfl_ops.td",
+        "tensorflow/compiler/mlir/lite/tools/versioning/op_version.cc",
+        "tensorflow/compiler/mlir/lite/tools/versioning/op_version_test.cc",
+        "tensorflow/compiler/mlir/lite/tools/versioning/runtime_version.cc",
+        "tensorflow/lite/core/kernels/register.cc",
+        "tensorflow/lite/kernels/BUILD",
+        "tensorflow/lite/kernels/fully_connected.cc",
+        "tensorflow/lite/kernels/fully_connected_test.cc",
+        "tensorflow/lite/kernels/register_ref.cc",
+        "tensorflow/lite/kernels/test_util.h"
+      ]
+    },
+    {
+      "sha": "68ad2b30fada51479ae19d65eea9a69eeae17f0e",
+      "message": "Implement PjRtStreamExecutorRawBuffer::CopyTo in terms of raw buffers.\n\nPiperOrigin-RevId: 822345080",
+      "modifiedFiles": [
+        "third_party/xla/xla/pjrt/common_pjrt_client.cc",
+        "third_party/xla/xla/pjrt/gpu/se_gpu_pjrt_client_test.cc",
+        "third_party/xla/xla/pjrt/pjrt_stream_executor_client.cc",
+        "third_party/xla/xla/pjrt/pjrt_stream_executor_client.h",
+        "third_party/xla/xla/pjrt/se_raw_buffer.cc"
+      ]
+    },
+    {
+      "sha": "bdb268c5c54e09dee4b02214ae58c54b8cf5b52c",
+      "message": "Add helper functions to check PjRtPlatformId types.\n\nPiperOrigin-RevId: 822333726",
+      "modifiedFiles": [
+        "third_party/xla/xla/pjrt/pjrt_compiler.h"
+      ]
+    },
+    {
+      "sha": "69079b7e0d0c45daf89e6697cddcb0038a646c6c",
+      "message": "Add flag `enable_fatal_error_on_collective_abort`.\n\nPiperOrigin-RevId: 822315284",
+      "modifiedFiles": [
+        "tensorflow/core/common_runtime/BUILD",
+        "tensorflow/core/common_runtime/base_collective_executor.cc",
+        "tensorflow/core/config/flag_defs.h",
+        "tensorflow/core/config/flags_api_wrapper.cc",
+        "tensorflow/python/flags_pybind.pyi"
+      ]
+    },
+    {
+      "sha": "90491b0a55fa98cae7d063f5e1b22a4763257160",
+      "message": "[xla:pjrt:ffi] Prepare for legacy type registration removal\n\nPiperOrigin-RevId: 822309311",
+      "modifiedFiles": [
+        "third_party/xla/xla/pjrt/c/pjrt_c_api_ffi_extension.h"
+      ]
+    },
+    {
+      "sha": "512611da8087579f853b8392ce0c0fb0668cb4a9",
+      "message": "Internal code migration\n\nPiperOrigin-RevId: 822300362",
+      "modifiedFiles": [
+        "third_party/xla/xla/pjrt/BUILD",
+        "third_party/xla/xla/pjrt/c_api_client/BUILD"
+      ]
+    },
+    {
+      "sha": "b7d9295b5214e96dcd692c5498efd8f41b619fe6",
+      "message": "Replace `ComputationOrigin` with the more general `PjRtDeviceDimensions`\n\nPiperOrigin-RevId: 822288293",
+      "modifiedFiles": [
+        "third_party/xla/xla/pjrt/BUILD",
+        "third_party/xla/xla/pjrt/pjrt_executable.h"
+      ]
+    },
+    {
+      "sha": "3cdcb03f18da02913ab50f2d612e03c649d67711",
+      "message": "PR #32838: Fix family-conditional logic\n\nImported from GitHub PR https://github.com/openxla/xla/pull/32838\n\n📝 Summary of Changes\nThe fallback logic now correctly identifies the highest known compatible architecture when given an unknown architecture as input.\n\n🎯 Justification\nPreviously the logic would propose an incompatible architecture in this case.\n\n🚀 Kind of Contribution\n🐛 Bug Fix\n\n🧪 Unit Tests:\nAdded a new test case showing the previously-failing case (it used to propose `sm_110`)\nCopybara import of the project:\n\n--\nf060bb9837d72159343ff2d52f5f2f42b1b7e9a4 by Olli Lupton \u003colupton@nvidia.com\u003e:\n\nFix family-conditional logic\n\n--\nfc44dcd1e76da67c0b6fe53c33d2a571c3a6ff50 by Olli Lupton \u003colupton@nvidia.com\u003e:\n\nAccept CR suggestion\n\nMerging this change closes #32838\n\nPiperOrigin-RevId: 822284790",
+      "modifiedFiles": [
+        "third_party/xla/xla/service/gpu/llvm_gpu_backend/nvptx_backend.cc",
+        "third_party/xla/xla/service/gpu/llvm_gpu_backend/nvptx_backend_test.cc"
+      ]
+    },
+    {
+      "sha": "0fc052399b47a73844bedcce3e484316732ff6d9",
+      "message": "[xla:cpu] Fix data race in ThunkExecutor\n\nAlso add tsl::down_pointer_cast to improve usability.\n\nPiperOrigin-RevId: 822257137",
+      "modifiedFiles": [
+        "third_party/xla/xla/backends/cpu/runtime/thunk_executor.cc",
+        "third_party/xla/xla/pjrt/cpu/cpu_client.cc",
+        "third_party/xla/xla/tsl/platform/default/casts.h"
+      ]
+    },
+    {
+      "sha": "5776d2771c08c81be379d3d39eef6f5301ad416c",
+      "message": "Pipe incarnations to `jax.live_devices`.\n\nPiperOrigin-RevId: 822250955",
+      "modifiedFiles": [
+        "third_party/xla/xla/pjrt/distributed/BUILD",
+        "third_party/xla/xla/pjrt/distributed/client.cc",
+        "third_party/xla/xla/pjrt/distributed/client.h",
+        "third_party/xla/xla/pjrt/distributed/client_server_test.cc",
+        "third_party/xla/xla/tsl/distributed_runtime/coordination/client_server_test.cc",
+        "third_party/xla/xla/tsl/distributed_runtime/coordination/coordination_service.cc",
+        "third_party/xla/xla/tsl/distributed_runtime/coordination/coordination_service_agent.cc",
+        "third_party/xla/xla/tsl/distributed_runtime/coordination/coordination_service_agent.h",
+        "third_party/xla/xla/tsl/distributed_runtime/coordination/coordination_service_test.cc"
+      ]
+    },
+    {
+      "sha": "47cd01d4a5a0922daa74fc98071810d4d7777efc",
+      "message": "PR #32960: [ROCm] Refactor testing scripts\n\nImported from GitHub PR https://github.com/openxla/xla/pull/32960\n\n📝 Summary of Changes\n(Partially) upstreaming changes from: https://github.com/ROCm/xla/pull/323, https://github.com/ROCm/xla/commit/9d358b9b26961309349dbcc228b4dda2f56d885f, and https://github.com/ROCm/xla/pull/385. It skips some asan/tsan changes for now.\n\n🎯 Justification\nThese changes are ROCm specific and helps with rocm internal CI validation pipelines.\n\n🚀 Kind of Contribution\n🐛 Bug Fix, ♻️ Cleanup, 🧪 Tests\n\n📊 Benchmark (for Performance Improvements)\n/\n\n🧪 Unit Tests:\n/\n\n🧪 Execution Tests:\n/\n\nCopybara import of the project:\n\n--\n804ff1b6a6fbba86a3e0a09d739179a4eb4f197d by Milica Makevic \u003cMilica.Makevic@amd.com\u003e:\n\nAdd missing cuda-only tag to cuda test\n\n--\n44ce7a2d56c9f0c80405447f431ae1e5a33f42e1 by Milica Makevic \u003cMilica.Makevic@amd.com\u003e:\n\nRefactor test scripts\n\n--\nfb783c968e9d2ff5d92357908d99e4952235c2bc by Milica Makevic \u003cMilica.Makevic@amd.com\u003e:\n\nCover more mgpu tests\n\n--\n1f53712274f76202241bd3631dbf065826c0b960 by Milica Makevic \u003cMilica.Makevic@amd.com\u003e:\n\nSwitch from rocm_gcc to rocm_ci for sgpu tests\n\n--\n00e0c8ee2a763680f5a3665dab62202ab230731d by Milica Makevic \u003cMilica.Makevic@amd.com\u003e:\n\nChanging file permissions\n\n--\n003c062a8900c12b73c0972e8d406f2661a27aba by Milica Makevic \u003cMilica.Makevic@amd.com\u003e:\n\nRemove unnecessary import\n\n--\n214599355f40f1b65e0540daf0b9829d2c950115 by Harsha HS \u003cHarsha.HavanurShamsundara@amd.com\u003e:\n\nAdd license header\n\nMerging this change closes #32960\n\nPiperOrigin-RevId: 822245565",
+      "modifiedFiles": [
+        "third_party/xla/build_tools/rocm/rocm_tag_filters.sh",
+        "third_party/xla/build_tools/rocm/rocm_xla.bazelrc",
+        "third_party/xla/build_tools/rocm/run_xla.sh",
+        "third_party/xla/build_tools/rocm/run_xla_ci_build.sh",
+        "third_party/xla/build_tools/rocm/run_xla_multi_gpu.sh",
+        "third_party/xla/xla/backends/profiler/gpu/BUILD"
+      ]
+    },
+    {
+      "sha": "7a107e35718ede5722604b3c282b8416b684f71c",
+      "message": "[xla:ffi] Rename FFI_TypeID_Register API\n\nPiperOrigin-RevId: 822240093",
+      "modifiedFiles": [
+        "third_party/xla/xla/ffi/api/api.h",
+        "third_party/xla/xla/ffi/api/c_api.h",
+        "third_party/xla/xla/ffi/ffi_api.cc"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "tensorflow",
+      "ownerLogin": "atharvapathak",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "nurali-sys",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "davdevtokaekoen",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "teena105",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "an9383",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "MyMoonAmour",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "fernandosilva62676-art",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "boudbeuk",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "jameslovespancakes",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "XxxxN1224",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "emaceira",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "GhadiChender",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow-1",
+      "ownerLogin": "COMPU-GLOBALHYPERMEGANET",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "leiwenhao06",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "PavanKhotkar",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow-jl9302201-gmail.com",
+      "ownerLogin": "Jl2756550",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "souhil25",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "COMPU-GLOBALHYPERMEGANET",
+      "commitCount": 100
+    },
+    {
+      "name": "gcp-tensorflow-forked",
+      "ownerLogin": "tmjackson-dev",
+      "commitCount": 100
+    },
+    {
+      "name": "tensorflow",
+      "ownerLogin": "indianparamedicalscience-ux",
+      "commitCount": 100
+    }
+  ]
+}

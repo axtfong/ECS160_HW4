@@ -1,0 +1,643 @@
+{
+  "name": "rustdesk",
+  "ownerLogin": "rustdesk",
+  "language": "Rust",
+  "commits": [
+    {
+      "sha": "ed39cc30386fd12859061347ef75208d96a8bf7b",
+      "message": "fix: video service, wait timeout (#13208)\n\nUse multiple frame fetched notifiers.\n\nSigned-off-by: fufesou \u003clinlong1266@gmail.com\u003e",
+      "modifiedFiles": [
+        "src/server/connection.rs",
+        "src/server/video_service.rs"
+      ]
+    },
+    {
+      "sha": "a77752c4cb19f8862bf13642e48675a8ec2c3c4a",
+      "message": "fix tab lable translation (#13240)\n\nSigned-off-by: 21pages \u003csunboeasy@gmail.com\u003e",
+      "modifiedFiles": [
+        "flutter/lib/desktop/widgets/tabbar_widget.dart"
+      ]
+    },
+    {
+      "sha": "c9940957f002759bcc518520afef0bbc352749cf",
+      "message": "fix camera large error log (#13227)\n\nSigned-off-by: 21pages \u003csunboeasy@gmail.com\u003e",
+      "modifiedFiles": [
+        "libs/scrap/src/common/camera.rs"
+      ]
+    },
+    {
+      "sha": "c90d72d720973027e7a924615810c56357e2c0a9",
+      "message": "Update pl.rs (#13210)",
+      "modifiedFiles": [
+        "src/lang/pl.rs"
+      ]
+    },
+    {
+      "sha": "2c30bd9d2466186db47c79792f2000bbce00b1d7",
+      "message": "Update tw.rs (#13203)",
+      "modifiedFiles": [
+        "src/lang/tw.rs"
+      ]
+    },
+    {
+      "sha": "f2dc8e21a8dff9fc74ea55725d38f8561fb1fdf7",
+      "message": "build 61",
+      "modifiedFiles": [
+        "flutter/pubspec.yaml"
+      ]
+    },
+    {
+      "sha": "6a0da9cf09b80bba6ca731d3029210c5d839a77b",
+      "message": "fix: custom scale, dpi (#13197)\n\nSigned-off-by: fufesou \u003clinlong1266@gmail.com\u003e",
+      "modifiedFiles": [
+        "flutter/lib/models/model.dart"
+      ]
+    },
+    {
+      "sha": "d55974c35205c5e4cac1cbb76486579bc88c0359",
+      "message": "--terminal command line",
+      "modifiedFiles": [
+        "src/core_main.rs"
+      ]
+    },
+    {
+      "sha": "a898c22f4bc4645ec26315eba09732044f30d06e",
+      "message": "Translation: Review and update hu.rs (#13169)\n\nSome translation conventions, linguistic correctness, and spelling review.",
+      "modifiedFiles": [
+        "src/lang/hu.rs"
+      ]
+    },
+    {
+      "sha": "b82e8bedfc39dfb8c0e6ac46745d59dc37416dbb",
+      "message": "Update ru.rs (#13168)",
+      "modifiedFiles": [
+        "src/lang/ru.rs"
+      ]
+    },
+    {
+      "sha": "7453cefd949aa2d8d1def8d9deed8cb22998de19",
+      "message": "Update ko.rs (#13152)\n\nUpdate Korean",
+      "modifiedFiles": [
+        "src/lang/ko.rs"
+      ]
+    },
+    {
+      "sha": "1ed6b958cb9391492f0bc867c24ffb9f28d0470c",
+      "message": "Update fr.rs (#13151)",
+      "modifiedFiles": [
+        "src/lang/fr.rs"
+      ]
+    },
+    {
+      "sha": "57896ab1762f9d1ed22e0ae2938ecc8e4fd28296",
+      "message": "Update nl.rs (#13150)",
+      "modifiedFiles": [
+        "src/lang/nl.rs"
+      ]
+    },
+    {
+      "sha": "5c370b391406388a2287ab25c80c44be9f9d12e8",
+      "message": "Update de.rs (#13149)\n\n* Update de.rs\n\n* Update de.rs",
+      "modifiedFiles": [
+        "src/lang/de.rs"
+      ]
+    },
+    {
+      "sha": "182e35adc7a9cd1c31c73960302a38a02d8b2b3d",
+      "message": "1.4.3",
+      "modifiedFiles": [
+        ".github/workflows/flutter-build.yml",
+        ".github/workflows/playground.yml",
+        ".github/workflows/winget.yml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "appimage/AppImageBuilder-aarch64.yml",
+        "appimage/AppImageBuilder-x86_64.yml",
+        "flutter/pubspec.yaml",
+        "libs/portable/Cargo.toml",
+        "res/PKGBUILD",
+        "res/rpm-flutter-suse.spec",
+        "res/rpm-flutter.spec",
+        "res/rpm.spec"
+      ]
+    },
+    {
+      "sha": "d0a360fd8039daf85ae8d95baf8cd99a1529b322",
+      "message": "refact: option, touch mode, move to local (#13055)\n\nSigned-off-by: fufesou \u003clinlong1266@gmail.com\u003e",
+      "modifiedFiles": [
+        "flutter/lib/common/widgets/setting_widgets.dart",
+        "flutter/lib/mobile/pages/remote_page.dart",
+        "flutter/lib/models/model.dart"
+      ]
+    },
+    {
+      "sha": "2fbc0625de22527b2fe7f51709f4673ab4b4b029",
+      "message": "fix macos low fps after installation (#13185)\n\nSigned-off-by: 21pages \u003csunboeasy@gmail.com\u003e",
+      "modifiedFiles": [
+        "src/platform/privileges_scripts/agent.plist"
+      ]
+    },
+    {
+      "sha": "d3d20a4e2077c16c8f3a69e9e825dd3946c3c71b",
+      "message": "fix: Wayland, cpu 100, workaround (#13179)\n\nSigned-off-by: fufesou \u003clinlong1266@gmail.com\u003e",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "2c088d3504e1bc46c62492310091e99c2bb3cdd6",
+      "message": "fix can\u0027t run from cmd on win7 (#13160)\n\nSigned-off-by: 21pages \u003csunboeasy@gmail.com\u003e",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "libs/portable/Cargo.toml",
+        "libs/portable/src/main.rs"
+      ]
+    },
+    {
+      "sha": "6f9728f2d4fc95666820c8b18529183a6d5fced2",
+      "message": "Italian language update (#13148)",
+      "modifiedFiles": [
+        "src/lang/it.rs"
+      ]
+    },
+    {
+      "sha": "30552fd20240c772674e455123273dbb6eeff37c",
+      "message": "show peer note (#13140)\n\nSigned-off-by: 21pages \u003csunboeasy@gmail.com\u003e\nCo-authored-by: RustDesk \u003c71636191+rustdesk@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "flutter/lib/common.dart",
+        "flutter/lib/common/hbbs/hbbs.dart",
+        "flutter/lib/common/widgets/address_book.dart",
+        "flutter/lib/common/widgets/dialog.dart",
+        "flutter/lib/common/widgets/peer_card.dart",
+        "flutter/lib/common/widgets/peers_view.dart",
+        "flutter/lib/desktop/pages/connection_page.dart",
+        "flutter/lib/mobile/pages/connection_page.dart",
+        "flutter/lib/models/ab_model.dart",
+        "flutter/lib/models/peer_model.dart",
+        "src/lang/ar.rs",
+        "src/lang/be.rs",
+        "src/lang/bg.rs",
+        "src/lang/ca.rs",
+        "src/lang/cn.rs",
+        "src/lang/cs.rs",
+        "src/lang/da.rs",
+        "src/lang/de.rs",
+        "src/lang/el.rs",
+        "src/lang/eo.rs",
+        "src/lang/es.rs",
+        "src/lang/et.rs",
+        "src/lang/eu.rs",
+        "src/lang/fa.rs",
+        "src/lang/fr.rs",
+        "src/lang/ge.rs",
+        "src/lang/he.rs",
+        "src/lang/hr.rs",
+        "src/lang/hu.rs",
+        "src/lang/id.rs",
+        "src/lang/it.rs",
+        "src/lang/ja.rs",
+        "src/lang/ko.rs",
+        "src/lang/kz.rs",
+        "src/lang/lt.rs",
+        "src/lang/lv.rs",
+        "src/lang/nb.rs",
+        "src/lang/nl.rs",
+        "src/lang/pl.rs",
+        "src/lang/pt_PT.rs",
+        "src/lang/ptbr.rs",
+        "src/lang/ro.rs",
+        "src/lang/ru.rs",
+        "src/lang/sc.rs",
+        "src/lang/sk.rs",
+        "src/lang/sl.rs",
+        "src/lang/sq.rs",
+        "src/lang/sr.rs",
+        "src/lang/sv.rs",
+        "src/lang/ta.rs",
+        "src/lang/template.rs",
+        "src/lang/th.rs",
+        "src/lang/tr.rs",
+        "src/lang/tw.rs",
+        "src/lang/uk.rs",
+        "src/lang/vi.rs"
+      ]
+    },
+    {
+      "sha": "9826c4e94363889cd48c5728898de0660cab0968",
+      "message": "Update Arabic translation in ar.rs (#13144)",
+      "modifiedFiles": [
+        "src/lang/ar.rs"
+      ]
+    },
+    {
+      "sha": "bb9445bd0f2aeebeb61967263fa66f04bbe4939d",
+      "message": "Updated Persian translations in fa.rs (#13143)",
+      "modifiedFiles": [
+        "src/lang/fa.rs"
+      ]
+    },
+    {
+      "sha": "1f7e66f4cb9000cca2e268c506b1d37c73627848",
+      "message": "Update de.rs (#13138)",
+      "modifiedFiles": [
+        "src/lang/de.rs"
+      ]
+    },
+    {
+      "sha": "2a34e918a0e6a1d7883a1fa1fbefb0ba1979f2f1",
+      "message": "Italian language update (#13136)",
+      "modifiedFiles": [
+        "src/lang/it.rs"
+      ]
+    },
+    {
+      "sha": "21c0d924abb770dd8510f9192bdb97fc14f93e45",
+      "message": "Update ko.rs (#13134)",
+      "modifiedFiles": [
+        "src/lang/ko.rs"
+      ]
+    },
+    {
+      "sha": "c8d5ee6565340d32f02ce019a154ba6572acc2de",
+      "message": "Update fr.rs (#13132)",
+      "modifiedFiles": [
+        "src/lang/fr.rs"
+      ]
+    },
+    {
+      "sha": "3d8fc7ca7bfd7d40832eb8e66545a6c2203e0f8e",
+      "message": "fix: uninstall, idd (#13142)\n\nSigned-off-by: fufesou \u003clinlong1266@gmail.com\u003e",
+      "modifiedFiles": [
+        "src/virtual_display_manager.rs"
+      ]
+    },
+    {
+      "sha": "246b5b93f88daa6ff950e89e1dcad3cfdeb17e45",
+      "message": "Centralize debounce of save window pos and save window pos on close (#12987)\n\n* Added method equals to class LastWindowPosition to compare the contents of instances.\nAdded storage to common.dart for remembering what window position data has previously been written.\nFactored the actual save code from saveWindowPosition to _saveWindowPositionActual and updated saveWindowPosition to call it through a debouncer, and only if the window position data has actually changed since the last call in the same instance.\nAdded named parameter \u0027flush\u0027 to saveWindowPosition in common.dart, and to _saveFrame in tabbar_widget.dart, and updated the onWindowClosed handler in tabbar_widget.dart to call _saveFrame with flush: true, forcing an immediate save on close.\nRemoved the _saveFrame debouncer from tabbar_widget.dart.\n\n* saveWindowPosition: don\u0027t reschedule debounce if it\u0027s already in flight\n\n* Reworked the logic in saveWindowPosition to collapse a rapid series of updates into one save at the end.",
+      "modifiedFiles": [
+        "flutter/lib/common.dart",
+        "flutter/lib/desktop/widgets/tabbar_widget.dart"
+      ]
+    },
+    {
+      "sha": "2183c0980b918a4ba6650210be951c6e17cc5684",
+      "message": "Git submodule: Bump libs/hbb_common from `7ea8686` to `5ed0afd` (#13122)\n\nBumps [libs/hbb_common](https://github.com/rustdesk/hbb_common) from `7ea8686` to `5ed0afd`.\n- [Release notes](https://github.com/rustdesk/hbb_common/releases)\n- [Commits](https://github.com/rustdesk/hbb_common/compare/7ea868612dfee7954facb9a7857d65ef875076eb...5ed0afde0841659e2fb37ae7acaddc005fa1a8d3)\n\n---\nupdated-dependencies:\n- dependency-name: libs/hbb_common\n  dependency-version: 5ed0afde0841659e2fb37ae7acaddc005fa1a8d3\n  dependency-type: direct:production\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "libs/hbb_common"
+      ]
+    },
+    {
+      "sha": "4ae301710d0aa4c042737ae07d4050aac2240398",
+      "message": "upload x86 windows",
+      "modifiedFiles": [
+        ".github/workflows/flutter-build.yml"
+      ]
+    },
+    {
+      "sha": "5f9390c210c5b3f7f2b071a8bdb772a2f3d9231b",
+      "message": "Update Japanese Language (#13123)",
+      "modifiedFiles": [
+        "src/lang/ja.rs"
+      ]
+    },
+    {
+      "sha": "0f3a03aab7358357ac7979a9460a35e32dfff97f",
+      "message": "feat: mobile, virtual mouse (#12911)\n\n* feat: mobile, virtual mouse\n\nSigned-off-by: fufesou \u003clinlong1266@gmail.com\u003e\n\n* feat: mobile, virtual mouse, mouse mode\n\nSigned-off-by: fufesou \u003clinlong1266@gmail.com\u003e\n\n* refact: mobile, virtual mouse, mouse mode\n\nSigned-off-by: fufesou \u003clinlong1266@gmail.com\u003e\n\n* feat: mobile, virtual mouse mode\n\nSigned-off-by: fufesou \u003clinlong1266@gmail.com\u003e\n\n* feat: mobile virtual mouse, options\n\nSigned-off-by: fufesou \u003clinlong1266@gmail.com\u003e\n\n---------\n\nSigned-off-by: fufesou \u003clinlong1266@gmail.com\u003e\nCo-authored-by: RustDesk \u003c71636191+rustdesk@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "flutter/lib/common.dart",
+        "flutter/lib/common/widgets/gestures.dart",
+        "flutter/lib/common/widgets/remote_input.dart",
+        "flutter/lib/consts.dart",
+        "flutter/lib/mobile/pages/remote_page.dart",
+        "flutter/lib/mobile/widgets/floating_mouse.dart",
+        "flutter/lib/mobile/widgets/floating_mouse_widgets.dart",
+        "flutter/lib/mobile/widgets/gesture_help.dart",
+        "flutter/lib/models/input_model.dart",
+        "flutter/lib/models/model.dart",
+        "src/lang/ar.rs",
+        "src/lang/be.rs",
+        "src/lang/bg.rs",
+        "src/lang/ca.rs",
+        "src/lang/cn.rs",
+        "src/lang/cs.rs",
+        "src/lang/da.rs",
+        "src/lang/de.rs",
+        "src/lang/el.rs",
+        "src/lang/eo.rs",
+        "src/lang/es.rs",
+        "src/lang/et.rs",
+        "src/lang/eu.rs",
+        "src/lang/fa.rs",
+        "src/lang/fr.rs",
+        "src/lang/ge.rs",
+        "src/lang/he.rs",
+        "src/lang/hr.rs",
+        "src/lang/hu.rs",
+        "src/lang/id.rs",
+        "src/lang/it.rs",
+        "src/lang/ja.rs",
+        "src/lang/ko.rs",
+        "src/lang/kz.rs",
+        "src/lang/lt.rs",
+        "src/lang/lv.rs",
+        "src/lang/nb.rs",
+        "src/lang/nl.rs",
+        "src/lang/pl.rs",
+        "src/lang/pt_PT.rs",
+        "src/lang/ptbr.rs",
+        "src/lang/ro.rs",
+        "src/lang/ru.rs",
+        "src/lang/sc.rs",
+        "src/lang/sk.rs",
+        "src/lang/sl.rs",
+        "src/lang/sq.rs",
+        "src/lang/sr.rs",
+        "src/lang/sv.rs",
+        "src/lang/ta.rs",
+        "src/lang/template.rs",
+        "src/lang/th.rs",
+        "src/lang/tr.rs",
+        "src/lang/tw.rs",
+        "src/lang/uk.rs",
+        "src/lang/vi.rs"
+      ]
+    },
+    {
+      "sha": "02f455b0cc4ffd4ecd75c6442a0d1b240ee28ae1",
+      "message": "Translation: Update hu.rs (#13115)\n\nTranslate new strings",
+      "modifiedFiles": [
+        "src/lang/hu.rs"
+      ]
+    },
+    {
+      "sha": "ffddf60184731bb2c8842ef3134550390f73e43b",
+      "message": "Update Italian language (#13117)",
+      "modifiedFiles": [
+        "src/lang/it.rs"
+      ]
+    },
+    {
+      "sha": "482840b8bb52e53340add78f8f6b8fb114655122",
+      "message": "feat(ui): custom scale mode with inline controls and live apply (#13045)\n\n* feat(ui): custom scale mode with inline controls and live apply\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* Update flutter/lib/models/model.dart\n\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\n\n* Update flutter/lib/desktop/widgets/remote_toolbar.dart\n\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\n\n* refactor(dialog): remove unused showCustomScaleDialog function\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* feat(ui): enhance custom scale controls with live updates and improved UI\n\n- Introduced a reactive custom scale percentage using RxInt.\n- Added initialization of custom scale from stored options after the widget builds.\n- Updated viewStyle method to conditionally display custom controls based on selection.\n- Implemented a debouncer for smoother scale adjustments.\n- Enhanced slider UI with custom thumb shape and improved button interactions.\n\nThis update improves user experience by allowing real-time adjustments to the custom scale settings.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* refactor(remote_toolbar): improve widget lifecycle management and enhance slider dimensions\n\n- Moved initialization of custom scale percentage to initState for better lifecycle handling.\n- Updated slider thumb dimensions and layout for improved UI consistency.\n- Added dispose method to clean up resources in custom scale controls.\n\nThese changes enhance the overall performance and user experience of the remote toolbar.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* feat(remote_toolbar): enhance scroll behavior and improve slider thumb rendering\n\n- Introduced a new state variable to manage scroll enablement based on canvas model changes.\n- Updated the return value of the viewStyle method to include the scroll enablement status.\n- Refactored the slider thumb shape for better performance and visual consistency.\n- Improved the initialization of image overflow detection in the CanvasModel.\n\nThese changes enhance the user experience by providing dynamic scroll control and a more responsive UI.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* Update flutter/lib/desktop/widgets/remote_toolbar.dart\n\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\n\n* refactor(scale): introduce utility functions for custom scale management for DRY\n\n- Added a new file `scale.dart` containing utility functions to clamp, parse, and compute custom scale percentages.\n- Refactored the `CanvasModel` and `_DisplayMenuState` to utilize the new utility functions for fetching and applying custom scale settings.\n- Improved code readability and maintainability by centralizing scale-related logic.\n\nThese changes enhance the handling of custom scale settings across the application.\n\nSigned-off-by: Alessandro De Blasis alex@deblasis.net\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* Update flutter/lib/utils/scale.dart\n\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\n\n* Update flutter/lib/models/model.dart\n\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\n\n* Update flutter/lib/desktop/widgets/remote_toolbar.dart\n\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\n\n* Update flutter/lib/desktop/widgets/remote_toolbar.dart\n\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\n\n* Update flutter/lib/desktop/widgets/remote_toolbar.dart\n\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\n\n* Update flutter/lib/models/model.dart\n\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\n\n* chore: Remove unused import of \u0027uuid\u0027 in scale.dart\n\nSigned-off-by: Alessandro De Blasis alex@deblasis.net\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* feat(remote_toolbar): implement nonlinear mapping for custom scale slider\n\n- Added piecewise mapping functions to convert normalized slider positions to custom scale percentages and vice versa.\n- Introduced snapping behavior for the slider to enhance user experience.\n- Updated the slider\u0027s minimum and maximum values to align with the new mapping logic.\n- Adjusted the clamping function to ensure the minimum percentage is 10.\n\nThese changes improve the precision and usability of the custom scale slider in the remote toolbar.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* fix(scale): update minimum scale percentage to 5\n\n- Adjusted the minimum scale percentage in both the remote toolbar and the clamping function to improve consistency and usability.\n- This change aligns the clamping logic with the updated minimum value for the custom scale slider.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* Update flutter/lib/desktop/widgets/remote_toolbar.dart\n\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\n\n* refactor(scale): centralize custom scale constants in consts.dart\n\n- Moved piecewise mapping constants for the custom scale slider from the remote toolbar to consts.dart for better organization and maintainability.\n- Introduced additional constants related to custom scale behavior, including minimum, pivot, and maximum percentages, as well as debounce duration.\n- Updated the remote toolbar to reference these centralized constants, improving code clarity and reducing duplication.\n\nThese changes enhance the structure and readability of the custom scale implementation.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* refactor(consts): remove duplicate custom scale percent key definition\n\n- Eliminated redundant declaration of the custom scale percent key in consts.dart, ensuring a single source of truth for this constant.\n- This change improves code clarity and maintainability by reducing duplication.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* refactor(scale): update clamping logic to use centralized constants\n\n- Modified the clamping function to utilize the newly defined constants for minimum and maximum scale percentages, enhancing code maintainability and clarity.\n- This change ensures consistency across the application by referencing a single source for scale limits.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* Enhance RdoMenuButton behavior for custom scale selection\n\n- Updated the RdoMenuButton to include a new `closeOnActivate` parameter, allowing the submenu to remain open when selecting custom scale options.\n- Modified the onChanged callback to conditionally trigger a rebuild when entering custom mode, improving user experience by immediately displaying the slider controls.\n\nThese changes streamline the interaction with the custom scale feature in the remote toolbar.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* refactor(toolbar):  _DisplayMenuState to simplify scroll handling\n\n- Removed the _scrollEnabled state variable and its associated logic, streamlining the component\u0027s state management.\n- Updated the RdoMenuButton onChanged callbacks to directly reference the canvasModel\u0027s imageOverflow value, enhancing responsiveness and reducing complexity.\n\nThese changes improve code clarity and maintainability in the remote toolbar\u0027s display menu.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* feat(lang): Add translations for custom scale features in multiple languages\n\n- Introduced new entries for \"Scale custom\", \"Custom scale slider\", \"Decrease\", and \"Increase\" in various language files to support the custom scale functionality.\n- This update enhances the localization of the application, ensuring users can interact with the custom scale features in their preferred language.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* feat(lang): Add translations for custom scale features in Catalan and Romanian\n\n- Updated language files for Catalan and Romanian to include translations for \"Custom scale slider\", \"Decrease\", and \"Increase\".\n- This enhancement improves the localization of the application, allowing users to interact with custom scale features in their native languages.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* fix(model): Correct error logging in getSessionCustomScale method\n\n- Updated the error logging statement in the getSessionCustomScale method to properly interpolate the exception message, improving debugging clarity.\n- This change ensures that error messages are more informative, aiding in troubleshooting issues related to session scaling.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* refactor(scale): Simplify clamping logic for custom scale percent\n\n- Updated the clampCustomScalePercent function to use the built-in clamp method, improving code readability and maintainability.\n- This change ensures consistent clamping behavior across the application by centralizing the logic for valid scale ranges.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* refactor(scale): Remove unused import for web bridge\n\n- Eliminated the conditional import of the web bridge from scale.dart, as it is no longer necessary. This change helps to clean up the code and improve maintainability by removing unused dependencies.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* chore(model): typo\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* Update flutter/lib/desktop/widgets/remote_toolbar.dart\n\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\n\n* chore(toolbar): Clarify precision for scale adjustments in remote toolbar\n\n- Added comments to clarify the use of a wide range of divisions for the scale slider, allowing for ~1% precision increments. This change improves user experience by enabling more precise scale value settings, reducing the need for fine-tuning with +/- buttons.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* Update flutter/lib/models/model.dart\n\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\n\n* Update flutter/lib/desktop/widgets/remote_toolbar.dart\n\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\n\n* fix(model): Enhance error logging in getSessionCustomScale method\n\n- Improved error logging by adding stack trace output to debugPrintStack, enhancing debugging capabilities for session scaling issues.\n- This change provides clearer insights into errors encountered during scale retrieval, aiding in troubleshooting.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* refactor(toolbar): Simplify custom scale percent retrieval in remote toolbar\n\n- Replaced the previous method of retrieving the custom scale percent with a new function, getSessionCustomScalePercent, enhancing code clarity and maintainability.\n- This change streamlines the process of obtaining the scale value, ensuring a more efficient and readable implementation.\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\n\n* Update flutter/lib/desktop/widgets/remote_toolbar.dart\n\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\n\n---------\n\nSigned-off-by: Alessandro De Blasis \u003calex@deblasis.net\u003e\nSigned-off-by: Alessandro De Blasis alex@deblasis.net\nCo-authored-by: Copilot \u003c175728472+Copilot@users.noreply.github.com\u003e\nCo-authored-by: RustDesk \u003c71636191+rustdesk@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "flutter/lib/common/widgets/toolbar.dart",
+        "flutter/lib/consts.dart",
+        "flutter/lib/desktop/widgets/remote_toolbar.dart",
+        "flutter/lib/models/model.dart",
+        "flutter/lib/utils/scale.dart",
+        "src/lang/ar.rs",
+        "src/lang/be.rs",
+        "src/lang/bg.rs",
+        "src/lang/ca.rs",
+        "src/lang/cn.rs",
+        "src/lang/cs.rs",
+        "src/lang/da.rs",
+        "src/lang/de.rs",
+        "src/lang/el.rs",
+        "src/lang/eo.rs",
+        "src/lang/es.rs",
+        "src/lang/et.rs",
+        "src/lang/eu.rs",
+        "src/lang/fa.rs",
+        "src/lang/fr.rs",
+        "src/lang/ge.rs",
+        "src/lang/he.rs",
+        "src/lang/hr.rs",
+        "src/lang/hu.rs",
+        "src/lang/id.rs",
+        "src/lang/it.rs",
+        "src/lang/ja.rs",
+        "src/lang/ko.rs",
+        "src/lang/kz.rs",
+        "src/lang/lt.rs",
+        "src/lang/lv.rs",
+        "src/lang/nb.rs",
+        "src/lang/nl.rs",
+        "src/lang/pl.rs",
+        "src/lang/pt_PT.rs",
+        "src/lang/ptbr.rs",
+        "src/lang/ro.rs",
+        "src/lang/ru.rs",
+        "src/lang/sc.rs",
+        "src/lang/sk.rs",
+        "src/lang/sl.rs",
+        "src/lang/sq.rs",
+        "src/lang/sr.rs",
+        "src/lang/sv.rs",
+        "src/lang/ta.rs",
+        "src/lang/template.rs",
+        "src/lang/th.rs",
+        "src/lang/tr.rs",
+        "src/lang/tw.rs",
+        "src/lang/uk.rs",
+        "src/lang/vi.rs"
+      ]
+    },
+    {
+      "sha": "a3637cf2b69cad5cff3a0e9748d796f298f89fb7",
+      "message": "Update es.rs (#13104)\n\nNew terms added",
+      "modifiedFiles": [
+        "src/lang/es.rs"
+      ]
+    },
+    {
+      "sha": "48669cdb34bf103c7cc30fa681a00e5f616ba975",
+      "message": "fix: alarm audit number, ipv6 prefix attempts (#13097)\n\nSigned-off-by: fufesou \u003clinlong1266@gmail.com\u003e",
+      "modifiedFiles": [
+        "src/server/connection.rs"
+      ]
+    },
+    {
+      "sha": "a953845ba7c6c32bd04bca9d54a0a13cf587d355",
+      "message": "feat: Add IPv6 prefix-based rate limiting on login failures (#13070)\n\nEnhance security by implementing rate limiting on IPv6 prefixes (/64, /56, /48)\nto prevent brute force attacks that exploit cheap IPv6 address generation.\n\n* Add private get_ipv6_prefixes() to calculate network prefixes\n* Implement private check_failure_ipv6_prefix() for prefix-specific limits\n  on IPv6 addresses\n* Refactor check_failure() and update_failure() to support both IPs and prefixes\n* Add ExceedIPv6PrefixAttempts to AlarmAuditType enum\n\nSigned-off-by: Michael Bacarella \u003cm@bacarella.com\u003e",
+      "modifiedFiles": [
+        "src/server/connection.rs"
+      ]
+    },
+    {
+      "sha": "8d715348391497b894104d2c792d04204efc1fd5",
+      "message": "Translation: Update hu.rs (#13089)\n\nTranslate new strings\r\nFix translation",
+      "modifiedFiles": [
+        "src/lang/hu.rs"
+      ]
+    },
+    {
+      "sha": "d110118961d2fb7c6084d3c9bef4d0198bc3137d",
+      "message": "fix: Update Swedish translations that were missing (#13081)",
+      "modifiedFiles": [
+        "src/lang/sv.rs"
+      ]
+    },
+    {
+      "sha": "fa1ed2bc0ccba63f2fe464d3e1ac0276f78e882d",
+      "message": "fix: Update Indonesian translations for consistency and clarity (#13077)",
+      "modifiedFiles": [
+        "src/lang/id.rs"
+      ]
+    },
+    {
+      "sha": "3f28978dad34682a164b2464a146fef375c35afa",
+      "message": "fix: Correct Japanese translations and typos in lang file (#13029)",
+      "modifiedFiles": [
+        "src/lang/ja.rs"
+      ]
+    },
+    {
+      "sha": "02cd121465db40a1f893f406b90b91cf2c0270be",
+      "message": "Git submodule: Bump libs/hbb_common from `1df14d9` to `7ea8686` (#13062)\n\nBumps [libs/hbb_common](https://github.com/rustdesk/hbb_common) from `1df14d9` to `7ea8686`.\n- [Release notes](https://github.com/rustdesk/hbb_common/releases)\n- [Commits](https://github.com/rustdesk/hbb_common/compare/1df14d90c9858d2cd17d035790131758d8e3cc15...7ea868612dfee7954facb9a7857d65ef875076eb)\n\n---\nupdated-dependencies:\n- dependency-name: libs/hbb_common\n  dependency-version: 7ea868612dfee7954facb9a7857d65ef875076eb\n  dependency-type: direct:production\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "libs/hbb_common"
+      ]
+    },
+    {
+      "sha": "5481c300b222ea5c56e6d2eb045468663853763b",
+      "message": "more assign from cli and devices.py (#13050)\n\nSigned-off-by: 21pages \u003csunboeasy@gmail.com\u003e",
+      "modifiedFiles": [
+        "libs/hbb_common",
+        "res/devices.py",
+        "src/core_main.rs",
+        "src/hbbs_http/sync.rs"
+      ]
+    },
+    {
+      "sha": "7b75257a4a50e4453e962e088f823629c8452d01",
+      "message": "Fixed translation errors on README-TR.md (#12976)",
+      "modifiedFiles": [
+        "docs/README-TR.md"
+      ]
+    },
+    {
+      "sha": "c02e5cad73036950017a87a16744c0428143caac",
+      "message": "refactor: update lang id.rs (#13026)",
+      "modifiedFiles": [
+        "src/lang/id.rs"
+      ]
+    },
+    {
+      "sha": "dee03c0f9fa2a6a3a2237c1f3590328b7033da34",
+      "message": "fix: Center the main window on first run. (#13003)\n\nSigned-off-by: fufesou \u003clinlong1266@gmail.com\u003e",
+      "modifiedFiles": [
+        "flutter/lib/common.dart"
+      ]
+    },
+    {
+      "sha": "d1159764f6f9acd237bf9cfb76dd6f88650c3f06",
+      "message": "add ab.py and audits.py (#12989)\n\nSigned-off-by: 21pages \u003csunboeasy@gmail.com\u003e",
+      "modifiedFiles": [
+        "res/ab.py",
+        "res/audits.py"
+      ]
+    },
+    {
+      "sha": "eacb07988d608df5bdbeaf1d75bb6b251502c71d",
+      "message": "Add Wayland multi-monitor screen capture functionality (#12900)\n\n* Add Wayland multi-monitor screen capture functionality\n\n* fix wayland capture issues by reverting to CapturerPtr, the problem was that calling Display::all in get_capturer_for_display was dropping the pipewire capturer and causing the video to freeze.\n\n* If running as AppImage or flatpak, ignore the \u0027multiple\u0027 argument\n\n* Comment out warning log with unclear purpose Comment out warning log with unclear purpose\n\n---------\n\nCo-authored-by: fufesou \u003c13586388+fufesou@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "libs/scrap/src/wayland/pipewire.rs",
+        "src/server/video_service.rs",
+        "src/server/wayland.rs"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "rustdesk",
+      "ownerLogin": "Xero5000",
+      "commitCount": 49
+    },
+    {
+      "name": "rustdesk",
+      "ownerLogin": "Tien-1981",
+      "commitCount": 49
+    },
+    {
+      "name": "rd",
+      "ownerLogin": "bestwaynow",
+      "commitCount": 50
+    },
+    {
+      "name": "RustDesk",
+      "ownerLogin": "i000i000i000i",
+      "commitCount": 51
+    },
+    {
+      "name": "rustdesk",
+      "ownerLogin": "LucaBarbaLata",
+      "commitCount": 49
+    },
+    {
+      "name": "rustdesk-fork",
+      "ownerLogin": "nicoribe",
+      "commitCount": 49
+    },
+    {
+      "name": "rustdesk",
+      "ownerLogin": "chall37",
+      "commitCount": 49
+    },
+    {
+      "name": "rustdesk",
+      "ownerLogin": "vermulst",
+      "commitCount": 58
+    },
+    {
+      "name": "rustdesk",
+      "ownerLogin": "logesss",
+      "commitCount": 49
+    },
+    {
+      "name": "rustdesk",
+      "ownerLogin": "andongkeji",
+      "commitCount": 50
+    },
+    {
+      "name": "rustdesk",
+      "ownerLogin": "epfisztner",
+      "commitCount": 49
+    },
+    {
+      "name": "rustdesk",
+      "ownerLogin": "gafar-code",
+      "commitCount": 49
+    },
+    {
+      "name": "rustdesk",
+      "ownerLogin": "tommysnello",
+      "commitCount": 49
+    },
+    {
+      "name": "rustdesk_bejojoy",
+      "ownerLogin": "bestsony",
+      "commitCount": 50
+    },
+    {
+      "name": "rustdesk",
+      "ownerLogin": "oawbz",
+      "commitCount": 50
+    },
+    {
+      "name": "rustdesk",
+      "ownerLogin": "onexxu",
+      "commitCount": 49
+    },
+    {
+      "name": "rustdesk",
+      "ownerLogin": "oe-eo",
+      "commitCount": 49
+    },
+    {
+      "name": "pang",
+      "ownerLogin": "pang455515",
+      "commitCount": 49
+    },
+    {
+      "name": "rustdesk",
+      "ownerLogin": "zgd00001",
+      "commitCount": 50
+    },
+    {
+      "name": "rustdesk",
+      "ownerLogin": "Lucknokia",
+      "commitCount": 49
+    }
+  ]
+}

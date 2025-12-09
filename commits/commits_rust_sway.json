@@ -1,0 +1,1202 @@
+{
+  "name": "sway",
+  "ownerLogin": "FuelLabs",
+  "language": "Rust",
+  "commits": [
+    {
+      "sha": "e4cabdd135d058fec3c73b7e55a10250af5d2294",
+      "message": "Fix \"Transaction collided\" issue when running `run_on_node` tests (#7461)\n\n## Description\n\nThis PR fixes non-deterministic \"Transaction collided\" error when\nrunning `run_on_node` tests in parallel:\n\n```console\n{\n    kind: Other,\n    error: \"Response errors;\n            Transaction collided: Transaction with the same UTXO\n            (id: 00000000000000000000000000000000000000000000000000000000000000010000)\n            already exists and is more worth it\"\n}\n```\n\nThe root-cause was using the same wallet to sign all transactions which\ncould sometimes end up in race conditions on the node. The PR now uses\nfive different wallets available on `fuel-core` local test instance and\nexecutes tests in parallel over those five wallets, ensuring only\ndifferent wallets are used in parallel.\n\n## Checklist\n\n- [ ] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "test/src/e2e_vm_tests/harness.rs",
+        "test/src/e2e_vm_tests/mod.rs"
+      ]
+    },
+    {
+      "sha": "46e83a6fbe5c0f0a21cba8b9c41b524cc2fdef04",
+      "message": "Add `--perf` option to `test` to collect and diff performance data (#7459)\n\n## Description\n\nThis PR:\n- Adds `--perf` and `--perf-only` options to `test` to collect gas\nusages and bytecode sizes, and to run only the tests that actually\nproduce those performance data, respectively.\n- Adds `[performance]` recipes to `justfile` that fully automate a\nworkflow for collecting and comparing performance data of the compiler\noutput.\n\n`--perf` flag instructs `test` to collect performance data from tests of\ncategories `compile`, `run`, and `unit_tests_pass`. Collected gas usages\nand bytecode sizes are written to files named\n`\u003ctimestamp\u003e-\u003ccategory\u003e-\u003cbuild profile\u003e-\u003cbranch\u003e.csv`. E.g.:\n`1020165605-e2e-bytecode-sizes-release-master.csv`.\n\nWhen running tests in parallel (default option), performance data of\neach individual `test --exact \u003ctest_toml_path\u003e` process is written to a\npiped stdout in JSON format. The main `test` process collects those JSON\noutputs from all spanned processes.\n\nThe usual workflow of collecting and comparing performance data between\nthe `master` and feature branch is supported by the following `just`\nrecipes:\n\n```console\n[performance]\nperf-e2e filter\u003d\u0027\u0027                    # collect gas usages and bytecode sizes from E2E tests [alias: pe2e]\nperf-in-lang filter\u003d\u0027\u0027                # collect gas usages from in-language tests [alias: pil]\nperf-all filter\u003d\u0027\u0027                    # collect gas usages and bytecode sizes from all tests (E2E and in-language) [alias: pa]\nperf-diff before after format\u003d\u0027md\u0027    # generate performance diff between two CSV files [alias: pd]\nperf-diff-latest format\u003d\u0027md\u0027          # generate performance diffs between the latest two CSV files per testing category [alias: pdl]\nperf-snapshot-historical path open\u003d\u0027\u0027 # collect historic gas usages from a snapshot test that has a `forc test` output [alias: psh]\nperf-list                             # list all performance files (*gas-usages-*.* and *bytecode-sizes-*.*) [alias: pl]\nperf-remove                           # remove all performance files (*gas-usages-*.* and *bytecode-sizes-*.*) [alias: pr]\n```\n\nTo obtain the performance comparison it is enough to run:\n\n```console\njust pa   // `just perf-all`. On `master` to get the baseline.\njust pa   // `just perf-all`. On the feature branch to get the improved data.\njust pdl  // `just perf-diff-latest`. To get the diff of the last two collected performance data sets.\n```\nThe `just` recipes should be executed from the root of the Sway\nrepository.\n\nAside from `--perf` writing to predefined files, all other parts of the\nworkflow are `just` recipes and can potentially be tailored to any other\nworkflow.\n\nAdding support for collecting gas usages and bytecode sizes from other\ntests like (snapshot, in-language, SDK harness) will be added in follow\nup PRs.\n\n## Checklist\n\n- [ ] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        ".gitignore",
+        "Cargo.lock",
+        "justfile",
+        "scripts/compare-gas-usage/generate-diff.sh",
+        "scripts/csv2html/csv2html.sh",
+        "scripts/perf/extract-gas-usages.sh",
+        "scripts/perf/perf-diff-latest.sh",
+        "scripts/perf/perf-diff.sh",
+        "test/Cargo.toml",
+        "test/README.md",
+        "test/perf_out/README.md",
+        "test/src/e2e_vm_tests/mod.rs",
+        "test/src/main.rs"
+      ]
+    },
+    {
+      "sha": "4e16bedab26b5d1273eb907f3eaea6987d5ea4f6",
+      "message": "Improve Contract Call by not encoding fuelvm protocol args (#7447)\n\n## Description\n\nThis is an optimization of contract calls on top of\nhttps://github.com/FuelLabs/sway/pull/7440.\n\n```csv\nconst_of_contract_call::cost_of_in_array_0,1976,1285\nconst_of_contract_call::cost_of_in_array_1,3164,1779\nconst_of_contract_call::cost_of_in_array_16,5096,4753\nconst_of_contract_call::cost_of_in_array_32,8421,8079\nconst_of_contract_call::cost_of_in_array_64,60382,14545\nconst_of_contract_call::cost_of_in_array_8,4724,4382\nconst_of_contract_call::cost_of_in_b256,2491,2147\nconst_of_contract_call::cost_of_in_bool,2627,2279\nconst_of_contract_call::cost_of_in_str_0,3043,2697\nconst_of_contract_call::cost_of_in_str_1,3345,2998\nconst_of_contract_call::cost_of_in_str_16,3374,3030\nconst_of_contract_call::cost_of_in_str_32,3572,3227\nconst_of_contract_call::cost_of_in_str_8,3768,3421\nconst_of_contract_call::cost_of_in_tuple_0,3822,3479\nconst_of_contract_call::cost_of_in_tuple_1,4392,4050\nconst_of_contract_call::cost_of_in_tuple_2,4761,4418\nconst_of_contract_call::cost_of_in_tuple_3,5104,4761\nconst_of_contract_call::cost_of_in_tuple_4,5468,5126\nconst_of_contract_call::cost_of_in_u16,4493,4141\nconst_of_contract_call::cost_of_in_u256,4777,4433\nconst_of_contract_call::cost_of_in_u32,4926,4582\nconst_of_contract_call::cost_of_in_u64,4934,4589\nconst_of_contract_call::cost_of_in_u8,4874,4526\nconst_of_contract_call::in_enum_u64,3186,2843\nconst_of_contract_call::in_enum_u64_u64,3061,2718\nconst_of_contract_call::in_enum_u64_u64_u64,3173,2830\nconst_of_contract_call::in_struct_u64,3635,3293\nconst_of_contract_call::in_struct_u64_u64,3897,3554\nconst_of_contract_call::in_struct_u64_u64_u64,4156,3813\nconst_of_contract_call::isolated_cost_of_in_array_0,956,956\nconst_of_contract_call::isolated_cost_of_in_array_1,1515,1185\nconst_of_contract_call::isolated_cost_of_in_array_16,3955,3266\nconst_of_contract_call::isolated_cost_of_in_array_32,6544,5471\nconst_of_contract_call::isolated_cost_of_in_array_64,9914,9914\nconst_of_contract_call::isolated_cost_of_in_array_8,3225,2728\nconst_of_contract_call::isolated_cost_of_in_b256,1462,1120\nconst_of_contract_call::isolated_cost_of_in_bool,1358,1047\nconst_of_contract_call::isolated_cost_of_in_str_0,1451,1140\nconst_of_contract_call::isolated_cost_of_in_str_1,1547,1237\nconst_of_contract_call::isolated_cost_of_in_str_16,1552,1241\nconst_of_contract_call::isolated_cost_of_in_str_32,1553,1242\nconst_of_contract_call::isolated_cost_of_in_str_8,1551,1241\nconst_of_contract_call::isolated_cost_of_in_tuple_0,820,820\nconst_of_contract_call::isolated_cost_of_in_tuple_1,1412,1090\nconst_of_contract_call::isolated_cost_of_in_tuple_2,1615,1304\nconst_of_contract_call::isolated_cost_of_in_tuple_3,1766,1455\nconst_of_contract_call::isolated_cost_of_in_tuple_4,1916,1605\nconst_of_contract_call::isolated_cost_of_in_u16,1428,1117\nconst_of_contract_call::isolated_cost_of_in_u256,1431,1120\nconst_of_contract_call::isolated_cost_of_in_u32,1554,1243\nconst_of_contract_call::isolated_cost_of_in_u64,1336,1025\nconst_of_contract_call::isolated_cost_of_in_u8,1352,1041\n```\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [x] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "justfile",
+        "scripts/csv2html/csv2html.sh",
+        "sway-lib-std/src/codec.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panicking_contract/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/test_contracts/const_of_contract_call/stdout.snap"
+      ]
+    },
+    {
+      "sha": "7d876d1be6a4587fb37c83086bfb9dc8101cb904",
+      "message": "Improve diff between generic argument generic type argument (#7453)\n\n## Description\n\nThis PR is a continuation of https://github.com/FuelLabs/sway/pull/7391.\nIt also changes from `GenericArgument` to `GenericTypeArgument`.\n\nThe rationale is that `GenericArgument` should only be used where we can\nhave types and const generics. And it a lot of cases, we only accept\ntypes.\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [x] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [ ] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "forc-plugins/forc-doc/src/doc/mod.rs",
+        "forc-plugins/forc-doc/src/render/item/context.rs",
+        "forc-plugins/forc-doc/src/render/item/type_anchor.rs",
+        "forc-plugins/forc-migrate/src/migrations/new_hashing.rs",
+        "forc-plugins/forc-migrate/src/migrations/try_from_bytes_for_b256.rs",
+        "sway-core/src/abi_generation/abi_str.rs",
+        "sway-core/src/abi_generation/evm_abi.rs",
+        "sway-core/src/abi_generation/fuel_abi.rs",
+        "sway-core/src/control_flow_analysis/analyze_return_paths.rs",
+        "sway-core/src/control_flow_analysis/dead_code_analysis.rs",
+        "sway-core/src/ir_generation/compile.rs",
+        "sway-core/src/ir_generation/convert.rs",
+        "sway-core/src/ir_generation/function.rs",
+        "sway-core/src/ir_generation/types.rs",
+        "sway-core/src/language/parsed/declaration.rs",
+        "sway-core/src/language/parsed/declaration/configurable.rs",
+        "sway-core/src/language/parsed/declaration/constant.rs",
+        "sway-core/src/language/parsed/declaration/enum.rs",
+        "sway-core/src/language/parsed/declaration/function.rs",
+        "sway-core/src/language/parsed/declaration/impl_trait.rs",
+        "sway-core/src/language/parsed/declaration/storage.rs",
+        "sway-core/src/language/parsed/declaration/struct.rs",
+        "sway-core/src/language/parsed/declaration/trait.rs",
+        "sway-core/src/language/parsed/declaration/type_alias.rs",
+        "sway-core/src/language/parsed/declaration/variable.rs",
+        "sway-core/src/language/ty/ast_node.rs",
+        "sway-core/src/language/ty/declaration/configurable.rs",
+        "sway-core/src/language/ty/declaration/constant.rs",
+        "sway-core/src/language/ty/declaration/declaration.rs",
+        "sway-core/src/language/ty/declaration/enum.rs",
+        "sway-core/src/language/ty/declaration/function.rs",
+        "sway-core/src/language/ty/declaration/impl_trait.rs",
+        "sway-core/src/language/ty/declaration/mod.rs",
+        "sway-core/src/language/ty/declaration/storage.rs",
+        "sway-core/src/language/ty/declaration/struct.rs",
+        "sway-core/src/language/ty/declaration/trait_fn.rs",
+        "sway-core/src/language/ty/declaration/type_alias.rs",
+        "sway-core/src/language/ty/declaration/variable.rs",
+        "sway-core/src/language/ty/expression/expression.rs",
+        "sway-core/src/language/ty/expression/expression_variant.rs",
+        "sway-core/src/language/ty/program.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/auto_impl/abi_encoding.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/auto_impl/debug.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/auto_impl/mod.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/configurable.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/constant.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/declaration.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/enum.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/function.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/function/function_parameter.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/impl_trait.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/struct.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/trait_fn.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/variable.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/intrinsic_function.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/match_expression/typed/matcher.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/match_expression/typed/typed_scrutinee.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/typed_expression.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/typed_expression/enum_instantiation.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/typed_expression/function_application.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/typed_expression/method_application.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/typed_expression/struct_field_access.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/typed_expression/struct_instantiation.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/typed_expression/tuple_index_access.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/typed_expression/unsafe_downcast.rs",
+        "sway-core/src/semantic_analysis/method_lookup.rs",
+        "sway-core/src/semantic_analysis/module.rs",
+        "sway-core/src/semantic_analysis/namespace/trait_map.rs",
+        "sway-core/src/semantic_analysis/node_dependencies.rs",
+        "sway-core/src/semantic_analysis/symbol_resolve.rs",
+        "sway-core/src/semantic_analysis/type_resolve.rs",
+        "sway-core/src/transform/to_parsed_lang/convert_parse_tree.rs",
+        "sway-core/src/type_system/ast_elements/type_argument.rs",
+        "sway-core/src/type_system/engine.rs",
+        "sway-core/src/type_system/id.rs",
+        "sway-core/src/type_system/info.rs",
+        "sway-core/src/type_system/mod.rs",
+        "sway-core/src/type_system/priv_prelude.rs",
+        "sway-core/src/type_system/substitute/subst_map.rs",
+        "sway-core/src/type_system/unify/unifier.rs",
+        "sway-core/src/type_system/unify/unify_check.rs",
+        "sway-lsp/src/capabilities/code_actions/abi_decl/abi_impl.rs",
+        "sway-lsp/src/capabilities/code_actions/common/fn_doc_comment.rs",
+        "sway-lsp/src/capabilities/completion.rs",
+        "sway-lsp/src/capabilities/document_symbol.rs",
+        "sway-lsp/src/capabilities/hover/mod.rs",
+        "sway-lsp/src/capabilities/inlay_hints.rs",
+        "sway-lsp/src/core/token.rs",
+        "sway-lsp/src/traverse/parsed_tree.rs",
+        "sway-lsp/src/traverse/typed_tree.rs"
+      ]
+    },
+    {
+      "sha": "5896b4cac23413268412535b721bb407f1fc61fa",
+      "message": "Cost of contract calls snapshot tests (#7440)\n\n## Description\n\nThis PR is a prequel for https://github.com/FuelLabs/sway/pull/7419.\nIt will set the baseline, which future PRs need to improve.\n\nApart from that it also:\n1 - Fix a problem with `SubtsType` for `TyConstantDecl`;\n2 - Introduce a new way to write snapshot tests. Now the test source\ncode can have \"blocks\"\n\n```\n    /* START BOOL */\n    fn in_bool(v: bool) -\u003e bool;\n    /* END BOOL */\n```\n\nThese blocks can be manipulated from inside the `snapshot.toml`. In this\ncase, the `toml` is:\n\n```\ncmds \u003d [\n    \"forc test --path {root} --release --experimental const_generics\",\n    { repeat \u003d \"for-each-block\", cmds \u003d [\n        \"forc test --path {root} --release --experimental const_generics\"\n    ] }\n]\n```\n\nWhich repeats the inner `forc test` for each block, removing all others.\nThat allows me to check the cost of the contract method selection\nalgorithm for each contract method.\n\nFor example, `cost_of_in_array_64` with all other contract methods costs\n`60382`, but alone it only costs `58218`, which means that around 2000\nwas \"wasted\" in the contract method selection.\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [x] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [ ] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "justfile",
+        "scripts/bisect-forc/bisect-forc.sh",
+        "scripts/compare-gas-usage/extract-gas-usage.sh",
+        "scripts/csv2html/csv2html.sh",
+        "sway-core/src/decl_engine/id.rs",
+        "sway-core/src/type_system/ast_elements/type_argument.rs",
+        "sway-lib-std/src/codec.sw",
+        "test/README.md",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/array/array_repeat/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/configurable_dedup_decode/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/test_contracts/const_of_contract_call/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_pass/test_contracts/const_of_contract_call/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/test_contracts/const_of_contract_call/snapshot.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/test_contracts/const_of_contract_call/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/test_contracts/const_of_contract_call/stdout.snap",
+        "test/src/snapshot/mod.rs"
+      ]
+    },
+    {
+      "sha": "97efa221f0ccb75675bbec7fdc26db15d072e072",
+      "message": "Excute E2E tests in parallel (#7456)\n\n## Description\n\nThis PR implements parallel execution of E2E tests by using the approach\nsimilar to one introduced by @JoshuaBatty for running LSP garbage\ncollection tests in parallel. The approach is based on:\n- `test` binary getting an additional `--exact` option used by the\nparallel runner to run exactly one test passed as an argument to\n`--exact`. The argument is the full path to the test\u0027s `toml` file.\n- parallel runner that uses `rayon` and `std::process::Command` to span\n`test --exact \u003ctest toml path\u003e` processes in parallel. The original\ncommand line argument passed to `test` get forwarded to `test --exact`\nonly if they are applicable while running tests in parallel.\n\nOn my laptop with 20 cores, **the execution time of the complete E2E\ntest suite reduces from reproducible 10:48 minutes to reproducible 1:47\nminutes**.\n\nParallel execution is set to be the default one. Sequential execution\ncan still be used via `--sequential` or `-s` flag: `cargo run -- -s` or\n`test -s`.\n\nSimilar to parallel garbage collection tests, the parallel execution of\nE2E tests shows `stderr` output of the executed tests, but not the\n`stdout`. Being non-deterministic, the position of displayed errors will\nnot come immediately after or before the failing test display, but will\nalways be easy to relate to a concrete failing test. In practice, this\nwill be perfectly enough for troubleshooting failing tests. If all the\noutput is needed during troubleshooting, failing tests can always be\nexecuted sequentially, by using the `--sequential` or `-s` flag.\n\nAdditionally the PR:\n- adds `no_output` flag to `BuildOpts` to instructs `forc-pkg` not to\noutput build artifacts like bytecode, ABI JSON, or storage slots JSON.\nThis improves test execution speed in general because it skips writing\nto disc artifacts that are anyhow not used in tests. Also, it simplifies\nparallelization, because in case of tests with several\n`test.\u003cfeature\u003e.toml` files, we don\u0027t need to worry about racing\nconditions when writing output files. If needed for troubleshooting,\noutput can still be optionally generated in tests by passing the newly\nadded `--write-output` CLI flag to the `test` binary. This flag is\nignored when running tests in parallel. A support for the `no_output`\noption is not added neither to `forc` CLI, nor to CLI of any other tools\nlike, e.g., `forc deploy`. If it proves useful to those tools, we can\nalways easily add it to their CLIs.\n- fixes #7449 by annotating the `test` binary `main` function with\n`#[tokio::main(flavor \u003d \"current_thread\")]`.\n- renames `exclude_std` CLI option to `no_std_only` to follow the\n`_only` pattern in naming filters in `FilterConfig` that filter out only\nthe tests with a certain property.\n\nImplementing parallel execution for snapshot and IR tests (if required)\nwill be done in followup PRs.\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        ".gitignore",
+        "Cargo.lock",
+        "forc-pkg/src/pkg.rs",
+        "forc-plugins/forc-client/src/op/deploy.rs",
+        "forc-plugins/forc-client/src/op/run/mod.rs",
+        "forc-test/src/lib.rs",
+        "forc/src/cli/commands/test.rs",
+        "forc/src/ops/forc_build.rs",
+        "forc/src/ops/forc_contract_id.rs",
+        "forc/src/ops/forc_predicate_root.rs",
+        "sway-core/src/build_config.rs",
+        "sway-features/src/lib.rs",
+        "test/Cargo.toml",
+        "test/src/e2e_vm_tests/harness.rs",
+        "test/src/e2e_vm_tests/mod.rs",
+        "test/src/e2e_vm_tests/util.rs",
+        "test/src/main.rs"
+      ]
+    },
+    {
+      "sha": "a5654fc1af8dc0fa63e6cdb86dd8da62769ca4d6",
+      "message": "Add docs for ABI Backtracing (#7435)\n\n## Description\n\nThis PR:\n- extends the docs on Irrecoverable Errors by explaining the ABI\nBacktracing.\n- adds docs for the `#[trace]` attribute.\n- adds docs for the `backtrace` build option.\n\nIt is the final step in implementing the #7276.\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [x] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "docs/book/spell-check-custom-words.txt",
+        "docs/book/src/basics/error_handling.md",
+        "docs/book/src/forc/manifest_reference.md",
+        "docs/book/src/reference/attributes.md"
+      ]
+    },
+    {
+      "sha": "107b092e9d7003256321d3890a636273d0845662",
+      "message": "chore: bump version to v0.70.1 (#7454)\n\n## Description\n\nBumping version to release #7451 \n\ncc @ironcev I see that you couple large commits merged after 0.70.0, can\nyou verify if they are breaking or not before we continue with merging\nthis :)",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "sway-lib-std/Forc.toml"
+      ]
+    },
+    {
+      "sha": "a4da6ee1d3ad9bb4c10486eb6c21d531c21ef607",
+      "message": "Removing todo const generics (#7391)\n\n## Description\n\nContinuation of\nhttps://github.com/FuelLabs/sway/issues/6860?reload\u003d1?reload\u003d1.\n\nThe summary of removed `todo!()` are:\n1 - Some `todo!()` are actually unreachable. In future PRs I will try to\nmodel the AST better and remove these match arms;\n2 - Some are trivial impls like spans;\n3 - Some are trivial from traits like `PartialEq` and `PartialOrd`.\n\nOthers will be removed in future PRs.\n\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [ ] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.\n\n---------\n\nCo-authored-by: Joshua Batty \u003cjoshpbatty@gmail.com\u003e",
+      "modifiedFiles": [
+        "sway-core/src/control_flow_analysis/analyze_return_paths.rs",
+        "sway-core/src/control_flow_analysis/dead_code_analysis.rs",
+        "sway-core/src/ir_generation/function.rs",
+        "sway-core/src/language/parsed/declaration.rs",
+        "sway-core/src/language/ty/ast_node.rs",
+        "sway-core/src/language/ty/declaration/const_generic.rs",
+        "sway-core/src/language/ty/declaration/declaration.rs",
+        "sway-core/src/language/ty/expression/expression_variant.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/declaration.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/intrinsic_function.rs",
+        "sway-core/src/semantic_analysis/node_dependencies.rs",
+        "sway-core/src/semantic_analysis/symbol_resolve.rs",
+        "sway-core/src/transform/to_parsed_lang/convert_parse_tree.rs",
+        "sway-core/src/type_system/ast_elements/type_argument.rs",
+        "sway-core/src/type_system/ast_elements/type_parameter.rs",
+        "sway-core/src/type_system/info.rs",
+        "sway-lsp/src/capabilities/document_symbol.rs",
+        "sway-lsp/src/capabilities/inlay_hints.rs",
+        "sway-lsp/src/traverse/parsed_tree.rs",
+        "sway-lsp/src/traverse/typed_tree.rs",
+        "swayfmt/src/utils/language/ty.rs"
+      ]
+    },
+    {
+      "sha": "3c6f718fe2dff69b8e24a721aa297eb892bc8ccd",
+      "message": "Remove `fuels` patches from workspace\u0027s `Cargo.toml` (#7452)\n\n## Description\n\nThis PR removes unused patches of `fuels` from workspace\u0027s `Cargo.toml`\nfile.\n\n## Checklist\n\n- [ ] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml"
+      ]
+    },
+    {
+      "sha": "1da5e662e8e5cd236b91c15e020d41ee816f8068",
+      "message": "Compile runtime backtracing to ASM and compile-time to ABI JSON (#7387)\n\n## Description\n\nThis PR implements the compilation of the ABI backtracking, as described\nin the [ABI Backtracking\nRFC](https://github.com/FuelLabs/sway-rfcs/blob/ironcev/abi-backtracing/rfcs/0016-abi-backtracing.md).\n\nThe PR closes two remaining implementation steps listed in the #7276:\n- Compile runtime backtracing to ASM and compile-time to ABI JSON\n- Support backtracing in forc test\n\n### Changes in the ABI JSON and IR Compilation\n\n#### `panickingCalls` section in the ABI JSON\n\nEach panicking call is identified by a unique number and provided in the\nnew `panickingCalls` section in the ABI JSON.\n\nE.g., for this panicking call in a module `some_module` of a package\n`some_package`:\n\n```sway\nfn some_function() {\n    let _ \u003d this_function_might_panic(42);\n}\n```\n\nthe following ABI JSON entry is created:\n\n```json\n\"panickingCalls\": {\n    \"1\": {\n        \"pos\": {\n            \"function\": \"some_package::some_module::some_function\",\n            \"pkg\": \"some_package@0.1.0\",\n            \"file\": \"src/some_module.sw\",\n            \"line\": 4,\n            \"column\": 8\n        },\n        \"function\": \"some_other_package::module::this_function_might_panic\"\n    },\n}\n```\n\n#### Encoding error code and backtrace in a `panic` revert code\n\nThe generation of the `panic` revert code is changed. A `panic` revert\ncode now encodes:\n- the information that the revert is generated by a `panic` expression,\n- the actual error code that can be located in the `errorCodes` section\nof the ABI JSON,\n- up to five panicking call IDs, encoded in the order of calling, that\ncan be located in the `panickingCalls` section of the ABI JSON.\n\nThe encoding of the `u64` revert code works as following:\n\n```console\n1_pppppppp_CCCCCCCCCCC_CCCCCCCCCCC_CCCCCCCCCCC_CCCCCCCCCCC_CCCCCCCCCCC\n```\n\n- The leading `1` denotes a revert code generated by a `panic`\nexpression. Arbitrary user-defined revert codes will must have the\nstarting bit set to `0` or in other words be less then or equal to\n`9223372036854775807₁₀ \u003d 7FFFFFFFFFFFFFFF₁₆`.\n- The `pppppppp` denotes the error code in the `errorCodes` section of\nthe ABI JSON, that identifies the actual `panic` location.\n- Each `CCCCCCCCCCC` section denotes a panicking call code in the\n`panickingCalls` section of the ABI JSON. The calls represent the\ncallstack, where the right-most code is the code of the immediate\nfunction call in which the `panic` occurs. If all `C`s a zero it means\nno-call. This will happen if the actual call-depth is less then five\ncalls.\n\n#### Calculating backtrace\n\nEver non-entry function that can panic gets an additional function\nargument: `__backtrace: u64`. The `__backtrace` to pass to a panicking\ncall is calculated at runtime by left-shift the existing `__backtrace`\nprovided by the caller function and append/bitwise OR the unique\npanicking call ID of the exact panicking call. The ID of that exact\npanicking call is a compile-time, compiler-generated constant as\nexplained above.\n\nThe detailed mechanism with examples is provided in the \"Runtime\nexecution and bytecode and gas overhead\" chapter of the [ABI\nBacktracking\nRFC](https://github.com/FuelLabs/sway-rfcs/blob/ironcev/abi-backtracing/rfcs/0016-abi-backtracing.md).\n\n## Additional Changes\n\nThe `panickingCalls` section of the ABI JSON can differ between `debug`\nand `release` builds which required adding support for different ABI\nJSON oracle files in test that `validate_abi`. The requirement to\ndisplay a fully qualified function name in the panicking call and the\nbacktrace resulted in adding flexibility to displaying functions and\ntypes in general. Adjusting affected tests was used as opportunity to\nremove unnecessary dependencies to the `std` and reduced `std` libraries\nin a large number of tests. Also, a cleanup is done in some parts of the\ncode, like, e.g., removing code duplications.\n\nThe PR implements these additional changes:\n- Implements `TyFunctionDisplay` and `TypeInfoDisplay` for configurable\ndisplaying of functions and types. Replacing current various custom\nimplementations of displaying with these two types, mostly in error\nmessages, will be done in separate PRs, with low priority. Also, display\nmight be improved in some edge cases. There are TODOs left in code for\nsuch, and improvements will be done in separate PRs, with lower\npriority.\n- Displays full type names in warnings and errors, where expected. The\nPR intentionally temporarily switches to full type names in all errors\nand warnings by making that a default behavior in `impl\nDisplayWithEngines for TypeInfo`. This is done so that we can easily\nspot errors and warnings that should use specific `TyFunctionDisplay`\nand `TypeInfoDisplay` (tests will break) and adapt those in the follow\nup PR that will address #7389. That follow up PR will also address\nusages of type names in LSP.\n- Implements expressive diagnostics for `CompileError::MethodNotFound`\nand utilize `TyFunctionDisplay` for displaying all matching candidates.\n- Implements `Value::new_u64_constant` and removing duplicated code for\na common scenario of creating an IR Constant of type `u64`.\n- Removes several unnecessary `clone()`s and `String` allocations.\n- Renames fields postfixed with `typeid` to follow more general naming\nconvention for `TypeId` fields and parameters.\n- Removes unnecessary dependencies to `std` or reduced `std` libraries\nin tests.\n- Adds support for different `json_abi_oracle` files for `debug` and\n`release` build profiles. The `panickingCalls` part of the ABI JSON can\nvary depending on the build profile. A test that verifies ABI JSON now\n*must provide* expected oracles for both build profiles, unless a\nprofile is unsupported via `unsupported_profiles` test option. An\nalternative was considered, to allow just a single oracle file if both\n`debug` and `release` oracles are the same. The reasoning for having two\nas mandatory even in that case was to gain more explicit test setup. We\ncan change this upon feedback if needed. The oracles have a suffix of\neither `.debug.json` or `.release.json` and the name part is, as before,\none of the following:\n  - `json_abi_oracle` for obsolete old encoding,\n  - `json_abi_oracle.\u003cexperimental feature\u003e` for experimental features,\n- `json_abi_oracle_new_encoding` for new encoding without other\nexperimental features.\n- Fixes #7386.\n- Fixes #7388.\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [x] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        ".github/workflows/scripts/check-dep-versions/src/main.rs",
+        ".typos.toml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "forc-pkg/src/pkg.rs",
+        "forc-plugins/forc-client/test/data/deployed_script/deployed_script-loader-abi.json",
+        "forc-plugins/forc-migrate/src/migrations/new_hashing.rs",
+        "forc-plugins/forc-migrate/src/migrations/try_from_bytes_for_b256.rs",
+        "forc-plugins/forc-migrate/src/visiting/mod.rs",
+        "forc-test/src/lib.rs",
+        "forc-util/src/tx_utils.rs",
+        "forc/src/cli/commands/test.rs",
+        "sway-core/src/abi_generation/abi_str.rs",
+        "sway-core/src/abi_generation/evm_abi.rs",
+        "sway-core/src/abi_generation/fuel_abi.rs",
+        "sway-core/src/asm_generation/fuel/fuel_asm_builder.rs",
+        "sway-core/src/build_config.rs",
+        "sway-core/src/control_flow_analysis/dead_code_analysis.rs",
+        "sway-core/src/decl_engine/ref.rs",
+        "sway-core/src/ir_generation.rs",
+        "sway-core/src/ir_generation/compile.rs",
+        "sway-core/src/ir_generation/const_eval.rs",
+        "sway-core/src/ir_generation/function.rs",
+        "sway-core/src/language/call_path.rs",
+        "sway-core/src/language/ty/declaration/abi.rs",
+        "sway-core/src/language/ty/declaration/function.rs",
+        "sway-core/src/language/ty/declaration/impl_trait.rs",
+        "sway-core/src/language/ty/expression/expression_variant.rs",
+        "sway-core/src/lib.rs",
+        "sway-core/src/metadata.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/function.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/impl_trait.rs",
+        "sway-core/src/semantic_analysis/ast_node/declaration/trait_fn.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/intrinsic_function.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/typed_expression.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/typed_expression/function_application.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/typed_expression/method_application.rs",
+        "sway-core/src/semantic_analysis/method_lookup.rs",
+        "sway-core/src/semantic_analysis/namespace/trait_coherence.rs",
+        "sway-core/src/semantic_analysis/namespace/trait_map.rs",
+        "sway-core/src/semantic_analysis/type_resolve.rs",
+        "sway-core/src/transform/attribute.rs",
+        "sway-core/src/transform/to_parsed_lang/convert_parse_tree.rs",
+        "sway-core/src/type_system/ast_elements/type_parameter.rs",
+        "sway-core/src/type_system/engine.rs",
+        "sway-core/src/type_system/info.rs",
+        "sway-core/src/type_system/priv_prelude.rs",
+        "sway-error/src/error.rs",
+        "sway-error/src/formatting.rs",
+        "sway-ir/src/bin/opt.rs",
+        "sway-ir/src/context.rs",
+        "sway-ir/src/function.rs",
+        "sway-ir/src/irtype.rs",
+        "sway-ir/src/optimize.rs",
+        "sway-ir/src/optimize/sroa.rs",
+        "sway-ir/src/parser.rs",
+        "sway-ir/src/pass_manager.rs",
+        "sway-ir/src/value.rs",
+        "sway-ir/tests/tests.rs",
+        "sway-lsp/src/traverse/typed_tree.rs",
+        "sway-lsp/tests/integration/code_actions.rs",
+        "sway-lsp/tests/integration/lsp.rs",
+        "sway-types/src/span.rs",
+        "test/src/e2e_vm_tests/README.md",
+        "test/src/e2e_vm_tests/harness.rs",
+        "test/src/e2e_vm_tests/mod.rs",
+        "test/src/e2e_vm_tests/test_programs/should_fail/abi_supertrait_method_call/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/abi_supertrait_method_call/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/abi_supertrait_method_call/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/abi_supertrait_method_call/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/abort_control_flow_bad/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/array_bad_index/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/array_bad_index/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/array_wrong_elements_types/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_fail/associated_fn_as_method_call/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/associated_fn_as_method_call/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/associated_fn_params_as_method_call/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/associated_fn_params_as_method_call/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/associated_fn_params_as_method_call/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/associated_fn_params_as_method_call/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/associated_type_multiple_traits_same_name/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/associated_type_multiple_traits_same_name/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/attributes_invalid_target_contract/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_fail/attributes_invalid_target_contract_abi_decl/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_fail/attributes_invalid_target_contract_configurable/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_fail/attributes_invalid_target_contract_storage/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_fail/attributes_invalid_target_items/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_fail/binop_intrinsics/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/binop_intrinsics/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/binop_intrinsics/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/binop_intrinsics/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/deduplication_of_shadowing_errors/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/dereferenced_projection_reassignment/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/diverging_never/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/enum_bad_type_inference/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/enum_bad_type_inference/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/enum_bad_type_inference/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/enum_bad_type_inference/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/enum_instantiation_type_mismatch/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/eq_intrinsic/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/eq_intrinsic/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/eq_intrinsic/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/eq_intrinsic/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/error_const/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/excess_associated_fn_arguments/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/excess_associated_fn_arguments/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/excess_associated_fn_arguments/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/excess_associated_fn_arguments/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/excess_method_arguments/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/excess_method_arguments/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/excess_method_arguments/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/excess_method_arguments/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/for_bad_iterator/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/for_bad_iterator/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/for_bad_iterator/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/for_bad_iterator/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/for_loop_error/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/generic_and_associated_type/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/generic_and_associated_type/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/generic_empty_struct_with_constraint/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/generic_empty_struct_with_constraint/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/generic_traits/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/generic_traits/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/generic_traits/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/generic_traits/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/generic_traits/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/generic_traits_bad_type_inference/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/generic_traits_with_bounds/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/generics_in_contract/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/generics_in_contract/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/illegal_use_of_generic/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/illegal_use_of_generic/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/impl_self_duplicated/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/impl_self_duplicated/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/impl_self_duplicated/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/impl_self_duplicated/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/impl_with_bad_generic/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/impl_with_bad_generic/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/impl_with_bad_generic/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/impl_with_bad_generic/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/impl_with_semantic_type_constraints/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/impl_with_semantic_type_constraints/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/impl_with_semantic_type_constraints/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/impl_with_semantic_type_constraints/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/insufficient_type_info/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/import_star_name_clash/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/import_star_name_clash/src/b.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/import_star_name_clash/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/import_star_name_clash/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/intrinsics/transmute/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/intrinsics/transmute/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/panic_expression/too_many_panic_expressions/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/panic_expression/too_many_panic_expressions/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/panic_expression/too_many_panic_expressions/snapshot.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/panic_expression/too_many_panic_expressions/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/panic_expression/too_many_panic_expressions/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/panic_expression/too_many_panicking_calls/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/panic_expression/too_many_panicking_calls/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/panic_expression/too_many_panicking_calls/snapshot.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/panic_expression/too_many_panicking_calls/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/panic_expression/too_many_panicking_calls/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/aliases/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/aliases/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/aliases/src/tests.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/aliases/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/shadowing_in_reexporting_module/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/shadowing_in_reexporting_module/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/shadowing_in_reexporting_module/src/tests.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/shadowing_in_reexporting_module/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/simple_glob_import/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/simple_glob_import/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/simple_glob_import/src/tests.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/simple_glob_import/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/simple_item_import/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/simple_item_import/json_abi_oracle_new_encoding.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/simple_item_import/src/tests.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/simple_item_import/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/reexport/simple_path_access/json_abi_oracle_new_encoding.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/references/impl_reference_types/src/ref_and_ref_mut_trait_impls.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/references/impl_reference_types/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/main_args/main_args_mutation/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/marker_trait_enum_not_implemented_for_non_enum/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/marker_trait_error_not_implemented_for_non_error_types/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/match_expressions_duplicate_variables/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/match_expressions_duplicate_variables/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/match_expressions_or_mismatched_types/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/match_expressions_or_mismatched_types/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/match_expressions_or_missing_variables/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/match_expressions_or_missing_variables/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/match_expressions_wrong_struct/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/method_missing_constraint/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/method_missing_constraint/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/method_not_found/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/method_not_found/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/method_not_found/snapshot.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/method_not_found/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/method_not_found/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_fail/missing_associated_fn_arguments/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/missing_associated_fn_arguments/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/missing_associated_fn_arguments/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/missing_associated_fn_arguments/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/missing_hash_trait/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/missing_method_arguments/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/missing_method_arguments/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/missing_method_arguments/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/missing_method_arguments/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/missing_supertrait_impl/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/missing_supertrait_impl/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/multiple_enums_with_the_same_name/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/multiple_methods_with_the_same_name/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/multiple_methods_with_the_same_name/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/multiple_methods_with_the_same_name/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/multiple_methods_with_the_same_name/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/multiple_methods_with_the_same_name/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/multiple_structs_with_the_same_name/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/multiple_supertraits_for_abis1/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/multiple_supertraits_for_abis2/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/mutable_fn_args_bool/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/mutable_fn_args_impl_self/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/mutable_fn_args_struct/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/mutable_fn_args_u32/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/non_indexable_types/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/recursive_const_associated_over_associated_function/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/recursive_const_module_over_associated_function/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/recursive_type_unification/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/ref_and_deref_expressions/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/ref_mut_contract_abi/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/ref_mut_mismatch/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/ref_variables/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/repeated_enum_variant/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/repeated_storage_field/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/repeated_struct_field/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/return_in_non_statement_positions/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/return_in_non_statement_positions/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/return_in_non_statement_positions/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/return_in_non_statement_positions/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/return_in_strange_positions/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/return_in_strange_positions/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/return_in_strange_positions/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/return_in_strange_positions/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/return_in_strange_positions/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/shadow_import/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/star_import_alias/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/storage_configurable/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/storage_configurable/json_abi_oracle_new_encoding.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/storage_in_library/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/storage_in_predicate/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/storage_in_script/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/struct_field_privacy_deconstructing/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/struct_field_privacy_field_access/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/struct_field_privacy_instantiation/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/struct_field_privacy_pattern_matching/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/struct_field_privacy_reassignment/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/struct_field_privacy_storage/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/struct_generic_abi_encode/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/struct_generic_abi_encode/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/struct_generic_abi_encode/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/struct_generic_abi_encode/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/struct_generic_abi_encode/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/struct_instantiation_type_mismatch/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/struct_instantiation_type_mismatch/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/superabi_contract_call2/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/superabi_unimplemented/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/superabi_unimplemented/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/supertrait_does_not_exist/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/supertraits_for_abis_impl_order/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/supertraits_for_abis_not_implemented/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/supertraits_for_abis_ownable1/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/supertraits_for_abis_ownable2/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/top_level_vars/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_coherence/impl_self_overlap/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_coherence/trait_impl_constraint_overlap/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_coherence/trait_impl_constraint_overlap2/src/lib.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_coherence/trait_impl_constraint_overlap2/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_coherence/trait_impl_constraint_overlap3/src/lib.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_coherence/trait_impl_constraint_overlap3/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_coherence/trait_impl_overlap/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_inference_multiple_options/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_inference_multiple_options/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_inference_multiple_options/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_method_ambiguous/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_method_generic_ambiguous/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_method_signature_mismatch/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/type_alias_shadowing_methods/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/type_alias_shadowing_methods/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/type_alias_unification/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/type_alias_unification/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/type_alias_unification/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/type_alias_unification/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/type_mismatch_error_message/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/type_mismatch_error_message/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/type_mismatch_error_message/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/type_mismatch_error_message/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/unexpected_field_type_args/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/unify_identical_unknowns/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/unify_structural_identity/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/unify_structural_identity/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/uninitialized_storage_field/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_fail/variable_does_not_exist/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/where_clause_enums/Forc.lock"
+      ]
+    },
+    {
+      "sha": "5256cd17aabacf8245a97e113286e43eb53d407c",
+      "message": "Revert feat: introduce fuel-telemetry macros (#7295) (#7451)\n\n## Description\n\nRan git revert to revert telemetry changes causing #7449 #7450",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "forc-plugins/forc-publish/src/main.rs",
+        "forc-tracing/Cargo.toml",
+        "forc-tracing/src/lib.rs",
+        "forc-tracing/src/telemetry.rs",
+        "forc/Cargo.toml",
+        "forc/src/cli/mod.rs",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/array/array_repeat/stdout.snap"
+      ]
+    },
+    {
+      "sha": "19495ef4919fdfe5a9f79e0c48c725a19787c6a1",
+      "message": "Bump fuel-core v0.46.0 (#7445)\n\n## Description\nCurrent latest supported mainnet/testnet version of fuel-core is\n`v0.46.0`; update sway accordingly.\n\n## Checklist\n\n- [ ] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [ ] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [ ] I have requested a review from the relevant team or maintainers.\n\n---------\n\nCo-authored-by: z \u003czees-dev@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "forc-pkg/src/pkg.rs",
+        "forc-plugins/forc-client/src/op/call/call_function.rs",
+        "forc-plugins/forc-client/src/op/call/missing_contracts.rs",
+        "forc-plugins/forc-client/src/op/run/mod.rs",
+        "sway-core/src/abi_generation/fuel_abi.rs",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panic_handling_in_unit_tests/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panic_string_slices/test.toml",
+        "test/src/sdk-harness/Cargo.lock",
+        "test/src/sdk-harness/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "ca9672684ae9360169283eeb6e1de4aece47106a",
+      "message": "Remove workarounds based on `asm` blocks from `std::hash` (#7446)\n\n## Description\n\nThis PR removes workarounds based on `asm` blocks used in the\n`std::hash` module to obtain an address of a copy-type. Those\nworkarounds are replaced with `__addr_of` which since #7255 supports\ntaking addresses of copy-types.\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "sway-lib-std/src/hash.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/configurable_consts/json_abi_oracle_new_encoding.json",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/call_basic_storage/src/main.sw",
+        "test/src/in_language_tests/test_programs/hash_inline_tests/src/main.sw"
+      ]
+    },
+    {
+      "sha": "74bab180db051a026b33ac6a0220ba9a9d22f475",
+      "message": "Bump to 0.70.0 (#7438)\n\nCo-authored-by: Igor Rončević \u003cironcev@hotmail.com\u003e",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "forc-pkg/src/source/git/mod.rs",
+        "sway-lib-std/Forc.toml",
+        "test/src/reduced_std_libs.rs",
+        "test/src/test_consistency.rs"
+      ]
+    },
+    {
+      "sha": "8e44f537752f0b1b6ded6182a94e7aaafd49610f",
+      "message": "Stabilize `new_hashing` (#7437)\n\nEnable `new_hashing` feature by default whilst still retaining the logic\nfor the old behavior to be removed at a later date.\n\nAdvances #7256\n\n---------\n\nCo-authored-by: Igor Rončević \u003cironcev@hotmail.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml",
+        "sway-features/src/lib.rs",
+        "sway-lib-std/src/hash.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/configurable_consts/json_abi_oracle_new_encoding.json",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/configurable_tests/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/call_basic_storage/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/stdlib/sha256/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_pass/stdlib/sha256/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/stdlib/sha256/json_abi_oracle.json",
+        "test/src/e2e_vm_tests/test_programs/should_pass/stdlib/sha256/json_abi_oracle_new_encoding.json",
+        "test/src/e2e_vm_tests/test_programs/should_pass/stdlib/sha256/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/stdlib/sha256/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/storage_element_key_modification/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/storage_slot_key_calculation/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/test_contracts/basic_storage/json_abi_oracle_new_encoding.json",
+        "test/src/e2e_vm_tests/test_programs/should_pass/test_contracts/basic_storage/src/main.sw",
+        "test/src/in_language_tests/test_programs/hash_inline_tests/src/main.sw"
+      ]
+    },
+    {
+      "sha": "8c8a461f30b05a7d07289a8ba0890f7f2b4a61ae",
+      "message": "forc-node wasm32 removal (#7436)\n\n## Description\n\n- Reconfigure the `forc-node` crate to drop the `wasm-executor` feature\n- disable fuel-core `default features`; explicit feature-set declaration\n - `forc-node` `local` CLI configurable args:\n   - DB backend\n   - debug mode\n   - historical execution\n   - PoA trigger directly\n- Adjust the local-node test harness to cover the newly surfaced CLI\nknobs.\n- Remove the `wasm32-unknown-unknown` build target from CI and GitHub\nPages workflows.\n- Regenerate Cargo.lock after the dependency and feature changes.\n\n## Checklist\n\n- [ ] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [ ] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [ ] I have requested a review from the relevant team or maintainers.\n\n---------\n\nCo-authored-by: z \u003czees-dev@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/gh-pages.yml",
+        "Cargo.lock",
+        "forc-plugins/forc-node/Cargo.toml",
+        "forc-plugins/forc-node/src/local/cmd.rs",
+        "forc-plugins/forc-node/tests/local.rs"
+      ]
+    },
+    {
+      "sha": "35757b6a58a913fda0786a6bd7bd5da9fc775a9f",
+      "message": "feat: introduce fuel-telemetry macros (#7295)\n\n## Description\n\n# Add telemetry opt-out support to forc-tracing\n\nThis adds `fuel-telemetry` to `forc-tracing` with **opt-out\nfunctionality** for upstream tools like fuelup.\n\n## Usage\n\nFirst, add it to the `forc-tracing` dependency:\n\n```toml\n[dependencies]\nforc-tracing \u003d { version \u003d \"0.47\", features \u003d [\"telemetry\"] }\n```\n\nThen use the `telemetry::*` glob, followed by the usual `tracing`\nmacros, but with a `_telemetry` postfix:\n\n```rust\nuse forc_tracing::{\n    init_tracing_subscriber, println_green, println_red, println_yellow, telemetry::*,\n};\n\nfn main() {\n    init_tracing_subscriber(Default::default());\n\n    println_red(\"Stop\");\n    println_yellow(\"Slow down\");\n    println_green(\"Go\");\n\n    error_telemetry!(\"Error message for InfluxDB\");\n    warn_telemetry!(\"Warn message for InfluxDB\");\n    info_telemetry!(\"Info message for InfluxDB\");\n    debug_telemetry!(\"Debug message for InfluxDB\");\n    trace_telemetry!(\"Trace message for InfluxDB\");\n}\n```\n\nThis will output the following (note `DEBUG` and `TRACE` messages are\nfiltered out because of `RUST_LOG\u003dinfo`):\n\n```bash\n\u003e RUST_LOG\u003dinfo ./target/debug/example\nStop\nSlow down\nGo\n```\n\nWe can then peek into telemetry files like the following:\n\n```bash\n\u003e cat ~/.fuelup/tmp/*.telemetry.* | while read line; do echo \"$line\" | base64 -d; echo; done\n2025-03-06T19:53:24.923452000Z ERROR aarch64-apple-darwin:Darwin:23.6.0 forc-tracing:0.66.8:src/main.rs 0e3480f5-faab-48b8-a935-21ce90a6f028 auto: Error message for InfluxDB\n2025-03-06T19:53:24.925348000Z  WARN aarch64-apple-darwin:Darwin:23.6.0 forc-tracing:0.66.8:src/main.rs 0e3480f5-faab-48b8-a935-21ce90a6f028 auto: Warn message for InfluxDB\n2025-03-06T19:53:24.925434000Z  INFO aarch64-apple-darwin:Darwin:23.6.0 forc-tracing:0.66.8:src/main.rs 0e3480f5-faab-48b8-a935-21ce90a6f028 auto: Info message for InfluxDB\n2025-03-06T19:53:31.335690000Z  INFO aarch64-apple-darwin:Darwin:23.6.0 systeminfo_watcher:0.1.0:src/systeminfo_watcher.rs ec63b355-7862-47db-9ae3-de0cfcc094c8 poll_systeminfo: cpu_arch\u003d\"arm64\" cpu_brand\u003d\"Apple M2 Pro\" cpu_count\u003d10 global_cpu_usage\u003d15.85 total_memory\u003d34359738368 free_memory\u003d23388143616 free_memory_percentage\u003d0.68 os_long_name\u003d\"macOS 14.6.1 Sonoma\" kernel_version\u003d\"23.6.0\" uptime\u003d2482559 vm\u003d\"\" ci\u003d\"\" load_average_1m\u003d4.52 load_average_5m\u003d4.17 load_average_15m\u003d3.86\n```\n\n## New: Telemetry Opt-Out Support\n\nThis PR also adds opt-out functionality for telemetry, allowing upstream\ntools like fuelup to disable telemetry collection:\n\n**Changes:**\n- Added `--disable-telemetry` CLI flag to main forc binary\n- Added `FORC_DISABLE_TELEMETRY` environment variable support\n- Updated all telemetry macros to respect the disable flag\n- Added `init_telemetry()` function for proper initialization\n\n**Opt-out Usage:**\n\n```bash\n# Disable via CLI flag\nforc --disable-telemetry build\n\n# Disable via environment variable  \nFORC_DISABLE_TELEMETRY\u003d1 forc build\n\n# For upstream tools like fuelup\nexport FORC_DISABLE_TELEMETRY\u003d1\nfuelup toolchain install latest\n```\n\n**Code example with opt-out:**\n\n```rust\nuse forc_tracing::{init_telemetry, init_tracing_subscriber, TracingSubscriberOptions};\n\nfn main() {\n    let options \u003d TracingSubscriberOptions {\n        disable_telemetry: Some(true),\n        ..Default::default()\n    };\n    \n    init_tracing_subscriber(options.clone());\n    init_telemetry(\u0026options);\n    \n    // Telemetry macros will now be no-ops when disabled\n    error_telemetry!(\"This won\u0027t be sent to telemetry if disabled\");\n}\n```\n\nThe implementation ensures telemetry is opt-out by default but can be\neasily disabled through either CLI flags or environment variables,\nmaking it suitable for upstream tool integration.",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "forc-plugins/forc-publish/src/main.rs",
+        "forc-tracing/Cargo.toml",
+        "forc-tracing/src/lib.rs",
+        "forc-tracing/src/telemetry.rs",
+        "forc/Cargo.toml",
+        "forc/src/cli/mod.rs",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/array/array_repeat/stdout.snap"
+      ]
+    },
+    {
+      "sha": "d91eeae43114295d86f4531f5ad45bf202a5fbb5",
+      "message": "fix: formatter use newline interference (#7431)\n\n## Description\n\nFixes #7434.\n\n\n## The Problem\n\n1. Original code: `use utils::{IssuanceParams};`\n  - We have have `use`, `utils`, `::`, `{`, `IssuanceParams`,`}`, ;\n  - Total: 7 leaf spans (tokens)\n2. Formatted code: `use utils::IssuanceParams;` (braces removed)\n  - We have `use`, `utils`, `::`, `IssuanceParams`, `;`\n  - Total: 5 leaf spans (no `{` and `}`tokens)\n3. handle_newlines() zips unformatted and formatted spans together:\nfor (unformatted_span, formatted_span) in\n    unformatted_spans.zip(formatted_spans)\n4. After the use statement, spans are MISALIGNED\n\n\nThis PR fixes that by actually tracking removed spans for handling the\nmisalignment.",
+      "modifiedFiles": [
+        "swayfmt/src/formatter/mod.rs",
+        "swayfmt/src/items/item_use/mod.rs",
+        "swayfmt/src/items/item_use/tests.rs",
+        "swayfmt/src/utils/map/newline.rs"
+      ]
+    },
+    {
+      "sha": "14bb898f3bc4d0d5690f3ca94a040696054e4ca9",
+      "message": "chore: bumpt rust version to 1.90 (#7427)\n\n## Description\n\nBumping the rust version to 1.90 and fixing the clippy lints along the\nway",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml",
+        "Cargo.toml",
+        "clippy.toml",
+        "forc-pkg/Cargo.toml",
+        "forc-plugins/forc-client/Cargo.toml",
+        "forc-plugins/forc-client/src/op/call/parser.rs",
+        "forc-plugins/forc-crypto/Cargo.toml",
+        "forc-plugins/forc-crypto/src/keys/vanity.rs",
+        "forc-plugins/forc-debug/Cargo.toml",
+        "forc-plugins/forc-debug/src/server/handlers/handle_set_breakpoints.rs",
+        "forc-plugins/forc-doc/Cargo.toml",
+        "forc-plugins/forc-fmt/Cargo.toml",
+        "forc-plugins/forc-lsp/Cargo.toml",
+        "forc-plugins/forc-mcp/Cargo.toml",
+        "forc-plugins/forc-mcp/src/forc_call/mod.rs",
+        "forc-plugins/forc-migrate/Cargo.toml",
+        "forc-plugins/forc-node/Cargo.toml",
+        "forc-plugins/forc-publish/Cargo.toml",
+        "forc-plugins/forc-publish/src/md_pre_process/mod.rs",
+        "forc-plugins/forc-tx/Cargo.toml",
+        "forc-test/Cargo.toml",
+        "forc-tracing/Cargo.toml",
+        "forc-util/Cargo.toml",
+        "forc/Cargo.toml",
+        "scripts/mdbook-forc-documenter/Cargo.toml",
+        "sway-ast/Cargo.toml",
+        "sway-core/Cargo.toml",
+        "sway-core/src/asm_generation/fuel/functions.rs",
+        "sway-core/src/asm_generation/fuel/register_allocator.rs",
+        "sway-core/src/asm_lang/allocated_ops.rs",
+        "sway-core/src/decl_engine/mapping.rs",
+        "sway-core/src/ir_generation/function.rs",
+        "sway-core/src/ir_generation/storage.rs",
+        "sway-core/src/language/ty/expression/reassignment.rs",
+        "sway-core/src/query_engine/mod.rs",
+        "sway-core/src/semantic_analysis/namespace/module.rs",
+        "sway-core/src/semantic_analysis/namespace/namespace.rs",
+        "sway-core/src/semantic_analysis/type_resolve.rs",
+        "sway-error/Cargo.toml",
+        "sway-features/Cargo.toml",
+        "sway-features/src/lib.rs",
+        "sway-ir/Cargo.toml",
+        "sway-ir/sway-ir-macros/Cargo.toml",
+        "sway-lsp/Cargo.toml",
+        "sway-lsp/src/core/token_map.rs",
+        "sway-lsp/src/traverse/typed_tree.rs",
+        "sway-parse/Cargo.toml",
+        "sway-parse/src/brackets.rs",
+        "sway-types/Cargo.toml",
+        "sway-utils/Cargo.toml",
+        "swayfmt/Cargo.toml",
+        "test/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "f502f4a7b75aeb934cd1ce67c39a97482eec6b31",
+      "message": "fix: also create deployment artifacts for chunked deployments (#7426)\n\n## Description\n\nThe deployment artifact generation we have right now was not creating\nthe artifact for chunked deployments. This PR adds that as much as\npossible as some fields are not expoed via sdk right now (the block\nheight and transaction id) for chunked deployments.\n\nOnce/if those are exposed we can extend this easily to add those fields\nas well. But nevertheless this PR serializes majority of the information\nwe have about the chunked deployments to the `out/deployments` folder.\n\n---------\n\nCo-authored-by: Joshua Batty \u003cjoshpbatty@gmail.com\u003e",
+      "modifiedFiles": [
+        "forc-plugins/forc-client/src/op/deploy.rs"
+      ]
+    },
+    {
+      "sha": "4927805e4b5d3fc986f27118775a2b9e3a2e0c71",
+      "message": "Symptom-fix associated const shadowing itself (#7429)\n\n## Description\n\nThis PR temporarily **symptom-fixes** #7396 in order to unlock further\nsteps in optimizing ABI encoding and decoding. The PR simply allows\nshadowing of consts in trait impls. The actual fix will be done by\nfixing #7428.\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [x] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "sway-core/src/semantic_analysis/ast_node/declaration/trait.rs",
+        "sway-core/src/semantic_analysis/ast_node/modes.rs",
+        "test/src/e2e_vm_tests/README.md",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/shadowing/bug_fix_associated_const_shadowing_itself/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/shadowing/bug_fix_associated_const_shadowing_itself/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/shadowing/bug_fix_associated_const_shadowing_itself/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/shadowing/bug_fix_associated_const_shadowing_itself/test.toml",
+        "test/src/e2e_vm_tests/test_programs/test_asserts/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/test_asserts/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/test_asserts/src/lib.sw"
+      ]
+    },
+    {
+      "sha": "7042e09b3c1201f464d3ebcab140db8335cc66ac",
+      "message": "fix: various typos around codebase to unblock ci (#7432)\n\n## Description\n\nFixing couple typos around the codebase that started to block the CI",
+      "modifiedFiles": [
+        "sway-core/src/ir_generation/lexical_map.rs",
+        "sway-core/src/semantic_analysis/namespace/namespace.rs",
+        "sway-lsp/src/utils/markup.rs",
+        "sway-lsp/tests/lib.rs"
+      ]
+    },
+    {
+      "sha": "091ea05cc63b97a767d84a9a992f846f3d09461b",
+      "message": "Allow trait impls to inherit default associated constants (#7409)\n\nInherit and register trait constants with default values so empty impls\nno longer fail with the missing-constant check.\n\nCloses https://github.com/FuelLabs/sway/issues/7393.\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [x] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [x] I have added tests that prove my fix is effective or that my\nfeature works.\n- [x] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "sway-core/src/semantic_analysis/ast_node/declaration/impl_trait.rs",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/associated_const_trait_default/src/main.sw"
+      ]
+    },
+    {
+      "sha": "be932cc1b940d1a0d9b9341600e8e0d81f6ad337",
+      "message": "Fix register allocator non-deterministic output across platforms (#7422)\n\n[Make spill slot assignment deterministic across\nplatforms](https://github.com/FuelLabs/sway/commit/d7c4072e910e2d0827236d2adbb7471a6ddc4264)\n\nPick spill candidates with a stable tie-break so every host spills the\nsame virtual register.\n\nSort the spill set before handing out stack slots to keep offsets\nconsistent.\n\nCloses https://github.com/FuelLabs/sway/issues/7390.\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [x] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [x] I have added tests that prove my fix is effective or that my\nfeature works.\n- [x] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "sway-core/src/asm_generation/fuel/register_allocator.rs"
+      ]
+    },
+    {
+      "sha": "a1300bae7d7a57c96517364f6f1236927666176f",
+      "message": "chore: bump version to v0.69.6 (#7425)\n\n## Description\n\nBump version to v0.69.6 after failed attempts.",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "sway-lib-std/Forc.toml"
+      ]
+    },
+    {
+      "sha": "acd13162d5630ce42e5616863459b07c8cf28a4f",
+      "message": "fix: change runners for publish workflows (#7424)\n\n## Description\n\nUsing larger Actions runners for the GitHub pages and Sway publish steps\ndue to disk size limitations on the standard runners.\n\n## Checklist\n\n- [ ] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [X] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [X] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/gh-pages.yml"
+      ]
+    },
+    {
+      "sha": "b7378b39f6bd2af0e888ea69bd98181f171d378e",
+      "message": "Bump to v0.69.5 (#7417)\n\nCo-authored-by: kaya \u003c20915464+kayagokalp@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "sway-lib-std/Forc.toml"
+      ]
+    },
+    {
+      "sha": "935ffff5cd46dd39c45b03f9c48c2a6b9336c791",
+      "message": "fix: migrate to warpbuild and github runner (#7415)\n\n## Description\n\nCleans up GitHub actions, migrates Buildjet runners to WarpBuild, and\nconsolidates multiple forc tool checks into a matrix to simplify the\n`ci.yml` file.\n\n## Checklist\n\n- [ ] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [ ] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [ ] I have requested a review from the relevant team or maintainers.\n\n---------\n\nCo-authored-by: IGI-111 \u003cigi-111@protonmail.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/benchmark.yml",
+        ".github/workflows/ci.yml",
+        ".github/workflows/gh-pages.yml"
+      ]
+    },
+    {
+      "sha": "10cf734b5913a2792274e5ac15b33dadb3a5ce64",
+      "message": "Improve method resolution by allowing placeholder unification under ConstraintSubset (#7411)\n\n## Description\n\nCloses https://github.com/FuelLabs/sway/issues/7398.\n\nThe issue here is that `UnificationCheck` was not considering\n`Placeholder` under `ConstraintSubset`, the strategy that is used for\nmethod resolution.\n\nThis was affecting the test `trait_generic_override` because\n`MyStruct\u003cPlaceholder(T)\u003e` was not unifying with `MyStruct\u003cu64\u003e`; What\nwas happening was that `check_struct` was calling\n`check_multiple([Placehodler(T)], [u64])`, which is correct; but the\n`match` trying to unify them under `ConstraintSubset` was falling into\nthe wildcard arm, and end up caomparing both types with `eq`.\n\nTo \"fix\" this \"unification failure\", we implemented the `if` under the\ncomment of \"Consider items from supersets indicated by the annotation\nreturn type\". This was working for this example, but miscompiling other\ncases.\n\nThis PR is trying a better approach which is improving the unification\nand removing that \"if\".\n\nAfter these changes, the compiler started to give a wrong advice as in\nthe example below:\n\n```\n  --\u003e test/src/e2e_vm_tests/test_programs/should_fail/trait_constraint_generic_hint/src/main.sw:43:13\n   |\n41 |     }\n42 | \n43 |     if item.method() {\n   |             ^^^^^^ Multiple applicable items in scope. \n  Disambiguate the associated function for candidate #0\n    \u003cbool as A\u003e::method\n  Disambiguate the associated function for candidate #1\n    \u003cbool as B\u003e::method\n44 | \n45 |     }\n   |\n```\n\nCurrently there is no way to fix this ambiguity. So my suggestion is\nthat the compiler only complain about \"Multiple applicable items in\nscope\" and we open another issue to improve this error message.\n(https://github.com/FuelLabs/sway/issues/7398?issue\u003dFuelLabs%7Csway%7C7414)\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [x] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "sway-core/src/language/ty/expression/expression_variant.rs",
+        "sway-core/src/semantic_analysis/method_lookup.rs",
+        "sway-core/src/type_system/unify/unify_check.rs",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_constraint_generic_hint/snapshot.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_constraint_generic_hint/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_constraint_generic_hint/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_constraint_generic_hint/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/trait_generic_override/src/main.sw"
+      ]
+    },
+    {
+      "sha": "77190d15fc36a1a0b35de67dbad9647c136e8857",
+      "message": "Add \"Experimental Features\" chapter to The Sway Book (#7416)\n\n## Description\n\nThis PR adds \"Experimental Features\" chapter to The Sway Book.\n\n#7256 will likely create need for some developers to actively use\nexperimental features as a part of their project configurations, or CI.\nIt was already reported that it\u0027s unclear how to add experimental\nfeatures in the `Forc.toml`, and the [RFC chapter on enabling features\nin\nSway](https://github.com/FuelLabs/sway-rfcs/blob/master/rfcs/0013-changes-lifecycle.md#enabling-features-on-sway)\nis unfortunately outdated. Also, some of the possibilities listed in the\nRFC are currently not implemented, like, e.g., the meta token for\nenabling and disabling all experimental features.\n\nThis PR documents the actually implemented way of using experimental\nfeatures.\n\nAdditionally, it fixes the index page of the \"Sway Reference\" chapter,\nby listing all the sub-chapters in the right order.\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [x] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [x] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "docs/book/spell-check-custom-words.txt",
+        "docs/book/src/SUMMARY.md",
+        "docs/book/src/forc/manifest_reference.md",
+        "docs/book/src/reference/attributes.md",
+        "docs/book/src/reference/experimental_features.md",
+        "docs/book/src/reference/index.md"
+      ]
+    },
+    {
+      "sha": "cdd8800e75d3b4a7e5d70fd8df7a563c5acc246e",
+      "message": "fix: `build-and-release-forc-binaries` CI (#7413)\n\n## Description\n\nAttempt to fix CI using existing action to setup cross.\n\nThis has been tested to work:\nhttps://github.com/FuelLabs/sway/actions/runs/17997229142/job/51198979341\n\n## Checklist\n\n- [ ] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [ ] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [ ] I have requested a review from the relevant team or maintainers.\n\nCo-authored-by: z \u003czees-dev@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "sha": "a2c0531ab777d9a003d8bcc34c05880bff50c356",
+      "message": "Bump to v0.69.4 (#7410)",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "sway-lib-std/Forc.toml"
+      ]
+    },
+    {
+      "sha": "7d45f82d11a7df26ac1b868ad9a87ccb1c553ad7",
+      "message": "rocksdb compilation error fix (#7408)\n\n## Description\n\nAttempts to fix error in CI:\nhttps://github.com/FuelLabs/sway/actions/runs/17945577761/job/51050235186\n\nBuild environment setup for RocksDB:\n\n* Added a step to install required system packages (`build-essential`,\n`clang`, `llvm-dev`, `libclang-dev`, `pkg-config`) on Linux runners to\nsupport building RocksDB and running `bindgen`.\n* Configured `LIBCLANG_PATH` and `BINDGEN_EXTRA_CLANG_ARGS` environment\nvariables to ensure `bindgen` can locate the correct Clang libraries and\nsystem headers.\n\n## Checklist\n\n- [ ] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [ ] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [ ] I have requested a review from the relevant team or maintainers.\n\nCo-authored-by: z \u003czees-dev@users.noreply.github.com\u003e\nCo-authored-by: Joshua Batty \u003cjoshpbatty@gmail.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "sha": "36d2b12eb1943bb40cd7fc178a54406f42a57b34",
+      "message": "Skip returning a value when the type is unit (#7401)\n\nhttps://github.com/FuelLabs/sway/pull/7381#discussion_r2358242393",
+      "modifiedFiles": [
+        "forc-plugins/forc-client/tests/deploy.rs",
+        "forc/tests/cli_integration.rs",
+        "sway-core/src/asm_generation/fuel/functions.rs",
+        "test/src/e2e_vm_tests/test_programs/README.md",
+        "test/src/e2e_vm_tests/test_programs/should_fail/language/const_generics/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/array/array_repeat/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/attributes_deprecated/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/configurable_consts/json_abi_oracle_new_encoding.json",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/configurable_dedup_decode/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/const_generics/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/intrinsics/dbg/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/intrinsics/transmute/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panic_handling_in_unit_tests/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panicking_contract/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panicking_lib/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panicking_script/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/u256/u256_abi/json_abi_oracle_new_encoding.json",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/unit_ret_use/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/unit_ret_use/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/unit_ret_use/json_abi_oracle_new_encoding.json",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/unit_ret_use/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/unit_ret_use/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/panic_in_non_statement_positions/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/array_of_structs_caller/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/asset_ops_test/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/call_abi_with_tuples/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/call_basic_storage/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/call_contract_with_type_aliases/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/call_increment_contract/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/call_storage_enum/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/caller_context_test/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/nested_struct_args_caller/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/storage_access_caller/src/main.sw",
+        "test/src/ir_generation/tests/fn_call_noargs_nolocals.sw"
+      ]
+    },
+    {
+      "sha": "ec6f0ca5c7c062251713021c42fdf51223810d21",
+      "message": "Bump to v0.69.3 (#7407)",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "sway-lib-std/Forc.toml"
+      ]
+    },
+    {
+      "sha": "637db5d5fd9a0cf2204aecbdcd62214c95f401cc",
+      "message": "symlink docs dirs for forc-mcp resources for publish CI (#7406)\n\n## Description\nThis pull request adds a step to the CI workflow to link the `forc-mcp`\ndocumentation into the Cargo target directory. This ensures that the\ndocumentation is available in the correct location during the build\nprocess.\n\nDocumentation integration:\n\n* Added a CI job step in `.github/workflows/ci.yml` to create a symbolic\nlink for the `forc-mcp` documentation from\n`docs/book/src/forc/plugins/forc_mcp/forc_call_tool` to\n`target/docs/book/src/forc/plugins/forc_mcp/forc_call_tool`.\n\n## Checklist\n\n- [ ] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [ ] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [ ] I have requested a review from the relevant team or maintainers.\n\nCo-authored-by: z \u003czees-dev@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "sha": "02c4de71e0d872c0dfb882912a7af68447dd228e",
+      "message": "Move method lookup logic to `method_lookup.rs`. (#7402)\n\nJust a simple refactoring, as title says.",
+      "modifiedFiles": [
+        "sway-core/src/semantic_analysis.rs",
+        "sway-core/src/semantic_analysis/method_lookup.rs",
+        "sway-core/src/semantic_analysis/type_check_context.rs"
+      ]
+    },
+    {
+      "sha": "e8b4fda1fd645155416eca01d6bfd5c3fc46ff71",
+      "message": "Add wasm32 target to publish step (#7405)",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "sha": "9c125f6bf0803dfd59da8583c50bdaae78791e52",
+      "message": "Bump to v0.69.2 (#7403)\n\nCo-authored-by: Joshua Batty \u003cjoshpbatty@gmail.com\u003e",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "sway-lib-std/Forc.toml"
+      ]
+    },
+    {
+      "sha": "dfb821407ae8bf742b1ad119fa13b03c1206e1d0",
+      "message": "Fix SourceEngine cache to refresh buffers after file edits (#7399)\n\n## Description\n- Update `SourceEngine::get_or_create_source_buffer` to replace the\ncached buffer when the caller supplies different text.\n- Fixes an LSP bug where diagnostics/token spans stayed stuck on the\ninitial buffer, causing erroneous results after text edits.\n\n## Checklist\n\n- [ ] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "sway-types/src/source_engine.rs"
+      ]
+    },
+    {
+      "sha": "79f7c60327167bbe8ddfe7d4e1b9b7d04d5b2f30",
+      "message": "Update nightly toolchain for cargo-udeps CI job (#7400)\n\n## Description\nPoint `cargo-unused-deps-check` at `nightly-2025-08-15`, which ships\nrustc 1.88 so `cargo-udeps` and its cargo dependencies install cleanly.\nThis should fix the currently\n[failing](https://github.com/FuelLabs/sway/actions/runs/17906778883/job/50909289626?pr\u003d7399)\njob.\n\n## Checklist\n\n- [ ] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [ ] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [ ] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "sha": "df6839d96677031b7c29bc87e291a1948e6e5bdb",
+      "message": "When demoting aggregate returns, no need to return back the new argument pointer (#7381)\n\nThis aids optimizations to perform better. For example\nhttps://github.com/IGI-111/blackjack comes down from `22.288 KB` to\n`21.312 KB`.",
+      "modifiedFiles": [
+        "forc-plugins/forc-client/tests/deploy.rs",
+        "forc/tests/cli_integration.rs",
+        "sway-ir/src/optimize/ret_demotion.rs",
+        "sway-ir/tests/demote_ret/demote_ret00.ir",
+        "sway-ir/tests/demote_ret/demote_ret01.ir",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/array/array_repeat/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/configurable_consts/json_abi_oracle_new_encoding.json",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/const_generics/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/intrinsics/dbg/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/intrinsics/transmute/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panic_handling_in_unit_tests/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panicking_contract/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panicking_lib/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panicking_script/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/u256/u256_abi/json_abi_oracle_new_encoding.json",
+        "test/src/e2e_vm_tests/test_programs/should_pass/panic_in_non_statement_positions/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/array_of_structs_caller/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/asset_ops_test/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/call_abi_with_tuples/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/call_basic_storage/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/call_contract_with_type_aliases/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/call_increment_contract/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/call_storage_enum/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/caller_context_test/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/nested_struct_args_caller/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/storage_access_caller/src/main.sw",
+        "test/src/ir_generation/tests/fn_call_ret_by_ref_explicit.sw",
+        "test/src/ir_generation/tests/fn_call_ret_by_ref_implicit.sw"
+      ]
+    },
+    {
+      "sha": "e4672e3e1794e31eb53cf83c1821890b8c876a16",
+      "message": "Fix trait-bound method lookup ambiguity (#7397)\n\nThis PR improves the compiler\u0027s method-resolution step so trait bounds\nare actually honoured when we call `T::method()`.\n\nBefore this change we kept every trait method in scope and emitted a\n\"multiple applicable items\" error even when the generic bound singled\nout one trait. Now we capture which trait each candidate comes from,\nderive the active trait obligations, and filter the list before picking\na candidate. Ambiguity is still reported for real conflicts, but\nconstrained calls now resolve cleanly instead of failing.\n\nAlso improves the ambiguous trait hint diagnostic to prefer generic type\nnames when emitting the \"Multiple applicable items in scope\" diagnostic.\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [x] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [x] I have added tests that prove my fix is effective or that my\nfeature works.\n- [x] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "sway-core/src/semantic_analysis/namespace/mod.rs",
+        "sway-core/src/semantic_analysis/type_check_context.rs",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_constraint_generic_hint/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_constraint_generic_hint/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_constraint_generic_hint/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/trait_constraint_generic_hint/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/trait_constraint_method_lookup/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_pass/trait_constraint_method_lookup/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/trait_constraint_method_lookup/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/trait_constraint_method_lookup/test.toml"
+      ]
+    },
+    {
+      "sha": "6553dce5a2765362cdfe772d989240198c87f5dd",
+      "message": "Allow CEI analysis with const generics (#7392)\n\n## Description\n\nContinuation of https://github.com/FuelLabs/sway/issues/6860.\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [x] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "sway-core/src/language/ty/expression/expression.rs",
+        "sway-core/src/semantic_analysis/cei_pattern_analysis.rs",
+        "test/src/e2e_vm_tests/test_programs/should_pass/static_analysis/cei_pattern_violation_in_standalone_function/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/static_analysis/cei_pattern_violation_in_standalone_function/test.toml"
+      ]
+    },
+    {
+      "sha": "d524df92870705877bd2c3b0346401eeeb4006c8",
+      "message": "Argument Mutability Analysis - and its applications (#7368)\n\nThis PR also includes a major rewrite of the pass manager algorithm.",
+      "modifiedFiles": [
+        "sway-core/src/ir_generation/function.rs",
+        "sway-core/src/lib.rs",
+        "sway-ir/src/analysis.rs",
+        "sway-ir/src/analysis/arg_mutability.rs",
+        "sway-ir/src/analysis/memory_utils.rs",
+        "sway-ir/src/block.rs",
+        "sway-ir/src/function.rs",
+        "sway-ir/src/optimize.rs",
+        "sway-ir/src/optimize/arg_mutability_tagger.rs",
+        "sway-ir/src/optimize/inline.rs",
+        "sway-ir/src/optimize/memcpyopt.rs",
+        "sway-ir/src/optimize/ret_demotion.rs",
+        "sway-ir/src/optimize/sroa.rs",
+        "sway-ir/src/parser.rs",
+        "sway-ir/src/pass_manager.rs",
+        "sway-ir/tests/tests.rs",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/array/array_repeat/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/configurable_consts/json_abi_oracle_new_encoding.json",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/const_generics/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/intrinsics/dbg/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/intrinsics/dbg_release/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panic_handling_in_unit_tests/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panicking_contract/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panicking_lib/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/panic_expression/panicking_script/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/u256/u256_abi/json_abi_oracle_new_encoding.json",
+        "test/src/e2e_vm_tests/test_programs/should_pass/panic_in_non_statement_positions/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/call_basic_storage/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/call_contract_with_type_aliases/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/require_contract_deployment/storage_access_caller/src/main.sw"
+      ]
+    },
+    {
+      "sha": "5e22d6451ea524b71ca36a47639d4c962965726a",
+      "message": "Improve method resolution for trait method name bindings (#7364)\n\n## Description\n\nThis PR improves method resolution for trait method name bindings, like\nthis following example:\n\n```sway\nscript;\n\nuse std::time::Time;\n\npub fn main() {\n    let duration \u003d Time::now().duration_since(Time::from(0)).unwrap();\n    let _ \u003d duration + duration;\n}\n```\n\nThis fix is implemented in [Gather trait impls from the argument type\nmodule when handling trait operator\ncalls.](https://github.com/FuelLabs/sway/pull/7364/commits/861000073c6b295bcb475502f63b4c460adb466b).\n\nA general refactor was also done for associated method resolution\nfunctions:\n\n[Refactor\nTypeCheckContext::find_method_for_type.](https://github.com/FuelLabs/sway/pull/7364/commits/ace60ce8d474e0e56241551c29ff95edce7bbabe)\n\n[Refactor\nresolve_method_name.](https://github.com/FuelLabs/sway/pull/7364/commits/9d97d46590f2d9aa68c269a10e68c53835ad47d7)\n\nCloses https://github.com/FuelLabs/sway/issues/7330.\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [x] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [x] I have added tests that prove my fix is effective or that my\nfeature works.\n- [x] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.\n\n---------\n\nCo-authored-by: IGI-111 \u003cigi-111@protonmail.com\u003e",
+      "modifiedFiles": [
+        "sway-core/src/language/call_path.rs",
+        "sway-core/src/semantic_analysis/ast_node/expression/typed_expression/method_application.rs",
+        "sway-core/src/semantic_analysis/type_check_context.rs",
+        "sway-core/src/type_system/info.rs",
+        "test/src/e2e_vm_tests/test_programs/should_pass/trait_map_use_impl_in_scope/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_pass/trait_map_use_impl_in_scope/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/trait_map_use_impl_in_scope/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/trait_map_use_impl_in_scope/test.toml"
+      ]
+    },
+    {
+      "sha": "4f1af4316a019aca20fdbe4fca862b2006457cb3",
+      "message": "fix: forc-call variable output default estimation with override (#7384)\n\n## Description\n\nWhen using `forc-call` with a large `--amount`, the transaction\nincorrectly sets output count equal to the amount value (e.g.,\ntransferring 1000 units creates 1000 outputs).\n\n### Solution\n- Added `--variable-output` parameter to explicitly control output count\n- Changed default behavior to estimate minimum outputs via dry-run\ninstead of using using amount value as UTXO outputs\n- Improved type safety by changing `script_json: serde_json::Value` to\n`script: fuel_tx::Script`\n\n## Testing\n- Updated tests to verify correct output counts\n- Added assertions to check `script.outputs().len()` matches\nexpectations\n- Tests confirm behavior in both dry-run and live execution modes\n\nAddresses: https://github.com/FuelLabs/sway/issues/7383\n\n## Checklist\n\n- [x] I have linked to any relevant issues.\n- [x] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [x] I have added tests that prove my fix is effective or that my\nfeature works.\n- [x] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.\n\n---------\n\nCo-authored-by: z \u003czees-dev@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "forc-plugins/forc-client/src/cmd/call.rs",
+        "forc-plugins/forc-client/src/op/call/call_function.rs",
+        "forc-plugins/forc-client/src/op/call/mod.rs",
+        "forc-plugins/forc-client/src/op/call/transfer.rs",
+        "forc-plugins/forc-mcp/src/forc_call/mod.rs"
+      ]
+    },
+    {
+      "sha": "8fde717752f58312d7c7a4d07adc2e11deed5b31",
+      "message": "Add expressive diagnostics for `Warning::UnusedReturnValue` (#7382)\n\n## Description\n\nThis PR adds expressive diagnostics for the `UnusedReturnValue` warning\nthat explains how to intentionally ignore a returned value by using `let\n_ \u003d ...`.\n\nThe reason for adding the diagnostics was an observed confusion among\nnovice Sway developers in the particular case of using `__dbg` intrinsic\nas a statement:\n\n```sway\n__dbg(\"some debug message\");\n```\n\nIt was unclear to developers why this usage generates the warning, and\nalso how to remove it.\n\nAdditionally, the PR fixes some `uninlined_format_args` Clippy warnings.\n\n## Checklist\n\n- [ ] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [x] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [x] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [x] I have requested a review from the relevant team or maintainers.",
+      "modifiedFiles": [
+        "forc-plugins/forc-node/src/util.rs",
+        "sway-core/src/language/ty/declaration/const_generic.rs",
+        "sway-core/src/semantic_analysis/namespace/trait_map.rs",
+        "sway-error/src/warning.rs",
+        "sway-lib-std/src/clone.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/insufficient_type_info/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_fail/insufficient_type_info/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_fail/insufficient_type_info/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_fail/insufficient_type_info/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/break_and_continue_block_ret/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/break_and_continue_block_ret/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/break_and_continue_block_ret/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/break_and_continue_block_ret/test.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/const_generics/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/language/const_generics/stdout.snap",
+        "test/src/e2e_vm_tests/test_programs/should_pass/unused_return_value/Forc.lock",
+        "test/src/e2e_vm_tests/test_programs/should_pass/unused_return_value/Forc.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/unused_return_value/snapshot.toml",
+        "test/src/e2e_vm_tests/test_programs/should_pass/unused_return_value/src/main.sw",
+        "test/src/e2e_vm_tests/test_programs/should_pass/unused_return_value/stdout.snap",
+        "test/src/snapshot/mod.rs"
+      ]
+    },
+    {
+      "sha": "608fc526adea252edf37c8512e3151f555b69aa7",
+      "message": "gh-pages workflow update to remove archived actions-rs (#7380)\n\n## Description\n\nUpdated the `github pages` workflow; switch from\n`actions-rs/toolchain@v1` to `dtolnay/rust-toolchain@master` for rust\nenv setup.\nAlso added the `wasm32-unknown-unknown` target.\n\nCompletely removed `actions-rs` actions - since these are now archived.\nInlined the `actions-rs/cargo@v1` to `cargo install` - since the\ntoolchain/binary is available via `dtolnay/rust-toolchain` action.\n\n## Checklist\n\n- [ ] I have linked to any relevant issues.\n- [ ] I have commented my code, particularly in hard-to-understand\nareas.\n- [ ] I have updated the documentation where relevant (API docs, the\nreference, and the Sway book).\n- [ ] If my change requires substantial documentation changes, I have\n[requested support from the DevRel\nteam](https://github.com/FuelLabs/devrel-requests/issues/new/choose)\n- [ ] I have added tests that prove my fix is effective or that my\nfeature works.\n- [ ] I have added (or requested a maintainer to add) the necessary\n`Breaking*` or `New Feature` labels where relevant.\n- [ ] I have done my best to ensure that my PR adheres to [the Fuel Labs\nCode Review\nStandards](https://github.com/FuelLabs/rfcs/blob/master/text/code-standards/external-contributors.md).\n- [ ] I have requested a review from the relevant team or maintainers.\n\n---------\n\nCo-authored-by: z \u003czees-dev@users.noreply.github.com\u003e\nCo-authored-by: Joshua Batty \u003cjoshpbatty@gmail.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/gh-pages.yml"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "sway",
+      "ownerLogin": "Lepetitechose",
+      "commitCount": 37
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "khoshghada",
+      "commitCount": 36
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "MishuBufnita",
+      "commitCount": 32
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "andtheend8",
+      "commitCount": 32
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "prompted365",
+      "commitCount": 24
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "alexxxvel",
+      "commitCount": 23
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "cryptosport0",
+      "commitCount": 22
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "0xEnderHigh",
+      "commitCount": 20
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "VxNobet",
+      "commitCount": 20
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "ASLAN273",
+      "commitCount": 15
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "Tuczky",
+      "commitCount": 13
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "luckandrol",
+      "commitCount": 11
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "frodobigens",
+      "commitCount": 10
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "elizavetagoncharova21",
+      "commitCount": 7
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "lihuibng",
+      "commitCount": 7
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "chattydogmagazine",
+      "commitCount": 6
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "VlasovaMar",
+      "commitCount": 4
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "davidatoms",
+      "commitCount": 1
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "digital221",
+      "commitCount": 0
+    },
+    {
+      "name": "sway",
+      "ownerLogin": "jintukumardas",
+      "commitCount": 0
+    }
+  ]
+}

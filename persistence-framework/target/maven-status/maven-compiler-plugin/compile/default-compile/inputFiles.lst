@@ -1,0 +1,5 @@
+/Users/jorm/Documents/ecs160-hw2/persistence-framework/src/main/java/com/ecs160/persistence/RedisDB.java
+/Users/jorm/Documents/ecs160-hw2/persistence-framework/src/main/java/com/ecs160/persistence/annotations/Id.java
+/Users/jorm/Documents/ecs160-hw2/persistence-framework/src/main/java/com/ecs160/persistence/annotations/LazyLoad.java
+/Users/jorm/Documents/ecs160-hw2/persistence-framework/src/main/java/com/ecs160/persistence/annotations/PersistableField.java
+/Users/jorm/Documents/ecs160-hw2/persistence-framework/src/main/java/com/ecs160/persistence/annotations/PersistableObject.java

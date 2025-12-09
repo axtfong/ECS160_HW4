@@ -1,0 +1,542 @@
+{
+  "name": "rustlings",
+  "ownerLogin": "rust-lang",
+  "language": "Rust",
+  "commits": [
+    {
+      "sha": "f80fbca12e47014a314e5e931678529c28cd9fd8",
+      "message": "Merge pull request #2294 from senekor/senekor/qxykzqyxnnwy\n\nRemove use of `map` in early vecs2 exercise",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "exercises/05_vecs/vecs2.rs",
+        "rustlings-macros/info.toml",
+        "solutions/05_vecs/vecs2.rs"
+      ]
+    },
+    {
+      "sha": "d8f4b06c91c54bccf934b84560641da3a7f202a8",
+      "message": "Remove use of `map` in early vecs2 exercise\n\nStudents do not have the necessary knowledge at this point to understand\nwhat\u0027s happening with the iterator combinators. This topic is covered\nwell by the dedicated exercises about iterators later.\n\ncloses #2102",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "exercises/05_vecs/vecs2.rs",
+        "rustlings-macros/info.toml",
+        "solutions/05_vecs/vecs2.rs"
+      ]
+    },
+    {
+      "sha": "19553133627bf3d645d8ebfd7fffa0e922073f83",
+      "message": "Merge pull request #2291 from senekor/senekor/llttzkqnommp\n\nFix workspace detection with windows line endings",
+      "modifiedFiles": [
+        "src/init.rs"
+      ]
+    },
+    {
+      "sha": "95a597eb8236c5ab180ac38284a655533f83e715",
+      "message": "Fix workspace detection with windows line endings\n\nSome cargo workspaces may contain windows line endings. Even if the\nfile is stored in a repo with unix line endings, users may have some\nsetting activated that automatically translates them to windows line\nendings when working locally.",
+      "modifiedFiles": [
+        "src/init.rs"
+      ]
+    },
+    {
+      "sha": "2af9e89ba536fad01aa828b06e0ac2174bad0f6d",
+      "message": "chore: Release",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml"
+      ]
+    },
+    {
+      "sha": "6ec2e194ae606ae4409a626ea0ac025229f6f4b1",
+      "message": "Apply Clippy lints",
+      "modifiedFiles": [
+        "src/embedded.rs",
+        "src/exercise.rs",
+        "src/list/state.rs"
+      ]
+    },
+    {
+      "sha": "295ad2e4bd41147bf10028800a82247c2c0048a4",
+      "message": "Raise MSRV",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "Cargo.toml",
+        "release-hook.sh"
+      ]
+    },
+    {
+      "sha": "628ef55337429c26df53f4bec823653d6944dddb",
+      "message": "Fix Clippy chapter",
+      "modifiedFiles": [
+        "exercises/README.md"
+      ]
+    },
+    {
+      "sha": "b6b94e3e96dc71099055336e0b742e981c730157",
+      "message": "Sync solution",
+      "modifiedFiles": [
+        "solutions/18_iterators/iterators3.rs"
+      ]
+    },
+    {
+      "sha": "6765a0b61a3d75645421ff2a1f7346cda639893f",
+      "message": "Merge pull request #2255 from zeonzip/clarify_errors_4_return\n\nClarify how to find return type of error4",
+      "modifiedFiles": [
+        "exercises/13_error_handling/errors4.rs"
+      ]
+    },
+    {
+      "sha": "436c95f4cc8cfb19e232edad206a949d14a5320b",
+      "message": "Merge pull request #2262 from aCactusOrSomething/main\n\nFix incorrect book chapter number",
+      "modifiedFiles": [
+        "exercises/README.md"
+      ]
+    },
+    {
+      "sha": "c6888685e665bbc89731e69cd0c008c35ee6dcc3",
+      "message": "Merge pull request #2265 from deafloo/main\n\nAdd positive tests in `iterators3.rs`",
+      "modifiedFiles": [
+        "exercises/18_iterators/iterators3.rs"
+      ]
+    },
+    {
+      "sha": "208a5932165c2fcf74b1dbb602f9427cc302929e",
+      "message": "Ready to release",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "Cargo.lock",
+        "Cargo.toml"
+      ]
+    },
+    {
+      "sha": "2d1d531550afaac36dbf4d15c383bc0e1cbf248d",
+      "message": "Fix file links in VS Code",
+      "modifiedFiles": [
+        "src/app_state.rs",
+        "src/exercise.rs",
+        "src/list/state.rs",
+        "src/main.rs",
+        "src/run.rs",
+        "src/term.rs",
+        "src/watch/state.rs"
+      ]
+    },
+    {
+      "sha": "a712e484d09ce27a622da5e61d26bbb1004f51d2",
+      "message": "Update deps",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "clippy.toml",
+        "rustlings-macros/Cargo.toml",
+        "rustlings-macros/src/lib.rs",
+        "src/embedded.rs",
+        "src/info_file.rs"
+      ]
+    },
+    {
+      "sha": "4f9f0907c3a15c9f26d6675e65832a382419e8a2",
+      "message": "Add positive tests\n\nThis prevents solving the exercise without a real IntegerOverflow",
+      "modifiedFiles": [
+        "exercises/18_iterators/iterators3.rs"
+      ]
+    },
+    {
+      "sha": "3a2fe2c39472f780edb519f040427b9380617332",
+      "message": "Fix incorrect book chapter number",
+      "modifiedFiles": [
+        "exercises/README.md"
+      ]
+    },
+    {
+      "sha": "f24861957a0c669060473a1fe7c6180eb43df9e2",
+      "message": "Check for Clippy on init",
+      "modifiedFiles": [
+        "src/init.rs"
+      ]
+    },
+    {
+      "sha": "1a633e275761604c8225839e79c139c90d59bfea",
+      "message": "Split lines after newline",
+      "modifiedFiles": [
+        "src/cargo_toml.rs",
+        "src/dev/check.rs",
+        "src/init.rs",
+        "src/main.rs"
+      ]
+    },
+    {
+      "sha": "9fecdba101a60dafecd0754cb1276dacf489a539",
+      "message": "No need to flush after printing newlines",
+      "modifiedFiles": [
+        "src/term.rs"
+      ]
+    },
+    {
+      "sha": "7af38e684d58562762924dd9d5027fd92e1dfaa8",
+      "message": "Print newline after progress on failure",
+      "modifiedFiles": [
+        "src/dev/check.rs",
+        "src/term.rs"
+      ]
+    },
+    {
+      "sha": "e8da6869f8e0a051e8768135b57950e9f8ed27b9",
+      "message": "Don\u0027t run rustfmt during `dev check` if there are no solutions",
+      "modifiedFiles": [
+        "src/dev/check.rs"
+      ]
+    },
+    {
+      "sha": "57b3727b3e69d50c0b72aa41d79b8d16d47d58fa",
+      "message": "Don\u0027t ignore `.rustlings-state.txt` in `.gitignore` of `rustlings dev new`",
+      "modifiedFiles": [
+        "src/dev/new.rs"
+      ]
+    },
+    {
+      "sha": "278edc0b962cf03d5eef214063d720279e72953a",
+      "message": "Clarify how to find return type of error4",
+      "modifiedFiles": [
+        "exercises/13_error_handling/errors4.rs"
+      ]
+    },
+    {
+      "sha": "cb60c8887cf7554e9ad258a6afb1f81cf92f62e4",
+      "message": "Update deps",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "46814d397a1e6314e22f747922dd77c43c3854a6",
+      "message": "Fix path in action",
+      "modifiedFiles": [
+        ".github/workflows/website.yml"
+      ]
+    },
+    {
+      "sha": "734fc482ebd4c860320bf2664229ce385dabfc30",
+      "message": "Make path relative",
+      "modifiedFiles": [
+        ".github/workflows/website.yml"
+      ]
+    },
+    {
+      "sha": "520dfdc464f6a57fa4ab85c6c48fabce648a3912",
+      "message": "Add workflow_dispatch to website workflow",
+      "modifiedFiles": [
+        ".github/workflows/website.yml"
+      ]
+    },
+    {
+      "sha": "2267f996844475f45a96d9582e0ac0d40b4bce79",
+      "message": "Merge pull request #2247 from rust-lang/website\n\nWebsite",
+      "modifiedFiles": [
+        ".editorconfig",
+        ".github/workflows/rust.yml",
+        ".github/workflows/web.yml",
+        ".github/workflows/website.yml",
+        ".gitignore",
+        ".markdownlint.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "THIRD_PARTY_EXERCISES.md",
+        "oranda.json",
+        "src/app_state.rs",
+        "src/dev.rs",
+        "src/dev/new.rs",
+        "src/info_file.rs",
+        "src/main.rs",
+        "website/.gitignore",
+        "website/config.toml",
+        "website/content/_index.md",
+        "website/content/community-exercises/index.md",
+        "website/content/setup/index.md",
+        "website/content/usage/index.md",
+        "website/input.css",
+        "website/justfile",
+        "website/package.json",
+        "website/static/images/happy_ferris.svg",
+        "website/static/images/panic.svg",
+        "website/static/images/rust_logo.svg",
+        "website/templates/404.html",
+        "website/templates/anchor-link.html",
+        "website/templates/base.html",
+        "website/templates/index.html",
+        "website/templates/page.html",
+        "website/templates/shortcodes/details.html"
+      ]
+    },
+    {
+      "sha": "bf74a3d0a7ae3c0d12ba572fe1c2f1d711c6e530",
+      "message": "Update the README with more context before the website link",
+      "modifiedFiles": [
+        "README.md"
+      ]
+    },
+    {
+      "sha": "adf3ddd968cd076e98c39a383ed79537985eff77",
+      "message": "Remove rustywind from dev deps",
+      "modifiedFiles": [
+        "website/package.json"
+      ]
+    },
+    {
+      "sha": "f80c2edc3d7e5320ae74e356f6a1d132d7a2796e",
+      "message": "Remove fnm",
+      "modifiedFiles": [
+        "website/justfile"
+      ]
+    },
+    {
+      "sha": "04520ae7ad99eb9f6fd75438d4f829b4e6e546a2",
+      "message": "Use the website link as header",
+      "modifiedFiles": [
+        "README.md"
+      ]
+    },
+    {
+      "sha": "e36dd7a1207ccf940ba820abc276fa465f45b531",
+      "message": "Update MSRV in the release hook",
+      "modifiedFiles": [
+        "release-hook.sh"
+      ]
+    },
+    {
+      "sha": "edc8528ddef1b27952b89d6943ccd4bb3bf1a0f1",
+      "message": "Improve CI",
+      "modifiedFiles": [
+        ".github/workflows/rust.yml",
+        ".github/workflows/website.yml"
+      ]
+    },
+    {
+      "sha": "47e490a997c37cb28ab4022c04155049b0b26f32",
+      "message": "Run rustywind",
+      "modifiedFiles": [
+        "website/templates/404.html",
+        "website/templates/base.html",
+        "website/templates/page.html",
+        "website/templates/shortcodes/details.html"
+      ]
+    },
+    {
+      "sha": "596e7f36cc0fc8b6b755d444b7f054da19734b8e",
+      "message": "Add website CI",
+      "modifiedFiles": [
+        ".github/workflows/website.yml",
+        "website/package.json"
+      ]
+    },
+    {
+      "sha": "512ded81c4e6075e1bcfdf4f2675814d556588bc",
+      "message": "Done community exercises page",
+      "modifiedFiles": [
+        "website/content/community-exercises/index.md"
+      ]
+    },
+    {
+      "sha": "69a9e9cafc36cc73c196e462aa7fb7d812ab1012",
+      "message": "Less top margin for blockquotes",
+      "modifiedFiles": [
+        "website/input.css"
+      ]
+    },
+    {
+      "sha": "54a74fd63810020806161d5ed030810039735ea2",
+      "message": "Use internal links for validation",
+      "modifiedFiles": [
+        "website/config.toml",
+        "website/templates/404.html",
+        "website/templates/base.html"
+      ]
+    },
+    {
+      "sha": "a51d6f1309b986c270d781b08f6949f29806b18a",
+      "message": "third-party/custom -\u003e community",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "src/app_state.rs",
+        "src/dev.rs",
+        "src/dev/new.rs",
+        "src/info_file.rs",
+        "src/main.rs",
+        "website/config.toml",
+        "website/content/community-exercises/index.md",
+        "website/content/usage/index.md"
+      ]
+    },
+    {
+      "sha": "f6a657a0c3628d75dae7cd1d3a822dc19d379f15",
+      "message": "Finish the usage page",
+      "modifiedFiles": [
+        "website/content/usage/index.md"
+      ]
+    },
+    {
+      "sha": "8c247632594db859e319cd561678218de3aca53d",
+      "message": "Q/A -\u003e Q\u0026A",
+      "modifiedFiles": [
+        "website/config.toml"
+      ]
+    },
+    {
+      "sha": "dc468882cc00254b0b87fdcf39d9270d34e6adf8",
+      "message": "Highlight platform",
+      "modifiedFiles": [
+        "website/content/setup/index.md"
+      ]
+    },
+    {
+      "sha": "5fc787f4e4af9223d1b6d579db3460b2cbf8bbd1",
+      "message": "Style details body",
+      "modifiedFiles": [
+        "website/templates/shortcodes/details.html"
+      ]
+    },
+    {
+      "sha": "8fa598ae7eb8c014657cea787376109b7f4c5d18",
+      "message": "Add details shortcode",
+      "modifiedFiles": [
+        "website/content/setup/index.md",
+        "website/content/usage/index.md",
+        "website/input.css",
+        "website/templates/shortcodes/details.html"
+      ]
+    },
+    {
+      "sha": "2f700991f32de65ad8a6972edfa688731fa528f4",
+      "message": "Remove macros",
+      "modifiedFiles": [
+        "website/input.css",
+        "website/templates/404.html",
+        "website/templates/base.html",
+        "website/templates/index.html",
+        "website/templates/macros.html",
+        "website/templates/page.html"
+      ]
+    },
+    {
+      "sha": "b4a6b87e2402c8b1e56227957ed9b61406d2ce24",
+      "message": "Less padding",
+      "modifiedFiles": [
+        "website/templates/base.html"
+      ]
+    },
+    {
+      "sha": "984e9fea7c6a20adfffd3bb3a0fe3a6dc61bc95b",
+      "message": "Merge branch \u0027main\u0027",
+      "modifiedFiles": []
+    },
+    {
+      "sha": "8339007633115125bf90b01b7839ce91fd97c4af",
+      "message": "Update setup and usage",
+      "modifiedFiles": [
+        "website/content/setup/index.md",
+        "website/content/usage/index.md"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "rustlings",
+      "ownerLogin": "SoapIsTasty28",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "yvanlo",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "gippy",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "Ron321456",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "ainxgans",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "halfer53",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "Unbinilium",
+      "commitCount": 5
+    },
+    {
+      "name": "rust-lang__rustlings",
+      "ownerLogin": "klandergren",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "gthellter",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "vegetablechicken-dev",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "qingweiwei1201",
+      "commitCount": 4
+    },
+    {
+      "name": "edu-rust-rustlings",
+      "ownerLogin": "thofisch",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "AdityaPatadiya",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "tteodorescu",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "yutanagano",
+      "commitCount": 4
+    },
+    {
+      "name": "rust-safelings",
+      "ownerLogin": "0xsecaas",
+      "commitCount": 5
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "lisuxiaoqi",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "M1W34P0N",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "sirivong",
+      "commitCount": 4
+    },
+    {
+      "name": "rustlings",
+      "ownerLogin": "Bartosz-Pietras",
+      "commitCount": 5
+    }
+  ]
+}

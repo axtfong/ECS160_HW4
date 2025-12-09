@@ -1,0 +1,610 @@
+{
+  "name": "gpt4all",
+  "ownerLogin": "nomic-ai",
+  "language": "C++",
+  "commits": [
+    {
+      "sha": "b666d16db5aeab8b91aaf7963adcee9c643734d7",
+      "message": "ci: update path-filtering orb to 1.3.0 (#3588)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        ".circleci/config.yml"
+      ]
+    },
+    {
+      "sha": "cd70db29edaf0f02a567f5eea94f5e52240be3e9",
+      "message": "readme: add Windows ARM download link\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "README.md"
+      ]
+    },
+    {
+      "sha": "fb72ba1ff5871d4d2f21b05e3d0bd1ed8e965c7e",
+      "message": "chat: bump version to 3.10.1-dev0\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "b968d45c11841526689443f52c841c15860492e2",
+      "message": "chat: release version 3.10.0 (#3515)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/metadata/latestnews.md",
+        "gpt4all-chat/metadata/release.json"
+      ]
+    },
+    {
+      "sha": "228d5379cfb54e966449e153082c74c66b27c6c9",
+      "message": "chat: cut v3.10.0 release (#3511)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "dd820ef7c43ce21eecabdb72f1f401fb45cfb4b3",
+      "message": "Italian and draft Simplified Chinese translations for v3.10.0 (#3514)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/translations/gpt4all_it_IT.ts",
+        "gpt4all-chat/translations/gpt4all_zh_CN.ts"
+      ]
+    },
+    {
+      "sha": "a7cbc8c3fdf1bc95ca377a3e364852b9ec225c5a",
+      "message": "Run lupdate before v3.10.0 release (#3512)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/translations/gpt4all_en_US.ts",
+        "gpt4all-chat/translations/gpt4all_es_MX.ts",
+        "gpt4all-chat/translations/gpt4all_it_IT.ts",
+        "gpt4all-chat/translations/gpt4all_pt_BR.ts",
+        "gpt4all-chat/translations/gpt4all_ro_RO.ts",
+        "gpt4all-chat/translations/gpt4all_zh_CN.ts",
+        "gpt4all-chat/translations/gpt4all_zh_TW.ts"
+      ]
+    },
+    {
+      "sha": "4d171835ac3aaceffdf767d5a0abfb8114811129",
+      "message": "Add new remote model provider view. (#3506)\n\nSigned-off-by: Adam Treat \u003ctreat.adam@gmail.com\u003e\nSigned-off-by: AT \u003cmanyoso@users.noreply.github.com\u003e\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e\nCo-authored-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/CMakeLists.txt",
+        "gpt4all-chat/icons/groq.svg",
+        "gpt4all-chat/icons/mistral.svg",
+        "gpt4all-chat/icons/openai.svg",
+        "gpt4all-chat/qml/AddGPT4AllModelView.qml",
+        "gpt4all-chat/qml/AddModelView.qml",
+        "gpt4all-chat/qml/AddRemoteModelView.qml",
+        "gpt4all-chat/qml/MyComboBox.qml",
+        "gpt4all-chat/qml/RemoteModelCard.qml",
+        "gpt4all-chat/src/modellist.cpp",
+        "gpt4all-chat/src/modellist.h"
+      ]
+    },
+    {
+      "sha": "0c28ee705959f51ab59ed120c44595b9f7849ca0",
+      "message": "Translations: Improve Chinese translation (#3467)\n\nSigned-off-by: Junior2Ran \u003chdr01@126.com\u003e\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e\nCo-authored-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/translations/gpt4all_zh_CN.ts"
+      ]
+    },
+    {
+      "sha": "96aeb4421027fe3d3549f96d11b8f176e847a7a1",
+      "message": "backend: build with CUDA compute 5.0 support by default (#3499)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        ".circleci/continue_config.yml",
+        "gpt4all-backend/CMakeLists.txt",
+        "gpt4all-chat/CHANGELOG.md"
+      ]
+    },
+    {
+      "sha": "29f29773af72abefd114f119a6632837263e1896",
+      "message": "chat: require Qt 6.8 and fix #includes (#3498)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CMakeLists.txt",
+        "gpt4all-chat/src/chat.cpp",
+        "gpt4all-chat/src/chat.h",
+        "gpt4all-chat/src/chatapi.cpp",
+        "gpt4all-chat/src/chatapi.h",
+        "gpt4all-chat/src/chatlistmodel.cpp",
+        "gpt4all-chat/src/chatlistmodel.h",
+        "gpt4all-chat/src/chatllm.cpp",
+        "gpt4all-chat/src/chatllm.h",
+        "gpt4all-chat/src/chatmodel.cpp",
+        "gpt4all-chat/src/chatmodel.h",
+        "gpt4all-chat/src/chatviewtextprocessor.cpp",
+        "gpt4all-chat/src/chatviewtextprocessor.h",
+        "gpt4all-chat/src/codeinterpreter.cpp",
+        "gpt4all-chat/src/codeinterpreter.h",
+        "gpt4all-chat/src/database.cpp",
+        "gpt4all-chat/src/database.h",
+        "gpt4all-chat/src/download.cpp",
+        "gpt4all-chat/src/download.h",
+        "gpt4all-chat/src/embllm.cpp",
+        "gpt4all-chat/src/embllm.h",
+        "gpt4all-chat/src/jinja_helpers.cpp",
+        "gpt4all-chat/src/jinja_helpers.h",
+        "gpt4all-chat/src/jinja_replacements.cpp",
+        "gpt4all-chat/src/llm.cpp",
+        "gpt4all-chat/src/llm.h",
+        "gpt4all-chat/src/localdocs.cpp",
+        "gpt4all-chat/src/localdocs.h",
+        "gpt4all-chat/src/localdocsmodel.cpp",
+        "gpt4all-chat/src/localdocsmodel.h",
+        "gpt4all-chat/src/logger.cpp",
+        "gpt4all-chat/src/logger.h",
+        "gpt4all-chat/src/macosdock.mm",
+        "gpt4all-chat/src/main.cpp",
+        "gpt4all-chat/src/modellist.cpp",
+        "gpt4all-chat/src/modellist.h",
+        "gpt4all-chat/src/mysettings.cpp",
+        "gpt4all-chat/src/mysettings.h",
+        "gpt4all-chat/src/network.cpp",
+        "gpt4all-chat/src/network.h",
+        "gpt4all-chat/src/server.cpp",
+        "gpt4all-chat/src/server.h",
+        "gpt4all-chat/src/tool.cpp",
+        "gpt4all-chat/src/tool.h",
+        "gpt4all-chat/src/toolcallparser.cpp",
+        "gpt4all-chat/src/toolcallparser.h",
+        "gpt4all-chat/src/toolmodel.cpp",
+        "gpt4all-chat/src/toolmodel.h",
+        "gpt4all-chat/src/utils.h",
+        "gpt4all-chat/src/utils.inl",
+        "gpt4all-chat/src/xlsxtomd.cpp",
+        "gpt4all-chat/src/xlsxtomd.h"
+      ]
+    },
+    {
+      "sha": "d8c04cead8ceb2bb50ad68788972078ad3b754d6",
+      "message": "ci: use LLVM Clang 19 on macOS and Ubuntu (#3500)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        ".circleci/continue_config.yml",
+        "gpt4all-chat/CHANGELOG.md"
+      ]
+    },
+    {
+      "sha": "b1cb46ec2a7a57e5f66b32fb801886267f62e310",
+      "message": "Italian localization update (#3496)\n\nSigned-off-by: Riccardo Giovanetti \u003criccardo.giovanetti@gmail.com\u003e\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e\nCo-authored-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/translations/gpt4all_it_IT.ts"
+      ]
+    },
+    {
+      "sha": "b83d06e67f3e794706f1d8437b69673d3378029e",
+      "message": "translations: run lupdate -no-obsolete on Simplified Chinese\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/translations/gpt4all_zh_CN.ts"
+      ]
+    },
+    {
+      "sha": "7aa339cf40e220796eb2ddb3ae6ca22f8ad23e28",
+      "message": "translations: run lupdate\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/translations/gpt4all_en_US.ts",
+        "gpt4all-chat/translations/gpt4all_es_MX.ts",
+        "gpt4all-chat/translations/gpt4all_it_IT.ts",
+        "gpt4all-chat/translations/gpt4all_pt_BR.ts",
+        "gpt4all-chat/translations/gpt4all_ro_RO.ts",
+        "gpt4all-chat/translations/gpt4all_zh_CN.ts",
+        "gpt4all-chat/translations/gpt4all_zh_TW.ts"
+      ]
+    },
+    {
+      "sha": "1b841820307ae52f297c384ddb718934900395bd",
+      "message": "Add replacement templates for OLMoE and granite-3.1 (#3471)\n\nSigned-off-by: ThiloteE \u003c73715071+ThiloteE@users.noreply.github.com\u003e\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e\nCo-authored-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/src/jinja_replacements.cpp"
+      ]
+    },
+    {
+      "sha": "02e12089d36ba0ef0e7781658ac60bbd77749b31",
+      "message": "Add Granite arch to model whitelist (#3487)\n\nSigned-off-by: ThiloteE \u003c73715071+ThiloteE@users.noreply.github.com\u003e\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e\nCo-authored-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-backend/deps/llama.cpp-mainline",
+        "gpt4all-backend/src/llamamodel.cpp",
+        "gpt4all-chat/CHANGELOG.md"
+      ]
+    },
+    {
+      "sha": "09f37a0ff8eb0ebfe372f45a57f260ef23f252a2",
+      "message": "maintainers: remove extra bracket\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "MAINTAINERS.md"
+      ]
+    },
+    {
+      "sha": "5e7e4b3f782e805f825db2b6a468d59dd684f9c9",
+      "message": "Fix spacing issues with deepseek models: (#3470)\n\nSigned-off-by: Adam Treat \u003ctreat.adam@gmail.com\u003e\r\nSigned-off-by: AT \u003cmanyoso@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/qml/ChatItemView.qml",
+        "gpt4all-chat/src/chatllm.cpp"
+      ]
+    },
+    {
+      "sha": "22ebd42c328fbf970daf3073b531fdc0fb6be787",
+      "message": "Misc fixes for undefined behavior, crashes, and build failure (#3465)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-backend/src/llmodel.cpp",
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/src/chatmodel.h",
+        "gpt4all-chat/src/database.cpp",
+        "gpt4all-chat/src/database.h",
+        "gpt4all-chat/src/embllm.cpp",
+        "gpt4all-chat/src/logger.cpp",
+        "gpt4all-chat/src/logger.h",
+        "gpt4all-chat/src/network.cpp",
+        "gpt4all-chat/translations/gpt4all_ro_RO.ts"
+      ]
+    },
+    {
+      "sha": "051a63f0316a9321c8161fe8f90545ab959abd70",
+      "message": "ci: fix scheduled workflow jobs\n\ns/online/offline/\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        ".circleci/continue_config.yml"
+      ]
+    },
+    {
+      "sha": "26356f872ecab4660891461a74343021f0532a59",
+      "message": "chat: bump version to 3.9.1-dev0\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "22b8bc546fe945a3719a739f645cd2faf7d0cc32",
+      "message": "chat: release version 3.9.0 (#3462)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/metadata/latestnews.md",
+        "gpt4all-chat/metadata/release.json"
+      ]
+    },
+    {
+      "sha": "52164142de27f6f8e6d4c99efb380ad412be5c81",
+      "message": "changelog: fix missing paren\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md"
+      ]
+    },
+    {
+      "sha": "be6347389e18e7efd3242a697bc4f8be524fce76",
+      "message": "chat: cut v3.9.0 release (#3461)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "8c10eccd2433ebabddfa3f40f16f0d1eb7e372a3",
+      "message": "changelog: fix missing credit\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md"
+      ]
+    },
+    {
+      "sha": "6ef0bd518e2128f25f0c481ebdd6190aaa99b403",
+      "message": "Whitelist OLMoE and Granite MoE (#3449)\n\nSigned-off-by: ThiloteE \u003c73715071+ThiloteE@users.noreply.github.com\u003e\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e\nCo-authored-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-backend/deps/llama.cpp-mainline",
+        "gpt4all-backend/src/llamamodel.cpp",
+        "gpt4all-chat/CHANGELOG.md"
+      ]
+    },
+    {
+      "sha": "04dc157b98e524cbeb446af261edcba1fb102019",
+      "message": "minja: update submodule to fix {# hang (redo) (#3457)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/deps/minja"
+      ]
+    },
+    {
+      "sha": "014bf67c63d826cf1106e018e9273e4e3ecfa19d",
+      "message": "Fix PDFium abuse that leads to a crash on Windows ARM (#3460)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/deps/CMakeLists.txt",
+        "gpt4all-chat/src/database.cpp",
+        "gpt4all-chat/src/main.cpp"
+      ]
+    },
+    {
+      "sha": "8c9f26e2494d5e5bbe25d49732b8d703fddb5b8a",
+      "message": "Ignore DeepSeek-R1 \"think\" content in name/follow-up responses (#3458)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/src/chat.cpp",
+        "gpt4all-chat/src/chatllm.cpp",
+        "gpt4all-chat/src/chatllm.h",
+        "gpt4all-chat/src/modellist.h",
+        "gpt4all-chat/src/toolcallparser.cpp",
+        "gpt4all-chat/src/toolcallparser.h"
+      ]
+    },
+    {
+      "sha": "d4e6a6e485ee04320f89fb3f58d493fbbf47c5f5",
+      "message": "Update README.md\n\nSigned-off-by: Andriy Mulyar \u003candriy.mulyar@gmail.com\u003e",
+      "modifiedFiles": [
+        "README.md"
+      ]
+    },
+    {
+      "sha": "a0812559519c3946556908c850af6176c91aed8b",
+      "message": "Revert \"minja: update submodule to fix `{#` hang (#3446)\"\n\nThis reverts commit c38c7455d890ea242ed32bca8d9467b8768af296.\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/deps/minja"
+      ]
+    },
+    {
+      "sha": "36c852b8be370093fd22c9c259381c1dc81a2b30",
+      "message": "chat: work around Direct3D 11 rendering artifacts on win11 arm (#3450)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/CMakeLists.txt",
+        "gpt4all-chat/cmake/config.h.in",
+        "gpt4all-chat/src/config.h.in",
+        "gpt4all-chat/src/main.cpp"
+      ]
+    },
+    {
+      "sha": "c38c7455d890ea242ed32bca8d9467b8768af296",
+      "message": "minja: update submodule to fix `{#` hang (#3446)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/deps/minja"
+      ]
+    },
+    {
+      "sha": "9131f4c432830d854a0b4a4d77a8c21693996cca",
+      "message": "Fix index used by LocalDocs when tool calling/thinking is active (#3451)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/src/chatllm.cpp",
+        "gpt4all-chat/src/chatmodel.h"
+      ]
+    },
+    {
+      "sha": "6bfa0145940d04090299e997ade51594f87d8d46",
+      "message": "cmake: remove reference to deleted README\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/cmake/cpack_config.cmake"
+      ]
+    },
+    {
+      "sha": "5af31278b7df3c905a39ac21b1b28df33f779e5f",
+      "message": "ci: update to Qt 6.8.2 (#3442)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        ".circleci/continue_config.yml",
+        "gpt4all-chat/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "a80f023ed26c596a92ebcae7287f2e9c10d6b58a",
+      "message": "chat: release version 3.8.0 (#3439)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/metadata/latestnews.md",
+        "gpt4all-chat/metadata/release.json"
+      ]
+    },
+    {
+      "sha": "126042fdc90e546f05b2c61f0c58778617a45947",
+      "message": "remove ancient README\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/README.md"
+      ]
+    },
+    {
+      "sha": "1f2712d57c4522d7f59885d29ed1605b14166b7b",
+      "message": "chat: fix emoji corruption (#3443)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/src/chat.cpp",
+        "gpt4all-chat/src/chatllm.cpp",
+        "gpt4all-chat/src/chatmodel.h",
+        "gpt4all-chat/src/toolcallparser.cpp",
+        "gpt4all-chat/src/toolcallparser.h"
+      ]
+    },
+    {
+      "sha": "f8f78c6677668daece2f6f5db38300c1fa66335d",
+      "message": "ci: allow generate-config to run on tags\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        ".circleci/config.yml"
+      ]
+    },
+    {
+      "sha": "643c733be39d2c930e40d67fb03378b43026e480",
+      "message": "ci: fix missing job_allow_tags\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        ".circleci/continue_config.yml"
+      ]
+    },
+    {
+      "sha": "0734694fb8d30ca29ea2b4dcffbe2e36f65f10e9",
+      "message": "ci: remove conflicting pipeline.git.branch requirement\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        ".circleci/continue_config.yml"
+      ]
+    },
+    {
+      "sha": "e267512db9b8b82907822b441abfdfebf875e4ef",
+      "message": "chat: cut v3.8.0 release (#3441)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "34037f3101ec0d31985a569bdd1cac696a7b7538",
+      "message": "models: add DeepSeek-R1 distillations to official models list (#3437)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/metadata/models3.json",
+        "gpt4all-chat/src/modellist.cpp"
+      ]
+    },
+    {
+      "sha": "007a7af1c82f17f0c457a435fdfac40dfbb2391f",
+      "message": "Display DeepSeek-R1 thinking like Reasoner (#3440)\n\nSigned-off-by: Adam Treat \u003ctreat.adam@gmail.com\u003e\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e\nCo-authored-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/qml/ChatCollapsibleItem.qml",
+        "gpt4all-chat/qml/ChatItemView.qml",
+        "gpt4all-chat/src/chat.cpp",
+        "gpt4all-chat/src/chatllm.cpp",
+        "gpt4all-chat/src/chatmodel.cpp",
+        "gpt4all-chat/src/chatmodel.h",
+        "gpt4all-chat/src/tool.h",
+        "gpt4all-chat/src/toolcallparser.cpp",
+        "gpt4all-chat/src/toolcallparser.h"
+      ]
+    },
+    {
+      "sha": "f914ee56c9831e07b608fcc4981cdebff4692255",
+      "message": "chat: replace Jinja2Cpp with minja (#3433)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        ".gitmodules",
+        "gpt4all-chat/CHANGELOG.md",
+        "gpt4all-chat/CMakeLists.txt",
+        "gpt4all-chat/deps/CMakeLists.txt",
+        "gpt4all-chat/deps/Jinja2Cpp",
+        "gpt4all-chat/deps/json",
+        "gpt4all-chat/deps/minja",
+        "gpt4all-chat/deps/rapidjson",
+        "gpt4all-chat/src/chatllm.cpp",
+        "gpt4all-chat/src/jinja_helpers.cpp",
+        "gpt4all-chat/src/jinja_helpers.h",
+        "gpt4all-chat/src/jinja_helpers.inl",
+        "gpt4all-chat/src/jinja_replacements.cpp",
+        "gpt4all-chat/src/tool.cpp",
+        "gpt4all-chat/src/tool.h"
+      ]
+    },
+    {
+      "sha": "8a0ec5c3036a6dd42f4e7e535c28032e2c340f05",
+      "message": "ci: add missing signing holds to Windows ARM builds\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        ".circleci/continue_config.yml"
+      ]
+    },
+    {
+      "sha": "c2ee252ef2103fad921a2fc647bef3378ea84e54",
+      "message": "chat: bump version to 3.8.0-dev0\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        "gpt4all-chat/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "64dcf7682e8616204fca447fd89c815077fb84a6",
+      "message": "ci: build offline installers when pipeline is scheduled (#3436)\n\nSigned-off-by: Jared Van Bortel \u003cjared@nomic.ai\u003e",
+      "modifiedFiles": [
+        ".circleci/continue_config.yml"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "gpt4all",
+      "ownerLogin": "Chatgpt-cli-agent",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "progray",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "SageOfScript",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "gauravrawat-ai",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "0kembe",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "logic1149",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "phend0",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "Aparsa40",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "mavges",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "PhilippPatrickBeck",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "argusaegis",
+      "commitCount": 0
+    },
+    {
+      "name": "cogpt4all",
+      "ownerLogin": "cogpy",
+      "commitCount": 4
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "Mylvo1",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "j8267643",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "Suajay",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "zungule",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "kimdusty01",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "jorgewribeiro",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "alex-dinh",
+      "commitCount": 0
+    },
+    {
+      "name": "gpt4all",
+      "ownerLogin": "Tosh-sh",
+      "commitCount": 0
+    }
+  ]
+}

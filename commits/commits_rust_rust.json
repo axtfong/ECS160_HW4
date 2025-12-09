@@ -1,0 +1,814 @@
+{
+  "name": "rust",
+  "ownerLogin": "rust-lang",
+  "language": "Rust",
+  "commits": [
+    {
+      "sha": "1d23d06800271f651fad07bf22bf5e298138972e",
+      "message": "Auto merge of #147997 - jhpratt:rollup-nupruru, r\u003djhpratt\n\nRollup of 5 pull requests\n\nSuccessful merges:\n\n - rust-lang/rust#145617 (docs(style): Specify the frontmatter style)\n - rust-lang/rust#147830 (Reword unstable fingerprints ICE to ask for reproduction)\n - rust-lang/rust#147988 (Remove unused field `style` from `AttributeKind::CrateName`)\n - rust-lang/rust#147990 (Fix invalid jump to def link generated on derive attributes)\n - rust-lang/rust#147991 ([rustdoc] Check `doc(cfg())` even of private/hidden items)\n\nr? `@ghost`\n`@rustbot` modify labels: rollup",
+      "modifiedFiles": [
+        "compiler/rustc_attr_parsing/src/attributes/crate_level.rs",
+        "compiler/rustc_hir/src/attrs/data_structures.rs",
+        "compiler/rustc_query_system/messages.ftl",
+        "compiler/rustc_query_system/src/error.rs",
+        "src/doc/style-guide/src/nightly.md",
+        "src/librustdoc/html/render/span_map.rs",
+        "src/librustdoc/passes/mod.rs",
+        "tests/rustdoc-ui/invalid-cfg.rs",
+        "tests/rustdoc-ui/invalid-cfg.stderr",
+        "tests/rustdoc-ui/issues/issue-91713.stdout",
+        "tests/rustdoc/jump-to-def-assoc-items.rs"
+      ]
+    },
+    {
+      "sha": "071b9dea8d6dab6f14215e2f8a872ac1fdbb01a1",
+      "message": "Rollup merge of #147991 - GuillaumeGomez:check-doc-cfg-private-hidden, r\u003dfmease\n\n[rustdoc] Check `doc(cfg())` even of private/hidden items\n\nFixes regression found out by `@fmease` [here](https://github.com/rust-lang/rust/pull/138907#discussion_r2382597615).\n\nIn short: the pass which checks the `doc(cfg())` attributes needed to be moved before the private/hidden stripping items passes.",
+      "modifiedFiles": [
+        "src/librustdoc/passes/mod.rs",
+        "tests/rustdoc-ui/invalid-cfg.rs",
+        "tests/rustdoc-ui/invalid-cfg.stderr",
+        "tests/rustdoc-ui/issues/issue-91713.stdout"
+      ]
+    },
+    {
+      "sha": "fc0370a0e35c4f800ca3b3827cb72d12a362df7d",
+      "message": "Rollup merge of #147990 - GuillaumeGomez:fix-derive-link, r\u003dnotriddle\n\nFix invalid jump to def link generated on derive attributes\n\nFixes https://github.com/rust-lang/rust/issues/147820.\n\nThe issue was that we only handled bang macros whereas we should handle all of them.\n\nr? `@notriddle`",
+      "modifiedFiles": [
+        "src/librustdoc/html/render/span_map.rs",
+        "tests/rustdoc/jump-to-def-assoc-items.rs"
+      ]
+    },
+    {
+      "sha": "c047a7e8619e637629f07a44f7510836fdec0360",
+      "message": "Rollup merge of #147988 - JonathanBrouwer:unused_field_crate_name, r\u003djdonszelmann\n\nRemove unused field `style` from `AttributeKind::CrateName`\n\nr? `@jdonszelmann`",
+      "modifiedFiles": [
+        "compiler/rustc_attr_parsing/src/attributes/crate_level.rs",
+        "compiler/rustc_hir/src/attrs/data_structures.rs"
+      ]
+    },
+    {
+      "sha": "6353350d1427af4a617fcc2a1041c626ed56c5be",
+      "message": "Rollup merge of #147830 - Noratrieb:reword-unstable-fingerprint-ice, r\u003djackh726\n\nReword unstable fingerprints ICE to ask for reproduction\n\nWhen the unstable fingerprints error was added, Rust was on fire, and we needed a quick way for people to sort of understand what\u0027s going on, follow the tracking issue, and leave some information without overwhelming the issue tracker and focusing on getting their code working.\n\nThis is what motivated the previous message. It called this a \"known issue\", provided help on how to fix it, and only secondarily asked for a bug report.\n\nThis is no longer true. These days incremental compilation is fairly solid and these issues are supposed to be rare, we expect *none* of them to exist (but obviously know that\u0027s not true). As such, it\u0027s time to reword this message.\n\nRecently someone mentioned how they didn\u0027t bother reporting this issue because it said that it was a \"known issue\", and I only got awareness of their problem because they complained about all the rustc-ice files hanging around their directories (https://github.com/rust-lang/rust/issues/147825#issuecomment-3417297842). This is not at all what we want, we want reports from people, ideally with a reproduction.\n\nTo get this, I reworded the error. It now explicitly asks for a reproduction (and explaining what that means) and no longer calls it a \"known issue\". It also does not link to the tracking issue anymore, because I don\u0027t think this tracking issue is useful. It should probably be closed.\n\nI still mention the workaround, but explicitly call it a \"workaround\". People should report a reproduction and only *then* use the workaround.",
+      "modifiedFiles": [
+        "compiler/rustc_query_system/messages.ftl",
+        "compiler/rustc_query_system/src/error.rs"
+      ]
+    },
+    {
+      "sha": "98632ac0f67d0e82e122363fe2b64c1490147222",
+      "message": "Rollup merge of #145617 - epage:style, r\u003djoshtriplett\n\ndocs(style): Specify the frontmatter style\n\nTaken from [a style team discussion](https://github.com/rust-lang/style-team/issues/212#issuecomment-3185911143).\n\nAssumptions on my part:\n- I specify that frontmatter fences should not have trailing whitespace\n- We aren\u0027t specifying when to include the infostring (one idea being if there is no shebang)\n- Keep it simple and have a single example instead of showing allowed several variations\n\nTracking issue: rust-lang/rust#136889\n\nCloses rust-lang/style-team#212",
+      "modifiedFiles": [
+        "src/doc/style-guide/src/nightly.md"
+      ]
+    },
+    {
+      "sha": "dc1feabef242259d61bd930713de3250577c1c71",
+      "message": "Auto merge of #147207 - Muscraft:anstyle-anstream, r\u003ddavidtwco\n\nrefactor: Move to anstream + anstyle for styling\n\n`rustc` uses [`termcolor`](https://crates.io/crates/termcolor) for styling and writing, while `annotate-snippets` uses [`anstyle`](https://crates.io/crates/anstyle) for styling and currently writes directly to a `String`. When rendering directly to a terminal, there isn\u0027t/shouldn\u0027t be any differences. Still, there are differences in the escape sequences, which leads to slightly different output in JSON and SVG tests. As part of my work to have `rustc` use `annotate-snippets`, and to reduce the test differences between the two, I switched `rustc` to use `anstlye` and [`anstream`](https://crates.io/crates/anstream) for styling and writing.\n\nThe first commit migrates to `anstyle` and `anstream` and notably does not change the output. This is because it includes extra formatting to ensure that `anstyle` + `anstream` match the current output exactly. Most of this code is unnecessary, as it adds redundant resets or uses 256-color (8-bit) when it could be using 4-bit color. The subsequent commits remove this extra formatting while maintaining the correct output when rendered.\n\n[Zulip discussion](https://rust-lang.zulipchat.com/#narrow/channel/147480-t-compiler.2Fdiagnostics/topic/annotate-snippets.20hurdles)",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "compiler/rustc_driver_impl/src/lib.rs",
+        "compiler/rustc_errors/Cargo.toml",
+        "compiler/rustc_errors/src/emitter.rs",
+        "compiler/rustc_errors/src/json.rs",
+        "compiler/rustc_errors/src/lib.rs",
+        "compiler/rustc_errors/src/markdown/mod.rs",
+        "compiler/rustc_errors/src/markdown/term.rs",
+        "compiler/rustc_errors/src/markdown/tests/output.stdout",
+        "compiler/rustc_errors/src/markdown/tests/term.rs",
+        "compiler/rustc_parse/Cargo.toml",
+        "compiler/rustc_parse/src/parser/tests.rs",
+        "src/librustdoc/doctest/make.rs",
+        "src/tools/clippy/clippy_lints/src/doc/needless_doctest_main.rs",
+        "src/tools/tidy/src/deps.rs",
+        "tests/ui/argument-suggestions/wrong-highlight-span-extra-arguments-147070.svg",
+        "tests/ui/codemap_tests/huge_multispan_highlight.ascii.svg",
+        "tests/ui/codemap_tests/huge_multispan_highlight.unicode.svg",
+        "tests/ui/diagnostic-flags/terminal_urls.svg",
+        "tests/ui/diagnostic-flags/terminal_urls.windows.svg",
+        "tests/ui/error-emitter/E0308-clarification.svg",
+        "tests/ui/error-emitter/highlighting.svg",
+        "tests/ui/error-emitter/highlighting.windows.svg",
+        "tests/ui/error-emitter/multiline-multipart-suggestion.svg",
+        "tests/ui/error-emitter/multiline-multipart-suggestion.windows.svg",
+        "tests/ui/error-emitter/multiline-removal-suggestion.svg",
+        "tests/ui/error-emitter/unicode-output.svg",
+        "tests/ui/impl-trait/diagnostics/highlight-difference-between-expected-trait-and-found-trait.svg",
+        "tests/ui/lint/use_suggestion_json.stderr",
+        "tests/ui/suggestions/incorrect-variant-literal.svg"
+      ]
+    },
+    {
+      "sha": "e1e851dc57793e8320324da37958489d50ada8dc",
+      "message": "[rustdoc] Check `doc(cfg())` even of private/hidden items",
+      "modifiedFiles": [
+        "src/librustdoc/passes/mod.rs",
+        "tests/rustdoc-ui/invalid-cfg.rs",
+        "tests/rustdoc-ui/invalid-cfg.stderr",
+        "tests/rustdoc-ui/issues/issue-91713.stdout"
+      ]
+    },
+    {
+      "sha": "21db004f585bf1477760556c0b9d0d11199f6643",
+      "message": "Fix invalid jump to def link generated on derive attributes",
+      "modifiedFiles": [
+        "src/librustdoc/html/render/span_map.rs",
+        "tests/rustdoc/jump-to-def-assoc-items.rs"
+      ]
+    },
+    {
+      "sha": "ebd3220b2081077870e5861782d17ac269a1d0eb",
+      "message": "Remove unused field `style` from `AttributeKind::CrateName`\n\nSigned-off-by: Jonathan Brouwer \u003cjonathantbrouwer@gmail.com\u003e",
+      "modifiedFiles": [
+        "compiler/rustc_attr_parsing/src/attributes/crate_level.rs",
+        "compiler/rustc_hir/src/attrs/data_structures.rs"
+      ]
+    },
+    {
+      "sha": "4d94478977b5d6c0caa1e66390c6b137520af368",
+      "message": "Auto merge of #147826 - Muscraft:update-typos, r\u003dNoratrieb\n\nUpdate typos\n\nI saw that `typos` was a few versions out of date and figured it would be a good idea to update it. Upgrading to `1.38.1` adds the [July](https://github.com/crate-ci/typos/issues/1331), [August](https://github.com/crate-ci/typos/issues/1345), and [September](https://github.com/crate-ci/typos/issues/1370) dictionary updates. As part of this change, I also sorted the configuration file.",
+      "modifiedFiles": [
+        "compiler/rustc_builtin_macros/messages.ftl",
+        "compiler/rustc_builtin_macros/src/errors.rs",
+        "compiler/rustc_codegen_llvm/src/back/write.rs",
+        "compiler/rustc_const_eval/src/interpret/call.rs",
+        "compiler/rustc_const_eval/src/interpret/projection.rs",
+        "compiler/rustc_const_eval/src/interpret/util.rs",
+        "compiler/rustc_hir_typeck/src/method/suggest.rs",
+        "compiler/rustc_lint/src/builtin.rs",
+        "compiler/rustc_next_trait_solver/src/solve/eval_ctxt/mod.rs",
+        "compiler/rustc_next_trait_solver/src/solve/mod.rs",
+        "compiler/rustc_public/src/mir/visit.rs",
+        "compiler/rustc_query_system/src/dep_graph/graph.rs",
+        "library/alloc/src/collections/vec_deque/tests.rs",
+        "library/core/src/asserting.rs",
+        "library/core/src/panic/unwind_safe.rs",
+        "library/std/src/sys/fs/vexos.rs",
+        "library/std/src/sys/pal/uefi/time.rs",
+        "src/bootstrap/src/core/config/config.rs",
+        "src/librustdoc/html/render/search_index.rs",
+        "src/tools/tidy/src/extra_checks/mod.rs",
+        "tests/ui/interior-mutability/interior-mutability.stderr",
+        "tests/ui/not-panic/not-panic-safe-2.stderr",
+        "tests/ui/not-panic/not-panic-safe-3.stderr",
+        "tests/ui/not-panic/not-panic-safe-4.stderr",
+        "tests/ui/not-panic/not-panic-safe-5.stderr",
+        "tests/ui/not-panic/not-panic-safe-6.stderr",
+        "typos.toml"
+      ]
+    },
+    {
+      "sha": "f5e2df741b4a9820a7579f0c8eccc951706a8782",
+      "message": "Auto merge of #147687 - cjgillot:noshallow-init-box, r\u003dnnethercote\n\nForbid ShallowInitBox after box deref elaboration.\n\nMIR currently contains a `ShallowInitBox` rvalue. Its principal usage is to allow for in-place initialization of boxes. Having it is necessary for drop elaboration to be correct with that in-place initialization.\n\nAs part of analysis-\u003eruntime MIR lowering, we canonicalize deref of boxes to use the stored raw pointer. But we did not perform the same change to the construction of the box.\n\nThis PR replaces `ShallowInitBox` by the pointer manipulation it represents.\n\nAlternatives:\n- fully remove `ShallowInitBox` and implement `Box` in-place initialization differently;\n- remove the `ElaborateBoxDeref` pass and keep dereferencing `Box` in runtime MIR.",
+      "modifiedFiles": [
+        "compiler/rustc_codegen_cranelift/src/base.rs",
+        "compiler/rustc_codegen_ssa/src/mir/rvalue.rs",
+        "compiler/rustc_index/src/lib.rs",
+        "compiler/rustc_mir_transform/src/coroutine.rs",
+        "compiler/rustc_mir_transform/src/dataflow_const_prop.rs",
+        "compiler/rustc_mir_transform/src/elaborate_box_derefs.rs",
+        "compiler/rustc_mir_transform/src/gvn.rs",
+        "compiler/rustc_mir_transform/src/validate.rs",
+        "tests/mir-opt/box_expr.rs",
+        "tests/mir-opt/const_prop/boxes.main.GVN.panic-abort.diff",
+        "tests/mir-opt/const_prop/boxes.main.GVN.panic-unwind.diff",
+        "tests/mir-opt/dont_reset_cast_kind_without_updating_operand.test.GVN.32bit.panic-abort.diff",
+        "tests/mir-opt/dont_reset_cast_kind_without_updating_operand.test.GVN.64bit.panic-abort.diff"
+      ]
+    },
+    {
+      "sha": "b2ee1b333aea9951c3eefa4967098cc763de59ca",
+      "message": "Auto merge of #147957 - matthiaskrgr:rollup-aqt593u, r\u003dmatthiaskrgr\n\nRollup of 7 pull requests\n\nSuccessful merges:\n\n - rust-lang/rust#141445 (Add `FromIterator` impls for `ascii::Char`s to `String`s)\n - rust-lang/rust#142339 (Add NonNull pattern types)\n - rust-lang/rust#147768 (Code refactoring on hir report_no_match_method_error)\n - rust-lang/rust#147788 (const Cell methods)\n - rust-lang/rust#147932 (Create UTF-8 version of `OsStr`/`OsString`)\n - rust-lang/rust#147933 (os_str: Make platform docs more consistent)\n - rust-lang/rust#147948 (PassWrapper: Access GlobalValueSummaryInfo::SummaryList via getter for LLVM 22+)\n\nr? `@ghost`\n`@rustbot` modify labels: rollup",
+      "modifiedFiles": [
+        "compiler/rustc_ast/src/ast.rs",
+        "compiler/rustc_ast_lowering/src/pat.rs",
+        "compiler/rustc_ast_pretty/src/pprust/state.rs",
+        "compiler/rustc_builtin_macros/src/pattern_type.rs",
+        "compiler/rustc_codegen_cranelift/src/unsize.rs",
+        "compiler/rustc_codegen_cranelift/src/value_and_place.rs",
+        "compiler/rustc_codegen_ssa/src/base.rs",
+        "compiler/rustc_const_eval/src/interpret/cast.rs",
+        "compiler/rustc_const_eval/src/interpret/validity.rs",
+        "compiler/rustc_hir/src/hir.rs",
+        "compiler/rustc_hir/src/intravisit.rs",
+        "compiler/rustc_hir_analysis/messages.ftl",
+        "compiler/rustc_hir_analysis/src/coherence/builtin.rs",
+        "compiler/rustc_hir_analysis/src/coherence/orphan.rs",
+        "compiler/rustc_hir_analysis/src/errors.rs",
+        "compiler/rustc_hir_analysis/src/hir_ty_lowering/mod.rs",
+        "compiler/rustc_hir_analysis/src/variance/constraints.rs",
+        "compiler/rustc_hir_pretty/src/lib.rs",
+        "compiler/rustc_hir_typeck/src/fn_ctxt/suggestions.rs",
+        "compiler/rustc_hir_typeck/src/method/mod.rs",
+        "compiler/rustc_hir_typeck/src/method/probe.rs",
+        "compiler/rustc_hir_typeck/src/method/suggest.rs",
+        "compiler/rustc_lint/src/types.rs",
+        "compiler/rustc_llvm/llvm-wrapper/PassWrapper.cpp",
+        "compiler/rustc_middle/src/traits/select.rs",
+        "compiler/rustc_middle/src/ty/layout.rs",
+        "compiler/rustc_middle/src/ty/pattern.rs",
+        "compiler/rustc_middle/src/ty/relate.rs",
+        "compiler/rustc_mir_transform/src/validate.rs",
+        "compiler/rustc_monomorphize/src/collector.rs",
+        "compiler/rustc_parse/src/parser/token_type.rs",
+        "compiler/rustc_public/src/unstable/convert/stable/ty.rs",
+        "compiler/rustc_resolve/src/late.rs",
+        "compiler/rustc_span/src/symbol.rs",
+        "compiler/rustc_symbol_mangling/src/v0.rs",
+        "compiler/rustc_trait_selection/src/traits/select/confirmation.rs",
+        "compiler/rustc_trait_selection/src/traits/select/mod.rs",
+        "compiler/rustc_trait_selection/src/traits/wf.rs",
+        "compiler/rustc_ty_utils/src/layout.rs",
+        "compiler/rustc_type_ir/src/pattern.rs",
+        "compiler/rustc_type_ir/src/walk.rs",
+        "library/alloc/src/string.rs",
+        "library/core/src/cell.rs",
+        "library/core/src/lib.rs",
+        "library/core/src/pat.rs",
+        "library/coretests/tests/lib.rs",
+        "library/coretests/tests/manually_drop.rs",
+        "library/coretests/tests/ptr.rs",
+        "library/std/src/os/motor/ffi.rs",
+        "library/std/src/sys/os_str/bytes.rs",
+        "library/std/src/sys/os_str/mod.rs",
+        "library/std/src/sys/os_str/utf8.rs",
+        "library/std/src/sys/os_str/wtf8.rs",
+        "src/tools/clippy/clippy_utils/src/hir_utils.rs",
+        "src/tools/miri/tests/pass/pattern-types.rs",
+        "src/tools/rustfmt/src/types.rs",
+        "tests/ui/suggestions/semi-suggestion-when-stmt-and-expr-span-equal.stderr",
+        "tests/ui/type/pattern_types/bad_pat.rs",
+        "tests/ui/type/pattern_types/bad_pat.stderr",
+        "tests/ui/type/pattern_types/non_null.rs",
+        "tests/ui/type/pattern_types/non_null.stderr",
+        "tests/ui/type/pattern_types/or_patterns.stderr",
+        "tests/ui/type/pattern_types/range_patterns.stderr",
+        "tests/ui/type/pattern_types/unsize.rs"
+      ]
+    },
+    {
+      "sha": "e132d2d8a5dcb2056b3406bbc57d81239452e79d",
+      "message": "Rollup merge of #147948 - aeubanks:summarylist, r\u003ddurin42\n\nPassWrapper: Access GlobalValueSummaryInfo::SummaryList via getter for LLVM 22+\n\nhttps://github.com/llvm/llvm-project/pull/164355 makes SummaryList private and provides a getter method.\n\n`@rustbot` label llvm-main",
+      "modifiedFiles": [
+        "compiler/rustc_llvm/llvm-wrapper/PassWrapper.cpp"
+      ]
+    },
+    {
+      "sha": "4a117590b794a922356a1869e9546a57252de70d",
+      "message": "Rollup merge of #147933 - thaliaarchi:consistent-osstring, r\u003dtgross35\n\nos_str: Make platform docs more consistent\n\n- Port `Buf::as_slice`/`as_mut_slice` wording from wtf8 to bytes\n- Make `Buf::extend_from_slice_unchecked` docs more platform-independent\n- wtf8 `Buf` was missing `#[repr(transparent)]`",
+      "modifiedFiles": [
+        "library/std/src/sys/os_str/bytes.rs",
+        "library/std/src/sys/os_str/wtf8.rs"
+      ]
+    },
+    {
+      "sha": "aa65c31c18ef1964235a07833d82aa012f83ff16",
+      "message": "Rollup merge of #147932 - thaliaarchi:utf8-osstring, r\u003dtgross35\n\nCreate UTF-8 version of `OsStr`/`OsString`\n\nImplement a UTF-8 version of `OsStr`/`OsString`, in addition to the existing bytes and WTF-8 platform-dependent encodings.\n\nThis is applicable for several platforms, but I\u0027ve currently only implemented it for Motor OS:\n\n- WASI uses Unicode paths, but currently reexports the Unix bytes-assuming `OsStrExt`/`OsStringExt` traits.\n  - [wasi:filesystem](https://wa.dev/wasi:filesystem) APIs:\n    \u003e Paths are passed as interface-type `strings`, meaning they must consist of a sequence of Unicode Scalar Values (USVs). Some filesystems may contain paths which are not accessible by this API.\n  - In [wasi-filesystem#17](https://github.com/WebAssembly/wasi-filesystem/issues/17#issuecomment-1430639353), it was decided that applications can use any Unicode transformation format, so we\u0027re free to use UTF-8 (and probably already do). This was chosen over specifically UTF-8 or an ad hoc encoding which preserves paths not representable in UTF-8.\n      \u003e The current API uses strings for filesystem paths, which contains sequences of Unicode scalar values (USVs), which applications can work with using strings encoded in UTF-8, UTF-16, or other Unicode encodings.\n    \u003e\n    \u003e This does mean that the API is unable to open files which do not have well-formed Unicode encodings, which may want separate APIs for handling such paths or may want something like the arf-strings proposal, but if we need that we should file a new issue for it.\n- As of Redox OS [0.7.0](https://www.redox-os.org/news/release-0.7.0/), \"All paths are now required to be UTF-8, and the kernel enforces this\". This appears to have been implemented in commit [d331f72f](https://gitlab.redox-os.org/redox-os/kernel/-/commit/d331f72f2a51fa577072f24bc2587829fd87368b) (Use UTF-8 for all paths, 2021-02-14). Redox does not have `OsStrExt`/`OsStringExt`.\n- Motor OS guarantees that its OS strings are UTF-8 in its [current `OsStrExt`/`OsStringExt` traits](https://github.com/moturus/rust/blob/a828ffcf5f04be5cdd91b5fad608102eabc17ec7/library/std/src/os/motor/ffi.rs), but they\u0027re still internally bytes like Unix.\n\nThis is an alternate approach to https://github.com/rust-lang/rust/pull/147797, which reuses the existing bytes `OsString` and relies on the safety properties of `from_encoded_bytes_unchecked`. Compared to that, this also gains efficiency from propagating the UTF-8 invariant to the whole type, as it never needs to test for UTF-8 validity.\n\nNote that Motor OS currently does not build until https://github.com/rust-lang/rust/pull/147930 merges.\n\ncc `@tgross35` (for earlier review)\ncc `@alexcrichton,` `@rylev,` `@loganek` (for WASI)\ncc `@lasiotus` (for Motor OS)\ncc `@jackpot51` (for Redox OS)",
+      "modifiedFiles": [
+        "library/std/src/os/motor/ffi.rs",
+        "library/std/src/sys/os_str/mod.rs",
+        "library/std/src/sys/os_str/utf8.rs"
+      ]
+    },
+    {
+      "sha": "8c40b9c6d71338c253fba7bcbc285b9ae79176bc",
+      "message": "Rollup merge of #147788 - clarfonthey:const-cell, r\u003doli-obk\n\nconst Cell methods\n\nTracking: rust-lang/rust#147787\n\nr? `@oli-obk`",
+      "modifiedFiles": [
+        "library/core/src/cell.rs",
+        "library/coretests/tests/lib.rs",
+        "library/coretests/tests/manually_drop.rs",
+        "library/coretests/tests/ptr.rs"
+      ]
+    },
+    {
+      "sha": "aa64f568b400ec96b9bcd86c4a96595991c426fd",
+      "message": "Rollup merge of #147768 - chenyukang:yukang-refactor-report-method-error, r\u003dnnethercote\n\nCode refactoring on hir report_no_match_method_error\n\nWhile working on rust-lang/rust#147753, I found `report_no_match_method_error` now is too long for maintain, 1200 lines of code now:\nhttps://github.com/rust-lang/rust/blob/57ef8d642d21965304bde849bab4f389b4353e27/compiler/rustc_hir_typeck/src/method/suggest.rs#L589-L1736\n\nthis PR try to refactor it.\n\nI tried my best to group most related code into same places, but the logic here is still very complex, there are some variables across different functions, maybe we need more work to make it better understand.\n\nMaybe we could add a tidy check to avoid long spaghetti code.\n\nr? `@nnethercote`",
+      "modifiedFiles": [
+        "compiler/rustc_hir_typeck/src/fn_ctxt/suggestions.rs",
+        "compiler/rustc_hir_typeck/src/method/mod.rs",
+        "compiler/rustc_hir_typeck/src/method/probe.rs",
+        "compiler/rustc_hir_typeck/src/method/suggest.rs"
+      ]
+    },
+    {
+      "sha": "f6d324fb8d916fd957f8952904047c1643c935b3",
+      "message": "Rollup merge of #142339 - oli-obk:not-null-pattern-types, r\u003dBoxyUwU\n\nAdd NonNull pattern types\n\nThese are the final piece missing for\n\n* https://github.com/rust-lang/rust/pull/136006\n\nWe cannot use the previous scheme of using an integer range for raw pointers, as we\u0027re not just changing the layout of raw pointers anymore, but also the type representation. And we can\u0027t represent \"any provenance or NonZero\u003cusize\u003e\" natively as patterns. So I created a new `!null` pattern. Since this is all unstable representation stuff for replacing rustc_layout_scalar_range_start with pattern types, the divergence from normal patterns is fine, especially since T-lang seems interested in exploring general negation patterns\n\nr? `@BoxyUwU`",
+      "modifiedFiles": [
+        "compiler/rustc_ast/src/ast.rs",
+        "compiler/rustc_ast_lowering/src/pat.rs",
+        "compiler/rustc_ast_pretty/src/pprust/state.rs",
+        "compiler/rustc_builtin_macros/src/pattern_type.rs",
+        "compiler/rustc_codegen_cranelift/src/unsize.rs",
+        "compiler/rustc_codegen_cranelift/src/value_and_place.rs",
+        "compiler/rustc_codegen_ssa/src/base.rs",
+        "compiler/rustc_const_eval/src/interpret/cast.rs",
+        "compiler/rustc_const_eval/src/interpret/validity.rs",
+        "compiler/rustc_hir/src/hir.rs",
+        "compiler/rustc_hir/src/intravisit.rs",
+        "compiler/rustc_hir_analysis/messages.ftl",
+        "compiler/rustc_hir_analysis/src/coherence/builtin.rs",
+        "compiler/rustc_hir_analysis/src/coherence/orphan.rs",
+        "compiler/rustc_hir_analysis/src/errors.rs",
+        "compiler/rustc_hir_analysis/src/hir_ty_lowering/mod.rs",
+        "compiler/rustc_hir_analysis/src/variance/constraints.rs",
+        "compiler/rustc_hir_pretty/src/lib.rs",
+        "compiler/rustc_lint/src/types.rs",
+        "compiler/rustc_middle/src/traits/select.rs",
+        "compiler/rustc_middle/src/ty/layout.rs",
+        "compiler/rustc_middle/src/ty/pattern.rs",
+        "compiler/rustc_middle/src/ty/relate.rs",
+        "compiler/rustc_mir_transform/src/validate.rs",
+        "compiler/rustc_monomorphize/src/collector.rs",
+        "compiler/rustc_parse/src/parser/token_type.rs",
+        "compiler/rustc_public/src/unstable/convert/stable/ty.rs",
+        "compiler/rustc_resolve/src/late.rs",
+        "compiler/rustc_span/src/symbol.rs",
+        "compiler/rustc_symbol_mangling/src/v0.rs",
+        "compiler/rustc_trait_selection/src/traits/select/confirmation.rs",
+        "compiler/rustc_trait_selection/src/traits/select/mod.rs",
+        "compiler/rustc_trait_selection/src/traits/wf.rs",
+        "compiler/rustc_ty_utils/src/layout.rs",
+        "compiler/rustc_type_ir/src/pattern.rs",
+        "compiler/rustc_type_ir/src/walk.rs",
+        "library/core/src/lib.rs",
+        "library/core/src/pat.rs",
+        "src/tools/clippy/clippy_utils/src/hir_utils.rs",
+        "src/tools/miri/tests/pass/pattern-types.rs",
+        "src/tools/rustfmt/src/types.rs",
+        "tests/ui/type/pattern_types/bad_pat.rs",
+        "tests/ui/type/pattern_types/bad_pat.stderr",
+        "tests/ui/type/pattern_types/non_null.rs",
+        "tests/ui/type/pattern_types/non_null.stderr",
+        "tests/ui/type/pattern_types/or_patterns.stderr",
+        "tests/ui/type/pattern_types/range_patterns.stderr",
+        "tests/ui/type/pattern_types/unsize.rs"
+      ]
+    },
+    {
+      "sha": "664e3b0741a19be1aedc58870cf2631a0b691403",
+      "message": "Rollup merge of #141445 - yotamofek:pr/library/from-iter-char-string, r\u003dthe8472,joshtriplett\n\nAdd `FromIterator` impls for `ascii::Char`s to `String`s\n\nWanted to `collect` ascii chars into a `String` while working on #141369 , and was surprised these impls don\u0027t exist. Seems to me to be simply oversight.\n\nBTW, I only added `impl FromIterator\u003cascii::Char\u003e for Cow\u003c\u0027_, str\u003e`, without a corresponding `FromIterator\u003c\u0026Char\u003e` impl, because there\u0027s no existing impl for `FromIterator\u003c\u0026char\u003e`, but that might be oversight too.\n\ncc #110998",
+      "modifiedFiles": [
+        "library/alloc/src/string.rs",
+        "tests/ui/suggestions/semi-suggestion-when-stmt-and-expr-span-equal.stderr"
+      ]
+    },
+    {
+      "sha": "0d7813d9a227efc1e5fee4716615b4c417dafcbe",
+      "message": "Auto merge of #147954 - weihanglo:update-cargo, r\u003dweihanglo\n\nUpdate cargo submodule\n\n7 commits in 367fd9f213750cd40317803dd0a5a3ce3f0c676d..344c4567c634a25837e3c3476aac08af84cf9203\n2025-10-15 15:01:32 +0000 to 2025-10-21 21:29:43 +0000\n- refactor: Centralize CONTEXT style (rust-lang/cargo#16135)\n- chore(triagebot): `A-json-output` for machine_message.rs (rust-lang/cargo#16133)\n- refactor: JSON message with less allocations (rust-lang/cargo#16130)\n- More warning conversions (rust-lang/cargo#16126)\n- fix(check): Fix suggested command for bin package (rust-lang/cargo#16127)\n- fix(script): Remove name sanitiztion outside what is strictly required (rust-lang/cargo#16120)\n- refactor: Centralize some more styling (rust-lang/cargo#16124)\n\nr? ghost",
+      "modifiedFiles": [
+        "src/tools/cargo"
+      ]
+    },
+    {
+      "sha": "38e8066575cbd7160e43b802aba99e88cb8464cc",
+      "message": "add UnsatisfiedPredicate type alias",
+      "modifiedFiles": [
+        "compiler/rustc_hir_typeck/src/fn_ctxt/suggestions.rs",
+        "compiler/rustc_hir_typeck/src/method/mod.rs",
+        "compiler/rustc_hir_typeck/src/method/probe.rs",
+        "compiler/rustc_hir_typeck/src/method/suggest.rs"
+      ]
+    },
+    {
+      "sha": "8b7f9dcdacb04fae88ea8dee70b6d22f0b9e1de9",
+      "message": "Update cargo submodule",
+      "modifiedFiles": [
+        "src/tools/cargo"
+      ]
+    },
+    {
+      "sha": "0156eaf0d1598df69d95ed7335b9cbcb0a97cbe9",
+      "message": "Introduce indexvec macro.",
+      "modifiedFiles": [
+        "compiler/rustc_index/src/lib.rs",
+        "compiler/rustc_mir_transform/src/coroutine.rs",
+        "compiler/rustc_mir_transform/src/elaborate_box_derefs.rs"
+      ]
+    },
+    {
+      "sha": "51275e82c9db513e5ec8c10b4e08eaae110ffdb2",
+      "message": "Elaborate ShallowInitBox too.",
+      "modifiedFiles": [
+        "compiler/rustc_codegen_cranelift/src/base.rs",
+        "compiler/rustc_codegen_ssa/src/mir/rvalue.rs",
+        "compiler/rustc_mir_transform/src/dataflow_const_prop.rs",
+        "compiler/rustc_mir_transform/src/elaborate_box_derefs.rs",
+        "compiler/rustc_mir_transform/src/gvn.rs",
+        "compiler/rustc_mir_transform/src/validate.rs",
+        "tests/mir-opt/box_expr.rs",
+        "tests/mir-opt/const_prop/boxes.main.GVN.panic-abort.diff",
+        "tests/mir-opt/const_prop/boxes.main.GVN.panic-unwind.diff",
+        "tests/mir-opt/dont_reset_cast_kind_without_updating_operand.test.GVN.32bit.panic-abort.diff",
+        "tests/mir-opt/dont_reset_cast_kind_without_updating_operand.test.GVN.64bit.panic-abort.diff"
+      ]
+    },
+    {
+      "sha": "92d5196d7a61c01a815e9309be10a09e0e4fbaf1",
+      "message": "code refactoring on report_no_match_method_error",
+      "modifiedFiles": [
+        "compiler/rustc_hir_typeck/src/method/suggest.rs"
+      ]
+    },
+    {
+      "sha": "96fe3c31c2ec385f3d3263346bcdde3d118cdaf6",
+      "message": "Auto merge of #147022 - Zalathar:no-args, r\u003dwesleywiser\n\nRemove current code for embedding command-line args in PDB\n\nThe compiler currently has code that will obtain a list of quoted command-line arguments, and pass it through to TargetMachine creation, so that the command-line args can be embedded in PDB output.\n\nThis PR removes that code, due to subtle concerns that might not have been apparent when it was originally added.\n\n---\n\nThose concerns include:\n- The entire command-line quoting process is repeated every time a target-machine-factory is created. In incremental builds this typically occurs 500+ times, instead of happening only once. The repeated quoting constitutes a large chunk of instructions executed in the `large-workspace` benchmark.\n  - See https://github.com/rust-lang/rust/pull/146804#issuecomment-3317322958 for an example of the perf consequences of skipping all that work.\n  - This overhead occurs even when building for targets or configurations that don\u0027t emit PDB output.\n- Command-line arguments are obtained in a way that completely bypasses the query system, which is a problem for the integrity of incremental compilation.\n  - Fixing this alone is likely to inhibit incremental rebuilds for most or all CGUs, even in builds that don\u0027t emit PDB output.\n- Command-line arguments and the executable path are obtained in a way that completely bypasses the compiler\u0027s path-remapping system, which is a reproducibility hazard.\n  - https://github.com/rust-lang/rust/issues/128842\n\n---\n\nRelevant PRs:\n- https://github.com/rust-lang/rust/pull/113492\n- https://github.com/rust-lang/rust/pull/130446\n- https://github.com/rust-lang/rust/pull/131805\n- https://github.com/rust-lang/rust/pull/146700\n- https://github.com/rust-lang/rust/pull/146973\n\nZulip thread:\n- https://rust-lang.zulipchat.com/#narrow/channel/131828-t-compiler/topic/Some.20PDB.20info.20bypasses.20the.20query.20system.20and.20path.20remapping/with/541432211\n\n---\n\nAccording to rust-lang/rust#96475, one of the big motivations for embedding the command-line arguments was to enable tools like Live++. [It appears that Live++ doesn\u0027t actually support Rust yet](https://rust-lang.zulipchat.com/#narrow/channel/131828-t-compiler/topic/embeded.20compiler.20args.20and.20--remap-path-prefix/near/523800010), so it\u0027s possible that there aren\u0027t any existing workflows for this removal to break.\n\nIn the future, there could be a case for reintroducing some or all of this functionality, guarded behind an opt-in flag so that it doesn\u0027t cause problems for other users. But as it stands, the current implementation puts a disproportionate burden on other users and on compiler maintainers.",
+      "modifiedFiles": [
+        "compiler/rustc_codegen_llvm/src/back/command_line_args.rs",
+        "compiler/rustc_codegen_llvm/src/back/command_line_args/tests.rs",
+        "compiler/rustc_codegen_llvm/src/back/mod.rs",
+        "compiler/rustc_codegen_llvm/src/back/owned_target_machine.rs",
+        "compiler/rustc_codegen_llvm/src/back/write.rs",
+        "compiler/rustc_codegen_llvm/src/llvm/ffi.rs",
+        "compiler/rustc_codegen_ssa/src/back/write.rs",
+        "compiler/rustc_driver_impl/src/lib.rs",
+        "compiler/rustc_interface/src/interface.rs",
+        "compiler/rustc_interface/src/tests.rs",
+        "compiler/rustc_llvm/llvm-wrapper/PassWrapper.cpp",
+        "compiler/rustc_session/src/session.rs",
+        "src/librustdoc/config.rs",
+        "src/librustdoc/core.rs",
+        "src/librustdoc/doctest.rs",
+        "tests/run-make/pdb-buildinfo-cl-cmd/filecheck.txt",
+        "tests/run-make/pdb-buildinfo-cl-cmd/main.rs",
+        "tests/run-make/pdb-buildinfo-cl-cmd/rmake.rs",
+        "tests/ui-fulldeps/run-compiler-twice.rs"
+      ]
+    },
+    {
+      "sha": "7e2b76e1b6996990e7e0abdcc877312de4e244df",
+      "message": "motor: Use UTF-8 guarantee for OS strings",
+      "modifiedFiles": [
+        "library/std/src/os/motor/ffi.rs"
+      ]
+    },
+    {
+      "sha": "1e8054669cba8341e3725dde1ed260ec82b3fdc0",
+      "message": "format",
+      "modifiedFiles": [
+        "compiler/rustc_llvm/llvm-wrapper/PassWrapper.cpp"
+      ]
+    },
+    {
+      "sha": "206ffcc786cf46c91fdcca101c7d2f3d195503aa",
+      "message": "os_str: Create UTF-8 platform encoding",
+      "modifiedFiles": [
+        "library/std/src/sys/os_str/mod.rs",
+        "library/std/src/sys/os_str/utf8.rs"
+      ]
+    },
+    {
+      "sha": "875cc36b17b45193fed023ce21fc7ec99535f105",
+      "message": "actually compile",
+      "modifiedFiles": [
+        "compiler/rustc_llvm/llvm-wrapper/PassWrapper.cpp"
+      ]
+    },
+    {
+      "sha": "f38839a87488db4b50490e7dd8a2c7ad7d87394d",
+      "message": "format",
+      "modifiedFiles": [
+        "compiler/rustc_llvm/llvm-wrapper/PassWrapper.cpp"
+      ]
+    },
+    {
+      "sha": "37ec98f5d33c0876a9ffa5ee17dc0895659efe37",
+      "message": "Auto merge of #146725 - lcnr:eager-instantiate-binder, r\u003dBoxyUwU\n\n`-Znext-solver` instantiate predicate binder without recanonicalizing goal\n\nThis strengthens the leak check to match the old trait solver. The new trait solver now also instantiates higher ranked goals in the same scope as candidate selection, so the leak check in each candidate detects placeholder errors involving this higher ranked goal.\n\nE.g. let\u0027s look at tests/ui/higher-ranked/leak-check/leak-check-in-selection-2.rs\n```rust\ntrait Trait\u003cT, U\u003e {}\nimpl\u003c\u0027a\u003e Trait\u003c\u0026\u0027a str, \u0026\u0027a str\u003e for () {}\nimpl\u003c\u0027a\u003e Trait\u003c\u0026\u0027a str, String\u003e for () {}\nfn impls_trait\u003cT: for\u003c\u0027a\u003e Trait\u003c\u0026\u0027a str, U\u003e, U\u003e() {}\n\nfn main() {\n    impls_trait::\u003c(), _\u003e();\n}\n```\nHere proving `(): for\u003c\u0027a\u003e Trait\u003c\u0026\u0027a str, ?u\u003e` via `impl\u003c\u0027a\u003e Trait\u003c\u0026\u0027a str, \u0026\u0027a str\u003e for ()` equates `?u` with `\u0026\u0027!a str` which results in a leak check error as `?u` cannot name `\u0027a`. If this leak check error happens while considering candidates we drop the first impl and infer `?u` to `String`. If not, this remains ambiguous.\n\nThis behavior is a bit iffy, see the FCP proposal in rust-lang/rust#119820 for more details on why this current behavior is somewhat undesirable. However, considering placeholders from higher-ranked goals for candidate selection does allow more code to compile and a lot of the code *feels like it should compile*. **This caused us to revert the change of rust-lang/rust#119820 in rust-lang/rust#127568.**\n\nI originally expected that we can avoid breakage with the new solver differently here, e.g. by considering OR-region constraints. However, doing so is a significant change and I don\u0027t have a great idea for how that should work. Matching the old solver behavior for now should not make this cleaner approach any more difficult in the future, so let\u0027s just go with what actually allows us to stabilize the new solver for now.\n\nThis PR changing the new solver to match the behavior of the old one wrt the leak check. As the new solver is already used by default in coherence, this allows more code to compile, see `tests/ui/higher-ranked/leak-check/leak-check-in-selection-7-coherence.rs`:\n```rust\nstruct W\u003cT, U\u003e(T, U);\n\ntrait Trait\u003cT\u003e {}\n// using this impl results in a higher-ranked region error.\nimpl\u003c\u0027a\u003e Trait\u003cW\u003c\u0026\u0027a str, \u0026\u0027a str\u003e\u003e for () {}\nimpl\u003c\u0027a\u003e Trait\u003cW\u003c\u0026\u0027a str, String\u003e\u003e for () {}\n\ntrait NotString {}\nimpl NotString for \u0026str {}\nimpl NotString for u32 {}\n\ntrait Overlap\u003cU\u003e {}\nimpl\u003cT: for\u003c\u0027a\u003e Trait\u003cW\u003c\u0026\u0027a str, U\u003e\u003e, U\u003e Overlap\u003cU\u003e for T {}\nimpl\u003cU: NotString\u003e Overlap\u003cU\u003e for () {}\n\nfn main() {}\n```\n\nThis behavior is quite arbitrary and not something I expect users to rely on in practice, however, it should still go through an FCP imo.\n\nr? `@BoxyUwU` originally implemented by `@compiler-errors` in https://github.com/rust-lang/rust/pull/136997. Closes https://github.com/rust-lang/trait-system-refactor-initiative/issues/120.",
+      "modifiedFiles": [
+        "compiler/rustc_hir_typeck/src/fn_ctxt/inspect_obligations.rs",
+        "compiler/rustc_next_trait_solver/src/solve/eval_ctxt/mod.rs",
+        "compiler/rustc_trait_selection/src/solve/fulfill/derive_errors.rs",
+        "compiler/rustc_trait_selection/src/traits/coherence.rs",
+        "compiler/rustc_type_ir/src/solve/mod.rs",
+        "tests/ui/coherence/coherence-overlap-unnormalizable-projection-1.stderr",
+        "tests/ui/const-generics/generic_const_exprs/negative-coherence-ice-140609.rs",
+        "tests/ui/higher-ranked/leak-check/candidate-from-env-universe-err-1.next.stderr",
+        "tests/ui/higher-ranked/leak-check/candidate-from-env-universe-err-1.rs",
+        "tests/ui/higher-ranked/leak-check/candidate-from-env-universe-err-2.next.stderr",
+        "tests/ui/higher-ranked/leak-check/candidate-from-env-universe-err-2.rs",
+        "tests/ui/higher-ranked/leak-check/candidate-from-env-universe-err-project.current.stderr",
+        "tests/ui/higher-ranked/leak-check/candidate-from-env-universe-err-project.next.stderr",
+        "tests/ui/higher-ranked/leak-check/candidate-from-env-universe-err-project.rs",
+        "tests/ui/higher-ranked/leak-check/leak-check-in-selection-2.next.stderr",
+        "tests/ui/higher-ranked/leak-check/leak-check-in-selection-2.rs",
+        "tests/ui/higher-ranked/leak-check/leak-check-in-selection-3.next.stderr",
+        "tests/ui/higher-ranked/leak-check/leak-check-in-selection-3.old.stderr",
+        "tests/ui/higher-ranked/leak-check/leak-check-in-selection-3.rs",
+        "tests/ui/higher-ranked/leak-check/leak-check-in-selection-6-ambig-unify.next.stderr",
+        "tests/ui/higher-ranked/leak-check/leak-check-in-selection-6-ambig-unify.old.stderr",
+        "tests/ui/higher-ranked/leak-check/leak-check-in-selection-6-ambig-unify.rs",
+        "tests/ui/higher-ranked/leak-check/leak-check-in-selection-7-coherence.rs"
+      ]
+    },
+    {
+      "sha": "fc7c4be59a276584b9ed0a562e677b3826170088",
+      "message": "PassWrapper: Access GlobalValueSummaryInfo::SummaryList via getter for LLVM 22+\n\nhttps://github.com/llvm/llvm-project/pull/164355 makes SummaryList private and provides a getter method.\n\n@rustbot label llvm-main",
+      "modifiedFiles": [
+        "compiler/rustc_llvm/llvm-wrapper/PassWrapper.cpp"
+      ]
+    },
+    {
+      "sha": "695857bc3f72ec4f59c79f323460fe488c38a53f",
+      "message": "Auto merge of #147943 - matthiaskrgr:rollup-rd0gb6y, r\u003dmatthiaskrgr\n\nRollup of 3 pull requests\n\nSuccessful merges:\n\n - rust-lang/rust#147929 (compiletest: Don\u0027t set `TARGET` for non run-make tests)\n - rust-lang/rust#147930 (motor: Add new `set_times` stubs)\n - rust-lang/rust#147934 (compiletest: More directive handling tweaks)\n\nr? `@ghost`\n`@rustbot` modify labels: rollup",
+      "modifiedFiles": [
+        "library/std/src/sys/fs/motor.rs",
+        "src/tools/compiletest/src/common.rs",
+        "src/tools/compiletest/src/directives.rs",
+        "src/tools/compiletest/src/directives/cfg.rs",
+        "src/tools/compiletest/src/directives/directive_names.rs",
+        "src/tools/compiletest/src/directives/tests.rs",
+        "src/tools/compiletest/src/lib.rs",
+        "tests/assembly-llvm/x86-return-float.rs",
+        "tests/ui/abi/homogenous-floats-target-feature-mixup.rs",
+        "tests/ui/target-feature/target-feature-detection.rs"
+      ]
+    },
+    {
+      "sha": "8baad706b18367dce79ad1a32b8458da99852556",
+      "message": "Rollup merge of #147934 - Zalathar:directive, r\u003djieyouxu\n\ncompiletest: More directive handling tweaks\n\n- Follow-up to rust-lang/rust#147903.\n\n---\n\nThese are some more preparatory changes that were extracted from a larger overhaul of directive handling that I\u0027m still working on.\n\n---\n\nThe revision check was introduced by rust-lang/rust#61778, and later modified by rust-lang/rust#113603. It doesn\u0027t appear to be doing anything particularly load-bearing (since a bogus mode seems to cause a panic later anyway), and getting rid of it avoids the need to pass the current test revision to directive-handling code.\n\n- rust-lang/rust#61778\n- rust-lang/rust#113603\n\nr? jieyouxu",
+      "modifiedFiles": [
+        "src/tools/compiletest/src/directives.rs"
+      ]
+    },
+    {
+      "sha": "e2110d8463fd767259e91061643512698347e76a",
+      "message": "Rollup merge of #147930 - thaliaarchi:motor-set-times, r\u003djoboet\n\nmotor: Add new `set_times` stubs\n\nMotor OS `std` support (https://github.com/rust-lang/rust/pull/147000) and `set_times`/`set_times_nofollow` (https://github.com/rust-lang/rust/pull/147468) were merged around the same time, so Motor OS is missing this API and currently fails to build.\n\ncc `@lasiotus`",
+      "modifiedFiles": [
+        "library/std/src/sys/fs/motor.rs"
+      ]
+    },
+    {
+      "sha": "96710202330bc89f84f8275b32c27684cfa1c833",
+      "message": "Rollup merge of #147929 - Zalathar:target, r\u003djieyouxu\n\ncompiletest: Don\u0027t set `TARGET` for non run-make tests\n\nThere are a few tests that were using `TARGET` to quietly do nothing on `i586` targets, but it\u0027s cleaner to just add support for `//@ ignore-i586` instead.\n\nThis lets us get rid of an unsafe `env::set_var` in compiletest, which really should have been setting the environment variable on individual build/run subprocess commands anyway.\n\n- The original code and tests were introduced way back in rust-lang/rust#39068",
+      "modifiedFiles": [
+        "src/tools/compiletest/src/common.rs",
+        "src/tools/compiletest/src/directives/cfg.rs",
+        "src/tools/compiletest/src/directives/directive_names.rs",
+        "src/tools/compiletest/src/directives/tests.rs",
+        "src/tools/compiletest/src/lib.rs",
+        "tests/assembly-llvm/x86-return-float.rs",
+        "tests/ui/abi/homogenous-floats-target-feature-mixup.rs",
+        "tests/ui/target-feature/target-feature-detection.rs"
+      ]
+    },
+    {
+      "sha": "869fb4679f5135cc0beb078294ef5e91e4f69514",
+      "message": "Auto merge of #147723 - ChayimFriedman2:ns-types, r\u003dBoxyUwU\n\nMake `UnevaluatedConst` have a specific ID type in the new solver\n\nFor the benefit of rust-analyzer.\n\nr? types",
+      "modifiedFiles": [
+        "compiler/rustc_middle/src/ty/context.rs",
+        "compiler/rustc_next_trait_solver/src/solve/assembly/structural_traits.rs",
+        "compiler/rustc_next_trait_solver/src/solve/mod.rs",
+        "compiler/rustc_next_trait_solver/src/solve/normalizes_to/anon_const.rs",
+        "compiler/rustc_type_ir/src/const_kind.rs",
+        "compiler/rustc_type_ir/src/interner.rs",
+        "compiler/rustc_type_ir/src/predicate.rs",
+        "compiler/rustc_type_ir/src/relate.rs"
+      ]
+    },
+    {
+      "sha": "19abae728ebd844649623f956bf099e0e95633f9",
+      "message": "Auto merge of #147922 - Kivooeo:dead-link, r\u003dpetrochenkov\n\nRemove broken link\n\nIdk if this link is any important but it does not work anymore so...",
+      "modifiedFiles": [
+        "compiler/rustc_codegen_gcc/src/lib.rs"
+      ]
+    },
+    {
+      "sha": "375899c940240e0bb7b8ff94fe65e01da8c86526",
+      "message": "Allow unsizing pattern types with pointer base",
+      "modifiedFiles": [
+        "compiler/rustc_codegen_cranelift/src/unsize.rs",
+        "compiler/rustc_codegen_cranelift/src/value_and_place.rs",
+        "compiler/rustc_codegen_ssa/src/base.rs",
+        "compiler/rustc_const_eval/src/interpret/cast.rs",
+        "compiler/rustc_hir_analysis/messages.ftl",
+        "compiler/rustc_hir_analysis/src/coherence/builtin.rs",
+        "compiler/rustc_hir_analysis/src/coherence/orphan.rs",
+        "compiler/rustc_hir_analysis/src/errors.rs",
+        "compiler/rustc_middle/src/traits/select.rs",
+        "compiler/rustc_mir_transform/src/validate.rs",
+        "compiler/rustc_monomorphize/src/collector.rs",
+        "compiler/rustc_trait_selection/src/traits/select/confirmation.rs",
+        "compiler/rustc_trait_selection/src/traits/select/mod.rs",
+        "library/core/src/lib.rs",
+        "library/core/src/pat.rs",
+        "src/tools/miri/tests/pass/pattern-types.rs",
+        "tests/ui/type/pattern_types/unsize.rs"
+      ]
+    },
+    {
+      "sha": "ad4bd083f39ede28c554251c4ef69093659ca7d3",
+      "message": "Add not-null pointer patterns to pattern types",
+      "modifiedFiles": [
+        "compiler/rustc_ast/src/ast.rs",
+        "compiler/rustc_ast_lowering/src/pat.rs",
+        "compiler/rustc_ast_pretty/src/pprust/state.rs",
+        "compiler/rustc_builtin_macros/src/pattern_type.rs",
+        "compiler/rustc_const_eval/src/interpret/validity.rs",
+        "compiler/rustc_hir/src/hir.rs",
+        "compiler/rustc_hir/src/intravisit.rs",
+        "compiler/rustc_hir_analysis/src/hir_ty_lowering/mod.rs",
+        "compiler/rustc_hir_analysis/src/variance/constraints.rs",
+        "compiler/rustc_hir_pretty/src/lib.rs",
+        "compiler/rustc_lint/src/types.rs",
+        "compiler/rustc_middle/src/ty/pattern.rs",
+        "compiler/rustc_middle/src/ty/relate.rs",
+        "compiler/rustc_parse/src/parser/token_type.rs",
+        "compiler/rustc_public/src/unstable/convert/stable/ty.rs",
+        "compiler/rustc_resolve/src/late.rs",
+        "compiler/rustc_span/src/symbol.rs",
+        "compiler/rustc_symbol_mangling/src/v0.rs",
+        "compiler/rustc_trait_selection/src/traits/wf.rs",
+        "compiler/rustc_ty_utils/src/layout.rs",
+        "compiler/rustc_type_ir/src/pattern.rs",
+        "compiler/rustc_type_ir/src/walk.rs",
+        "src/tools/clippy/clippy_utils/src/hir_utils.rs",
+        "src/tools/rustfmt/src/types.rs",
+        "tests/ui/type/pattern_types/bad_pat.rs",
+        "tests/ui/type/pattern_types/bad_pat.stderr",
+        "tests/ui/type/pattern_types/non_null.rs",
+        "tests/ui/type/pattern_types/non_null.stderr"
+      ]
+    },
+    {
+      "sha": "d9f22d289c741056d46c257049f4ab565b83b300",
+      "message": "Pattern types have their base type as a field",
+      "modifiedFiles": [
+        "compiler/rustc_middle/src/ty/layout.rs",
+        "compiler/rustc_ty_utils/src/layout.rs",
+        "tests/ui/type/pattern_types/or_patterns.stderr",
+        "tests/ui/type/pattern_types/range_patterns.stderr"
+      ]
+    },
+    {
+      "sha": "cf8346dd4ccb3514c8b48c6890297e16abafd814",
+      "message": "Auto merge of #147476 - ehuss:cold-attribute-test, r\u003dchenyukang\n\nAdd a test for the cold attribute\n\nThis adds a test for the cold attribute to verify that it actually does something, and that it applies correctly in all the positions it is expected to work.",
+      "modifiedFiles": [
+        "tests/codegen-llvm/cold-attribute.rs"
+      ]
+    },
+    {
+      "sha": "860a84c04afb53e2c32e566c7726a377e1f2e9ab",
+      "message": "Remove bad-directive detection that has been subsumed by the allowlist\n\nNow that all directive names are checked against a list of known-good names,\nthese ad-hoc checks can never fire.",
+      "modifiedFiles": [
+        "src/tools/compiletest/src/directives.rs"
+      ]
+    },
+    {
+      "sha": "891b8475bd31da09f78f08123347514fbd0491ff",
+      "message": "Remove a confused use of `revision` from `update_pass_mode`",
+      "modifiedFiles": [
+        "src/tools/compiletest/src/directives.rs"
+      ]
+    },
+    {
+      "sha": "e821cb8dd94a01b8ad31d5d6d4a4b1a77a50a471",
+      "message": "Auto merge of #147928 - Zalathar:rollup-2lmpajs, r\u003dZalathar\n\nRollup of 5 pull requests\n\nSuccessful merges:\n\n - rust-lang/rust#147125 (move `once` module out of `poison`)\n - rust-lang/rust#147800 (Add `Cacheable` trait alias in `rustc_public_bridge`)\n - rust-lang/rust#147860 (rustdoc search: relax rules for identifiers)\n - rust-lang/rust#147916 (Update books)\n - rust-lang/rust#147924 (rustc-dev-guide subtree update)\n\nr? `@ghost`\n`@rustbot` modify labels: rollup",
+      "modifiedFiles": [
+        "compiler/rustc_public_bridge/src/lib.rs",
+        "library/std/src/sync/lazy_lock.rs",
+        "library/std/src/sync/mod.rs",
+        "library/std/src/sync/once.rs",
+        "library/std/src/sync/poison.rs",
+        "library/std/src/sys/sync/once/futex.rs",
+        "library/std/src/sys/sync/once/no_threads.rs",
+        "library/std/src/sys/sync/once/queue.rs",
+        "src/doc/book",
+        "src/doc/nomicon",
+        "src/doc/reference",
+        "src/doc/rustc-dev-guide/src/backend/debugging.md",
+        "src/doc/rustc-dev-guide/src/building/how-to-build-and-run.md",
+        "src/doc/rustc-dev-guide/src/building/suggested.md",
+        "src/doc/rustc-dev-guide/src/compiler-team.md",
+        "src/doc/rustc-dev-guide/src/contributing.md",
+        "src/doc/rustc-dev-guide/src/getting-started.md",
+        "src/doc/rustc-dev-guide/src/tests/codegen-backend-tests/cg_gcc.md",
+        "src/doc/rustc-dev-guide/src/tests/running.md",
+        "src/librustdoc/html/static/js/search.js",
+        "tests/rustdoc-js-std/parser-errors.js",
+        "tests/rustdoc-js-std/search-by-number.js"
+      ]
+    },
+    {
+      "sha": "b39fb327cbd2fb6edf68ea8fb0ba1494ac614f3d",
+      "message": "motor: Add new set_times stubs",
+      "modifiedFiles": [
+        "library/std/src/sys/fs/motor.rs"
+      ]
+    },
+    {
+      "sha": "563302ea9a279a466a7c15dbe99350efeb153a82",
+      "message": "os_str: Make platform docs more consistent\n\n- Port `Buf::as_slice`/`as_mut_slice` wording from wtf8 to bytes\n- Make `Buf::extend_from_slice_unchecked` docs more platform-independent\n- wtf8 `Buf` was missing `#[repr(transparent)]`",
+      "modifiedFiles": [
+        "library/std/src/sys/os_str/bytes.rs",
+        "library/std/src/sys/os_str/wtf8.rs"
+      ]
+    },
+    {
+      "sha": "a58115426e97349b2583211c410e916d8e932034",
+      "message": "Don\u0027t set `TARGET` for non run-make tests\n\nIf something like this is needed again in the future, please set environment\nvariables for the build and run subprocesses, instead of setting them on the\ncompiletest process.",
+      "modifiedFiles": [
+        "src/tools/compiletest/src/lib.rs"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "rust",
+      "ownerLogin": "ntangledbit",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "MerlinDevz",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "devtunis",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "meomeobeobeo",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "estxhc-lab",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "jesseschalken",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "bal-e",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "RustyCoderX",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "alabhyajindal",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "akwong77",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "miradore-xyz",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "Iyosinator",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "SNathani",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "vastonus",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "davdevtokaekoen",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "Sailor-wu",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "OxJustCode",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "pirama-arumuga-nainar",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "maplethecolor",
+      "commitCount": 100
+    },
+    {
+      "name": "rust",
+      "ownerLogin": "sigurd4",
+      "commitCount": 100
+    }
+  ]
+}

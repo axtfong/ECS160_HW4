@@ -1,0 +1,507 @@
+{
+  "name": "tesseract",
+  "ownerLogin": "tesseract-ocr",
+  "language": "C++",
+  "commits": [
+    {
+      "sha": "c1d663761b93d2d7d3aae6b7d47dc07cfa6d84e1",
+      "message": "Merge pull request #4467 from stweil/update_cmake_ci\n\nCI: Remove unneeded export statements from cmake workflow for macOS",
+      "modifiedFiles": [
+        ".github/workflows/cmake.yml"
+      ]
+    },
+    {
+      "sha": "12120750eee91ec3dbb89df3bd18495220b852c9",
+      "message": "CI: Remove unneeded export statements from cmake workflow for macOS\n\nThey cause warnings when Homebrew was installed in /opt/homebrew\nand /usr/local/opt does not exist.\n\nPKG_CONFIG_PATH is defined in CMakeLists.txt.\n\nSigned-off-by: Stefan Weil \u003csw@weilnetz.de\u003e",
+      "modifiedFiles": [
+        ".github/workflows/cmake.yml"
+      ]
+    },
+    {
+      "sha": "cb8b1457421b1c11848b8acc0d2db65273d01002",
+      "message": "GA: macos: install curl and icu4c only if there are not installed",
+      "modifiedFiles": [
+        ".github/workflows/autotools-macos.yml",
+        ".github/workflows/cmake.yml",
+        ".github/workflows/unittest-macos.yml"
+      ]
+    },
+    {
+      "sha": "9aa699c051d618a19637d06d5b35e2a03f95a1a0",
+      "message": "Update bug issue template for OS options\n\nAdded macOS 26 Tahoe and macOS 15 Sequoia options. Removed macOS 12 Monterey and macOS 11 Big Sur options.",
+      "modifiedFiles": [
+        ".github/ISSUE_TEMPLATE/issue-bug.yml"
+      ]
+    },
+    {
+      "sha": "08012510e8547d9e08276c4c5d995c45e494da77",
+      "message": "Move version info to appropriate ALTO element",
+      "modifiedFiles": [
+        "src/api/altorenderer.cpp"
+      ]
+    },
+    {
+      "sha": "b1e1c249132703f6390bf5792ecb8d7c043be350",
+      "message": "reject.cpp: Remove unneeded  included header in disable-legacy mode",
+      "modifiedFiles": [
+        "src/ccmain/reject.cpp"
+      ]
+    },
+    {
+      "sha": "e15aba4c7c4193258b6381c94ee67f811d1413a3",
+      "message": "Clean up .mailmap",
+      "modifiedFiles": [
+        ".mailmap"
+      ]
+    },
+    {
+      "sha": "71ed79daedb36a552c5505f829944374af35a4fc",
+      "message": "chore: fix cyrillic typo",
+      "modifiedFiles": [
+        "doc/tesseract.1.asc"
+      ]
+    },
+    {
+      "sha": "76a452d9e794c86256c32e374c711beeb1e6788c",
+      "message": "chore: update checkout action",
+      "modifiedFiles": [
+        ".github/workflows/autotools-macos.yml",
+        ".github/workflows/autotools-openmp.yml",
+        ".github/workflows/autotools.yml",
+        ".github/workflows/cmake-win64.yml",
+        ".github/workflows/cmake.yml",
+        ".github/workflows/codeql-analysis.yml",
+        ".github/workflows/installer-for-windows.yml",
+        ".github/workflows/msys2.yml",
+        ".github/workflows/sw.yml",
+        ".github/workflows/unittest-disablelegacy.yml",
+        ".github/workflows/unittest-macos.yml",
+        ".github/workflows/unittest.yml",
+        ".github/workflows/vcpkg.yml"
+      ]
+    },
+    {
+      "sha": "17b4d9e595f38005fd607d8fd44fdef24487a81e",
+      "message": "Merge pull request #4452 from zdenop/improve_cmake\n\nCmake optimization with warp2",
+      "modifiedFiles": [
+        ".github/workflows/cmake-win64.yml",
+        ".github/workflows/cmake.yml",
+        "CMakeLists.txt",
+        "cmake/BuildOptimizations.cmake",
+        "cmake/SourceLists.cmake",
+        "src/classify/adaptmatch.cpp",
+        "src/training/CMakeLists.txt",
+        "src/viewer/scrollview.cpp",
+        "src/viewer/svutil.cpp",
+        "src/viewer/svutil.h"
+      ]
+    },
+    {
+      "sha": "6733a9ae87cbdd878a83e4a683f7b3d2fc41f973",
+      "message": "Update vcpkg.yml",
+      "modifiedFiles": [
+        ".github/workflows/vcpkg.yml"
+      ]
+    },
+    {
+      "sha": "6d3ef92d27fb9779f6d0b75564fb734a0789a717",
+      "message": " Fix cmake macos build: Change the macro definition from classify_enable_adaptive_matcher to CLASSIFY_ENABLE_ADAPTIVE_MATCHER_OVERRIDE to avoid conflicts with the BOOL_MEMBER parameter declaration in classify.cpp",
+      "modifiedFiles": [
+        "src/classify/adaptmatch.cpp"
+      ]
+    },
+    {
+      "sha": "196622dd055caf8134477f123d85868515cb2d54",
+      "message": "set kMaxMsgSize in svutil.h to fix macos build error: redefinition of \u0027kMaxMsgSize\u0027",
+      "modifiedFiles": [
+        "src/viewer/scrollview.cpp",
+        "src/viewer/svutil.cpp",
+        "src/viewer/svutil.h"
+      ]
+    },
+    {
+      "sha": "90333e43be053f2e236d77e6d306cbcb970c5cbf",
+      "message": "cmake: Don\u0027t use GLOB in CMake files - fixes #4442",
+      "modifiedFiles": [
+        "CMakeLists.txt",
+        "cmake/SourceLists.cmake"
+      ]
+    },
+    {
+      "sha": "fe5c522e8cfcaf7632832120c3c117a2b40e1966",
+      "message": "cmake: solve macos warning about installed ninja and icu4c",
+      "modifiedFiles": [
+        ".github/workflows/cmake.yml"
+      ]
+    },
+    {
+      "sha": "116aaa5c7e26cdd41dcd0d69d4765ac4979fc600",
+      "message": "cmake: build optimization",
+      "modifiedFiles": [
+        ".github/workflows/cmake-win64.yml",
+        ".github/workflows/cmake.yml",
+        "CMakeLists.txt",
+        "cmake/BuildOptimizations.cmake",
+        "src/training/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "d3e50cfb0674574dad8a8b0ac2117fd019b78b5c",
+      "message": "More signed/unsigned fixes\n\nSigned-off-by: Stefan Weil \u003csw@weilnetz.de\u003e",
+      "modifiedFiles": [
+        "unittest/paragraphs_test.cc"
+      ]
+    },
+    {
+      "sha": "5490081c8307ffdfa7645c4172d9b9f0a1464e0e",
+      "message": "Fix some signed / unsigned mismatches\n\nSigned-off-by: Stefan Weil \u003csw@weilnetz.de\u003e",
+      "modifiedFiles": [
+        "src/ccmain/osdetect.cpp",
+        "src/classify/shapetable.cpp",
+        "src/dict/dict.cpp"
+      ]
+    },
+    {
+      "sha": "7fca69070b279692ede55f1eb4d2cf3843c19aa0",
+      "message": "cmake: Set required PKG_CONFIG_PATH for builds with Homebrew on macOS\n\nSigned-off-by: Stefan Weil \u003csw@weilnetz.de\u003e",
+      "modifiedFiles": [
+        "CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "39b01350bb405f7bc1b0b244b46554651da9c065",
+      "message": "cmake: Fix include statement for allheaders.h\n\nLeptonica include files are included without a leptonica/ prefix.\n\nSigned-off-by: Stefan Weil \u003csw@weilnetz.de\u003e",
+      "modifiedFiles": [
+        "cmake/CheckFunctions.cmake"
+      ]
+    },
+    {
+      "sha": "6c845dca16862a086b61b6b29439068ddb9676e0",
+      "message": "cmake: Fix linker warning (duplicate libraries)\n\nLinker warnings on macOS:\n\n    [274/277] Linking CXX executable bin/lstmeval\n    ld: warning: ignoring duplicate libraries: \u0027-lpthread\u0027\n    [276/277] Linking CXX executable bin/lstmtraining\n    ld: warning: ignoring duplicate libraries: \u0027-lpthread\u0027\n    [277/277] Linking CXX executable bin/text2image\n\nSigned-off-by: Stefan Weil \u003csw@weilnetz.de\u003e",
+      "modifiedFiles": [
+        "src/training/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "d359d89c67d256dcc40de913caafce897665cd4f",
+      "message": "Simplify code for osdetect\n\nRemove the private static char pointers from osdetect.h.\n\nThis does not break the API because the removed pointers are no\nmember variables, and they could not be accessed because they\nwere private.\n\nAs all script names were used only once, there is also no need\nto have additional pointer constants, and using the names\ndirectly simplifies the code.\n\nSigned-off-by: Stefan Weil \u003csw@weilnetz.de\u003e",
+      "modifiedFiles": [
+        "include/tesseract/osdetect.h",
+        "src/ccmain/osdetect.cpp"
+      ]
+    },
+    {
+      "sha": "647da2967708d39e43bc956ab5d2a14fcf5d2de2",
+      "message": "Update cmake-win64.yml\n\nRun cmake-win64 GA if cmake relevant files are modified",
+      "modifiedFiles": [
+        ".github/workflows/cmake-win64.yml"
+      ]
+    },
+    {
+      "sha": "6edcba609f63817d0cff579f119eeba280898f0c",
+      "message": "Update cmake.yml\n\nRun cmake GA if cmake relevant files are modified",
+      "modifiedFiles": [
+        ".github/workflows/cmake.yml"
+      ]
+    },
+    {
+      "sha": "de095fc074e64586e47c68c37a6be66a38bd8c4b",
+      "message": "GA: replace windows-2019 with windows-latest",
+      "modifiedFiles": [
+        ".github/workflows/msys2.yml",
+        ".github/workflows/vcpkg.yml"
+      ]
+    },
+    {
+      "sha": "3b7c70e34dea179549ed3e995872e2e019eb8477",
+      "message": "Create new release 5.5.1\n\nSigned-off-by: Stefan Weil \u003csw@weilnetz.de\u003e",
+      "modifiedFiles": [
+        "VERSION",
+        "configure.ac"
+      ]
+    },
+    {
+      "sha": "d1dd5ed3589f68f616f6b789c2a5d0564e2f683c",
+      "message": "Use links to the git history and online release notes instead of local ChangeLog\n\nSigned-off-by: Stefan Weil \u003csw@weilnetz.de\u003e",
+      "modifiedFiles": [
+        "ChangeLog"
+      ]
+    },
+    {
+      "sha": "ade0dfaa8cc1b12341286aa91e11f8ab77a035ad",
+      "message": "Fix two compiler warnings in tesseract.cpp\n\nSigned-off-by: Stefan Weil \u003csw@weilnetz.de\u003e",
+      "modifiedFiles": [
+        "src/tesseract.cpp"
+      ]
+    },
+    {
+      "sha": "68caca6951b384ef5882e98b64198964a37af488",
+      "message": "Remove unused include statements for tprintf.h\n\nSigned-off-by: Stefan Weil \u003csw@weilnetz.de\u003e",
+      "modifiedFiles": [
+        "src/classify/protos.cpp",
+        "src/lstm/network.h",
+        "unittest/intsimdmatrix_test.cc",
+        "unittest/lstm_test.h",
+        "unittest/unicharcompress_test.cc"
+      ]
+    },
+    {
+      "sha": "2f3b37789112137ba9fbb823e7a9cf2964eacdff",
+      "message": "Convert ALTO XML ID generation to conditional code based on the current pge\n\nThis will ensure, validated ALTO XML output is generated while keeping IDs for the first page consistent as before.",
+      "modifiedFiles": [
+        "src/api/altorenderer.cpp"
+      ]
+    },
+    {
+      "sha": "4ed117a0a08d2b70f82afabdcdf7fb0e1f9dffca",
+      "message": "Fix alto xml duplicates IDs when multiple pages are present",
+      "modifiedFiles": [
+        "src/api/altorenderer.cpp"
+      ]
+    },
+    {
+      "sha": "4a39a4960776a2541c6e818052b029978bc9e191",
+      "message": "Restore non templated tprint() using va_args.",
+      "modifiedFiles": [
+        "src/ccutil/tprintf.h"
+      ]
+    },
+    {
+      "sha": "d6805c260850a64ea9ae79f65db61173823ea904",
+      "message": "Avoid error in pixSauvolaBinarizeTiled (issue #4390)\n\nDon\u0027t use Sauvola binarization if the image has a width or height\nwhich is too small. Use LeptonicaOtsu as a fallback in this case.\n\nSigned-off-by: Stefan Weil \u003csw@weilnetz.de\u003e",
+      "modifiedFiles": [
+        "src/ccmain/thresholder.cpp"
+      ]
+    },
+    {
+      "sha": "7474a0fdcf042000d5c986c9904c831656ace67e",
+      "message": "Fix function addAvailableLanguages (issue #4416)\n\nSigned-off-by: Stefan Weil \u003csw@weilnetz.de\u003e",
+      "modifiedFiles": [
+        "src/api/baseapi.cpp"
+      ]
+    },
+    {
+      "sha": "d39177e500df776709d7234abd2f5bae6bfacd16",
+      "message": "Merge pull request #4404 from EnodoGH/punct_stripped-fix\n\nFix invalid empty interval in punct_stripped() for all-punctuation words",
+      "modifiedFiles": [
+        "src/ccstruct/ratngs.cpp"
+      ]
+    },
+    {
+      "sha": "17e0c3bf2f2ae4a09415cca6f26b05dca9c4839e",
+      "message": "Fix invalid empty interval in punct_stripped() for all-punctuation words",
+      "modifiedFiles": [
+        "src/ccstruct/ratngs.cpp"
+      ]
+    },
+    {
+      "sha": "f96cb8d9cb6e7958ddaa52cbbb33792b5d111913",
+      "message": "GA: remove unsupported ubuntu version",
+      "modifiedFiles": [
+        ".github/workflows/autotools.yml",
+        ".github/workflows/cmake.yml"
+      ]
+    },
+    {
+      "sha": "3157ff0e741ea5c85e16fbd1c6edf20f30eccbd3",
+      "message": "Fix building elf_aux_info() support on OpenBSD/arm\n\nRemove the unnecessary use of the sys/elf.h header which breaks\nthe build.",
+      "modifiedFiles": [
+        "src/arch/simddetect.cpp"
+      ]
+    },
+    {
+      "sha": "a5fa1bdf7680782656a5f1508fc8bc2087f91dc9",
+      "message": "Merge pull request #4376 from brad0/bsd_elf_aux_info\n\nExtend elf_aux_info() support for RISC-V on FreeBSD and OpenBSD\r\n\r\nSigned-off-by: Stefan Weil \u003csw@weilnetz.de\u003e",
+      "modifiedFiles": [
+        "configure.ac",
+        "src/arch/simddetect.cpp"
+      ]
+    },
+    {
+      "sha": "92b2f37aa86233e0c1625a4c9034a3d8c1752c23",
+      "message": "Extend elf_aux_info() support for RISC-V",
+      "modifiedFiles": [
+        "configure.ac",
+        "src/arch/simddetect.cpp"
+      ]
+    },
+    {
+      "sha": "f657ec2213cc7349dcb9b5fb6c1cd036c1c74813",
+      "message": "cmake: allow unittest (windows \u0026 linux)",
+      "modifiedFiles": [
+        "CMakeLists.txt",
+        "unittest/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "770d9e1302541263640f285f7eca5d1d3af3da62",
+      "message": "Merge pull request #4378 from zdenop/fix_UT_main",
+      "modifiedFiles": [
+        "src/dict/dawg.h"
+      ]
+    },
+    {
+      "sha": "57769d93e73c9b4550e98c8e740a7ca2f1c59576",
+      "message": "use constexpr for kDawgMagicNumber",
+      "modifiedFiles": [
+        "src/dict/dawg.h"
+      ]
+    },
+    {
+      "sha": "08f531aabd569c5d44ffdee0b14f187a2b95fc1f",
+      "message": "Pulled down update for submodules",
+      "modifiedFiles": [
+        "test",
+        "unittest/third_party/googletest"
+      ]
+    },
+    {
+      "sha": "014b9d00930bae26eec380ae5a83d1a34ba49a83",
+      "message": "use ubuntu 24.04 LTS with g++14 instead of 20.04 with g++9",
+      "modifiedFiles": [
+        ".github/workflows/autotools-openmp.yml",
+        ".github/workflows/autotools.yml",
+        ".github/workflows/cmake.yml",
+        ".github/workflows/unittest-disablelegacy.yml",
+        ".github/workflows/unittest.yml"
+      ]
+    },
+    {
+      "sha": "13c966b747fdc9f335b0b0b889100d5aa68646a4",
+      "message": "Windows: workaround for mutex crash when building with VS 2022 17.10 or newer.",
+      "modifiedFiles": [
+        "CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "65e864bbbb87742bf1a463188b7cd9f8be5ec537",
+      "message": "mute pango warning about depreciation of pango_coverage_unref for pango\u003e\u003d1.50.4",
+      "modifiedFiles": [
+        "src/training/pango/pango_font_info.cpp"
+      ]
+    },
+    {
+      "sha": "dcb2ef91e852e8360ca73f2c9895d0b65e86d0c1",
+      "message": "Update README.md\n\nadd info about using egorpugin/tessdata tessdata_unittest",
+      "modifiedFiles": [
+        "unittest/README.md"
+      ]
+    },
+    {
+      "sha": "2a944fbe98ed4408a5f0fd5693c398a9cebaf6d4",
+      "message": "tprintf: pacify clang warning.",
+      "modifiedFiles": [
+        "src/ccutil/tprintf.h"
+      ]
+    },
+    {
+      "sha": "d95e9f7905cc9427d4d2d351e3ea696e98739004",
+      "message": "Add mandatory format argument to tpritnf().",
+      "modifiedFiles": [
+        "src/ccutil/tprintf.h"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "tesseract",
+      "ownerLogin": "epedroza40-hue",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "iamkeithli",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "qodana",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "infinity31415926535pi-oss",
+      "commitCount": 11
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "arinakiseleva-ru",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "yigityuzyil",
+      "commitCount": 13
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "KacperTZSTI",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "darylcamzworkwithme-cmd",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "sairamsharan",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "COMPU-GLOBALHYPERMEGANET",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "MiKurepoltt",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract-cx",
+      "ownerLogin": "Shay-da",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "rafaelaesteticistafabbri-hash",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "kikikilop153",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "mrkiak",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "apazaquispevictorjoel-star",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "danaehuilcan1-spec",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "xiaoliyad",
+      "commitCount": 9
+    },
+    {
+      "name": "AIRR-retrain",
+      "ownerLogin": "swaroopinamdar",
+      "commitCount": 9
+    },
+    {
+      "name": "tesseract",
+      "ownerLogin": "liyuan210",
+      "commitCount": 9
+    }
+  ]
+}

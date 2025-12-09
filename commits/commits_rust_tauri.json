@@ -1,0 +1,801 @@
+{
+  "name": "tauri",
+  "ownerLogin": "tauri-apps",
+  "language": "Rust",
+  "commits": [
+    {
+      "sha": "67c7418c0677de6a7dd32fd3291301a2aef352ef",
+      "message": "apply version updates (#14348)\n\nCo-authored-by: github-actions[bot] \u003c41898282+github-actions[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".changes/docsrs.md",
+        ".changes/macos-codesign-error-enum.md",
+        "Cargo.lock",
+        "crates/tauri-build/CHANGELOG.md",
+        "crates/tauri-build/Cargo.toml",
+        "crates/tauri-bundler/CHANGELOG.md",
+        "crates/tauri-bundler/Cargo.toml",
+        "crates/tauri-cli/CHANGELOG.md",
+        "crates/tauri-cli/Cargo.toml",
+        "crates/tauri-cli/config.schema.json",
+        "crates/tauri-cli/metadata-v2.json",
+        "crates/tauri-macos-sign/CHANGELOG.md",
+        "crates/tauri-macos-sign/Cargo.toml",
+        "crates/tauri-plugin/CHANGELOG.md",
+        "crates/tauri-plugin/Cargo.toml",
+        "crates/tauri-runtime-wry/CHANGELOG.md",
+        "crates/tauri-runtime-wry/Cargo.toml",
+        "crates/tauri-runtime/CHANGELOG.md",
+        "crates/tauri-runtime/Cargo.toml",
+        "crates/tauri-schema-generator/schemas/config.schema.json",
+        "crates/tauri/CHANGELOG.md",
+        "crates/tauri/Cargo.toml",
+        "packages/cli/CHANGELOG.md",
+        "packages/cli/package.json"
+      ]
+    },
+    {
+      "sha": "f59bf9d5392ffd209e26ce5259c26d1acc31c4ba",
+      "message": "chore: Add missing changefile for tauri-macos-sign (#14337)",
+      "modifiedFiles": [
+        ".changes/macos-codesign-error-enum.md"
+      ]
+    },
+    {
+      "sha": "4b6b8690ab886ebdf1307951cffbe03e31280baa",
+      "message": "chore: remove `--cfg docsrs` to fix docs.rs builds (#14347)",
+      "modifiedFiles": [
+        ".changes/docsrs.md",
+        ".github/CONTRIBUTING.md",
+        "crates/tauri-build/Cargo.toml",
+        "crates/tauri-plugin/Cargo.toml",
+        "crates/tauri-runtime-wry/Cargo.toml",
+        "crates/tauri-runtime/Cargo.toml",
+        "crates/tauri/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "cdc5594286ec40ed224ab94f6df4fd0a53dfbe83",
+      "message": "chore(deps): update dependency rollup to v4.52.5 (#14339)\n\nCo-authored-by: renovate[bot] \u003c29139614+renovate[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "packages/api/package.json",
+        "pnpm-lock.yaml"
+      ]
+    },
+    {
+      "sha": "a1c231ec297fc53dc28acb8d50e8d63b9d21c1fb",
+      "message": "chore(deps-dev): bump vite from 7.1.5 to 7.1.11 (#14336)\n\n* chore(deps-dev): bump vite from 7.1.5 to 7.1.11\n\nBumps [vite](https://github.com/vitejs/vite/tree/HEAD/packages/vite) from 7.1.5 to 7.1.11.\n- [Release notes](https://github.com/vitejs/vite/releases)\n- [Changelog](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md)\n- [Commits](https://github.com/vitejs/vite/commits/v7.1.11/packages/vite)\n\n---\nupdated-dependencies:\n- dependency-name: vite\n  dependency-version: 7.1.11\n  dependency-type: direct:development\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\n\n* Dedupe\n\n---------\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e\nCo-authored-by: Tony \u003clegendmastertony@gmail.com\u003e",
+      "modifiedFiles": [
+        "examples/api/package.json",
+        "pnpm-lock.yaml"
+      ]
+    },
+    {
+      "sha": "752c923002ba7752c89f2892dbcff95bdca02334",
+      "message": "chore: fix some typos (#14334)",
+      "modifiedFiles": [
+        ".scripts/ci/check-change-tags.js",
+        ".scripts/ci/check-license-header.js",
+        "Cargo.lock",
+        "crates/tauri-build/src/acl.rs",
+        "crates/tauri-build/src/lib.rs",
+        "crates/tauri-cli/config.schema.json",
+        "crates/tauri-cli/src/migrate/migrations/v1/config.rs",
+        "crates/tauri-runtime-wry/src/lib.rs",
+        "crates/tauri-runtime-wry/src/window/mod.rs",
+        "crates/tauri-schema-generator/schemas/config.schema.json",
+        "crates/tauri-utils/src/acl/mod.rs",
+        "crates/tauri-utils/src/acl/schema.rs",
+        "crates/tauri-utils/src/lib.rs",
+        "crates/tauri-utils/src/platform.rs",
+        "crates/tauri-utils/src/resources.rs",
+        "crates/tauri/Cargo.toml",
+        "crates/tauri/src/app.rs",
+        "crates/tauri/src/ipc/mod.rs",
+        "crates/tauri/src/lib.rs",
+        "crates/tauri/src/manager/mod.rs",
+        "crates/tauri/src/plugin.rs",
+        "crates/tauri/src/tray/mod.rs",
+        "crates/tauri/src/webview/mod.rs",
+        "crates/tauri/src/webview/webview_window.rs",
+        "crates/tauri/src/window/mod.rs",
+        "crates/tauri/src/window/scripts/drag.js",
+        "examples/api/unocss.config.js",
+        "examples/file-associations/src-tauri/src/main.rs",
+        "packages/api/src/core.ts",
+        "packages/api/src/dpi.ts",
+        "packages/api/src/webviewWindow.ts",
+        "packages/api/src/window.ts"
+      ]
+    },
+    {
+      "sha": "cb28f4368cc8bdc43c6bde88f793f68a30a2d54c",
+      "message": "apply version updates (#14137)\n\nCo-authored-by: github-actions[bot] \u003c41898282+github-actions[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".changes/14089-expose-scrollbarstyle-webview-option-to-tauri-api.md",
+        ".changes/14089-expose-scrollbarstyle-webview-option-to-tauri-config.md",
+        ".changes/14089-expose-scrollbarstyle-webview-option-to-tauri.md",
+        ".changes/CHANGES.md",
+        ".changes/adaptive_icons.md",
+        ".changes/android-app-plugin.md",
+        ".changes/android-init-windows-unix.md",
+        ".changes/android-plugin-bool-is-deserialize.md",
+        ".changes/auto-increment-android-version-code.md",
+        ".changes/back-button-press-api.md",
+        ".changes/cargo-mobile-0.21.md",
+        ".changes/check-mismatched-versions-tauri-info.md",
+        ".changes/data-dir-js.md",
+        ".changes/default-log-level.md",
+        ".changes/ensure-android-env.md",
+        ".changes/extended-hooks.md",
+        ".changes/file-association-content-type.md",
+        ".changes/file-association-exported-type-cli.md",
+        ".changes/file-association-exported-type.md",
+        ".changes/fix-android-build-nvm4w-windows.md",
+        ".changes/fix-csp-empty-selector.md",
+        ".changes/fix-csp-windows.md",
+        ".changes/fix-ios-cmd-pkg-name-change.md",
+        ".changes/fix-js-icon-tauri-info.md",
+        ".changes/fix-no-watch-dev-server-kill.md",
+        ".changes/fix-unspeficied-dev-host.md",
+        ".changes/improve-errors.md",
+        ".changes/info-plist-config.md",
+        ".changes/install-ios-platform.md",
+        ".changes/ios-async-support.md",
+        ".changes/linuxdeploy-extract.md",
+        ".changes/macos-always-create-webview.md",
+        ".changes/mobile-pnpm-dlx-init.md",
+        ".changes/mobile-run.md",
+        ".changes/normalize_script_for_csp.md",
+        ".changes/refactor-info-plist.md",
+        ".changes/register-plugin-listener-fix.md",
+        ".changes/stack-overflow-release-build.md",
+        ".changes/support-raw-entitlements.md",
+        ".changes/universal-app-links-macos.md",
+        ".changes/utils-bump.md",
+        ".changes/warn-missing-product-name.md",
+        "Cargo.lock",
+        "crates/tauri-build/CHANGELOG.md",
+        "crates/tauri-build/Cargo.toml",
+        "crates/tauri-bundler/CHANGELOG.md",
+        "crates/tauri-bundler/Cargo.toml",
+        "crates/tauri-cli/CHANGELOG.md",
+        "crates/tauri-cli/Cargo.toml",
+        "crates/tauri-cli/config.schema.json",
+        "crates/tauri-cli/metadata-v2.json",
+        "crates/tauri-codegen/CHANGELOG.md",
+        "crates/tauri-codegen/Cargo.toml",
+        "crates/tauri-macros/CHANGELOG.md",
+        "crates/tauri-macros/Cargo.toml",
+        "crates/tauri-plugin/CHANGELOG.md",
+        "crates/tauri-plugin/Cargo.toml",
+        "crates/tauri-runtime-wry/CHANGELOG.md",
+        "crates/tauri-runtime-wry/Cargo.toml",
+        "crates/tauri-runtime/CHANGELOG.md",
+        "crates/tauri-runtime/Cargo.toml",
+        "crates/tauri-schema-generator/schemas/config.schema.json",
+        "crates/tauri-utils/CHANGELOG.md",
+        "crates/tauri-utils/Cargo.toml",
+        "crates/tauri/CHANGELOG.md",
+        "crates/tauri/Cargo.toml",
+        "packages/api/CHANGELOG.md",
+        "packages/api/package.json",
+        "packages/cli/CHANGELOG.md",
+        "packages/cli/package.json"
+      ]
+    },
+    {
+      "sha": "6aa7f2d852870aeba1d4dd0e07f8be2bc9b66286",
+      "message": "chore(deps): minor bump plugin, codegen and macros crates",
+      "modifiedFiles": [
+        ".changes/utils-bump.md"
+      ]
+    },
+    {
+      "sha": "06f26bbb2449a98b82af6c5a536ce1f337a23fe9",
+      "message": "chore(deps): update tao to 0.34.5",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "crates/tauri-runtime-wry/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "68cb318979317c09f401825150e007d60377e75e",
+      "message": "feat(core): add stop, restart, destroy and configuration changed Android hooks (#14328)\n\n* feat(core): add pause, destroy and configuration changed Android hooks\n\n* Apply suggestions from code review",
+      "modifiedFiles": [
+        ".changes/extended-hooks.md",
+        "Cargo.lock",
+        "crates/tauri-runtime-wry/Cargo.toml",
+        "crates/tauri/mobile/android-codegen/TauriActivity.kt",
+        "crates/tauri/mobile/android/src/main/java/app/tauri/plugin/Plugin.kt",
+        "crates/tauri/mobile/android/src/main/java/app/tauri/plugin/PluginManager.kt"
+      ]
+    },
+    {
+      "sha": "3397fd9bfe5f6b1337110149f6c34731b8a44bb3",
+      "message": "feat(core): back button event on Android, closes #8142 (#14133)\n\n* feat(core): back button event and exit on Android, closes #8142\n\nI\u0027ve used https://github.com/ionic-team/capacitor-plugins/blob/main/app/android/src/main/java/com/capacitorjs/plugins/app/AppPlugin.java as a reference here, checking if there\u0027s a back button event handler with a default of webview\u0027s goBack implementation\n\n* missing change file\n\n* remove exit impl\n\n* fmt\n\n* update wry\n\n* fix default back press\n\n* add remove_listener",
+      "modifiedFiles": [
+        ".changes/android-app-plugin.md",
+        ".changes/back-button-press-api.md",
+        "Cargo.lock",
+        "crates/tauri-runtime-wry/Cargo.toml",
+        "crates/tauri/build.rs",
+        "crates/tauri/mobile/android-codegen/TauriActivity.kt",
+        "crates/tauri/mobile/android/src/main/java/app/tauri/AppPlugin.kt",
+        "crates/tauri/mobile/android/src/main/java/app/tauri/plugin/Plugin.kt",
+        "crates/tauri/permissions/app/autogenerated/reference.md",
+        "crates/tauri/scripts/bundle.global.js",
+        "crates/tauri/src/app/plugin.rs",
+        "crates/tauri/src/path/android.rs",
+        "packages/api/src/app.ts"
+      ]
+    },
+    {
+      "sha": "3b4fac2017832d426dd07c5e24e26684eda57f7b",
+      "message": "feat(android): add auto_increment_version_code option for Android builds  (#14194)\n\n* add new api (auto_increment_version_code) in android configuration\n\n* ensure increment is only ran once\n\n* skip on dev\n\n* update doc\n\n* change file\n\n---------\n\nCo-authored-by: Lucas Nogueira \u003clucas@tauri.app\u003e",
+      "modifiedFiles": [
+        ".changes/auto-increment-android-version-code.md",
+        "crates/tauri-build/src/lib.rs",
+        "crates/tauri-build/src/mobile.rs",
+        "crates/tauri-cli/config.schema.json",
+        "crates/tauri-cli/src/mobile/android/build.rs",
+        "crates/tauri-cli/src/mobile/android/dev.rs",
+        "crates/tauri-cli/src/mobile/android/mod.rs",
+        "crates/tauri-schema-generator/schemas/config.schema.json",
+        "crates/tauri-utils/src/config.rs"
+      ]
+    },
+    {
+      "sha": "684791efa6f3c671a0435d456ac208bca871d8c1",
+      "message": "fix(macos): Always try to create webview, even if webkit runtime isn\u0027t detected correctly (#14276)",
+      "modifiedFiles": [
+        ".changes/macos-always-create-webview.md",
+        "crates/tauri-runtime-wry/src/lib.rs"
+      ]
+    },
+    {
+      "sha": "25e920e169db900ca4f07c2bb9eb290e9f9f2c7d",
+      "message": "fix(cli): wait for dev command to exit with --no-watch, closes #14284 (#14298)",
+      "modifiedFiles": [
+        ".changes/fix-no-watch-dev-server-kill.md",
+        "crates/tauri-cli/src/interface/rust.rs"
+      ]
+    },
+    {
+      "sha": "a27948585662db6da90aaef998a7a43efdb6f647",
+      "message": "chore(cli): update cargo-mobile2 to 0.21.1\n\napplies https://github.com/tauri-apps/cargo-mobile2/pull/491",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "crates/tauri-cli/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "7b0d4e73227e42d88732b6d9fe643499dd78ec4e",
+      "message": "fix(core): SHA256 hash for JS scripts CSP on Windows (#14265)\n\n* fix(core): SHA256 hash for JS scripts CSP on Windows\n\nwe hash JS scripts as SHA256 for the Content-Security-Policy (CSP) header. The isolation pattern is broken on Windows due to the hash including carriage return characters, which are not processed when the webview checks the script hash to see if the CSP allows the script.\n\n* fmt, clippy",
+      "modifiedFiles": [
+        ".changes/fix-csp-windows.md",
+        ".changes/normalize_script_for_csp.md",
+        "crates/tauri-codegen/src/context.rs",
+        "crates/tauri-codegen/src/embedded_assets.rs",
+        "crates/tauri-utils/src/html.rs"
+      ]
+    },
+    {
+      "sha": "c5008b829dc779f0768089bff9b891fc76b11355",
+      "message": "fix: skip empty script tag for CSP hash properly (#14274)\n\n* fix: skip empty script tag for CSP hash properly\n\n* add change file\n\n---------\n\nCo-authored-by: Lucas Nogueira \u003clucas@tauri.app\u003e",
+      "modifiedFiles": [
+        ".changes/fix-csp-empty-selector.md",
+        "crates/tauri-codegen/src/context.rs"
+      ]
+    },
+    {
+      "sha": "b5aa018702bf45dc98297698f9b7d238705865a6",
+      "message": "feat(cli): update cargo-mobile2 to 0.21, closes #14238 (#14268)",
+      "modifiedFiles": [
+        ".changes/cargo-mobile-0.21.md",
+        "Cargo.lock",
+        "crates/tauri-cli/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "55453e8453d927b8197f1ba9f26fd944482938f7",
+      "message": "enhance(cli): check mismatched packages in `info` (#14262)",
+      "modifiedFiles": [
+        ".changes/check-mismatched-versions-tauri-info.md",
+        "crates/tauri-cli/src/info/mod.rs",
+        "crates/tauri-cli/src/info/plugins.rs"
+      ]
+    },
+    {
+      "sha": "75082cc5b340e30e2c4b4cd4bd6a1fe5382164aa",
+      "message": "feat(cli): add mobile run commands, closes #13196 (#14120)\n\n* feat(cli): add mobile run commands, closes #13196\n\n* headers\n\n* debug by default\n\n* fix android env\n\n* implement watcher\n\n* clippy\n\n* skip ipa build",
+      "modifiedFiles": [
+        ".changes/mobile-run.md",
+        "crates/tauri-cli/src/interface/mod.rs",
+        "crates/tauri-cli/src/interface/rust.rs",
+        "crates/tauri-cli/src/mobile/android/build.rs",
+        "crates/tauri-cli/src/mobile/android/mod.rs",
+        "crates/tauri-cli/src/mobile/android/run.rs",
+        "crates/tauri-cli/src/mobile/ios/build.rs",
+        "crates/tauri-cli/src/mobile/ios/mod.rs",
+        "crates/tauri-cli/src/mobile/ios/run.rs"
+      ]
+    },
+    {
+      "sha": "006d592837259cac87f15cf3ffc99e7fce97685e",
+      "message": "fix(core): parse Android plugin args starting with `is`, closes #14254 (#14260)\n\nby default Jackson treats the `isX` as a getter, so it looks for the `x` key in the JSON. To match behavior on other platforms we now configure Jackson to treat it as the field name itself.",
+      "modifiedFiles": [
+        ".changes/android-plugin-bool-is-deserialize.md",
+        "crates/tauri/mobile/android/src/main/java/app/tauri/plugin/PluginManager.kt"
+      ]
+    },
+    {
+      "sha": "d2938486e9d974debd90c15d7160b8a17bf4d763",
+      "message": "fix(cli): js icon in `tauri info` (#14261)",
+      "modifiedFiles": [
+        ".changes/fix-js-icon-tauri-info.md",
+        "crates/tauri-cli/src/info/packages_nodejs.rs"
+      ]
+    },
+    {
+      "sha": "19fb6f7cb0d702cb2f25f6f2d1e11014d9dada5d",
+      "message": "fix(cli): improve Android BuildTask.kt Windows executable detection for nvm4w Fixes #13892 (#14146)\n\n* fix(cli): improve Android BuildTask.kt Windows executable detection\n\n- Fix Android build error on Windows when using nvm4w\n- Add robust fallback logic for Windows executable detection\n- Prevent \u0027node.exe.cmd\u0027 and \u0027Cannot find module\u0027 errors\n- Graceful fallback to cargo when Node.js detection fails\n\nFixes #13892\n\n* strip extension from project, try exe/cmd/bat\n\n* revert args\n\n---------\n\nCo-authored-by: Lucas Nogueira \u003clucas@tauri.app\u003e",
+      "modifiedFiles": [
+        ".changes/android-init-windows-unix.md",
+        ".changes/fix-android-build-nvm4w-windows.md",
+        "crates/tauri-cli/src/mobile/init.rs",
+        "crates/tauri-cli/templates/mobile/android/buildSrc/src/main/kotlin/BuildTask.kt"
+      ]
+    },
+    {
+      "sha": "3d6868d09c323d68a152f3c3f8c7256311bd020a",
+      "message": "feat(cli): UTExportedTypeDeclarations support for file associations (#14128)\n\n* feat(cli): UTExportedTypeDeclarations support for file associations\n\ncloses #13314\n\n* update example\n\n* update readme",
+      "modifiedFiles": [
+        ".changes/file-association-content-type.md",
+        ".changes/file-association-exported-type-cli.md",
+        ".changes/file-association-exported-type.md",
+        "crates/tauri-bundler/src/bundle/macos/app.rs",
+        "crates/tauri-cli/config.schema.json",
+        "crates/tauri-schema-generator/schemas/config.schema.json",
+        "crates/tauri-utils/src/config.rs",
+        "examples/file-associations/README.md",
+        "examples/file-associations/src-tauri/Cargo.toml",
+        "examples/file-associations/src-tauri/tauri.conf.json"
+      ]
+    },
+    {
+      "sha": "cc8c0b53171173dbd1d01781a50de1a3ea159031",
+      "message": "feat(core): add support to universal app links on macOS (#14031)\n\n* feat(core): add support to universal app links on macOS\n\nfollow-up for https://github.com/tauri-apps/tao/pull/1108\n\n* fix ci\n\n* clippy\n\n* ignore empty schemes",
+      "modifiedFiles": [
+        ".changes/support-raw-entitlements.md",
+        ".changes/universal-app-links-macos.md",
+        "Cargo.lock",
+        "Cargo.toml",
+        "crates/tauri-bundler/Cargo.toml",
+        "crates/tauri-bundler/src/bundle.rs",
+        "crates/tauri-bundler/src/bundle/macos/app.rs",
+        "crates/tauri-bundler/src/bundle/macos/sign.rs",
+        "crates/tauri-bundler/src/bundle/settings.rs",
+        "crates/tauri-bundler/src/bundle/windows/msi/mod.rs",
+        "crates/tauri-bundler/src/bundle/windows/nsis/mod.rs",
+        "crates/tauri-cli/src/interface/rust.rs",
+        "crates/tauri-runtime-wry/Cargo.toml",
+        "crates/tauri-utils/src/config.rs"
+      ]
+    },
+    {
+      "sha": "20e53a4b95af163e656167d8b34904798b3ab134",
+      "message": "chore(deps): update dependency cross-env to v10.1.0 (#14242)\n\nCo-authored-by: renovate[bot] \u003c29139614+renovate[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "packages/cli/package.json",
+        "pnpm-lock.yaml"
+      ]
+    },
+    {
+      "sha": "08bda64c25008bd45c5b58d06ff14649081a2f5d",
+      "message": "fix(api): \"command not found\" error when running addPluginListener (#14132)\n\n* fix(api): \"command not found\" error when running addPluginListener\n\nthe backend expects the command name to be in snake case\n\nwe\u0027ve made this change already for check_permissions and request_permissions, but missed register_listener\n\n* fix check instead\n\n* update bundle.global.js\n\n* code review suggestion\n\n* add note\n\n* adjust change file\n\n* remove unused var\n\n* fmt\n\n* build",
+      "modifiedFiles": [
+        ".changes/register-plugin-listener-fix.md",
+        "crates/tauri/scripts/bundle.global.js",
+        "packages/api/src/core.ts"
+      ]
+    },
+    {
+      "sha": "28a2f9bc55f658eb71ef1a970ff9f791346f7682",
+      "message": "fix(cli): ensure Xcode project is up to date with Cargo project name (#14101)\n\n* fix(cli): ensure Xcode project is up to date with Cargo project name\n\ncloses #13542\n\n* clippy",
+      "modifiedFiles": [
+        ".changes/fix-ios-cmd-pkg-name-change.md",
+        "crates/tauri-cli/src/helpers/fs.rs",
+        "crates/tauri-cli/src/mobile/android/android_studio_script.rs",
+        "crates/tauri-cli/src/mobile/android/build.rs",
+        "crates/tauri-cli/src/mobile/android/dev.rs",
+        "crates/tauri-cli/src/mobile/ios/build.rs",
+        "crates/tauri-cli/src/mobile/ios/dev.rs",
+        "crates/tauri-cli/src/mobile/ios/xcode_script.rs",
+        "crates/tauri-cli/src/mobile/mod.rs"
+      ]
+    },
+    {
+      "sha": "ed7c9a4100e08c002212265549d12130d021ad1e",
+      "message": "feat(core): add config for Info.plist extensions, closes #13667 (#14108)\n\n* feat(core): add config for Info.plist extensions, closes #13667\n\n* add missing tag\n\n* do not lie :)",
+      "modifiedFiles": [
+        ".changes/info-plist-config.md",
+        ".changes/refactor-info-plist.md",
+        "crates/tauri-build/src/codegen/context.rs",
+        "crates/tauri-bundler/Cargo.toml",
+        "crates/tauri-bundler/src/bundle.rs",
+        "crates/tauri-bundler/src/bundle/macos/app.rs",
+        "crates/tauri-bundler/src/bundle/settings.rs",
+        "crates/tauri-cli/config.schema.json",
+        "crates/tauri-cli/src/helpers/mod.rs",
+        "crates/tauri-cli/src/helpers/plist.rs",
+        "crates/tauri-cli/src/interface/rust.rs",
+        "crates/tauri-cli/src/mobile/ios/build.rs",
+        "crates/tauri-cli/src/mobile/ios/dev.rs",
+        "crates/tauri-cli/src/mobile/ios/mod.rs",
+        "crates/tauri-schema-generator/schemas/config.schema.json",
+        "crates/tauri-utils/src/config.rs"
+      ]
+    },
+    {
+      "sha": "abf7e8850ba41e7173e9e9a3fdd6dfb8f357d72d",
+      "message": "fix(cli): mobile init when using pnpm dlx (#14118)\n\ni noticed this when testing #13180 (though the original issue refers to npx, which I could not reproduce yet)",
+      "modifiedFiles": [
+        ".changes/mobile-pnpm-dlx-init.md",
+        "crates/tauri-cli/src/mobile/init.rs"
+      ]
+    },
+    {
+      "sha": "b0012424c5f432debfa42ba145e2672966d5f6d5",
+      "message": "fix(cli): resolve IP when dev URL host is unspecified, closes #13356 (#14115)\n\ncurrently the `use_network_address_for_dev_url` function already detects Ipv4Addr::UNSPECIFIED to resolve the local IP address for mobile development when the dev URL host is 0.0.0.0, but we only call it when `--host` is provided or running on a physical device. This change detects the unspecified host early and force the resolution to run even for simulator builds",
+      "modifiedFiles": [
+        ".changes/fix-unspeficied-dev-host.md",
+        "crates/tauri-cli/src/mobile/android/dev.rs",
+        "crates/tauri-cli/src/mobile/ios/dev.rs",
+        "crates/tauri-cli/src/mobile/mod.rs"
+      ]
+    },
+    {
+      "sha": "06d4a4ed6c146d6c7782016cf90037b56b944445",
+      "message": "fix(bundler): set APPIMAGE_EXTRACT_AND_RUN env var as well for linuxdeploy (#14241)\n\n* fix(bundler): set APPIMAGE_EXTRACT_AND_RUN env var as well for linuxdeploy\n\n* Aktualisieren von linuxdeploy-extract.md",
+      "modifiedFiles": [
+        ".changes/linuxdeploy-extract.md",
+        "crates/tauri-bundler/src/bundle/linux/appimage.rs"
+      ]
+    },
+    {
+      "sha": "a99601ee4bbb763326850076a0c0cffd289c1d7f",
+      "message": "chore(deps): update dependency rollup to v4.52.4 (#14256)\n\nCo-authored-by: renovate[bot] \u003c29139614+renovate[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "packages/api/package.json",
+        "pnpm-lock.yaml"
+      ]
+    },
+    {
+      "sha": "2e089f6acb854e4d7f8eafb9b2f8242b1c9fa491",
+      "message": "feat(ios): support async Swift plugin methods (`completionHandler:`) in PluginManager (#14148)\n\n* Added selector with completionHandler handling\n\n* Added .changes file\n\n* fix change file\n\n---------\n\nCo-authored-by: Lucas Nogueira \u003clucas@tauri.app\u003e",
+      "modifiedFiles": [
+        ".changes/ios-async-support.md",
+        "crates/tauri/mobile/ios-api/Sources/Tauri/Tauri.swift"
+      ]
+    },
+    {
+      "sha": "6bbb530fd5edfc07b180a4f3782b8566872ca3b1",
+      "message": "chore(cli): warn when product name is missing, closes #14034 (#14105)",
+      "modifiedFiles": [
+        ".changes/warn-missing-product-name.md",
+        "crates/tauri-cli/src/mobile/mod.rs"
+      ]
+    },
+    {
+      "sha": "b06b3bd091b0fed26cdcfb23cacb0462a7a9cc2d",
+      "message": "refactor(cli): improve errors (#14126)\n\n* refactor(cli): improve errors\n\n* update change files\n\n* license\n\n* add errorext with fs_context helper\n\n* update linux\n\n* lint\n\n* fmt\n\n* windows\n\n* revert bundler breaking change\n\n* fix ios mod\n\n* ref\n\n* reduce amount of enum variants\n\n* fix macos build\n\n* Fix windows build\n\n* Clippy\n\n* capitalize cargo [skip ci]\n\n---------\n\nCo-authored-by: Tony \u003clegendmastertony@gmail.com\u003e",
+      "modifiedFiles": [
+        ".changes/improve-errors.md",
+        "Cargo.lock",
+        "bench/src/run_benchmark.rs",
+        "crates/tauri-bundler/Cargo.toml",
+        "crates/tauri-bundler/src/bundle.rs",
+        "crates/tauri-bundler/src/bundle/linux/appimage.rs",
+        "crates/tauri-bundler/src/bundle/linux/debian.rs",
+        "crates/tauri-bundler/src/bundle/linux/freedesktop/mod.rs",
+        "crates/tauri-bundler/src/bundle/linux/rpm.rs",
+        "crates/tauri-bundler/src/bundle/macos/app.rs",
+        "crates/tauri-bundler/src/bundle/macos/dmg/mod.rs",
+        "crates/tauri-bundler/src/bundle/macos/ios.rs",
+        "crates/tauri-bundler/src/bundle/macos/sign.rs",
+        "crates/tauri-bundler/src/bundle/settings.rs",
+        "crates/tauri-bundler/src/bundle/updater_bundle.rs",
+        "crates/tauri-bundler/src/bundle/windows/msi/mod.rs",
+        "crates/tauri-bundler/src/bundle/windows/nsis/mod.rs",
+        "crates/tauri-bundler/src/bundle/windows/util.rs",
+        "crates/tauri-bundler/src/error.rs",
+        "crates/tauri-cli/Cargo.toml",
+        "crates/tauri-cli/src/acl/capability/new.rs",
+        "crates/tauri-cli/src/acl/mod.rs",
+        "crates/tauri-cli/src/acl/permission/add.rs",
+        "crates/tauri-cli/src/acl/permission/ls.rs",
+        "crates/tauri-cli/src/acl/permission/new.rs",
+        "crates/tauri-cli/src/acl/permission/rm.rs",
+        "crates/tauri-cli/src/add.rs",
+        "crates/tauri-cli/src/build.rs",
+        "crates/tauri-cli/src/bundle.rs",
+        "crates/tauri-cli/src/completions.rs",
+        "crates/tauri-cli/src/dev.rs",
+        "crates/tauri-cli/src/dev/builtin_dev_server.rs",
+        "crates/tauri-cli/src/error.rs",
+        "crates/tauri-cli/src/helpers/cargo.rs",
+        "crates/tauri-cli/src/helpers/config.rs",
+        "crates/tauri-cli/src/helpers/flock.rs",
+        "crates/tauri-cli/src/helpers/fs.rs",
+        "crates/tauri-cli/src/helpers/mod.rs",
+        "crates/tauri-cli/src/helpers/npm.rs",
+        "crates/tauri-cli/src/helpers/pbxproj.rs",
+        "crates/tauri-cli/src/helpers/prompts.rs",
+        "crates/tauri-cli/src/helpers/template.rs",
+        "crates/tauri-cli/src/helpers/updater_signature.rs",
+        "crates/tauri-cli/src/icon.rs",
+        "crates/tauri-cli/src/info/env_system.rs",
+        "crates/tauri-cli/src/info/mod.rs",
+        "crates/tauri-cli/src/info/packages_nodejs.rs",
+        "crates/tauri-cli/src/info/plugins.rs",
+        "crates/tauri-cli/src/init.rs",
+        "crates/tauri-cli/src/inspect.rs",
+        "crates/tauri-cli/src/interface/mod.rs",
+        "crates/tauri-cli/src/interface/rust.rs",
+        "crates/tauri-cli/src/interface/rust/cargo_config.rs",
+        "crates/tauri-cli/src/interface/rust/desktop.rs",
+        "crates/tauri-cli/src/interface/rust/installation.rs",
+        "crates/tauri-cli/src/interface/rust/manifest.rs",
+        "crates/tauri-cli/src/lib.rs",
+        "crates/tauri-cli/src/migrate/migrations/v1/config.rs",
+        "crates/tauri-cli/src/migrate/migrations/v1/frontend.rs",
+        "crates/tauri-cli/src/migrate/migrations/v1/manifest.rs",
+        "crates/tauri-cli/src/migrate/migrations/v1/mod.rs",
+        "crates/tauri-cli/src/migrate/migrations/v2_beta.rs",
+        "crates/tauri-cli/src/migrate/mod.rs",
+        "crates/tauri-cli/src/mobile/android/android_studio_script.rs",
+        "crates/tauri-cli/src/mobile/android/build.rs",
+        "crates/tauri-cli/src/mobile/android/dev.rs",
+        "crates/tauri-cli/src/mobile/android/mod.rs",
+        "crates/tauri-cli/src/mobile/android/project.rs",
+        "crates/tauri-cli/src/mobile/init.rs",
+        "crates/tauri-cli/src/mobile/ios/build.rs",
+        "crates/tauri-cli/src/mobile/ios/dev.rs",
+        "crates/tauri-cli/src/mobile/ios/mod.rs",
+        "crates/tauri-cli/src/mobile/ios/project.rs",
+        "crates/tauri-cli/src/mobile/ios/xcode_script.rs",
+        "crates/tauri-cli/src/mobile/mod.rs",
+        "crates/tauri-cli/src/plugin/android.rs",
+        "crates/tauri-cli/src/plugin/init.rs",
+        "crates/tauri-cli/src/plugin/ios.rs",
+        "crates/tauri-cli/src/plugin/mod.rs",
+        "crates/tauri-cli/src/plugin/new.rs",
+        "crates/tauri-cli/src/signer/sign.rs",
+        "crates/tauri-macos-sign/Cargo.toml",
+        "crates/tauri-macos-sign/src/certificate.rs",
+        "crates/tauri-macos-sign/src/keychain.rs",
+        "crates/tauri-macos-sign/src/keychain/identity.rs",
+        "crates/tauri-macos-sign/src/lib.rs",
+        "crates/tauri-macos-sign/src/provisioning_profile.rs"
+      ]
+    },
+    {
+      "sha": "eb60b9966b9da98e34f9ce2e98c948a8f50f07ae",
+      "message": "chore(deps): update dependency rollup to v4.52.3 (#14230)\n\nCo-authored-by: renovate[bot] \u003c29139614+renovate[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "packages/api/package.json",
+        "pnpm-lock.yaml"
+      ]
+    },
+    {
+      "sha": "94cbd40fc733e08c0bccd48149d22a0e9c2f1e5c",
+      "message": "Add support for adaptive and themed  icons on android  (#14223)\n\n* add support for adaptive icons\n\n* fix\n\n* small cleanup\n\n* combine android_bg and android_fg when specified\n\n* Update crates/tauri-cli/src/icon.rs\n\nCo-authored-by: Fabian-Lars \u003cgithub@fabianlars.de\u003e\n\n* add scale option\n\n* properly generated rounded icons\n\n* covector, clippy\n\n---------\n\nCo-authored-by: Lucas Nogueira \u003clucas@tauri.app\u003e\nCo-authored-by: Fabian-Lars \u003cgithub@fabianlars.de\u003e",
+      "modifiedFiles": [
+        ".changes/adaptive_icons.md",
+        "crates/tauri-cli/src/icon.rs"
+      ]
+    },
+    {
+      "sha": "673867aa0e1ccd766ee879ffe96aba58c758613c",
+      "message": "feat(cli): detect Android env and install SDK and NDK if needed (#14094)\n\n* feat(cli): detect Android env and install SDK and NDK if needed\n\nchanges the Android setup to be a bit more automated - looking up ANDROID_HOME and NDK_HOME from common system paths and installing the Android SDK and NDK if needed using the command line tools\n\n* fix windows\n\n* clippy\n\n* lint\n\n* add prmopts and ci check\n\n* also check ANDROID_SDK_ROOT",
+      "modifiedFiles": [
+        ".changes/ensure-android-env.md",
+        "Cargo.lock",
+        "crates/tauri-cli/Cargo.toml",
+        "crates/tauri-cli/src/helpers/cargo_manifest.rs",
+        "crates/tauri-cli/src/helpers/http.rs",
+        "crates/tauri-cli/src/helpers/mod.rs",
+        "crates/tauri-cli/src/mobile/android/android_studio_script.rs",
+        "crates/tauri-cli/src/mobile/android/build.rs",
+        "crates/tauri-cli/src/mobile/android/dev.rs",
+        "crates/tauri-cli/src/mobile/android/mod.rs",
+        "crates/tauri-cli/src/mobile/init.rs"
+      ]
+    },
+    {
+      "sha": "4188ffdafcaa7c3c8b000973146c9384a873e741",
+      "message": "chore(core): allow `clippy::used_underscore_binding` lint in command macro (#14225)",
+      "modifiedFiles": [
+        "crates/tauri-macros/src/command/wrapper.rs"
+      ]
+    },
+    {
+      "sha": "12a678711092ee133c3028337b765430b21c815a",
+      "message": "chore(deps): update dependency rollup to v4.52.2 (#14216)\n\nCo-authored-by: renovate[bot] \u003c29139614+renovate[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "packages/api/package.json",
+        "pnpm-lock.yaml"
+      ]
+    },
+    {
+      "sha": "6cb73194c4f6f5a05f12c7b683eaa4dca843ae91",
+      "message": "chore(deps): update dependency rollup to v4.52.0 (#14188)\n\nCo-authored-by: renovate[bot] \u003c29139614+renovate[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "packages/api/package.json",
+        "pnpm-lock.yaml"
+      ]
+    },
+    {
+      "sha": "d1892b97cebbade59acea373274d28b6a870e2e0",
+      "message": "ci(renovate): group windows-rs and webview2 crates",
+      "modifiedFiles": [
+        "renovate.json"
+      ]
+    },
+    {
+      "sha": "e446926a6a1a4db582b631a67d557063fba052e2",
+      "message": "chore: set minimumReleaseAge to 3 days in renovate and pnpm (#14206)",
+      "modifiedFiles": [
+        "package.json",
+        "renovate.json"
+      ]
+    },
+    {
+      "sha": "b0c493a4ea7d69a19f88e5b89cbb111a7c006517",
+      "message": "FIX: Fixed GDI object leak when a resizable window is created and then closed on Windows platform (#14209)\n\nCo-authored-by: Kirill Gribunin \u003ckgribunin@contoso.local\u003e",
+      "modifiedFiles": [
+        "crates/tauri-runtime-wry/src/undecorated_resizing.rs"
+      ]
+    },
+    {
+      "sha": "d340b8c8b17bb556cb06e0e4f0b0e6968ed8d876",
+      "message": "fix(macos): check if path is file or dir or neither (#13793)",
+      "modifiedFiles": [
+        "crates/tauri-bundler/src/bundle/macos/app.rs"
+      ]
+    },
+    {
+      "sha": "830146d0be279e25d537ad76048be59ec6648894",
+      "message": "chore: remove spam link in readme (#14197)",
+      "modifiedFiles": [
+        "README.md"
+      ]
+    },
+    {
+      "sha": "fa3771b7bc741d01a7068bb5254521df3ab14859",
+      "message": "chore(deps-dev): bump vite from 7.0.4 to 7.0.7 (#14172)\n\n* chore(deps-dev): bump vite from 7.0.4 to 7.0.7\n\nBumps [vite](https://github.com/vitejs/vite/tree/HEAD/packages/vite) from 7.0.4 to 7.0.7.\n- [Release notes](https://github.com/vitejs/vite/releases)\n- [Changelog](https://github.com/vitejs/vite/blob/v7.0.7/packages/vite/CHANGELOG.md)\n- [Commits](https://github.com/vitejs/vite/commits/v7.0.7/packages/vite)\n\n---\nupdated-dependencies:\n- dependency-name: vite\n  dependency-version: 7.0.7\n  dependency-type: direct:development\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\n\n* Deduplicate\n\n* pnpm dedupe\n\n* Update vite to 7.1.5\n\n---------\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e\nCo-authored-by: Tony \u003clegendmastertony@gmail.com\u003e",
+      "modifiedFiles": [
+        "examples/api/package.json",
+        "pnpm-lock.yaml"
+      ]
+    },
+    {
+      "sha": "9efe474e06e7a914655e2974b5376452c5b01f48",
+      "message": "chore(deps): update dependency rollup to v4.50.1 (#14169)\n\nCo-authored-by: renovate[bot] \u003c29139614+renovate[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "packages/api/package.json",
+        "pnpm-lock.yaml"
+      ]
+    },
+    {
+      "sha": "69476d8e2314b85bf46046140bc5495fe29b7d29",
+      "message": "fix(macros): stack overflow in invoke handler (#14170)",
+      "modifiedFiles": [
+        ".changes/stack-overflow-release-build.md",
+        "crates/tauri-macros/src/command/wrapper.rs"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "tauri",
+      "ownerLogin": "magictab44",
+      "commitCount": 45
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "leeleesauruss",
+      "commitCount": 45
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "kmk142789",
+      "commitCount": 45
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "thehamzaarshad",
+      "commitCount": 45
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "35daryleyoung929",
+      "commitCount": 45
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "euBRASIL",
+      "commitCount": 45
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "padipiee",
+      "commitCount": 45
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "vitor-kato",
+      "commitCount": 45
+    },
+    {
+      "name": "premiereProject",
+      "ownerLogin": "loukaBl",
+      "commitCount": 45
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "GUNSTAR1",
+      "commitCount": 45
+    },
+    {
+      "name": "fork-tauri",
+      "ownerLogin": "ShalevAri",
+      "commitCount": 45
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "verseboys",
+      "commitCount": 45
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "ImEddie",
+      "commitCount": 45
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "my-shits",
+      "commitCount": 42
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "motogururec",
+      "commitCount": 42
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "BiliqisO",
+      "commitCount": 42
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "Poghappy",
+      "commitCount": 42
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "jthomperoo",
+      "commitCount": 42
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "Devansh-rookie",
+      "commitCount": 42
+    },
+    {
+      "name": "tauri",
+      "ownerLogin": "ben-spoonradio",
+      "commitCount": 42
+    }
+  ]
+}

@@ -1,0 +1,659 @@
+{
+  "name": "zed",
+  "ownerLogin": "zed-industries",
+  "language": "Rust",
+  "commits": [
+    {
+      "sha": "f9e0642a72e6bc680ba5ff5c3a6eb5e1bd5f6752",
+      "message": "settings_ui: Adjust warning banner design (#40952)\n\nJust tidying this up a bit. Really have to fix this Banner component at\nsome point 😅 Having to add some spacing hacks to make it perfect here\nthat are not ideal and should be baked into the component.\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "crates/settings_ui/src/settings_ui.rs"
+      ]
+    },
+    {
+      "sha": "bada88c5b30b91cbba5fdf3e6ab6e4fd389d65d6",
+      "message": "Make the rules library window more consistent with the settings UI (#40948)\n\nNow that we have two surface areas that open as separate windows, it\u0027s\nimportant they\u0027re consistent with one another. This PR make the settings\nUI and rules library windows more similar by having them use the same\nminimum window size and similar styles for their navbar given they have\nfundamentally the same design (nav on the left and content on the\nright).\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "crates/gpui/src/window.rs",
+        "crates/rules_library/src/rules_library.rs",
+        "crates/settings_ui/src/settings_ui.rs"
+      ]
+    },
+    {
+      "sha": "6b8f8592ea3d6a85a0430a621a370bc6ec8a822c",
+      "message": "agent_ui: Remove ellipses from some menu entries (#40858)\n\n\u003cimg width\u003d\"335\" height\u003d\"236\" alt\u003d\"image\"\nsrc\u003d\"https://github.com/user-attachments/assets/5e09e9ed-f0f3-48df-ac22-032edfc6c114\"\n/\u003e\n\nRelease Notes:\nThis PR fixes inconsistent use of trailing ellipsis (…) in the MCP\nServer menu.\nPreviously, some menu items (like Add Custom Server…) used hardcoded\nellipses even though they didn’t trigger additional dialogs or steps.\nThis change removes unnecessary ellipses to align with standard UI/UX\nconventions used across Zed’s menus.\n\n---------\n\nCo-authored-by: Danilo Leal \u003c67129314+danilo-leal@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "crates/agent_ui/src/agent_panel.rs"
+      ]
+    },
+    {
+      "sha": "4fd4cbbfb7655fe39356f972eaffbaf98185b8ef",
+      "message": "gpui: Add focus-visible selector support (#40940)\n\nRelease Notes:\n\n- N/A\n\n---------\n\nCo-authored-by: Claude \u003cnoreply@anthropic.com\u003e",
+      "modifiedFiles": [
+        "crates/gpui/examples/focus_visible.rs",
+        "crates/gpui/src/elements/div.rs",
+        "crates/gpui/src/window.rs"
+      ]
+    },
+    {
+      "sha": "044701e3a59ee2bf4b70b69449ecc26d620b673d",
+      "message": "rope: Implement `Rope::is_char_boundary` via chars bitmap (#40945)\n\nSlightly more efficient. No new tests as we already have tests\nverifiying this.\n\nRelease Notes:\n\n- N/A *or* Added/Fixed/Improved ...",
+      "modifiedFiles": [
+        "crates/rope/src/chunk.rs",
+        "crates/rope/src/rope.rs"
+      ]
+    },
+    {
+      "sha": "a96bf504e03a1fe47f7fb045d4849e063d5db03f",
+      "message": "theme: Fix entry could appear transparent on hover with certain themes (#40944)\n\nFollow-up: https://github.com/zed-industries/zed/pull/34655  \n\nWe should use an opaque fallback color for `panel.overlay_hover`. This\nhelps when a custom theme doesn’t provide it, nor `element.hover`. For\nexample, VSCode’s default modern dark theme doesn’t include an\n`element.hover` color after import.\n\nRelease Notes:\n\n- Fixed an issue where the project panel’s sticky entry could appear\ntransparent on hover with certain themes.",
+      "modifiedFiles": [
+        "crates/theme/src/default_colors.rs"
+      ]
+    },
+    {
+      "sha": "c16f2a1a29325969c0f2e39903f89e0de2dbb4e3",
+      "message": "project: Normalize `Path` env var to `PATH` in shell env on windows (#40720)\n\nRelease Notes:\n\n- N/A *or* Added/Fixed/Improved ...",
+      "modifiedFiles": [
+        "crates/languages/src/python.rs",
+        "crates/project/src/environment.rs",
+        "crates/project/src/lsp_store.rs"
+      ]
+    },
+    {
+      "sha": "ca4103246fe195527133542bad9a1d19fba22b86",
+      "message": "settings_ui: Fix file header from showing duplicate display names (#40943)\n\nAfter clicking on the file drop-down and selecting a file, both the\nselected file and the first drop-down entry would be the same file name\ninstead of overwriting a file name.\n\nRelease Notes:\n\n- settings ui: Fix bug where duplicate file names showed in the header\nfiles",
+      "modifiedFiles": [
+        "crates/settings_ui/src/settings_ui.rs"
+      ]
+    },
+    {
+      "sha": "731237222e7e8f8292dc39135c07fe6de4523313",
+      "message": "agent_ui: Focus the message editor after regenerating a user message (#40938)\n\nRelease Notes:\n\n- agent: Improved the editing previous messages UX by focusing in the\nagent panel\u0027s message editor after regenerating a prompt, instead of\nmoving focus to the nearest regular buffer.",
+      "modifiedFiles": [
+        "crates/agent_ui/src/acp/thread_view.rs"
+      ]
+    },
+    {
+      "sha": "2096f256f2ba5a3ebe9abf9e242130a04d12df00",
+      "message": "editor: Reduce selection opacity when editor is not focused (#40925)\n\nFocus:\n\u003cimg width\u003d\"420\" alt\u003d\"image\"\nsrc\u003d\"https://github.com/user-attachments/assets/97b0c7ed-8ad4-400c-9f36-01d8bd9b362d\"\n/\u003e\n\nUnfocus:\n\u003cimg width\u003d\"420\" alt\u003d\"image\"\nsrc\u003d\"https://github.com/user-attachments/assets/19805293-b419-4669-8a93-e9cf41900403\"\n/\u003e\n\nRelease Notes:\n\n- Reduced selection opacity when the editor is out of focus to make\ninactive states clearer.",
+      "modifiedFiles": [
+        "crates/editor/src/element.rs"
+      ]
+    },
+    {
+      "sha": "7880e2b961e8a036b80d87c65cd7146dcb232bac",
+      "message": "docs: Clarify providers in edit-prediction.md (#39655)\n\nRelease Notes:\n\n- N/A\n\n---------\n\nCo-authored-by: Danilo Leal \u003c67129314+danilo-leal@users.noreply.github.com\u003e\nCo-authored-by: Danilo Leal \u003cdaniloleal09@gmail.com\u003e",
+      "modifiedFiles": [
+        "docs/src/ai/edit-prediction.md"
+      ]
+    },
+    {
+      "sha": "ab22478ed4e10593965454b1e0657219dc4b1e79",
+      "message": "Update extension docs to mention BSD 3-Clause is a valid license (#40934)\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "docs/src/extensions/developing-extensions.md"
+      ]
+    },
+    {
+      "sha": "6ed9c0271d15ef5bbe899ebd403b1fad1ba29991",
+      "message": "Don\u0027t migrate empty formatter array (#40932)\n\nFollow up for #40409\nFix for\nhttps://github.com/zed-industries/zed/issues/40874#issuecomment-3433759849\n\nRelease Notes:\n\n- Fixed an issue where having an empty formatter array in your settings\n`\"formatter\": []` would result in an erroneous prompt to migrate\nsettings",
+      "modifiedFiles": [
+        "crates/migrator/src/migrations/m_2025_10_16/settings.rs",
+        "crates/migrator/src/migrator.rs"
+      ]
+    },
+    {
+      "sha": "93136a9aaaa28527e0347be81b8850bbd2b9c1a7",
+      "message": "Update extension docs to mention GNU GPLv3 is a valid license (#40933)\n\nMerge after: \n\n- https://github.com/zed-industries/extensions/pull/3641\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "docs/src/extensions/developing-extensions.md"
+      ]
+    },
+    {
+      "sha": "f393138711fa2fc48d0441835b86540b19ba3c0d",
+      "message": "Fix keybind hints flickering in certain scenarios (#40927)\n\nCloses #39172\n\nThis refactors when we resolve UI keybindings in an effort to reduce\nflickering whilst painting these: Previously, we would always resolve\nthese upon creating the binding. This could lead to cases where the\ncorresponding context was not yet available and no binding could be\nresolved, even if the binding was then available on the next presented\nframe. Following that, on the next rerender of whatever requested this\nkeybinding, the keybind for that context would then be found, we would\nrender that and then also win a layout shift in that process, as we went\nfrom nothing rendered to something rendered between these frames.\n\nWith these changes, this now happens less often, because we only look\nfor the keybinding once the context can actually be resolved in the\nwindow.\n\n| Before | After | \n| --- | --- |\n|\nhttps://github.com/user-attachments/assets/adebf8ac-217d-4c7f-ae5a-bab3aa0b0ee8\n|\nhttps://github.com/user-attachments/assets/70a82b4b-488f-4a9f-94d7-b6d0a49aada9\n|\n\nAlso reduced cloning in the keymap editor in this process, since that\nrequiered changing due to this anyway.\n\nRelease Notes:\n\n- Fixed some cases where keybinds would appear with a slight delay,\ncausing a flicker in the process",
+      "modifiedFiles": [
+        "crates/agent_ui/src/acp/mode_selector.rs",
+        "crates/agent_ui/src/acp/model_selector_popover.rs",
+        "crates/agent_ui/src/acp/thread_history.rs",
+        "crates/agent_ui/src/acp/thread_view.rs",
+        "crates/agent_ui/src/agent_configuration/add_llm_provider_modal.rs",
+        "crates/agent_ui/src/agent_configuration/configure_context_server_modal.rs",
+        "crates/agent_ui/src/agent_configuration/manage_profiles_modal.rs",
+        "crates/agent_ui/src/agent_diff.rs",
+        "crates/agent_ui/src/agent_model_selector.rs",
+        "crates/agent_ui/src/agent_panel.rs",
+        "crates/agent_ui/src/context_strip.rs",
+        "crates/agent_ui/src/inline_prompt_editor.rs",
+        "crates/agent_ui/src/profile_selector.rs",
+        "crates/agent_ui/src/text_thread_editor.rs",
+        "crates/agent_ui/src/ui/burn_mode_tooltip.rs",
+        "crates/agent_ui/src/ui/context_pill.rs",
+        "crates/breadcrumbs/src/breadcrumbs.rs",
+        "crates/collab_ui/src/notification_panel.rs",
+        "crates/command_palette/src/command_palette.rs",
+        "crates/debugger_ui/src/debugger_panel.rs",
+        "crates/debugger_ui/src/new_process_modal.rs",
+        "crates/debugger_ui/src/session/running.rs",
+        "crates/debugger_ui/src/session/running/breakpoint_list.rs",
+        "crates/debugger_ui/src/session/running/console.rs",
+        "crates/debugger_ui/src/session/running/stack_frame_list.rs",
+        "crates/debugger_ui/src/session/running/variable_list.rs",
+        "crates/diagnostics/src/items.rs",
+        "crates/edit_prediction_button/src/edit_prediction_button.rs",
+        "crates/editor/src/editor.rs",
+        "crates/editor/src/element.rs",
+        "crates/editor/src/proposed_changes_editor.rs",
+        "crates/editor/src/signature_help.rs",
+        "crates/file_finder/src/file_finder.rs",
+        "crates/git_ui/src/branch_picker.rs",
+        "crates/git_ui/src/commit_modal.rs",
+        "crates/git_ui/src/git_panel.rs",
+        "crates/git_ui/src/git_ui.rs",
+        "crates/git_ui/src/project_diff.rs",
+        "crates/git_ui/src/stash_picker.rs",
+        "crates/go_to_line/src/cursor_position.rs",
+        "crates/gpui/src/keymap.rs",
+        "crates/keymap_editor/src/keymap_editor.rs",
+        "crates/language_selector/src/active_buffer_language.rs",
+        "crates/language_tools/src/key_context_view.rs",
+        "crates/language_tools/src/lsp_button.rs",
+        "crates/line_ending_selector/src/line_ending_indicator.rs",
+        "crates/onboarding/src/onboarding.rs",
+        "crates/onboarding/src/welcome.rs",
+        "crates/project_panel/src/project_panel.rs",
+        "crates/recent_projects/src/recent_projects.rs",
+        "crates/repl/src/notebook/notebook_ui.rs",
+        "crates/repl/src/repl_sessions_ui.rs",
+        "crates/rules_library/src/rules_library.rs",
+        "crates/search/src/buffer_search.rs",
+        "crates/search/src/project_search.rs",
+        "crates/search/src/search.rs",
+        "crates/search/src/search_bar.rs",
+        "crates/search/src/search_status_button.rs",
+        "crates/settings_ui/src/settings_ui.rs",
+        "crates/tasks_ui/src/modal.rs",
+        "crates/terminal_view/src/terminal_panel.rs",
+        "crates/terminal_view/src/terminal_view.rs",
+        "crates/title_bar/src/collab.rs",
+        "crates/title_bar/src/onboarding_banner.rs",
+        "crates/title_bar/src/title_bar.rs",
+        "crates/toolchain_selector/src/toolchain_selector.rs",
+        "crates/ui/src/components/context_menu.rs",
+        "crates/ui/src/components/keybinding.rs",
+        "crates/ui/src/components/keybinding_hint.rs",
+        "crates/ui/src/components/stories/keybinding.rs",
+        "crates/ui/src/components/tooltip.rs",
+        "crates/workspace/src/dock.rs",
+        "crates/workspace/src/invalid_item_view.rs",
+        "crates/workspace/src/notifications.rs",
+        "crates/workspace/src/pane.rs",
+        "crates/workspace/src/theme_preview.rs",
+        "crates/zed/src/zed/quick_action_bar.rs",
+        "crates/zed/src/zed/quick_action_bar/preview.rs",
+        "crates/zeta/src/rate_completion_modal.rs",
+        "crates/zeta2_tools/src/zeta2_tools.rs"
+      ]
+    },
+    {
+      "sha": "ed5b9a47053d18180d66b44cbc6753f9db0507a8",
+      "message": "Rework inlay hints system (#40183)\n\nCloses https://github.com/zed-industries/zed/issues/40047\nCloses https://github.com/zed-industries/zed/issues/24798\nCloses https://github.com/zed-industries/zed/issues/24788\n\nBefore, each editor, even if it\u0027s the same buffer split in 2, was\nquerying for inlay hints separately, and storing the whole inlay hint\ntwice, in `Editor`\u0027s `display_map` and its `inlay_hint_cache` fields.\n\nNow, instead of `inlay_hint_cache`, each editor maintains a minimal set\nof metadata (which area was queried by what task) instead, and all LSP\ninlay hint data had been moved into `LspStore`, both local and remote\nflavors store the data.\nThis allows Zed, as long as a buffer is open, to reuse the inlay hint\ndata similar to how document colors and code lens are now stored and\nreused.\n\nUnlike other reused LSP data, inlay hints data is the first one that\u0027s\npossible to query by document ranges and previous version had issue with\ncaching and invalidating such ranges already queried for.\nThe new version re-approaches this by chunking the file into row ranges,\nwhich are queried based on the editors\u0027 visible area.\n\nAmong the corresponding refactoring, one notable difference in inlays\ndisplay are multi buffers: buffers in them are not\n[registered](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_didOpen)\nin the language server until a caret/selection is placed inside their\nexcerpts inside the multi buffer.\n\nNew inlays code does not query language servers for unregistered\nbuffers, as servers usually respond with empty responses or errors in\nsuch cases.\n\nRelease Notes:\n\n- Reworked inlay hints to be less error-prone\n\n---------\n\nCo-authored-by: Lukas Wirth \u003clukas@zed.dev\u003e\nCo-authored-by: dino \u003cdinojoaocosta@gmail.com\u003e\nCo-authored-by: Lukas Wirth \u003cme@lukaswirth.dev\u003e",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "crates/agent_ui/src/acp/message_editor.rs",
+        "crates/collab/src/rpc.rs",
+        "crates/collab/src/tests/editor_tests.rs",
+        "crates/diagnostics/src/diagnostics_tests.rs",
+        "crates/editor/src/display_map.rs",
+        "crates/editor/src/display_map/fold_map.rs",
+        "crates/editor/src/display_map/inlay_map.rs",
+        "crates/editor/src/editor.rs",
+        "crates/editor/src/editor_tests.rs",
+        "crates/editor/src/hover_links.rs",
+        "crates/editor/src/hover_popover.rs",
+        "crates/editor/src/inlays.rs",
+        "crates/editor/src/inlays/inlay_hints.rs",
+        "crates/editor/src/lsp_colors.rs",
+        "crates/editor/src/movement.rs",
+        "crates/editor/src/proposed_changes_editor.rs",
+        "crates/editor/src/test/editor_lsp_test_context.rs",
+        "crates/language/src/language.rs",
+        "crates/project/src/lsp_command.rs",
+        "crates/project/src/lsp_store.rs",
+        "crates/project/src/lsp_store/inlay_hint_cache.rs",
+        "crates/project/src/project.rs",
+        "crates/project/src/project_tests.rs",
+        "crates/proto/proto/lsp.proto",
+        "crates/proto/src/proto.rs",
+        "crates/rpc/src/proto_client.rs",
+        "crates/search/Cargo.toml",
+        "crates/search/src/project_search.rs",
+        "crates/util/src/paths.rs",
+        "crates/vim/src/motion.rs"
+      ]
+    },
+    {
+      "sha": "5738bde3ce0d1e312d0f0f57dba3d89e593cf243",
+      "message": "gpui: Make `Empty` request layout with `Display::None` by default (#40900)\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "crates/gpui/src/element.rs"
+      ]
+    },
+    {
+      "sha": "6622902964c14e1632bfb3583e6ea45e56941144",
+      "message": "agent: Only show compatible tools in profile selector (#40917)\n\nIn practice this just hides the web search tool when not using the Zed\nprovider\n\nRelease Notes:\n\n- Fixed an issue where the web search tool would show up in the profile\nselector even when not using a model via Zed Pro",
+      "modifiedFiles": [
+        "crates/agent/src/thread.rs",
+        "crates/agent/src/tools.rs",
+        "crates/agent/src/tools/web_search_tool.rs",
+        "crates/agent_ui/src/agent_configuration/manage_profiles_modal.rs"
+      ]
+    },
+    {
+      "sha": "cb7881ec0bc4075c3e3e581e7f86e0cee89d0a76",
+      "message": "Fix migration from #40409 for users who haven\u0027t been migrated yet (#40916)\n\nCloses #40874\n\nRelease Notes:\n\n- Fixed an issue where migrating settings after v0.208.5+ would\nspuriously enable prettier. This fix only affects those who have not\nupdated or migrated yet. For those who have already updated to version\nv0.208.5 or later, placing `\"formatter\": []` in your settings in the\naffected languages will fix the issue.\n\n---------\n\nCo-authored-by: Mikayla \u003cmikayla@zed.dev\u003e",
+      "modifiedFiles": [
+        "crates/migrator/src/migrations/m_2025_10_16/settings.rs",
+        "crates/migrator/src/migrator.rs"
+      ]
+    },
+    {
+      "sha": "c60343af719a04323b4b6bdbf27d1d549247309d",
+      "message": "eval: Port to agent2 (#40704)\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "crates/acp_thread/src/terminal.rs",
+        "crates/agent/Cargo.toml",
+        "crates/agent/src/edit_agent/evals.rs",
+        "crates/agent/src/tests/mod.rs",
+        "crates/agent/src/thread.rs",
+        "crates/agent_servers/src/acp.rs",
+        "crates/eval/Cargo.toml",
+        "crates/eval/runner_settings.json",
+        "crates/eval/src/eval.rs",
+        "crates/eval/src/example.rs",
+        "crates/eval/src/examples/add_arg_to_trait_method.rs",
+        "crates/eval/src/examples/code_block_citations.rs",
+        "crates/eval/src/examples/comment_translation.rs",
+        "crates/eval/src/examples/file_change_notification.rs",
+        "crates/eval/src/examples/file_search.rs",
+        "crates/eval/src/examples/grep_params_escapement.rs",
+        "crates/eval/src/examples/mod.rs",
+        "crates/eval/src/examples/overwrite_file.rs",
+        "crates/eval/src/examples/planets.rs",
+        "crates/eval/src/instance.rs"
+      ]
+    },
+    {
+      "sha": "4a93719b6b5666fd04cbe63fd90aba28c3547f0d",
+      "message": "Upgrade `async-tar` to v0.5.1 (#40911)\n\nThis PR switches us back to the upstream version of `async-tar` and\nupgrades to v0.5.1.\n\nThis version has the patch we need:\nhttps://github.com/dignifiedquire/async-tar/commit/0c181956395fa28a9ae45786a57c9cf58c413e84.\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml"
+      ]
+    },
+    {
+      "sha": "d5580050582a91bd2af9f7c4355c6a5b917bfa99",
+      "message": "markdown: Add support for `colspan` and `rowspan` for HTML tables (#39898)\n\nCloses https://github.com/zed-industries/zed/issues/39837\n\nThis PR adds support for `colspan` feature that is only supported for\nHTML tables. I also fixed an edge case where the right side border was\nnot applied because it didn\u0027t match the total column count.\n\n**Before**\n\u003cimg width\u003d\"725\" height\u003d\"179\"\nalt\u003d\"499166907-385cc787-fc89-4e6d-bf06-c72c3c0bd775\"\nsrc\u003d\"https://github.com/user-attachments/assets/69586053-9893-4c92-aa89-7830d2bc7a6d\"\n/\u003e\n\n**After**\n\u003cimg width\u003d\"1165\" height\u003d\"180\" alt\u003d\"Screenshot 2025-10-21 at 22 51 55\"\nsrc\u003d\"https://github.com/user-attachments/assets/f40686e7-d95b-45a6-be42-e226e2f77483\"\n/\u003e\n\n```html\n\u003ctable\u003e\n    \u003ctr\u003e\n        \u003cth rowspan\u003d\"2\"\u003eRegion\u003c/th\u003e\n        \u003cth colspan\u003d\"2\"\u003eRevenue\u003c/th\u003e\n        \u003cth rowspan\u003d\"2\"\u003eGrowth\u003c/th\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n        \u003cth\u003eQ2 2024\u003c/th\u003e\n        \u003cth\u003eQ3 2024\u003c/th\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n        \u003ctd\u003eNorth America\u003c/td\u003e\n        \u003ctd\u003e$2.8M\u003c/td\u003e\n        \u003ctd\u003e$2.4B\u003c/td\u003e\n        \u003ctd\u003e+85,614%\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n        \u003ctd\u003eEurope\u003c/td\u003e\n        \u003ctd\u003e$1.2M\u003c/td\u003e\n        \u003ctd\u003e$1.9B\u003c/td\u003e\n        \u003ctd\u003e+158,233%\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n        \u003ctd\u003eAsia-Pacific\u003c/td\u003e\n        \u003ctd\u003e$0.5M\u003c/td\u003e\n        \u003ctd\u003e$1.4B\u003c/td\u003e\n        \u003ctd\u003e+279,900%\u003c/td\u003e\n    \u003c/tr\u003e\n\u003c/table\u003e\n```\n\n**TODO**:\n- [x] Add tests for rending logic\n- [x] Test all the tables again\n\ncc @bennetbo\n\nRelease Notes:\n\n- Markdown: Added support for `colspan` and `rowspan` for HTML tables\n\n---------\n\nCo-authored-by: Zed AI \u003cai@zed.nl\u003e\nCo-authored-by: Anthony Eid \u003chello@anthonyeid.me\u003e",
+      "modifiedFiles": [
+        "crates/markdown_preview/src/markdown_elements.rs",
+        "crates/markdown_preview/src/markdown_parser.rs",
+        "crates/markdown_preview/src/markdown_renderer.rs"
+      ]
+    },
+    {
+      "sha": "96a0db24d97361bab5603c42b229b2d6a5d8f262",
+      "message": "Add comment injections for gowork and gomod (#40842)\n\nRelease Notes:\n\n- Add comment injections for go.mod and go.work\n\nSigned-off-by: Donnie Adams \u003cdonnie@thedadams.com\u003e",
+      "modifiedFiles": [
+        "crates/languages/src/gomod/injections.scm",
+        "crates/languages/src/gowork/injections.scm"
+      ]
+    },
+    {
+      "sha": "23e9e32d657e4eb0a4f0e650d92e580368446abc",
+      "message": "emacs: Improve default keymap to better match the emacs behavior (#40631)\n\nHello,\nI am having a great time setting up the editor, but with a few problems\nrelated to the Emacs keymap.\n\nIn this PR I have compiled changes in the default `emacs.json` that I\nbelieve make the onboarding smoother for incoming emacs users.\nThis includes points that may need further discussion and some breaking\nchanges, although nothing that cannot be reverted with a quick\n`keymap.json` overwrite.\n\n(Please let me know if it is better to split up the PR)\n\n### 1. Avoid fallbacks to the default keymap\nall platforms:\n- `ctrl-g` activating `go_to_line::Toggle` when there is nothing to\ncancel\n\nlinux / windows:\n- `ctrl-x` activating `editor::Cut` on the 1 second timeout\n- `ctrl-p` activating `file_finder::Toggle` when the cursor is on the\nfirst character of the buffer\n- `ctrl-n` activating `workspace::NewFile` when the cursor is on the\nlast character of the buffer\n\n### 2. Make all move commands operate on full words\nIn the current Zed implementation some commands run on full words and\nothers on subwords.\nAlthough ultimately a matter of user preference, I think it is sensible\nto use full words as the default, since that is what is shipped with\nemacs.\n\n### ~~3. Cancel selections after copy/cut commands~~ Moved to #40904\nCanceling the selection is the default emacs behavior, but the way to\nachieve it might need some brushing.\nCurrently I am using `workspace::SendKeystrokes` to copy -\u003e\ncancel(`ctrl-g`), but this has the following problems:\n- can only be used in the main buffer (since `editor::Cancel` would\ntypically close secondary buffers)\n- may cause problems downstream if the user overwrites the `ctrl-g`\nbinding\n\n### ~~4. Replace killring with normal cut/paste commands~~ Moved to\n#40905\nIdeally Zed would support emacs-like killrings (#25270 and #22490).\nHowever, I understand that making an emacs emulator is not a project\ngoal, and the Zed team should have a bunch of tasks with higher\npriority.\n\nBy using a unified clipboard and standard cut/paste commands, we can\nprovide an experience that is closer to the out-of-the-box emacs\nbehavior (#33351) while also avoiding some pitfalls of the current\nkillring implementation (#28715).\n\n### 5. Promote some bindings to workspace commands\n- `alt-x` as `command_palette::Toggle`\n- `ctrl-x b` and `ctrl-x ctrl-b` as `tab_switcher::Toggle`\n\n---\n\nRelease Notes:\n\n- emacs: Fixed a problem where keys would fallback to their default\nkeymap binding on certain conditions\n- emacs: Changed `alt-f` and `alt-b` to operate on full words, as in the\nemacs default\n- emacs: `alt-x`, `ctrl-x b`, and `ctrl-x ctrl-b` are now Workspace\nbindings",
+      "modifiedFiles": [
+        "assets/keymaps/linux/emacs.json",
+        "assets/keymaps/macos/emacs.json"
+      ]
+    },
+    {
+      "sha": "b207da5a712f7b1d7a1cfecb3fb451017d06f2cb",
+      "message": "gpui: Re-land uniform list scroll fixes (#40899)\n\nRe-lands https://github.com/zed-industries/zed/pull/40719, fixes the\nbugs that were discovered with it and improves some more stuff in that\narea\n\nRelease Notes:\n\n- Fixed a rare issue where the extension page would stutter while\nscrolling.\n\n---------\n\nCo-authored-by: Agus Zubiaga \u003cagus@zed.dev\u003e",
+      "modifiedFiles": [
+        "crates/gpui/src/elements/uniform_list.rs"
+      ]
+    },
+    {
+      "sha": "a24601903aa1e75e89527c8f455557717a330b07",
+      "message": "agent: Improve discoverability of the quote selection action (#40897)\n\nThis PR renames the `agent::QuoteSelection` to\n`agent::AddSelectionToThread` _and_ adds it as a menu item in both the\nright-click context menu within regular buffers as well as the\n\"Selection\" app menu.\n\nWe\u0027ve received feedback in the past about how hard to discover this\nfeature is, and after watching [the Syntax podcast\ncrew](https://www.youtube.com/watch?v\u003dbRK3PeVFfVE) recently struggle\nwith doing so—and then naturally looking for it in the context menu and\nnot finding it—it felt like time to push a change. I think the rename +\nthe availability in these places could help bringing it to surface more.\n\nThe same action can be done in Cursor through the `cmd-l` keybinding,\nbut in Zed, that triggers `editor::SelectLine`, which I don\u0027t want to\noverride by default. However, if you\u0027re using Cursor\u0027s keymap, then\n`cmd-l` does trigger this action, as expected.\n\n\u003cimg width\u003d\"500\" height\u003d\"1812\" alt\u003d\"Screenshot 2025-10-22 at 12  01@2x\"\nsrc\u003d\"https://github.com/user-attachments/assets/dfc2c41c-8d0a-4a1a-8ea1-1bd5d1aa1171\"\n/\u003e\n\n\nRelease Notes:\n\n- agent: Improves discoverability of the previously called \"quote\nselection\" action—which allows to add a text selection in a buffer as\ncontext within the agent panel—by renaming it to \"add selection to\nthread\" and making it available from the right-click editor context menu\nas well as the \"Selection\" app menu.",
+      "modifiedFiles": [
+        "assets/keymaps/default-linux.json",
+        "assets/keymaps/default-macos.json",
+        "assets/keymaps/default-windows.json",
+        "assets/keymaps/linux/cursor.json",
+        "assets/keymaps/macos/cursor.json",
+        "crates/agent_ui/src/agent_ui.rs",
+        "crates/agent_ui/src/text_thread_editor.rs",
+        "crates/editor/src/mouse_context_menu.rs",
+        "crates/zed/src/zed/app_menus.rs",
+        "crates/zed_actions/src/lib.rs",
+        "docs/src/ai/text-threads.md"
+      ]
+    },
+    {
+      "sha": "3a12122d1b4f70464602d713be1e1d372c316a31",
+      "message": "Revert \"keymaps: Update defaults for inline assist and signature help\" (#40903)\n\nReverts zed-industries/zed#39587",
+      "modifiedFiles": [
+        "assets/keymaps/default-linux.json",
+        "assets/keymaps/default-macos.json",
+        "assets/keymaps/default-windows.json"
+      ]
+    },
+    {
+      "sha": "d0398da09955e2642eb3c6ec0d1eb7bb509f4355",
+      "message": "editor: Fix singleton multibuffer titles not being replicated (#40896)\n\nRelease Notes:\n\n- N/A *or* Added/Fixed/Improved ...",
+      "modifiedFiles": [
+        "crates/editor/src/items.rs",
+        "crates/multi_buffer/src/multi_buffer.rs"
+      ]
+    },
+    {
+      "sha": "69b2ee7bf0b714e863f528d2c8d64c95359f87c0",
+      "message": "Bump Zed to v0.211 (#40895)\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "crates/zed/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "88bac4d5fc90f08ad1850a664122d1c796b9b36a",
+      "message": "docs: Change tab character representation in docs (#40667)\n\nThe suggested `→` appears tiny, and almost looks like just a dot on my\nmonitor, and I got quite confused for a while thinking the\n`whitespace_map.tab` setting wasn\u0027t working properly.\n\u003cimg width\u003d\"630\" height\u003d\"105\" alt\u003d\"Image\"\nsrc\u003d\"https://github.com/user-attachments/assets/98feced2-39b3-4734-83e4-b4573b4e52c2\"\n/\u003e\n\nI think it would be really helpful if `⟶` was suggested instead since\nthat displays properly.\n\u003cimg width\u003d\"625\" height\u003d\"104\" alt\u003d\"Image\"\nsrc\u003d\"https://github.com/user-attachments/assets/176886ab-cf88-4079-90a8-91a8e8182092\"\n/\u003e\n\n---\n\nI am using `Fira Code` as my font on windows, however when I remove that\nconfig to get the default font, it also still appears the same size. So\nI don\u0027t believe this is just a font issue on my machine.\nThought I am using Windows, so I would be willing to believe this a\nrender issue specific to windows\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "docs/src/visual-customization.md"
+      ]
+    },
+    {
+      "sha": "d53efe4e9177ce08a55702967fd00555a4ac4724",
+      "message": "Revert \"gpui: Fix uniform list scrolling with vertical padding present\" (#40891)\n\nReverts zed-industries/zed#40719\n\nThis unveiled some bigger issues with the UniformList size computations,\nwhich are more crucial than what was fixed here.\n\nRelease Notes:\n\n- NOTE: BUGFIX \"Fixed a rare issue where the extension page would\nstutter while scrolling.\" was reverted due to some other issues",
+      "modifiedFiles": [
+        "crates/gpui/src/elements/uniform_list.rs"
+      ]
+    },
+    {
+      "sha": "14b41b122f38c76374b5285ea2bd4c649544642b",
+      "message": "Fix JumpHost on Windows (#40713)\n\nCloses #39382 \n\nRelease Notes:\n\n- Fixed Windows specific ssh jumphost connection issues",
+      "modifiedFiles": [
+        "crates/remote/src/transport/ssh.rs"
+      ]
+    },
+    {
+      "sha": "98c7e018ae729eb15896bb2d8ee14e0efd26e79c",
+      "message": "Add new action and handler for opening a specific setting (#40739)\n\nCo-authored-by: Ben Kunkle \u003cben@zed.dev\u003e",
+      "modifiedFiles": [
+        "crates/settings_ui/src/page_data.rs",
+        "crates/settings_ui/src/settings_ui.rs",
+        "crates/zed/src/main.rs",
+        "crates/zed/src/zed/open_listener.rs",
+        "crates/zed_actions/src/lib.rs"
+      ]
+    },
+    {
+      "sha": "c81ffaffb61b232501074373ec2d92005aac26cf",
+      "message": "editor: Use unbounded shifts for chunk bitmaps (#40879)\n\nThis simplifies some code and is also more correct in some others (I\nbelieve some of these might\u0027ve overflowed causing panics in sentry)\n\nRelease Notes:\n\n- N/A *or* Added/Fixed/Improved ...",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "crates/editor/Cargo.toml",
+        "crates/editor/src/display_map/block_map.rs",
+        "crates/editor/src/display_map/custom_highlights.rs",
+        "crates/editor/src/display_map/fold_map.rs",
+        "crates/editor/src/display_map/inlay_map.rs",
+        "crates/editor/src/display_map/tab_map.rs",
+        "crates/editor/src/display_map/wrap_map.rs",
+        "crates/language/src/buffer.rs",
+        "crates/multi_buffer/src/multi_buffer.rs",
+        "crates/rope/src/chunk.rs",
+        "crates/rope/src/rope.rs"
+      ]
+    },
+    {
+      "sha": "bd69124f2b4f14911483135b4cbd42e0766bea3d",
+      "message": "Add option to disable crash handler (#40799)\n\nExtra info needed for #39289. To be tested out next nightly build...\n\nRelease Notes:\n\n- N/A\n\nCo-authored-by: Cole Miller \u003cm@cole-miller.net\u003e",
+      "modifiedFiles": [
+        "crates/crashes/src/crashes.rs"
+      ]
+    },
+    {
+      "sha": "77dbe08d9d9c26dca41f53b420f26d2c5d74cc35",
+      "message": "project_panel: Fix buffer focus when canceling filename edit (#40747)\n\nCloses #37726\n\nRelease Notes:\n\n- Fixed an issue where the buffer would not regain focus when clicked\nwhile a filename edit was in progress in the project panel.\n\n---------\n\nCo-authored-by: Smit Barmase \u003cheysmitbarmase@gmail.com\u003e",
+      "modifiedFiles": [
+        "crates/project_panel/src/project_panel.rs",
+        "crates/project_panel/src/project_panel_tests.rs"
+      ]
+    },
+    {
+      "sha": "252b75e493ead19919bd5fdc21f917f398e6c8ab",
+      "message": "Disable slang-server for verilog extension (#40442)\n\nShould be merged with\nhttps://github.com/zed-industries/extensions/pull/3584, which adds\n`slang-server` as a new language server, but should be disabled by\ndefault due to an issue with it not initializing on Windows and being a\nrelatively new language server in general.\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "assets/settings/default.json"
+      ]
+    },
+    {
+      "sha": "bc0bace81f6c5f35b8730045dbffcbda64662bc0",
+      "message": "Add basic ico support (#40822)\n\nCloses https://github.com/zed-industries/zed/discussions/40763\n\n\u003cimg width\u003d\"867\" height\u003d\"1088\" alt\u003d\"Screenshot 2025-10-21 at 23 14 47\"\nsrc\u003d\"https://github.com/user-attachments/assets/d691fb2a-afc6-4445-a335-054ef164e0d3\"\n/\u003e\n\nAlso improves error handling on image open failure:\n\n\u003cimg width\u003d\"864\" height\u003d\"1083\" alt\u003d\"Screenshot 2025-10-21 at 23 14 30\"\nsrc\u003d\"https://github.com/user-attachments/assets/d5388b61-995f-441b-b375-ad5136d1533b\"\n/\u003e\n\n\nRelease Notes:\n\n- Added basic ico support, improved unsupported image handling",
+      "modifiedFiles": [
+        "crates/editor/src/editor_tests.rs",
+        "crates/editor/src/items.rs",
+        "crates/gpui/src/platform.rs",
+        "crates/gpui/src/platform/linux/x11/clipboard.rs",
+        "crates/gpui/src/platform/mac/platform.rs",
+        "crates/image_viewer/src/image_viewer.rs",
+        "crates/project/src/image_store.rs",
+        "crates/project/src/invalid_item_view.rs",
+        "crates/repl/src/outputs/image.rs",
+        "crates/workspace/src/invalid_item_view.rs",
+        "crates/workspace/src/item.rs",
+        "crates/workspace/src/pane.rs",
+        "crates/workspace/src/workspace.rs"
+      ]
+    },
+    {
+      "sha": "8ceb2f2c61366c970bc122a24acfbda23a59c458",
+      "message": "Add more tweaks to the troubleshooting docs (#40870)\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "docs/src/troubleshooting.md"
+      ]
+    },
+    {
+      "sha": "25de2acfdb3e1bb16ab75970fe1523256c93e223",
+      "message": "Correct workspace db directory paths (#40868)\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "docs/src/troubleshooting.md"
+      ]
+    },
+    {
+      "sha": "8bad2cbd83bdcd9997123b43373a571d9e3cbfed",
+      "message": "Add another informational blog post to docs (#40865)\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "docs/src/additional-learning-materials.md"
+      ]
+    },
+    {
+      "sha": "762af0982ce56712531fa5016acbce2fde8cac6a",
+      "message": "Add more troubleshooting information (#40864)\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "docs/src/SUMMARY.md",
+        "docs/src/troubleshooting.md",
+        "docs/src/workspace-persistence.md"
+      ]
+    },
+    {
+      "sha": "3d3e9130a882ff4f6604d7df28e23585e77c89a9",
+      "message": "collab: Pin sea-orm-macro crate version together with sea-orm (#40846)\n\nCurrently running `cargo update` on Zed will break the collab crate\nbecause the versions of sea-orm and sea-orm-macros will not match. This\nresults in a bunch of noisy warnings from rust-analyzer.\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "crates/collab/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "fd9c2e32f33599fd234c810ec27f9bd0b383cec0",
+      "message": "Organize release docs (#40860)1\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "docs/src/development/releases.md"
+      ]
+    },
+    {
+      "sha": "08d95ad9d31f616a43dacda8416568d658dca6ae",
+      "message": "chore: Bump gpui to 0.2.2 (#40856)\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "crates/gpui/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "d096132888a769a20afbc14058b39ace2336c564",
+      "message": "docs: Add git stash to git.md (#40834)\n\nCloses #ISSUE\n\nRelease Notes:\n\n- Added git stash documentation",
+      "modifiedFiles": [
+        "docs/src/git.md"
+      ]
+    },
+    {
+      "sha": "d7c855550ce8f47cb1232326243eae48df6c907e",
+      "message": "Update async-tar dependency for GPUI (#40850)\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml"
+      ]
+    },
+    {
+      "sha": "9c71a7f43cd47bd1ec9a7260416b51346dfdceee",
+      "message": "Revert arm64 runners (#40852)\n\nRelease Notes:\n\n- N/A",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/release_nightly.yml",
+        "crates/zed/resources/windows/zed.iss",
+        "script/bundle-windows.ps1",
+        "script/upload-nightly.ps1"
+      ]
+    },
+    {
+      "sha": "221637ea82c26146d37bfc417c90da2e4596cbc1",
+      "message": "Fix code signing for Windows installer (#40847)\n\nRelease Notes:\n\n- N/A\n\nCo-authored-by: Mikayla Maki \u003cmikayla.c.maki@gmail.com\u003e\nCo-authored-by: Conrad Irwin \u003cconrad.irwin@gmail.com\u003e",
+      "modifiedFiles": [
+        "crates/zed/resources/windows/zed.iss"
+      ]
+    },
+    {
+      "sha": "e468edd3893c11597bda6d7ebba8f1204e8c074f",
+      "message": "Fix extraction of font runs from text runs (#40840)\n\nFixes a bug in https://github.com/zed-industries/zed/pull/39928\n\nThe bug caused all completions to appear in bold-face\n\nRelease Notes:\n\n- Fixed a bug where bold-face font was applied to the wrong characters\nin items in the autocomplete menu\n\nCo-authored-by: Mikayla Maki \u003cmikayla.c.maki@gmail.com\u003e",
+      "modifiedFiles": [
+        "crates/gpui/examples/text_layout.rs",
+        "crates/gpui/src/text_system.rs"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "zed",
+      "ownerLogin": "slavpetroff",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "aezaqiel",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "cmclaughlin",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "ram-nadella",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "lionel-",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "Peyu5h",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "virajbhartiya",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "kafji",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "anndream",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "IamThraize",
+      "commitCount": 100
+    },
+    {
+      "name": "fork_zed-industries_zed",
+      "ownerLogin": "276793422",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "hotdogc1017",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "altmanPowell",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "SaaiAravindhRaja",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "mohin-io",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "martintan",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "dj707chen",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "taciclei",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "oaixnah",
+      "commitCount": 100
+    },
+    {
+      "name": "zed",
+      "ownerLogin": "GHULAMMUSTAFA-JPG",
+      "commitCount": 100
+    }
+  ]
+}

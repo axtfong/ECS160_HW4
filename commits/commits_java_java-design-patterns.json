@@ -1,0 +1,639 @@
+{
+  "name": "java-design-patterns",
+  "ownerLogin": "iluwatar",
+  "language": "Java",
+  "commits": [
+    {
+      "sha": "ede37bd05568b1b8b814d8e9a1d2bbd71d9d615d",
+      "message": "docs: add e5LA as a contributor for doc (#3281)\n\n* docs: update README.md [skip ci]\n\n* docs: update .all-contributorsrc [skip ci]\n\n---------\n\nCo-authored-by: allcontributors[bot] \u003c46447321+allcontributors[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".all-contributorsrc",
+        "README.md"
+      ]
+    },
+    {
+      "sha": "f6bb51581f6d2f0e5c643e5e1cc93d9987e96b72",
+      "message": "chore: adding missing license (#3273)\n\nCo-authored-by: SP \u003cSP@\u003e",
+      "modifiedFiles": [
+        "leader-followers/src/main/java/com/iluwatar/leaderfollowers/App.java"
+      ]
+    },
+    {
+      "sha": "bf164009b4e1c0a3093ebcbaf1d6424d013a4ab4",
+      "message": "docs: add yybmion as a contributor for code (#3279)\n\n* docs: update README.md [skip ci]\n\n* docs: update .all-contributorsrc [skip ci]\n\n---------\n\nCo-authored-by: allcontributors[bot] \u003c46447321+allcontributors[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".all-contributorsrc",
+        "README.md"
+      ]
+    },
+    {
+      "sha": "8529017e025e4b0c8887730b5204926ef410f629",
+      "message": "feat: Implement Thread-Pool Executor pattern (#3271)\n\n- Add implementation of Thread-Pool Executor pattern using hotel front desk example\n- Include unit tests\n- Create detailed README with pattern explanation and examples\n- Add Java source code with appropriate Javadoc comments\n\nCloses #3226",
+      "modifiedFiles": [
+        "pom.xml",
+        "thread-pool-executor/README.md",
+        "thread-pool-executor/etc/thread-pool-executor.urm.png",
+        "thread-pool-executor/etc/thread-pool-executor.urm.puml",
+        "thread-pool-executor/pom.xml",
+        "thread-pool-executor/src/main/java/com/iluwatar/threadpoolexecutor/App.java",
+        "thread-pool-executor/src/main/java/com/iluwatar/threadpoolexecutor/FrontDeskService.java",
+        "thread-pool-executor/src/main/java/com/iluwatar/threadpoolexecutor/GuestCheckInTask.java",
+        "thread-pool-executor/src/main/java/com/iluwatar/threadpoolexecutor/VipGuestCheckInTask.java",
+        "thread-pool-executor/src/test/java/com/iluwatar/threadpoolexecutor/AppTest.java",
+        "thread-pool-executor/src/test/java/com/iluwatar/threadpoolexecutor/FrontDeskServiceTest.java",
+        "thread-pool-executor/src/test/java/com/iluwatar/threadpoolexecutor/GuestCheckInTaskTest.java",
+        "thread-pool-executor/src/test/java/com/iluwatar/threadpoolexecutor/VipGuestCheckInTaskTest.java"
+      ]
+    },
+    {
+      "sha": "3ac1a36b058864b5fcd6fb9e42435f8fe7799591",
+      "message": "docs: update prototype",
+      "modifiedFiles": [
+        "prototype/README.md"
+      ]
+    },
+    {
+      "sha": "0da4dcda5b3af64b071a71f766c6ed54bcbf10cb",
+      "message": "docs: update producer-consumer",
+      "modifiedFiles": [
+        "producer-consumer/README.md"
+      ]
+    },
+    {
+      "sha": "a62601a64f3f200450e08a45d71edcedf70a8a53",
+      "message": "build(deps): bump com.fasterxml.jackson.core:jackson-core (#3270)\n\nBumps [com.fasterxml.jackson.core:jackson-core](https://github.com/FasterXML/jackson-core) from 2.18.2 to 2.19.0.\n- [Commits](https://github.com/FasterXML/jackson-core/compare/jackson-core-2.18.2...jackson-core-2.19.0)\n\n---\nupdated-dependencies:\n- dependency-name: com.fasterxml.jackson.core:jackson-core\n  dependency-version: 2.19.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "dynamic-proxy/pom.xml",
+        "event-sourcing/pom.xml"
+      ]
+    },
+    {
+      "sha": "7d2e6262cc91a5385c670f35bab9f5a4d59a8ca9",
+      "message": "build(deps): bump com.mycila:license-maven-plugin from 4.6 to 5.0.0 (#3268)\n\nBumps [com.mycila:license-maven-plugin](https://github.com/mathieucarbou/license-maven-plugin) from 4.6 to 5.0.0.\n- [Release notes](https://github.com/mathieucarbou/license-maven-plugin/releases)\n- [Commits](https://github.com/mathieucarbou/license-maven-plugin/compare/license-maven-plugin-4.6...v5.0.0)\n\n---\nupdated-dependencies:\n- dependency-name: com.mycila:license-maven-plugin\n  dependency-version: 5.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "pom.xml"
+      ]
+    },
+    {
+      "sha": "8a64f4c5743f41a2b4fc8d28ecf1e9f13acb5a3b",
+      "message": "docs: update dependency injection",
+      "modifiedFiles": [
+        "dependency-injection/README.md"
+      ]
+    },
+    {
+      "sha": "f8f33f586a605e1685ea24cb2631acf961d1a182",
+      "message": "docs: add maziyar-gerami as a contributor for translation (#3265)\n\n* docs: update README.md [skip ci]\n\n* docs: update .all-contributorsrc [skip ci]\n\n---------\n\nCo-authored-by: allcontributors[bot] \u003c46447321+allcontributors[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".all-contributorsrc",
+        "README.md"
+      ]
+    },
+    {
+      "sha": "dae93adfeec9632a1400dae7d2098c3e63c09dd8",
+      "message": "translation: Translate selected patterns to persian (#3256)\n\n* Persian Translation: Add persian translation to abstract-document\n\n* Persian Translation: Add abstract-document.png to abstract-document folder\n\n* Persian Translation: Add codes to README.md of abstract-document\n\n* Persian Translation: some improvements in abstract-document\n\n* Persian Translation: Add refrence links in abstract-document\n\n* Persian Translation: add rtl tag in abstract-document\n\n* active-object : translate\n\n* active-object: improve when to use\n\n* active-object: improve when to use\n\n* active-object: improve bullets (test)\n\n* active-object: improve bullets (test)\n\n* active-object: improve bullets (test)\n\n* active-object: improve bullets (test)\n\n* active-object: improve bullets\n\n* active-object: Fix all bullets\n\n* -added persian translation of factory pattern\n\n* -renamed file\n\n* -changed wikipedia definition\n\n* -fixed table problem\n\n* -fixed problems in bullet alignments\n\n* Update README.md\n\n-fixed alignment in bullets\n\n* Update README.md\n\n-changed tags to English\n\n---------\n\nCo-authored-by: Seyyed Keivan Shirkoubian \u003ckeivan.shir.74@gmail.com\u003e",
+      "modifiedFiles": [
+        "localization/fa/abstract-document/README.md",
+        "localization/fa/abstract-document/etc/abstract-document.png",
+        "localization/fa/active-object/README.md",
+        "localization/fa/active-object/etc/active-object-sequence-diagram.png",
+        "localization/fa/active-object/etc/active-object.urm.png",
+        "localization/fa/active-object/etc/active-object.urm.puml",
+        "localization/fa/factory/README.md",
+        "localization/fa/factory/etc/factory-sequence-diagram.png"
+      ]
+    },
+    {
+      "sha": "ad6bdf802d1b7a890a6801e3064cec586f55f760",
+      "message": "build(deps): bump org.sonarsource.scanner.maven:sonar-maven-plugin (#3261)\n\nBumps [org.sonarsource.scanner.maven:sonar-maven-plugin](https://github.com/SonarSource/sonar-scanner-maven) from 5.0.0.4389 to 5.1.0.4751.\n- [Release notes](https://github.com/SonarSource/sonar-scanner-maven/releases)\n- [Commits](https://github.com/SonarSource/sonar-scanner-maven/compare/5.0.0.4389...5.1.0.4751)\n\n---\nupdated-dependencies:\n- dependency-name: org.sonarsource.scanner.maven:sonar-maven-plugin\n  dependency-version: 5.1.0.4751\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "pom.xml"
+      ]
+    },
+    {
+      "sha": "6e20d3221383c1954bb5b4b89c5aeeb051e68f3e",
+      "message": "build(deps): bump org.springframework:spring-web (#3262)\n\nBumps [org.springframework:spring-web](https://github.com/spring-projects/spring-framework) from 7.0.0-M3 to 7.0.0-M4.\n- [Release notes](https://github.com/spring-projects/spring-framework/releases)\n- [Commits](https://github.com/spring-projects/spring-framework/compare/v7.0.0-M3...v7.0.0-M4)\n\n---\nupdated-dependencies:\n- dependency-name: org.springframework:spring-web\n  dependency-version: 7.0.0-M4\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "dynamic-proxy/pom.xml"
+      ]
+    },
+    {
+      "sha": "e4681e4a7ca3120f86faf63a324b6b085819ae9a",
+      "message": "docs: add e5LA as a contributor for code (#3264)\n\n* docs: update README.md [skip ci]\n\n* docs: update .all-contributorsrc [skip ci]\n\n---------\n\nCo-authored-by: allcontributors[bot] \u003c46447321+allcontributors[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".all-contributorsrc",
+        "README.md"
+      ]
+    },
+    {
+      "sha": "55bef7ca39e4a80565a3e9eed890372e663fa919",
+      "message": "chore: removed duplicated dependency (#3258)",
+      "modifiedFiles": [
+        "pom.xml"
+      ]
+    },
+    {
+      "sha": "e359f1b031cc310318b3656efda1a2c36cb6d436",
+      "message": "docs: add ssrijan-007-sys as a contributor for code (#3263)\n\n* docs: update README.md [skip ci]\n\n* docs: update .all-contributorsrc [skip ci]\n\n---------\n\nCo-authored-by: allcontributors[bot] \u003c46447321+allcontributors[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".all-contributorsrc",
+        "README.md"
+      ]
+    },
+    {
+      "sha": "fe522fd70d050494d197d3c4aa443aedef4aae1a",
+      "message": "feat: Implement Actor Model pattern\n\n* feat: Implement Actor Model pattern #3232\n\n* feat: Implement Actor Model pattern #3232\n\n* feat: update Actor Model implementation with multi-actor logic #3251\n\n* feat: update Actor Model implementation with multi-actor logic and loose coupling  #3251\n\n* test: add unit test for actor model #3251\n\n* test: add test for App.java to increase coverage\n\n* docs: add complete README for Actor Model pattern also implemented changes #3251",
+      "modifiedFiles": [
+        "actor-model/README.md",
+        "actor-model/etc/Actor_Model_UML_Class_Diagram.png",
+        "actor-model/etc/actor-model.urm.puml",
+        "actor-model/pom.xml",
+        "actor-model/src/main/java/com/iluwatar/actormodel/Actor.java",
+        "actor-model/src/main/java/com/iluwatar/actormodel/ActorSystem.java",
+        "actor-model/src/main/java/com/iluwatar/actormodel/App.java",
+        "actor-model/src/main/java/com/iluwatar/actormodel/ExampleActor.java",
+        "actor-model/src/main/java/com/iluwatar/actormodel/ExampleActor2.java",
+        "actor-model/src/main/java/com/iluwatar/actormodel/Message.java",
+        "actor-model/src/test/java/com/iluwatar/actor/ActorModelTest.java",
+        "pom.xml"
+      ]
+    },
+    {
+      "sha": "1cde704bcbf7029e28bd8f671ac53943fe6ec6f3",
+      "message": "docs: remove some old diagrams",
+      "modifiedFiles": [
+        "data-access-object/README.md",
+        "data-locality/README.md"
+      ]
+    },
+    {
+      "sha": "d80eca177b2fada0f31a1e3350663096f3076cda",
+      "message": "docs: update book link",
+      "modifiedFiles": [
+        "README.md"
+      ]
+    },
+    {
+      "sha": "cb3853a7890994a2b3150687833ccfb9a17aeae0",
+      "message": "docs: update table inheritance",
+      "modifiedFiles": [
+        "table-inheritance/README.md",
+        "table-inheritance/etc/table-inheritance-mind-map.png",
+        "table-inheritance/src/test/java/com/iluwatar/table/inheritance/AppTest.java",
+        "table-inheritance/src/test/java/com/iluwatar/table/inheritance/VehicleDatabaseTest.java"
+      ]
+    },
+    {
+      "sha": "67bc5e3a621fce1e481a680dc37e7242b7ca7b54",
+      "message": "docs: update session facade",
+      "modifiedFiles": [
+        "session-facade/README.md",
+        "session-facade/pom.xml",
+        "session-facade/src/test/java/com/iluwatar/sessionfacade/AppTest.java",
+        "session-facade/src/test/java/com/iluwatar/sessionfacade/PaymentServiceTest.java"
+      ]
+    },
+    {
+      "sha": "bc42e389381a7fe89f8ba7c9b82e9cd6ce20ff09",
+      "message": "docs: update service stub",
+      "modifiedFiles": [
+        "service-stub/README.md",
+        "service-stub/src/main/java/com/iluwatar/servicestub/RealSentimentAnalysisServer.java",
+        "service-stub/src/test/java/com/iluwatar/servicestub/AppTest.java"
+      ]
+    },
+    {
+      "sha": "9f7ce4e732fe9b6a70b607f1882479177bd86182",
+      "message": "docs: update publish-subscribe",
+      "modifiedFiles": [
+        "publish-subscribe/README.md",
+        "publish-subscribe/etc/publish-subscribe-sequence-diagram.png",
+        "publish-subscribe/src/test/java/com/iluwatar/publish/subscribe/AppTest.java",
+        "publish-subscribe/src/test/java/com/iluwatar/publish/subscribe/LoggerExtension.java",
+        "publish-subscribe/src/test/java/com/iluwatar/publish/subscribe/model/MessageTest.java",
+        "publish-subscribe/src/test/java/com/iluwatar/publish/subscribe/model/TopicTest.java",
+        "publish-subscribe/src/test/java/com/iluwatar/publish/subscribe/publisher/PublisherTest.java"
+      ]
+    },
+    {
+      "sha": "1a08b73af843c42872432a198f45f7dc4a80c8b5",
+      "message": "docs: update monolithic architecture",
+      "modifiedFiles": [
+        "monolithic-architecture/README.md",
+        "monolithic-architecture/etc/monolithic-architecture-flowchart.png",
+        "monolithic-architecture/etc/monolithic-architecture-mind-map.png",
+        "monolithic-architecture/src/test/java/com/iluwatar/monolithic/MonolithicAppTest.java"
+      ]
+    },
+    {
+      "sha": "0f37b4ee7f7bf7258dffefc82a2c17e25e263b02",
+      "message": "build(deps): bump com.diffplug.spotless:spotless-maven-plugin (#3254)\n\nBumps [com.diffplug.spotless:spotless-maven-plugin](https://github.com/diffplug/spotless) from 2.44.3 to 2.44.4.\n- [Release notes](https://github.com/diffplug/spotless/releases)\n- [Changelog](https://github.com/diffplug/spotless/blob/main/CHANGES.md)\n- [Commits](https://github.com/diffplug/spotless/compare/maven/2.44.3...maven/2.44.4)\n\n---\nupdated-dependencies:\n- dependency-name: com.diffplug.spotless:spotless-maven-plugin\n  dependency-version: 2.44.4\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "pom.xml"
+      ]
+    },
+    {
+      "sha": "2e686b2d73c272ecd42b000b904dcbc377223851",
+      "message": "build(deps): bump io.micrometer:micrometer-tracing-bridge-brave (#3253)\n\nBumps [io.micrometer:micrometer-tracing-bridge-brave](https://github.com/micrometer-metrics/tracing) from 1.4.4 to 1.4.5.\n- [Release notes](https://github.com/micrometer-metrics/tracing/releases)\n- [Commits](https://github.com/micrometer-metrics/tracing/compare/v1.4.4...v1.4.5)\n\n---\nupdated-dependencies:\n- dependency-name: io.micrometer:micrometer-tracing-bridge-brave\n  dependency-version: 1.4.5\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "microservices-distributed-tracing/pom.xml"
+      ]
+    },
+    {
+      "sha": "b95bf243e61b9a824745074f868fc3cecee6733a",
+      "message": "build(deps): bump org.jacoco:jacoco-maven-plugin from 0.8.12 to 0.8.13 (#3252)\n\nBumps [org.jacoco:jacoco-maven-plugin](https://github.com/jacoco/jacoco) from 0.8.12 to 0.8.13.\n- [Release notes](https://github.com/jacoco/jacoco/releases)\n- [Commits](https://github.com/jacoco/jacoco/compare/v0.8.12...v0.8.13)\n\n---\nupdated-dependencies:\n- dependency-name: org.jacoco:jacoco-maven-plugin\n  dependency-version: 0.8.13\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "pom.xml"
+      ]
+    },
+    {
+      "sha": "b8aa775d488e7297831c91ce74c411ef817ee39a",
+      "message": "fix: fix code formatting",
+      "modifiedFiles": [
+        "money/src/test/java/com/iluwater/money/MoneyTest.java"
+      ]
+    },
+    {
+      "sha": "d95c6797a4e3510ebb23c121c22d14ab71954f9c",
+      "message": "docs: update money pattern",
+      "modifiedFiles": [
+        "money/README.md",
+        "money/etc/money-flowchart.png",
+        "money/etc/money-mind-map.png",
+        "money/src/main/java/com/iluwatar/Money.java",
+        "money/src/test/java/com/iluwater/money/MoneyTest.java"
+      ]
+    },
+    {
+      "sha": "076fc21e404b8abadc6cc14b41c30866a5b85267",
+      "message": "docs: update microservices idempotent consumer",
+      "modifiedFiles": [
+        "microservices-distributed-tracing/README.md",
+        "microservices-idempotent-consumer/README.md",
+        "microservices-idempotent-consumer/etc/microservices-idempotent-consumer-flowchart.png",
+        "microservices-idempotent-consumer/src/main/java/com/iluwatar/idempotentconsumer/RequestService.java",
+        "microservices-idempotent-consumer/src/test/java/com/iluwatar/idempotentconsumer/AppTest.java",
+        "microservices-idempotent-consumer/src/test/java/com/iluwatar/idempotentconsumer/RequestServiceTests.java",
+        "microservices-idempotent-consumer/src/test/java/com/iluwatar/idempotentconsumer/RequestStateMachineTests.java"
+      ]
+    },
+    {
+      "sha": "acb40e112b031234cd54cf96435e0d832792094c",
+      "message": "docs: update microservices distributed tracing",
+      "modifiedFiles": [
+        "microservices-distributed-tracing/README.md",
+        "microservices-distributed-tracing/etc/microservices-distributed-tracing-sequence-diagram.png",
+        "microservices-distributed-tracing/product-microservice/src/test/java/com/iluwatar/product/microservice/ProductControllerTest.java"
+      ]
+    },
+    {
+      "sha": "9de12ea5f20ea34e38916bcff3237a5b5fde5ea7",
+      "message": "docs: update clean architecture",
+      "modifiedFiles": [
+        "clean-architecture/README.md",
+        "clean-architecture/etc/clean-architecture-flowchart.png",
+        "clean-architecture/etc/clean-architecture-mind-map.png",
+        "clean-architecture/src/main/java/com/iluwatar/cleanarchitecture/App.java",
+        "clean-architecture/src/main/java/com/iluwatar/cleanarchitecture/Cart.java",
+        "clean-architecture/src/main/java/com/iluwatar/cleanarchitecture/CartController.java",
+        "clean-architecture/src/main/java/com/iluwatar/cleanarchitecture/CartRepository.java",
+        "clean-architecture/src/main/java/com/iluwatar/cleanarchitecture/InMemoryCartRepository.java",
+        "clean-architecture/src/main/java/com/iluwatar/cleanarchitecture/InMemoryOrderRepository.java",
+        "clean-architecture/src/main/java/com/iluwatar/cleanarchitecture/InMemoryProductRepository.java",
+        "clean-architecture/src/main/java/com/iluwatar/cleanarchitecture/Order.java",
+        "clean-architecture/src/main/java/com/iluwatar/cleanarchitecture/OrderController.java",
+        "clean-architecture/src/main/java/com/iluwatar/cleanarchitecture/OrderRepository.java",
+        "clean-architecture/src/main/java/com/iluwatar/cleanarchitecture/Product.java",
+        "clean-architecture/src/main/java/com/iluwatar/cleanarchitecture/ProductRepository.java",
+        "clean-architecture/src/main/java/com/iluwatar/cleanarchitecture/ShoppingCartService.java",
+        "clean-architecture/src/main/java/com/iluwatar/cleanarchitecture/package-info.java",
+        "clean-architecture/src/test/java/com/iluwatar/cleanarchitecture/AppTest.java",
+        "clean-architecture/src/test/java/com/iluwatar/cleanarchitecture/CartControllerTest.java"
+      ]
+    },
+    {
+      "sha": "4afabdb403cc7a57bc6641554f1c6caff4b23bd0",
+      "message": "docs: update bloc pattern",
+      "modifiedFiles": [
+        "bloc/README.md",
+        "bloc/src/test/java/com/iluwatar/bloc/BlocUiTest.java"
+      ]
+    },
+    {
+      "sha": "5241a4ae202066d5b74468413145ee20f5d827af",
+      "message": "docs: update client-side ui composition",
+      "modifiedFiles": [
+        "microservices-api-gateway/README.md",
+        "microservices-api-gateway/api-gateway-service/src/main/java/com/iluwatar/api/gateway/ImageClientImpl.java",
+        "microservices-client-side-ui-composition/README.md",
+        "microservices-client-side-ui-composition/etc/microservices-client-side-ui-composition-sequence-diagram.png"
+      ]
+    },
+    {
+      "sha": "4b06dc2a2e958005a43cf25e60610c7737e4ed6a",
+      "message": "docs: updates for MapReduce",
+      "modifiedFiles": [
+        "map-reduce/README.md",
+        "map-reduce/etc/mapreduce-flowchart.png"
+      ]
+    },
+    {
+      "sha": "8ca487e96c4a3686a991d469de92e50ed4ed4085",
+      "message": "docs: update function composition pattern",
+      "modifiedFiles": [
+        "function-composition/README.md",
+        "function-composition/src/main/java/com/iluwatar/function/composition/App.java",
+        "function-composition/src/main/java/com/iluwatar/function/composition/FunctionComposer.java",
+        "function-composition/src/test/java/com/iluwatar/function/composition/FunctionComposerTest.java"
+      ]
+    },
+    {
+      "sha": "ce2e5f75d85c97ef6533d5925a8581e7cb4f110c",
+      "message": "docs: update backpressure description",
+      "modifiedFiles": [
+        "backpressure/README.md",
+        "backpressure/etc/backpressure-sequence-diagram.png",
+        "backpressure/pom.xml",
+        "backpressure/src/main/java/com/iluwatar/backpressure/Publisher.java",
+        "bloc/README.md",
+        "clean-architecture/README.md",
+        "facade/README.md",
+        "function-composition/README.md",
+        "map-reduce/README.md",
+        "mediator/README.md",
+        "microservices-client-side-ui-composition/README.md",
+        "microservices-distributed-tracing/README.md",
+        "microservices-idempotent-consumer/README.md",
+        "money/README.md",
+        "monolithic-architecture/README.md",
+        "observer/README.md",
+        "prototype/README.md",
+        "proxy/README.md",
+        "publish-subscribe/README.md",
+        "service-stub/README.md",
+        "session-facade/README.md",
+        "table-inheritance/README.md"
+      ]
+    },
+    {
+      "sha": "32c9031fcd943f2b34561ddeff779ef4e9e2c7ce",
+      "message": "docs: diagrams for version number, virtual proxy, visitor",
+      "modifiedFiles": [
+        "version-number/README.md",
+        "version-number/etc/version-number-flowchart.png",
+        "virtual-proxy/README.md",
+        "virtual-proxy/etc/virtual-proxy-sequence-diagram.png",
+        "visitor/README.md",
+        "visitor/etc/visitor-sequence-diagram.png"
+      ]
+    },
+    {
+      "sha": "81ecb5638df7a0085c8f84ef344aca963c2e77d9",
+      "message": "docs: diagrams for unit of work, update method, and value object",
+      "modifiedFiles": [
+        "unit-of-work/README.md",
+        "unit-of-work/etc/unit-of-work-flowchart.png",
+        "update-method/README.md",
+        "update-method/etc/update-method-sequence-diagram.png",
+        "value-object/README.md",
+        "value-object/etc/value-object-flowchart.png"
+      ]
+    },
+    {
+      "sha": "6195d5e1e8036b0b3521a31ac89de56ad9a30d1d",
+      "message": "docs: diagrams for transaction script, twin, and type object",
+      "modifiedFiles": [
+        "transaction-script/README.md",
+        "transaction-script/etc/transaction-script-flowchart.png",
+        "twin/README.md",
+        "twin/etc/twin-sequence-diagram.png",
+        "type-object/README.md",
+        "type-object/etc/type-object-flowchart.png"
+      ]
+    },
+    {
+      "sha": "21914f9c88090a2d64885e12024d70dca179b09b",
+      "message": "docs: updated diagrams for tolerant reader and trampoline",
+      "modifiedFiles": [
+        "tolerant-reader/README.md",
+        "tolerant-reader/etc/tolerant-reader-sequence-diagram.png",
+        "trampoline/README.md",
+        "trampoline/etc/trampoline-flowchart.png"
+      ]
+    },
+    {
+      "sha": "95bfd6cb4d25cfad27cbac2d1db29d2009efcb7d",
+      "message": "docs: new diagrams for template view and throttling",
+      "modifiedFiles": [
+        "templateview/README.md",
+        "templateview/etc/template-view-flowchart.png",
+        "throttling/README.md",
+        "throttling/etc/throttling-flowchart.png"
+      ]
+    },
+    {
+      "sha": "ba7be25af37b3afb768d1aca3efcfba07d883880",
+      "message": "docs: diagrams for table module and template method",
+      "modifiedFiles": [
+        "table-module/README.md",
+        "table-module/etc/table-module-flowchart.png",
+        "template-method/README.md",
+        "template-method/etc/template-method-sequence-diagram.png"
+      ]
+    },
+    {
+      "sha": "0b83b6dfd1d4c647af8b1302cb512205014f4641",
+      "message": "feat: Adding backpressure design pattern #3233 (#3249)\n\n* Initial commit backpressure\n\ntemp\n\n* Adding backpressure pattern #3233\n\n* Fix test case #3233\n\n* Fix formatting #3233\n\n* Changes after review #3233\n\n* Fix sonar error in leaderfollowers module #3233",
+      "modifiedFiles": [
+        "backpressure/README.md",
+        "backpressure/etc/backpressure.png",
+        "backpressure/pom.xml",
+        "backpressure/src/main/java/com/iluwatar/backpressure/App.java",
+        "backpressure/src/main/java/com/iluwatar/backpressure/Publisher.java",
+        "backpressure/src/main/java/com/iluwatar/backpressure/Subscriber.java",
+        "backpressure/src/test/java/com/iluwatar/backpressure/AppTest.java",
+        "backpressure/src/test/java/com/iluwatar/backpressure/LoggerExtension.java",
+        "backpressure/src/test/java/com/iluwatar/backpressure/PublisherTest.java",
+        "backpressure/src/test/java/com/iluwatar/backpressure/SubscriberTest.java",
+        "pom.xml"
+      ]
+    },
+    {
+      "sha": "cd224ea5fe969d90fabf86764224aff3283c8a6c",
+      "message": "docs: add diagrams for spatial partition, special case, specification, state, step builder, strangler, strategy, subclass sandbox",
+      "modifiedFiles": [
+        "spatial-partition/README.md",
+        "spatial-partition/etc/spatial-partition-flowchart.png",
+        "special-case/README.md",
+        "special-case/etc/special-case-sequence-diagram.png",
+        "specification/README.md",
+        "specification/etc/specification-flowchart.png",
+        "state/README.md",
+        "state/etc/state-flowchart.png",
+        "step-builder/README.md",
+        "step-builder/etc/step-builder-sequence-diagram.png",
+        "strangler/README.md",
+        "strangler/etc/strangler-flowchart.png",
+        "strategy/README.md",
+        "strategy/etc/strategy-flowchart.png",
+        "subclass-sandbox/README.md",
+        "subclass-sandbox/etc/subclass-sandbox-flowchart.png"
+      ]
+    },
+    {
+      "sha": "8e823909dabdde4e1908ec563a2e9ed9e91228c4",
+      "message": "docs: single table inheritance and singleton diagrams",
+      "modifiedFiles": [
+        "single-table-inheritance/README.md",
+        "single-table-inheritance/etc/single-table-inheritance-flowchart.png",
+        "singleton/README.md",
+        "singleton/etc/singleton-sequence-diagram.png"
+      ]
+    },
+    {
+      "sha": "e5485dafa95b2ee4264ca3abc2822abcfd18b71e",
+      "message": "docs: service to worker, session facade, sharding diagrams",
+      "modifiedFiles": [
+        "service-to-worker/README.md",
+        "service-to-worker/etc/service-to-worker-sequence-diagram.png",
+        "session-facade/README.md",
+        "session-facade/etc/session-facade-sequence-diagram.png",
+        "sharding/README.md",
+        "sharding/etc/sharding-flowchart.png"
+      ]
+    },
+    {
+      "sha": "73a582867acaa0684dd5aed6e823dfe258e6df32",
+      "message": "docs: service locator and service stub diagrams",
+      "modifiedFiles": [
+        "service-layer/README.md",
+        "service-locator/README.md",
+        "service-locator/etc/service-locator-sequence-diagram.png",
+        "service-stub/README.md",
+        "service-stub/etc/service-stub-sequence-diagram.png"
+      ]
+    },
+    {
+      "sha": "b8f38691f3c96777ab34d301a8ffc13b53888d4a",
+      "message": "docs: diagrams for servant and server session",
+      "modifiedFiles": [
+        "servant/README.md",
+        "servant/etc/servant-sequence-diagram.png",
+        "server-session/README.md",
+        "server-session/etc/server-session-sequence-diagram.png"
+      ]
+    },
+    {
+      "sha": "30d6875aa17b0169df5177ba8ba32d802d6b64e7",
+      "message": "docs: diagrams for serialized entity and serialized lob",
+      "modifiedFiles": [
+        "serialized-entity/README.md",
+        "serialized-entity/etc/serialized-entity-flowchart.png",
+        "serialized-lob/README.md",
+        "serialized-lob/etc/serialized-lob-flowchart.png"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "navneetercse",
+      "commitCount": 0
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "YuhanCatherineDong",
+      "commitCount": 0
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "quantambites",
+      "commitCount": 0
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "Bhuvana-ai-ml",
+      "commitCount": 2
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "Riya010107",
+      "commitCount": 0
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "asato425",
+      "commitCount": 0
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "Mansi2007275",
+      "commitCount": 3
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "itsmnx",
+      "commitCount": 0
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "kang319",
+      "commitCount": 0
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "JavaerLQ",
+      "commitCount": 0
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "jmorrison10umassd",
+      "commitCount": 0
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "MiguelAntonioRS",
+      "commitCount": 0
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "CenlingH",
+      "commitCount": 0
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "angelo-inexa",
+      "commitCount": 0
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "Siridasari54",
+      "commitCount": 2
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "COMPU-GLOBALHYPERMEGANET",
+      "commitCount": 0
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "itsomg134",
+      "commitCount": 3
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "abcdabcd5er-droid",
+      "commitCount": 2
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "abqwertyuiop12345678910-maker",
+      "commitCount": 2
+    },
+    {
+      "name": "java-design-patterns",
+      "ownerLogin": "Abhishek123789595",
+      "commitCount": 2
+    }
+  ]
+}

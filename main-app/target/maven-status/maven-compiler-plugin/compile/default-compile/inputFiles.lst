@@ -1,0 +1,10 @@
+/Users/jorm/Documents/ecs160-hw2/main-app/src/main/java/com/ecs160/hw/App.java
+/Users/jorm/Documents/ecs160-hw2/main-app/src/main/java/com/ecs160/hw/model/Commit.java
+/Users/jorm/Documents/ecs160-hw2/main-app/src/main/java/com/ecs160/hw/model/Issue.java
+/Users/jorm/Documents/ecs160-hw2/main-app/src/main/java/com/ecs160/hw/model/IssueModel.java
+/Users/jorm/Documents/ecs160-hw2/main-app/src/main/java/com/ecs160/hw/model/Owner.java
+/Users/jorm/Documents/ecs160-hw2/main-app/src/main/java/com/ecs160/hw/model/Repo.java
+/Users/jorm/Documents/ecs160-hw2/main-app/src/main/java/com/ecs160/hw/model/RepoModel.java
+/Users/jorm/Documents/ecs160-hw2/main-app/src/main/java/com/ecs160/hw/service/GitService.java
+/Users/jorm/Documents/ecs160-hw2/main-app/src/main/java/com/ecs160/hw/util/ConfigUtil.java
+/Users/jorm/Documents/ecs160-hw2/main-app/src/main/java/com/ecs160/hw/util/JsonHandler.java

@@ -1,0 +1,718 @@
+{
+  "name": "elasticsearch",
+  "ownerLogin": "elastic",
+  "language": "Java",
+  "commits": [
+    {
+      "sha": "5ef1c356f2aa18fa85001ead6ca837eafe98e99c",
+      "message": "allocation: create separate limit for frozen tier concurrent rebalance (#135243)\n\nThe concurrent rebalance limit prevents too many shard relocations from\nhappening at once. This works well in limiting active shards on the hot tier, so\ncapacity for indexing is reserved. Given that the frozen tier is an archive,\ncapacity separation is less of a concern and more rebalancing activity can occur\nwithout service degradation. This change creates a separate variable for\nspecifying the frozen-tier limit.\n\nFixes: ES-11303",
+      "modifiedFiles": [
+        "server/src/main/java/org/elasticsearch/cluster/routing/RoutingNodes.java",
+        "server/src/main/java/org/elasticsearch/cluster/routing/allocation/decider/ConcurrentRebalanceAllocationDecider.java",
+        "server/src/main/java/org/elasticsearch/common/settings/ClusterSettings.java",
+        "server/src/test/java/org/elasticsearch/cluster/routing/allocation/ConcurrentRebalanceAllocationDeciderTests.java",
+        "server/src/test/java/org/elasticsearch/cluster/routing/allocation/ConcurrentRebalanceRoutingTests.java",
+        "test/framework/src/main/java/org/elasticsearch/cluster/ESAllocationTestCase.java",
+        "x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/cluster/routing/allocation/DataTierAllocationDeciderTests.java"
+      ]
+    },
+    {
+      "sha": "087021ef51d9206eeca0588b428247af66522aa7",
+      "message": "Adding additional yaml rest tests for get random sample api (#136990)",
+      "modifiedFiles": [
+        "rest-api-spec/src/yamlRestTest/resources/rest-api-spec/test/indices.get_sample/20_with_sampling_config.yml"
+      ]
+    },
+    {
+      "sha": "9634fd6f610345b77fced6bac34c156996a987da",
+      "message": "Disallow dot_product and max_inner_product for int8_hnsw GPU type (#136881)\n\nFor int8_hnsw, during merges we get quantized vectors from Lucene files\nbut dropping for each quantized vector its correction factor.  For\ncosine and euclidean metrics this correction factor is not important,\nbut for dot_product and max_inner_product metrics, they are important.\nIt means that that currently for dot_product and max_inner_product\nmetrics, GPU graph building doesn\u0027t work well, and may produce bad\nrecall. This PR does the following:\n\n- disallows max_inner_product  for int8\n- substitutes internally dot_product with cosine\n\nAlternatives: for most datasets (really majority), we can substitute\ndot_product with cosine. But there are some datasets that require\nmax_inner_product, and for this our \"int8_hsnw\" will not work, and\n\"hnsw\" should be used instead",
+      "modifiedFiles": [
+        "docs/changelog/136881.yaml",
+        "server/src/main/java/org/elasticsearch/index/mapper/vectors/DenseVectorFieldMapper.java",
+        "server/src/main/java/org/elasticsearch/index/mapper/vectors/VectorsFormatProvider.java",
+        "server/src/test/java/org/elasticsearch/index/mapper/vectors/DenseVectorFieldTypeTests.java",
+        "x-pack/plugin/gpu/src/internalClusterTest/java/org/elasticsearch/plugin/gpu/GPUIndexIT.java",
+        "x-pack/plugin/gpu/src/internalClusterTest/java/org/elasticsearch/plugin/gpu/GPUPluginInitializationIT.java",
+        "x-pack/plugin/gpu/src/main/java/org/elasticsearch/xpack/gpu/GPUPlugin.java",
+        "x-pack/plugin/gpu/src/main/java/org/elasticsearch/xpack/gpu/codec/ES92GpuHnswVectorsWriter.java"
+      ]
+    },
+    {
+      "sha": "e258b6f04627bb65b56fefbee086d85caa6ba07a",
+      "message": "Fix CI error introduce as part of #136870 (#136982)",
+      "modifiedFiles": [
+        "muted-tests.yml",
+        "x-pack/plugin/esql/compute/test/src/main/java/org/elasticsearch/compute/test/OperatorTestCase.java"
+      ]
+    },
+    {
+      "sha": "567304efabc107621d1c1ddf0376698a08b53508",
+      "message": "Removing file that was added inadvertently (#136985)",
+      "modifiedFiles": [
+        ".swp"
+      ]
+    },
+    {
+      "sha": "7d4ea3f91a2a2613e37d8b014abb9d5cd2fa9ee2",
+      "message": "Checking that a configuration exists before attempting to delete it when its index has been deleted (#136984)",
+      "modifiedFiles": [
+        "server/src/main/java/org/elasticsearch/ingest/SamplingService.java"
+      ]
+    },
+    {
+      "sha": "fc7ae8e31dfd44b9a02f8fb7ff05d4caafca8726",
+      "message": "ESQL: Implement `network_direction` function (#136133)\n\nReplicates the network direction enrichment processor\u0027s functionality\n\n---------\n\nCo-authored-by: elasticsearchmachine \u003cinfra-root+elasticsearchmachine@elastic.co\u003e",
+      "modifiedFiles": [
+        "docs/changelog/136133.yaml",
+        "docs/reference/query-languages/esql/_snippets/functions/description/network_direction.md",
+        "docs/reference/query-languages/esql/_snippets/functions/examples/network_direction.md",
+        "docs/reference/query-languages/esql/_snippets/functions/layout/network_direction.md",
+        "docs/reference/query-languages/esql/_snippets/functions/parameters/network_direction.md",
+        "docs/reference/query-languages/esql/_snippets/functions/types/network_direction.md",
+        "docs/reference/query-languages/esql/images/functions/network_direction.svg",
+        "docs/reference/query-languages/esql/kibana/definition/functions/network_direction.json",
+        "docs/reference/query-languages/esql/kibana/docs/functions/network_direction.md",
+        "modules/ingest-common/src/main/java/org/elasticsearch/ingest/common/NetworkDirectionProcessor.java",
+        "modules/ingest-common/src/test/java/org/elasticsearch/ingest/common/NetworkDirectionProcessorTests.java",
+        "server/src/main/java/org/elasticsearch/common/network/NetworkDirectionUtils.java",
+        "server/src/test/java/org/elasticsearch/common/network/NetworkDirectionUtilsTests.java",
+        "x-pack/plugin/esql/compute/gen/src/main/java/org/elasticsearch/compute/gen/argument/BlockArgument.java",
+        "x-pack/plugin/esql/qa/testFixtures/src/main/resources/ip.csv-spec",
+        "x-pack/plugin/esql/src/main/generated/org/elasticsearch/xpack/esql/expression/function/scalar/ip/NetworkDirectionEvaluator.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/action/EsqlCapabilities.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/expression/function/EsqlFunctionRegistry.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/expression/function/scalar/ScalarFunctionWritables.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/expression/function/scalar/ip/NetworkDirection.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/function/scalar/ip/NetworkDirectionErrorTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/function/scalar/ip/NetworkDirectionSerializationTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/function/scalar/ip/NetworkDirectionTests.java"
+      ]
+    },
+    {
+      "sha": "2d7d514b8652d7221739888b3afb24ad7c048dfd",
+      "message": "Reserved state removal hooks (#136721)\n\n* Initial implementation of remove\n\n* Don\u0027t mention the file\n\n* Add test that \"remove\" isn\u0027t called redundantly\n\n* Refactor: handler order calculations\n\n* Do removals in dependency order",
+      "modifiedFiles": [
+        "server/src/main/java/org/elasticsearch/action/admin/cluster/repositories/reservedstate/ReservedRepositoryAction.java",
+        "server/src/main/java/org/elasticsearch/action/admin/indices/template/reservedstate/ReservedComposableIndexTemplateAction.java",
+        "server/src/main/java/org/elasticsearch/action/ingest/ReservedPipelineAction.java",
+        "server/src/main/java/org/elasticsearch/common/settings/ProjectSecrets.java",
+        "server/src/main/java/org/elasticsearch/reservedstate/ReservedClusterStateHandler.java",
+        "server/src/main/java/org/elasticsearch/reservedstate/ReservedProjectStateHandler.java",
+        "server/src/main/java/org/elasticsearch/reservedstate/action/ReservedClusterSettingsAction.java",
+        "server/src/main/java/org/elasticsearch/reservedstate/service/ProjectClusterStateHandlerAdapter.java",
+        "server/src/main/java/org/elasticsearch/reservedstate/service/ReservedClusterStateService.java",
+        "server/src/main/java/org/elasticsearch/reservedstate/service/ReservedClusterStateUpdateTask.java",
+        "server/src/main/java/org/elasticsearch/reservedstate/service/ReservedProjectStateUpdateTask.java",
+        "server/src/main/java/org/elasticsearch/reservedstate/service/ReservedStateUpdateTask.java",
+        "server/src/test/java/org/elasticsearch/reservedstate/ReservedClusterStateHandlerTests.java",
+        "server/src/test/java/org/elasticsearch/reservedstate/service/ReservedClusterStateServiceTests.java",
+        "server/src/test/java/org/elasticsearch/reservedstate/service/ReservedStateUpdateTaskTests.java",
+        "x-pack/plugin/autoscaling/src/main/java/org/elasticsearch/xpack/autoscaling/action/ReservedAutoscalingPolicyAction.java",
+        "x-pack/plugin/ilm/src/main/java/org/elasticsearch/xpack/ilm/action/ReservedLifecycleAction.java",
+        "x-pack/plugin/security/src/main/java/org/elasticsearch/xpack/security/action/rolemapping/ReservedRoleMappingAction.java",
+        "x-pack/plugin/slm/src/main/java/org/elasticsearch/xpack/slm/action/ReservedSnapshotAction.java"
+      ]
+    },
+    {
+      "sha": "8668064a8fcc86122d9cc6197bbaa8c648490e5b",
+      "message": "Fix reroute to target for logsdb and tsid routing (#136916)\n\nThese two features need tweaks in order to reroute correctly when they\nare enabled. This commit fixes the routing calculation and adds unit\ntests to ensure the documents end up in the correct place.",
+      "modifiedFiles": [
+        "server/src/main/java/org/elasticsearch/cluster/routing/IndexRouting.java",
+        "server/src/test/java/org/elasticsearch/cluster/routing/IndexRoutingTests.java"
+      ]
+    },
+    {
+      "sha": "9c422bbe11a47c5df75478618d0bfda45ac32826",
+      "message": "Add cached tokens to Unified API response (#136412)",
+      "modifiedFiles": [
+        "docs/changelog/136412.yaml",
+        "server/src/main/resources/transport/definitions/referable/inference_cached_tokens.csv",
+        "server/src/main/resources/transport/upper_bounds/9.3.csv",
+        "x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/inference/results/StreamingUnifiedChatCompletionResults.java",
+        "x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/inference/results/StreamingUnifiedChatCompletionResultsTests.java",
+        "x-pack/plugin/inference/src/main/java/org/elasticsearch/xpack/inference/services/openai/OpenAiUnifiedStreamingProcessor.java",
+        "x-pack/plugin/inference/src/test/java/org/elasticsearch/xpack/inference/services/huggingface/HuggingFaceServiceTests.java",
+        "x-pack/plugin/inference/src/test/java/org/elasticsearch/xpack/inference/services/openai/OpenAiServiceTests.java",
+        "x-pack/plugin/inference/src/test/java/org/elasticsearch/xpack/inference/services/openai/OpenAiUnifiedStreamingProcessorTests.java"
+      ]
+    },
+    {
+      "sha": "af370264b5a3104c977fa2d9b7beb5184316748e",
+      "message": "Expand docs about ack timeouts (#136953)\n\nThe exact meaning of this timeout is kinda subtle, particularly that\n`ZERO` means \"time out on commit\" but that otherwise it measures the\ntime from the publication start. This commit adds code comments to save\nthe next person from having to do all the digging I just did.",
+      "modifiedFiles": [
+        "server/src/main/java/org/elasticsearch/action/support/master/AcknowledgedRequest.java",
+        "server/src/main/java/org/elasticsearch/cluster/ClusterStateAckListener.java"
+      ]
+    },
+    {
+      "sha": "6235ffa5fda148c37fe358b4cbf880b878e69942",
+      "message": "add get call for sampling configs (#136912)\n\n* add get call for configs\n\n* wire in handlers\n\n* update comments\n\n* update action name\n\n---------\n\nCo-authored-by: Keith Massey \u003ckeith.massey@elastic.co\u003e",
+      "modifiedFiles": [
+        "rest-api-spec/src/main/resources/rest-api-spec/api/indices.get_sample_configuration.json",
+        "rest-api-spec/src/yamlRestTest/resources/rest-api-spec/test/indices.get_sample_configuration/10_basic.yml",
+        "server/src/internalClusterTest/java/org/elasticsearch/action/admin/indices/sampling/GetSampleConfigurationActionIT.java",
+        "server/src/main/java/org/elasticsearch/action/ActionModule.java",
+        "server/src/main/java/org/elasticsearch/action/admin/indices/sampling/GetSampleConfigurationAction.java",
+        "server/src/main/java/org/elasticsearch/action/admin/indices/sampling/RestGetSampleConfigurationAction.java",
+        "server/src/main/java/org/elasticsearch/action/admin/indices/sampling/TransportGetSampleConfigurationAction.java",
+        "server/src/test/java/org/elasticsearch/action/admin/indices/sampling/GetSampleConfigurationActionRequestTests.java",
+        "server/src/test/java/org/elasticsearch/action/admin/indices/sampling/GetSampleConfigurationActionResponseTests.java",
+        "x-pack/plugin/security/qa/operator-privileges-tests/src/javaRestTest/java/org/elasticsearch/xpack/security/operator/Constants.java"
+      ]
+    },
+    {
+      "sha": "663773218c09f72e9a62f4915e3ff0f58987fe54",
+      "message": "Clean up node start order (#136966)\n\nSome service starts were added after http start, but these should all be\nbefore starting http. In general nothing should be added after http\nstart. This commit moves the offending service starts earlier during\nstartup, and adds a loud comment to deter future such additions.",
+      "modifiedFiles": [
+        "server/src/main/java/org/elasticsearch/node/Node.java"
+      ]
+    },
+    {
+      "sha": "2fd9d33327d464b2d673aad6c8b4fc92f624b56e",
+      "message": "Replacing temporary test code with call to PutSampleConfigurationAction (#136976)",
+      "modifiedFiles": [
+        "server/src/internalClusterTest/java/org/elasticsearch/action/admin/indices/sampling/GetSampleActionIT.java"
+      ]
+    },
+    {
+      "sha": "75e6e8a9d3b9a666daf303dd936e0fe2ddc8e2b9",
+      "message": "Adjust test fixture lifecycle ordering in apm integration tests (#136926) (#136971)",
+      "modifiedFiles": [
+        "test/external-modules/apm-integration/src/javaRestTest/java/org/elasticsearch/test/apmintegration/TracesApmIT.java"
+      ]
+    },
+    {
+      "sha": "1b1791c70484b0fbe6037eaf2f75b343b2af3d45",
+      "message": "Unmute `CrossClusterEsqlRCS1UnavailableRemotesIT` and `CrossClusterEsqlRCS2UnavailableRemotesIT` (#136718)\n\n* Unmute `CrossClusterEsqlRCS1UnavailableRemotesIT` and `CrossClusterEsqlRCS2UnavailableRemotesIT`",
+      "modifiedFiles": [
+        "muted-tests.yml"
+      ]
+    },
+    {
+      "sha": "e2eb70925c7ad0d218ae375550bcfe9ff7053189",
+      "message": "ESQL: Temporarily forbid LIMIT before INLINE STATS commands (#136752)",
+      "modifiedFiles": [
+        "docs/reference/query-languages/esql/_snippets/commands/layout/inlinestats-by.md",
+        "x-pack/plugin/esql-core/src/main/java/org/elasticsearch/xpack/esql/core/tree/Node.java",
+        "x-pack/plugin/esql/qa/server/src/main/java/org/elasticsearch/xpack/esql/qa/rest/generative/GenerativeRestTest.java",
+        "x-pack/plugin/esql/qa/testFixtures/src/main/resources/fork.csv-spec",
+        "x-pack/plugin/esql/qa/testFixtures/src/main/resources/inlinestats.csv-spec",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/action/EsqlCapabilities.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/analysis/Verifier.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/analysis/VerifierTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/optimizer/rules/logical/ReplaceStatsFilteredAggWithEvalTests.java"
+      ]
+    },
+    {
+      "sha": "1d2177804cf84225d83a368ad27c0157d2ea1bcd",
+      "message": "Fix ignore_unmapped setting when using geo_shape query with a pre-indexed shape (#136961)\n\nGeoShapeQueryBuilder ignores the value of ignoreUnmapped when rewriting the query so those queries always\nget a false value. This commit make sure the variable gets correctly assigned.",
+      "modifiedFiles": [
+        "docs/changelog/136961.yaml",
+        "server/src/main/java/org/elasticsearch/index/query/AbstractGeometryQueryBuilder.java",
+        "test/framework/src/main/java/org/elasticsearch/search/geo/GeoShapeQueryBuilderTestCase.java",
+        "x-pack/plugin/spatial/src/test/java/org/elasticsearch/xpack/spatial/index/query/ShapeQueryBuilderTests.java"
+      ]
+    },
+    {
+      "sha": "af6d157d009bc1b331257ddbd182adef6f4aa560",
+      "message": "Upgrade ASM to 9.9 (#136963)\n\nThis allows reading classfile from JDK 26.",
+      "modifiedFiles": [
+        "distribution/tools/plugin-cli/build.gradle",
+        "docs/changelog/136963.yaml",
+        "gradle/verification-metadata.xml",
+        "libs/entitlement/asm-provider/build.gradle",
+        "libs/entitlement/build.gradle",
+        "libs/entitlement/tools/jdk-api-extractor/build.gradle",
+        "libs/entitlement/tools/public-callers-finder/build.gradle",
+        "libs/entitlement/tools/securitymanager-scanner/build.gradle",
+        "libs/plugin-scanner/build.gradle",
+        "modules/lang-expression/build.gradle",
+        "modules/lang-painless/build.gradle",
+        "modules/repository-azure/build.gradle",
+        "test/immutable-collections-patch/build.gradle",
+        "test/logger-usage/build.gradle",
+        "x-pack/plugin/security/build.gradle"
+      ]
+    },
+    {
+      "sha": "17c9dc454cc27685d243f3336c58ede9aa42c929",
+      "message": "Pre-compile mapping_includes filter in LogsdbIndexModeSettingsProvider (#136899)\n\nSome recent profiling showed that compiling the mapping_includes filter in\nLogsdbIndexModeSettingsProvider#getMappingHints was very expensive. This PR\nmoves that work so that it only happens once, when the class is\nconstructed",
+      "modifiedFiles": [
+        "x-pack/plugin/logsdb/src/main/java/org/elasticsearch/xpack/logsdb/LogsdbIndexModeSettingsProvider.java"
+      ]
+    },
+    {
+      "sha": "01380e82e386f258177a55295a0c16b380ebec07",
+      "message": "Revert \"allowCrossProject for _search (#136397)\" (#136958)\n\nThis reverts commit 88ef3dcc6c3fda695b3d1d882dfc8e29dd498cf8.",
+      "modifiedFiles": [
+        "server/src/main/java/org/elasticsearch/action/search/SearchRequest.java"
+      ]
+    },
+    {
+      "sha": "f54987f9690c7a2c8e40cc0c59c6aa4576dc9b96",
+      "message": "ESQL: Fix lookup join filter pushdown to use semantic equality (#136818)\n\nPreviously, when pushing down filters to the right side of a lookup\njoin, we used simple equality (contains) to check for duplicate filters.\nThis could result in semantically equivalent filters being added\nmultiple times if they were different object instances.\n\nThis commit changes the duplicate check to use `semanticEquals()`\ninstead, ensuring that filters with the same semantic meaning are\nproperly deduplicated regardless of object identity.\n\nCloses #136599",
+      "modifiedFiles": [
+        "docs/changelog/136818.yaml",
+        "x-pack/plugin/esql/qa/server/multi-clusters/src/javaRestTest/java/org/elasticsearch/xpack/esql/ccq/MultiClusterSpecIT.java",
+        "x-pack/plugin/esql/qa/server/src/main/java/org/elasticsearch/xpack/esql/qa/rest/generative/GenerativeRestTest.java",
+        "x-pack/plugin/esql/qa/testFixtures/src/main/resources/lookup-join.csv-spec",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/action/EsqlCapabilities.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/optimizer/rules/logical/PushDownAndCombineFilters.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/optimizer/LogicalPlanOptimizerTests.java"
+      ]
+    },
+    {
+      "sha": "830af20dd868abac6d396841d648876515f8b4d1",
+      "message": "Fixes NodeJoiningIt.testNodeTriesToJoinClusterAndThenSameMasterIsElected (#136607)\n\nRemoves new master elected check from `Cordinator.handleJoinRequest`\n\nCloses #136332",
+      "modifiedFiles": [
+        "muted-tests.yml",
+        "server/src/main/java/org/elasticsearch/cluster/coordination/Coordinator.java"
+      ]
+    },
+    {
+      "sha": "3542bceaa791314dcc0d6751e0c6200b459c0df7",
+      "message": "Limit concurrent TLS handshakes (#136386)\n\nIntroduces a per-event-loop limit on the number of TLS handshakes\nrunning at once. When at the limit, subsequent TLS handshakes are\ndelayed and processed in LIFO order.",
+      "modifiedFiles": [
+        "docs/changelog/136386.yaml",
+        "modules/transport-netty4/src/main/java/org/elasticsearch/http/netty4/Netty4HttpServerTransport.java",
+        "modules/transport-netty4/src/main/java/org/elasticsearch/http/netty4/TlsHandshakeThrottleManager.java",
+        "modules/transport-netty4/src/main/java/org/elasticsearch/transport/netty4/Netty4Plugin.java",
+        "modules/transport-netty4/src/test/java/org/elasticsearch/http/netty4/Netty4BadRequestTests.java",
+        "modules/transport-netty4/src/test/java/org/elasticsearch/http/netty4/Netty4HttpServerPipeliningTests.java",
+        "modules/transport-netty4/src/test/java/org/elasticsearch/http/netty4/Netty4HttpServerTransportTests.java",
+        "modules/transport-netty4/src/test/java/org/elasticsearch/http/netty4/Netty4TestUtils.java",
+        "x-pack/plugin/security/src/test/java/org/elasticsearch/xpack/security/transport/netty4/SecurityNetty4HttpServerTransportCloseNotifyTests.java",
+        "x-pack/plugin/security/src/test/java/org/elasticsearch/xpack/security/transport/netty4/SecurityNetty4HttpServerTransportTests.java",
+        "x-pack/plugin/security/src/test/java/org/elasticsearch/xpack/security/transport/netty4/SecurityNetty4HttpServerTransportTlsHandshakeThrottleTests.java",
+        "x-pack/plugin/security/src/test/java/org/elasticsearch/xpack/security/transport/netty4/SecurityNetty4TestUtils.java"
+      ]
+    },
+    {
+      "sha": "1815c9dda3c2efad1d4cd81eb0ae80717dbd1cd7",
+      "message": "Mute org.elasticsearch.xpack.esql.optimizer.rules.logical.HoistRemoteEnrichTopNTests testTopNSortExpressionWithinRemoteEnrichAliasing #136957",
+      "modifiedFiles": [
+        "muted-tests.yml"
+      ]
+    },
+    {
+      "sha": "fd70808de0425fc40064be374748c8648e297926",
+      "message": "including last_exception in random sampling stats (#136845)",
+      "modifiedFiles": [
+        "server/src/main/java/org/elasticsearch/ingest/SamplingService.java",
+        "server/src/test/java/org/elasticsearch/ingest/SamplingServiceSampleStatsTests.java"
+      ]
+    },
+    {
+      "sha": "af7b97da736400f2a93189b6d6be4fa9ed94a5fc",
+      "message": "[ML] Remove model_id attribute from inference timing metrics (#136617)",
+      "modifiedFiles": [
+        "server/src/main/java/org/elasticsearch/inference/telemetry/InferenceStats.java",
+        "server/src/test/java/org/elasticsearch/inference/telemetry/InferenceStatsTests.java",
+        "x-pack/plugin/inference/src/main/java/org/elasticsearch/xpack/inference/action/BaseTransportInferenceAction.java",
+        "x-pack/plugin/inference/src/main/java/org/elasticsearch/xpack/inference/action/filter/ShardBulkInferenceActionFilter.java",
+        "x-pack/plugin/inference/src/main/java/org/elasticsearch/xpack/inference/services/elasticsearch/BaseElasticsearchInternalService.java",
+        "x-pack/plugin/inference/src/test/java/org/elasticsearch/xpack/inference/action/filter/ShardBulkInferenceActionFilterTests.java"
+      ]
+    },
+    {
+      "sha": "f7d44220b5416d111cc097bbb58614285ea90734",
+      "message": "ESQL: Make equals include ids for Alias, TypedAttribute (#132455)\n\nFix https://github.com/elastic/elasticsearch/issues/131509 Fix\nhttps://github.com/elastic/elasticsearch/issues/132634\n\nMake `Attribute#equals` and `Alias#equals` respect the `NameId`s, so\nthat plan transformations that happen to replace an attribute/alias by\none that only differs by id, we still actually update the plan rather\nthan keeping the old plan object.\n\nThis requires a bunch of boilerplate-y test updates. I\u0027ll point to the\nnon-boilerplate changes in comments below.",
+      "modifiedFiles": [
+        "docs/changelog/132455.yaml",
+        "x-pack/plugin/esql-core/src/main/java/org/elasticsearch/xpack/esql/core/expression/Alias.java",
+        "x-pack/plugin/esql-core/src/main/java/org/elasticsearch/xpack/esql/core/expression/Attribute.java",
+        "x-pack/plugin/esql-core/src/main/java/org/elasticsearch/xpack/esql/core/expression/EmptyAttribute.java",
+        "x-pack/plugin/esql-core/src/main/java/org/elasticsearch/xpack/esql/core/expression/Expression.java",
+        "x-pack/plugin/esql-core/src/main/java/org/elasticsearch/xpack/esql/core/expression/FieldAttribute.java",
+        "x-pack/plugin/esql-core/src/main/java/org/elasticsearch/xpack/esql/core/expression/MetadataAttribute.java",
+        "x-pack/plugin/esql-core/src/main/java/org/elasticsearch/xpack/esql/core/expression/NameId.java",
+        "x-pack/plugin/esql-core/src/main/java/org/elasticsearch/xpack/esql/core/expression/NamedExpression.java",
+        "x-pack/plugin/esql-core/src/main/java/org/elasticsearch/xpack/esql/core/expression/TypedAttribute.java",
+        "x-pack/plugin/esql-core/src/main/java/org/elasticsearch/xpack/esql/core/expression/UnresolvedAttribute.java",
+        "x-pack/plugin/esql-core/src/main/java/org/elasticsearch/xpack/esql/core/expression/UnresolvedStar.java",
+        "x-pack/plugin/esql-core/src/test/java/org/elasticsearch/xpack/esql/core/expression/AttributeMapTests.java",
+        "x-pack/plugin/esql-core/src/test/java/org/elasticsearch/xpack/esql/core/expression/UnresolvedAttributeTests.java",
+        "x-pack/plugin/esql/qa/testFixtures/src/main/java/org/elasticsearch/xpack/esql/EsqlTestUtils.java",
+        "x-pack/plugin/esql/qa/testFixtures/src/main/resources/enrich.csv-spec",
+        "x-pack/plugin/esql/qa/testFixtures/src/main/resources/lookup-join.csv-spec",
+        "x-pack/plugin/esql/qa/testFixtures/src/main/resources/rename.csv-spec",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/action/EsqlCapabilities.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/analysis/Analyzer.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/common/Failure.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/common/Failures.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/expression/UnresolvedNamePattern.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/expression/function/UnsupportedAttribute.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/io/stream/PlanStreamInput.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/plugin/ClusterComputeRequest.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/plugin/DataNodeRequest.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/SerializationTestUtils.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/analysis/AnalyzerTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/AbstractNamedExpressionSerializationTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/AliasTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/UnresolvedAttributeTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/UnresolvedNamePatternTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/UnresolvedStarTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/function/AbstractAttributeTestCase.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/function/FieldAttributeTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/function/MetadataAttributeTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/function/ReferenceAttributeTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/function/UnresolvedFunctionTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/function/UnsupportedAttributeTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/function/aggregate/AvgSerializationTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/function/aggregate/SumSerializationTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/function/scalar/conditional/CaseExtraTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/expression/function/scalar/conditional/CaseTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/io/stream/PlanStreamOutputTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/optimizer/IgnoreNullMetricsPhysicalPlannerTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/optimizer/LogicalPlanOptimizerTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/optimizer/OptimizerRulesTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/parser/AbstractStatementParserTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/parser/ExpressionTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/parser/QualifierTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/parser/StatementParserTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/plan/AbstractNodeSerializationTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/plan/physical/ExchangeSinkExecSerializationTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/plugin/ClusterRequestTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/plugin/DataNodeRequestSerializationTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/tree/EsqlNodeSubclassTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/type/AbstractEsFieldTypeTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/type/DateEsFieldTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/type/EsFieldTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/type/InvalidMappedFieldTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/type/KeywordEsFieldTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/type/MultiTypeEsFieldTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/type/TextEsFieldTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/type/UnsupportedEsFieldTests.java"
+      ]
+    },
+    {
+      "sha": "bc1a04c3d6723102d19f561b23ec59883f7c9779",
+      "message": "Fix duplicate entry in Elasticsearch reference TOC (#136943)\n\nRemoved duplicate entry for index-lifecycle-actions/index.md in the table of contents.\r\n\r\ncc @colleenmcginnis",
+      "modifiedFiles": [
+        "docs/reference/elasticsearch/toc.yml"
+      ]
+    },
+    {
+      "sha": "ce039f58874bd8f3d9a9733630c54676d9372a9c",
+      "message": "Adds links to the semantic_text page (#136801)\n\n* Adds links to the semantic_text page\n\n* Fixes links\n\n* Update for consistency",
+      "modifiedFiles": [
+        "docs/reference/elasticsearch/mapping-reference/semantic-text.md"
+      ]
+    },
+    {
+      "sha": "ead6a93c77b010f8ce92e8dc2ca1c9940cb1293a",
+      "message": "[ES|QL] Adding precondition for planning tests including score (#136938)",
+      "modifiedFiles": [
+        "muted-tests.yml",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/optimizer/LogicalPlanOptimizerTests.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/optimizer/PhysicalPlanOptimizerTests.java"
+      ]
+    },
+    {
+      "sha": "7b7c4031889811fef1dc35bebf2532a55b796e1b",
+      "message": "Mute org.elasticsearch.compute.operator.HashAggregationOperatorTests testSimpleSmallInput #136945",
+      "modifiedFiles": [
+        "muted-tests.yml"
+      ]
+    },
+    {
+      "sha": "f7a9cb5c2a4c448694f4fb06c976e8eb7565b540",
+      "message": "[ES|QL] fixing bug when handling 1d literal vectors (#136891)",
+      "modifiedFiles": [
+        "docs/changelog/136891.yaml",
+        "x-pack/plugin/esql/src/internalClusterTest/java/org/elasticsearch/xpack/esql/vector/VectorSimilarityFunctionsIT.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/expression/function/vector/VectorSimilarityFunction.java"
+      ]
+    },
+    {
+      "sha": "6beabf4d4bec05486cae1cec950e22e918b4a278",
+      "message": "SQL: add tests for 136854 (#136935)\n\nFollow-up to https://github.com/elastic/elasticsearch/pull/136854, just\nadding a test",
+      "modifiedFiles": [
+        "x-pack/plugin/sql/src/test/java/org/elasticsearch/xpack/sql/optimizer/OptimizerRunTests.java"
+      ]
+    },
+    {
+      "sha": "a654efe6bf4139149af74c9b09260e50a6f4a283",
+      "message": "[DØCS] Disambiguate connectors DLS page (#136937)",
+      "modifiedFiles": [
+        "docs/reference/search-connectors/document-level-security.md",
+        "docs/reference/search-connectors/es-dls-e2e-guide.md",
+        "docs/reference/search-connectors/es-dls-overview.md"
+      ]
+    },
+    {
+      "sha": "6809a35d8a1e6a395dc19393a055f65844033b7e",
+      "message": "Add new sampling method to the Downsample API (#136813)\n\nWhen downsampling gauge metrics, we create an aggregate object that contains the min, max, sum and value_count values that allow us to respond to the min, max, sum, count and average aggregations without losing any accuracy.\n\nHowever, we recognise that for certain cases keeping just the last value might be good enough. For this reason, we add one more configuration option in the downsample API that allows a user to choose the sampling method between:\n\naggregate: when supported, this will downsample a metric by summarising its values in a aggregate document. This remains the default\nlast_value: this will keep the last value and discard the rest.\n```\nPOST /my-time-series-index/_downsample/my-downsampled-time-series-index\n{\n  \"fixed_interval\": \"1d\",\n  \"sampling_method\": \"last_value\"\n}\n```\nThis PR introduces the sampling method only in the downsampling API. There will be follow ups that will introduce it in the lifecycle management features.\n\nRelates: #128357.",
+      "modifiedFiles": [
+        "docs/changelog/136813.yaml",
+        "server/src/main/java/org/elasticsearch/action/downsample/DownsampleConfig.java",
+        "server/src/main/java/org/elasticsearch/cluster/metadata/IndexMetadata.java",
+        "server/src/main/java/org/elasticsearch/common/settings/IndexScopedSettings.java",
+        "server/src/main/resources/transport/definitions/referable/add_last_value_downsample_api.csv",
+        "server/src/main/resources/transport/upper_bounds/9.3.csv",
+        "server/src/test/java/org/elasticsearch/action/downsample/DonwsampleConfigTests.java",
+        "server/src/test/java/org/elasticsearch/action/downsample/DownsampleConfigTests.java",
+        "x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/downsample/DownsampleActionConfigTests.java",
+        "x-pack/plugin/downsample/qa/rest/build.gradle",
+        "x-pack/plugin/downsample/qa/rest/src/yamlRestTest/resources/rest-api-spec/test/downsample/10_basic.yml",
+        "x-pack/plugin/downsample/src/internalClusterTest/java/org/elasticsearch/xpack/downsample/DownsampleIT.java",
+        "x-pack/plugin/downsample/src/internalClusterTest/java/org/elasticsearch/xpack/downsample/DownsampleTransportFailureIT.java",
+        "x-pack/plugin/downsample/src/internalClusterTest/java/org/elasticsearch/xpack/downsample/DownsamplingIntegTestCase.java",
+        "x-pack/plugin/downsample/src/main/java/org/elasticsearch/xpack/downsample/AggregateMetricFieldSerializer.java",
+        "x-pack/plugin/downsample/src/main/java/org/elasticsearch/xpack/downsample/AggregateMetricFieldValueFetcher.java",
+        "x-pack/plugin/downsample/src/main/java/org/elasticsearch/xpack/downsample/DimensionFieldValueFetcher.java",
+        "x-pack/plugin/downsample/src/main/java/org/elasticsearch/xpack/downsample/DownsampleShardIndexer.java",
+        "x-pack/plugin/downsample/src/main/java/org/elasticsearch/xpack/downsample/FieldValueFetcher.java",
+        "x-pack/plugin/downsample/src/main/java/org/elasticsearch/xpack/downsample/MetricFieldProducer.java",
+        "x-pack/plugin/downsample/src/main/java/org/elasticsearch/xpack/downsample/TransportDownsampleAction.java",
+        "x-pack/plugin/downsample/src/test/java/org/elasticsearch/xpack/downsample/AggregateMetricFieldSerializerTests.java",
+        "x-pack/plugin/downsample/src/test/java/org/elasticsearch/xpack/downsample/DownsampleActionSingleNodeTests.java",
+        "x-pack/plugin/downsample/src/test/java/org/elasticsearch/xpack/downsample/DownsampleDataStreamTests.java",
+        "x-pack/plugin/downsample/src/test/java/org/elasticsearch/xpack/downsample/DownsampleShardPersistentTaskExecutorTests.java",
+        "x-pack/plugin/downsample/src/test/java/org/elasticsearch/xpack/downsample/DownsampleShardTaskParamsTests.java",
+        "x-pack/plugin/downsample/src/test/java/org/elasticsearch/xpack/downsample/MetricFieldProducerTests.java",
+        "x-pack/plugin/downsample/src/test/java/org/elasticsearch/xpack/downsample/TransportDownsampleActionTests.java"
+      ]
+    },
+    {
+      "sha": "482f5f1f0ecd5f06ec4e00f3bd52c7e34b4b11c8",
+      "message": "[ES|QL] Modify GenerativeMetrics test and unmute (#136932)\n\nThis commit modifies the GenerativeMetrics test to avoid certain\nillegal queries, adds a few more allowed error messages, and\nunmutes the test in general.",
+      "modifiedFiles": [
+        "muted-tests.yml",
+        "x-pack/plugin/esql/qa/server/src/main/java/org/elasticsearch/xpack/esql/qa/rest/generative/GenerativeRestTest.java",
+        "x-pack/plugin/esql/qa/testFixtures/src/main/java/org/elasticsearch/xpack/esql/generator/EsqlQueryGenerator.java"
+      ]
+    },
+    {
+      "sha": "5467344e79e084d13225b2a0b9b145fceb77efe6",
+      "message": "[ES|QL] Don\u0027t allow MV_EXPAND prior to STATS with TS (#136931)\n\nResolves #136928",
+      "modifiedFiles": [
+        "docs/changelog/136931.yaml",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/plan/logical/TimeSeriesAggregate.java",
+        "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/analysis/VerifierTests.java"
+      ]
+    },
+    {
+      "sha": "2e340de715151c5d67d4d8689540e0bca69abdf2",
+      "message": "Handle indices with zero/missing uptime correctly in write-load calculation (#136929)\n\nFixes: ES-13286",
+      "modifiedFiles": [
+        "docs/changelog/136929.yaml",
+        "x-pack/plugin/write-load-forecaster/src/main/java/org/elasticsearch/xpack/writeloadforecaster/LicensedWriteLoadForecaster.java",
+        "x-pack/plugin/write-load-forecaster/src/test/java/org/elasticsearch/xpack/writeloadforecaster/LicensedWriteLoadForecasterTests.java"
+      ]
+    },
+    {
+      "sha": "d7da033245cb228b5f6dfb86c7820dd374276897",
+      "message": "Fix date range in DownsampleIT test (#136930)\n\nWent outside the range whoopsy\nResolves #136914",
+      "modifiedFiles": [
+        "muted-tests.yml",
+        "x-pack/plugin/downsample/src/internalClusterTest/java/org/elasticsearch/xpack/downsample/DownsampleIT.java"
+      ]
+    },
+    {
+      "sha": "997e92c82f0546b02888e1c4461c632393a1c113",
+      "message": "Start readiness service after http is started (#136729)\n\nThe readiness service indicates when ES is ready to receive\nexternal http requests. Yet the service does not actually check http has\nbeen started. This commit moves the starting the readiness service to\nafter http has been started. Note that adding a direct dependency\nbetween ReadinessService and HttpServerTransport would be complicated,\nso the \"dependency\" is achieved by starting readiness almost at the end\nof node startup.",
+      "modifiedFiles": [
+        "docs/changelog/136729.yaml",
+        "server/src/main/java/org/elasticsearch/node/Node.java"
+      ]
+    },
+    {
+      "sha": "a76c83962db050ecd53c241b0685772e6abde410",
+      "message": "Mute org.elasticsearch.xpack.test.rest.XPackRestIT test {p0\u003dml/sparse_vector_search/Test sparse_vector search with query vector and pruning config} #136061",
+      "modifiedFiles": [
+        "muted-tests.yml"
+      ]
+    },
+    {
+      "sha": "c5c300e24d97535ef98d663d22b3629066f1bcfa",
+      "message": "Mute org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests testEvalWithScoreImplicitLimit #136921",
+      "modifiedFiles": [
+        "muted-tests.yml"
+      ]
+    },
+    {
+      "sha": "eaf92d97a55e820ccbe872960c213a857c29c8fb",
+      "message": "Mute org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests testEvalWithScoreExplicitLimit #136920",
+      "modifiedFiles": [
+        "muted-tests.yml"
+      ]
+    },
+    {
+      "sha": "247feebba03f80910abe70d96b9cedbb1bd02593",
+      "message": "Mute org.elasticsearch.xpack.esql.qa.mixed.FieldExtractorIT testTextFieldWithKeywordSubfield {STORED} #136918",
+      "modifiedFiles": [
+        "muted-tests.yml"
+      ]
+    },
+    {
+      "sha": "0052f84d27eed729f6372ea50a393ce04dfcd103",
+      "message": "Mute org.elasticsearch.xpack.esql.qa.mixed.FieldExtractorIT testTextFieldWithIpSubfieldMalformed {STORED} #136917",
+      "modifiedFiles": [
+        "muted-tests.yml"
+      ]
+    },
+    {
+      "sha": "270aee7daf77f98856f0d5cbe5821a4dfb003c40",
+      "message": "Mute org.elasticsearch.xpack.downsample.DownsampleIT testPartialNullMetricsAfterDownsampling #136914",
+      "modifiedFiles": [
+        "muted-tests.yml"
+      ]
+    },
+    {
+      "sha": "0dd761b04003b2396b91db6e4400e9c7df93658d",
+      "message": "Fixed geo point block loader slowness (#136147)\n\n* Fixed geo point block loader slowness\n\n* Fixed precision issue\n\n* Addressed feedback\n\n* Reverted TestBlock changes\n\n* [CI] Auto commit changes from spotless\n\n* Replaced bytesRefsFromDocValues with bytesRefs\n\n* Fixed geo point block loader slowness\n\n* Revert \"Fixed geo point block loader slowness\"\n\nThis reverts commit cac43c4d30b92748b24345ca0cdc4b7e79e19e51.\n\n* Fixed failing tests after rebasing against main\n\n* Update docs/changelog/136147.yaml\n\n* Addressed feedback, added an explanation about bytesRefsFromDocValues()\n\n* [CI] Auto commit changes from spotless\n\n---------\n\nCo-authored-by: elasticsearchmachine \u003cinfra-root+elasticsearchmachine@elastic.co\u003e",
+      "modifiedFiles": [
+        "docs/changelog/136147.yaml",
+        "server/src/main/java/org/elasticsearch/index/mapper/GeoPointFieldMapper.java",
+        "server/src/test/java/org/elasticsearch/index/mapper/GeoPointFieldTypeTests.java",
+        "server/src/test/java/org/elasticsearch/index/mapper/blockloader/GeoPointFieldBlockLoaderTests.java",
+        "test/framework/src/main/java/org/elasticsearch/index/mapper/TestBlock.java"
+      ]
+    },
+    {
+      "sha": "70673ebe975ab602e664fea9e9e80c256ae65bd6",
+      "message": "Add reshardSplitShardCountSummary field to ShardSearchRequest and friends (#135804)\n\nCo-authored-by: Brendan Cully \u003cbrendan.cully@elastic.co\u003e",
+      "modifiedFiles": [
+        "server/src/main/java/org/elasticsearch/action/admin/cluster/shards/TransportClusterSearchShardsAction.java",
+        "server/src/main/java/org/elasticsearch/action/admin/indices/diskusage/TransportAnalyzeIndexDiskUsageAction.java",
+        "server/src/main/java/org/elasticsearch/action/admin/indices/validate/query/TransportValidateQueryAction.java",
+        "server/src/main/java/org/elasticsearch/action/fieldcaps/RequestDispatcher.java",
+        "server/src/main/java/org/elasticsearch/action/search/AbstractSearchAsyncAction.java",
+        "server/src/main/java/org/elasticsearch/action/search/CanMatchNodeRequest.java",
+        "server/src/main/java/org/elasticsearch/action/search/CanMatchPreFilterSearchPhase.java",
+        "server/src/main/java/org/elasticsearch/action/search/SearchQueryThenFetchAsyncAction.java",
+        "server/src/main/java/org/elasticsearch/action/search/SearchShardIterator.java",
+        "server/src/main/java/org/elasticsearch/action/search/TransportSearchAction.java",
+        "server/src/main/java/org/elasticsearch/action/support/broadcast/TransportBroadcastAction.java",
+        "server/src/main/java/org/elasticsearch/cluster/routing/OperationRouting.java",
+        "server/src/main/java/org/elasticsearch/cluster/routing/SearchShardRouting.java",
+        "server/src/main/java/org/elasticsearch/cluster/routing/ShardIterator.java",
+        "server/src/main/java/org/elasticsearch/cluster/routing/SplitShardCountSummary.java",
+        "server/src/main/java/org/elasticsearch/search/internal/ShardSearchRequest.java",
+        "server/src/main/resources/transport/definitions/referable/shard_search_request_reshard_shard_count_summary.csv",
+        "server/src/main/resources/transport/upper_bounds/9.3.csv",
+        "server/src/test/java/org/elasticsearch/action/admin/indices/diskusage/TransportAnalyzeIndexDiskUsageActionTests.java",
+        "server/src/test/java/org/elasticsearch/action/search/AbstractSearchAsyncActionTests.java",
+        "server/src/test/java/org/elasticsearch/action/search/SearchAsyncActionTests.java",
+        "server/src/test/java/org/elasticsearch/action/search/SearchShardIteratorTests.java",
+        "server/src/test/java/org/elasticsearch/action/search/TransportSearchActionTests.java",
+        "server/src/test/java/org/elasticsearch/cluster/routing/OperationRoutingTests.java",
+        "server/src/test/java/org/elasticsearch/cluster/structure/RoutingIteratorTests.java",
+        "server/src/test/java/org/elasticsearch/search/SearchServiceSingleNodeTests.java",
+        "server/src/test/java/org/elasticsearch/search/internal/ShardSearchRequestTests.java",
+        "x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/termsenum/action/TransportTermsEnumAction.java",
+        "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/enrich/AbstractLookupService.java"
+      ]
+    },
+    {
+      "sha": "5a181274d38b4ed61ad2e1c5d6a7818cc0b6b5ef",
+      "message": "Mute org.elasticsearch.compute.aggregation.MedianAbsoluteDeviationIntAggregatorFunctionTests testSimpleSmallInput #136905",
+      "modifiedFiles": [
+        "muted-tests.yml"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "Jackson-Devices",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "igorverse",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "Maurocavasinni",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "jackshirazi",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "jinwookoh",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "goodgollyholly",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "anthogez",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "ctfrookie",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "yji0728",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "pranavjrat",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "asato425",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "fwzxry",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "SuganthiThomas",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "AlexOcculate",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "nikita-lavrov",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "BlaqGhostShell",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "1grzyb1",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch",
+      "ownerLogin": "chamchi00800",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch-2",
+      "ownerLogin": "COMPU-GLOBALHYPERMEGANET",
+      "commitCount": 100
+    },
+    {
+      "name": "elasticsearch-1",
+      "ownerLogin": "COMPU-GLOBALHYPERMEGANET",
+      "commitCount": 100
+    }
+  ]
+}

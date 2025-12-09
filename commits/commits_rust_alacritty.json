@@ -1,0 +1,667 @@
+{
+  "name": "alacritty",
+  "ownerLogin": "alacritty",
+  "language": "Rust",
+  "commits": [
+    {
+      "sha": "52deae45bc2891f26070684fe3fda94c26dd37c1",
+      "message": "Remove undefined logo SVG gradient\n\nThis removes a gradient that apparently doesn\u0027t exist, which causes\nissues with some SVG rasterizers.\n\nCloses #8706.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "extra/logo/alacritty-simple.svg",
+        "extra/logo/alacritty-term+scanlines.svg",
+        "extra/logo/alacritty-term.svg",
+        "extra/logo/compat/alacritty-simple.svg",
+        "extra/logo/compat/alacritty-term+scanlines.svg",
+        "extra/logo/compat/alacritty-term.svg"
+      ]
+    },
+    {
+      "sha": "7b33cbcbc287822ad0faf3744cff3db05fb20274",
+      "message": "Fix OpenGL robustness crash\n\nThis disables the OpenGL context\u0027s robustness feature since some GPUs\nthat advertise robustness support do not support sufficient capabilities\nfor our implementation.\n\nCloses #8713.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/renderer/platform.rs"
+      ]
+    },
+    {
+      "sha": "08882d521de1d64befd4972178aa2772201014eb",
+      "message": "Fix changelog entry for 0.16.0 release",
+      "modifiedFiles": [
+        "CHANGELOG.md"
+      ]
+    },
+    {
+      "sha": "a513d137791b98a082eb4bf591b1fd5db7a942cb",
+      "message": "Ignore when config file is moved\n\nAs this is practically the same as deleting the file it should be\ntreated the same and ignored.\n\nMoving a file from somewhere to the config file is not ignored and the config\nwill reload as normal.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/config/monitor.rs"
+      ]
+    },
+    {
+      "sha": "48e19ec3cb03f063710b24abf7a1d9ad753a7754",
+      "message": "Bump dependencies\n\nThis performs all non-breaking dependency updates, which includes\nunicode-width 0.2.2 for Unicode 17 support.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "Cargo.lock",
+        "alacritty/src/display/window.rs",
+        "alacritty/src/macos/locale.rs"
+      ]
+    },
+    {
+      "sha": "fa36b3abb165d26595bb8b9c74042dd74ed0f235",
+      "message": "Disable NSAutoFillHeuristicController on macOS",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/Cargo.toml",
+        "alacritty/src/macos/mod.rs",
+        "alacritty/src/main.rs"
+      ]
+    },
+    {
+      "sha": "a2334ff494a26a38f66685d0f950a9b589ac84a9",
+      "message": "Bump winit to 0.30.12\n\nThat may still be needed for macOS 26 to not blow up.",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "97fde106c0a3ea97d399d5da3829579a483a5768",
+      "message": "Fix hint highlighting when hovering with hidden mouse\n\nWhen the mouse cursor was hidden with `hide_when_typing` enabled, hints\ncould still be highlighted under the hidden cursor. This typically\noccurred when a hint moved underneath the stationary, hidden cursor.\n\nThis fix ensures hints are not highlighted by the mouse cursor while\nit\u0027s hidden.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/display/mod.rs",
+        "alacritty/src/display/window.rs",
+        "alacritty/src/event.rs"
+      ]
+    },
+    {
+      "sha": "8e0327b3fb747289f47c327b9fcf8b4fd110f9a1",
+      "message": "Bump development version to 0.17.0-dev\n\nThis is only an update to the development version and does not represent\na stable release.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "Cargo.lock",
+        "alacritty/Cargo.toml",
+        "alacritty/windows/wix/alacritty.wxs",
+        "alacritty_config/Cargo.toml",
+        "alacritty_config_derive/Cargo.toml",
+        "alacritty_terminal/Cargo.toml",
+        "extra/osx/Alacritty.app/Contents/Info.plist"
+      ]
+    },
+    {
+      "sha": "985def87c79637eb7207f012c5518bd60d065233",
+      "message": "Fix maximized startup with tabs on macOS\n\nCloses #8664.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/window_context.rs"
+      ]
+    },
+    {
+      "sha": "7201a6ae062ea6e12045d7b11dfa5fc5b7056a79",
+      "message": "Add cooldown to bell command execution\n\nCloses #8655.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/event.rs",
+        "alacritty/src/window_context.rs"
+      ]
+    },
+    {
+      "sha": "84377a45a8a8574323f3f18706aab88be4d8fab1",
+      "message": "Add alacritty_terminal option to escape pty args\n\nThis adds a new `escape_args` option to `tty::Options` on Windows, which\ncan be used to automatically escape all arguments passed to the shell.\n\nWhile useful to automatically make most arguments work on Windows, there\nare some scenarios where it is not possible for users to properly\nspecify arguments with this option enabled (e.g.: `cmd /c`). An option\nshould always be present to disable this option when used.\n\nThe implementation is based on the `Command` code in Rust\u0027s STD lib.",
+      "modifiedFiles": [
+        "alacritty/src/cli.rs",
+        "alacritty/src/config/ui_config.rs",
+        "alacritty_terminal/CHANGELOG.md",
+        "alacritty_terminal/src/tty/mod.rs",
+        "alacritty_terminal/src/tty/windows/mod.rs"
+      ]
+    },
+    {
+      "sha": "f07622e9082af24dee1501889e13b298c57a1c4d",
+      "message": "Improve builtin font ellipse rendering",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/renderer/text/builtin_font.rs"
+      ]
+    },
+    {
+      "sha": "9f8fed7c9e76b013f8c2632105d1abec18e6a64e",
+      "message": "Fix DECOM cursor motion\n\nThis fixes a missing `GOTO 0,0` when entering the terminal origin mode.\n\nCloses #8636.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty_terminal/src/term/mod.rs",
+        "alacritty_terminal/tests/ref.rs",
+        "alacritty_terminal/tests/ref/origin_goto/alacritty.recording",
+        "alacritty_terminal/tests/ref/origin_goto/config.json",
+        "alacritty_terminal/tests/ref/origin_goto/grid.json",
+        "alacritty_terminal/tests/ref/origin_goto/size.json"
+      ]
+    },
+    {
+      "sha": "376cdb370018b737d2d92f26bba0d5297b6eb0c0",
+      "message": "Update to toml 0.9",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "alacritty/Cargo.toml",
+        "alacritty_config/Cargo.toml",
+        "alacritty_config_derive/Cargo.toml",
+        "alacritty_config_derive/tests/config.rs"
+      ]
+    },
+    {
+      "sha": "bb02cb13f197db66c33f6aad4ae4cceaaf57a8f9",
+      "message": "Migrate to 2024 edition",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "Cargo.toml",
+        "alacritty/src/cli.rs",
+        "alacritty/src/clipboard.rs",
+        "alacritty/src/config/bindings.rs",
+        "alacritty/src/config/monitor.rs",
+        "alacritty/src/config/terminal.rs",
+        "alacritty/src/config/ui_config.rs",
+        "alacritty/src/config/window.rs",
+        "alacritty/src/display/content.rs",
+        "alacritty/src/display/cursor.rs",
+        "alacritty/src/display/hint.rs",
+        "alacritty/src/display/mod.rs",
+        "alacritty/src/display/window.rs",
+        "alacritty/src/event.rs",
+        "alacritty/src/input/keyboard.rs",
+        "alacritty/src/input/mod.rs",
+        "alacritty/src/ipc.rs",
+        "alacritty/src/logging.rs",
+        "alacritty/src/macos/locale.rs",
+        "alacritty/src/macos/proc.rs",
+        "alacritty/src/main.rs",
+        "alacritty/src/panic.rs",
+        "alacritty/src/renderer/mod.rs",
+        "alacritty/src/renderer/platform.rs",
+        "alacritty/src/renderer/rects.rs",
+        "alacritty/src/renderer/text/gles2.rs",
+        "alacritty/src/renderer/text/glsl3.rs",
+        "alacritty/src/renderer/text/mod.rs",
+        "alacritty/src/window_context.rs",
+        "alacritty_config_derive/src/config_deserialize/de_enum.rs",
+        "alacritty_config_derive/src/config_deserialize/de_struct.rs",
+        "alacritty_config_derive/src/config_deserialize/mod.rs",
+        "alacritty_config_derive/src/serde_replace.rs",
+        "alacritty_terminal/src/event_loop.rs",
+        "alacritty_terminal/src/grid/resize.rs",
+        "alacritty_terminal/src/grid/row.rs",
+        "alacritty_terminal/src/grid/storage.rs",
+        "alacritty_terminal/src/index.rs",
+        "alacritty_terminal/src/selection.rs",
+        "alacritty_terminal/src/term/cell.rs",
+        "alacritty_terminal/src/term/mod.rs",
+        "alacritty_terminal/src/term/search.rs",
+        "alacritty_terminal/src/tty/mod.rs",
+        "alacritty_terminal/src/tty/unix.rs",
+        "alacritty_terminal/src/tty/windows/blocking.rs",
+        "alacritty_terminal/src/tty/windows/child.rs",
+        "alacritty_terminal/src/tty/windows/conpty.rs",
+        "alacritty_terminal/src/tty/windows/mod.rs",
+        "alacritty_terminal/src/vi_mode.rs",
+        "alacritty_terminal/tests/ref.rs"
+      ]
+    },
+    {
+      "sha": "b0304431c4b4898e213bf62b2a67bdd18b7a7227",
+      "message": "Add size_hint to GridIterator\n\nCo-authored-by: Christian Duerr \u003ccontact@christianduerr.com\u003e",
+      "modifiedFiles": [
+        "alacritty_terminal/src/grid/mod.rs",
+        "alacritty_terminal/src/grid/tests.rs"
+      ]
+    },
+    {
+      "sha": "f440cd4d6d503f0e2ac619b2e1b129254857955b",
+      "message": "Add global config fallback\n\nCo-authored-by: Christian Duerr \u003ccontact@christianduerr.com\u003e",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "README.md",
+        "alacritty/src/config/mod.rs",
+        "extra/man/alacritty.1.scd",
+        "extra/man/alacritty.5.scd"
+      ]
+    },
+    {
+      "sha": "fad5360bf0740f6e2f01e22472a9eb161cda7069",
+      "message": "Add yank to EOL vi mode binding",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/config/bindings.rs",
+        "extra/man/alacritty-bindings.5.scd"
+      ]
+    },
+    {
+      "sha": "5168dada106117f85f37eac6b685809b03b31b27",
+      "message": "Add multi-sequence touch zoom support\n\nThis changes the way the touch zoom works by switching into a separate\nmode when one of the touch slots is removed, allowing continuous zoom as\nlong as at least one slot is active.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/event.rs",
+        "alacritty/src/input/mod.rs"
+      ]
+    },
+    {
+      "sha": "2d79edab16fecfa1ce352c86c9698d078dbbb7d4",
+      "message": "Remove cstr! macro in favor of literal notation\n\nAlso apply clippy changes while at it.\n\nCloses #8002.",
+      "modifiedFiles": [
+        "alacritty/src/cli.rs",
+        "alacritty/src/clipboard.rs",
+        "alacritty/src/config/mod.rs",
+        "alacritty/src/config/monitor.rs",
+        "alacritty/src/config/ui_config.rs",
+        "alacritty/src/config/window.rs",
+        "alacritty/src/display/mod.rs",
+        "alacritty/src/display/window.rs",
+        "alacritty/src/event.rs",
+        "alacritty/src/ipc.rs",
+        "alacritty/src/main.rs",
+        "alacritty/src/renderer/mod.rs",
+        "alacritty/src/renderer/rects.rs",
+        "alacritty/src/renderer/text/builtin_font.rs",
+        "alacritty/src/renderer/text/gles2.rs",
+        "alacritty/src/renderer/text/glsl3.rs",
+        "alacritty/src/renderer/text/glyph_cache.rs",
+        "alacritty_terminal/src/event_loop.rs",
+        "alacritty_terminal/src/term/mod.rs",
+        "alacritty_terminal/src/tty/unix.rs"
+      ]
+    },
+    {
+      "sha": "3ea13aeadcfab1515367fb5e5ed5e2494b25b9a2",
+      "message": "Fix crash when `AppleFontSmoothing` is not present",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "Cargo.lock",
+        "alacritty/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "80d87ed5dbe49cc8a4d208f0198566326924073a",
+      "message": "Apply clamp for opacity\n\nPreviously opacity was not clamping during reading it from the config\nor via IPC.",
+      "modifiedFiles": [
+        "alacritty/src/config/ui_config.rs"
+      ]
+    },
+    {
+      "sha": "4ad5ba3630ee278c293ce64c777c658cb78a6808",
+      "message": "Update alacritty-msg(1) for msg get-config entry\n\nFollow up to a63c770be.",
+      "modifiedFiles": [
+        "extra/man/alacritty-msg.1.scd"
+      ]
+    },
+    {
+      "sha": "a63c770befd3aa8be916ef9cfadd7e541f5377f0",
+      "message": "Add IPC config retrieval subcommand\n\nThis patch adds a new `alacritty msg get-config` subcommand which can\nretrieve the current config from any Alacritty window using the IPC\nsocket.\n\nThe command will always print the full configuration file in JSON,\nwithout the ability to filter which values are returned, leaning on\ntools like `jq` instead of adding this complexity to Alacritty.\n\nContrary to deserialization, this relies heavily on the default\nserialization implementations to reduce the necessary changes. Key and\nMouse bindings are omitted entirely since their structure is very\ncomplex and they tend to just bloat the message size without having an\nobvious usecase.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/cli.rs",
+        "alacritty/src/config/bell.rs",
+        "alacritty/src/config/color.rs",
+        "alacritty/src/config/cursor.rs",
+        "alacritty/src/config/debug.rs",
+        "alacritty/src/config/font.rs",
+        "alacritty/src/config/general.rs",
+        "alacritty/src/config/mouse.rs",
+        "alacritty/src/config/scrolling.rs",
+        "alacritty/src/config/selection.rs",
+        "alacritty/src/config/terminal.rs",
+        "alacritty/src/config/ui_config.rs",
+        "alacritty/src/config/window.rs",
+        "alacritty/src/display/color.rs",
+        "alacritty/src/event.rs",
+        "alacritty/src/ipc.rs",
+        "alacritty/src/window_context.rs",
+        "extra/completions/_alacritty",
+        "extra/completions/alacritty.bash",
+        "extra/completions/alacritty.fish"
+      ]
+    },
+    {
+      "sha": "9eb68039dcb3edf9c87d253532a3ddd6c3cb8c4e",
+      "message": "Bump all dependencies",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "alacritty/Cargo.toml",
+        "alacritty/build.rs",
+        "alacritty/src/config/mod.rs",
+        "alacritty/src/display/window.rs",
+        "alacritty/src/ipc.rs",
+        "alacritty/src/panic.rs",
+        "alacritty_terminal/Cargo.toml",
+        "extra/completions/alacritty.bash"
+      ]
+    },
+    {
+      "sha": "ee48fad2cff393053cb0f4d4c890d8da616f317f",
+      "message": "Fix clippy warnings",
+      "modifiedFiles": [
+        "alacritty/src/config/monitor.rs",
+        "alacritty/src/display/content.rs",
+        "alacritty/src/display/hint.rs",
+        "alacritty/src/display/mod.rs",
+        "alacritty/src/event.rs",
+        "alacritty/src/input/mod.rs",
+        "alacritty/src/ipc.rs",
+        "alacritty/src/renderer/text/builtin_font.rs",
+        "alacritty_config_derive/src/config_deserialize/de_struct.rs",
+        "alacritty_terminal/src/event_loop.rs",
+        "alacritty_terminal/src/tty/unix.rs"
+      ]
+    },
+    {
+      "sha": "1fb1fd225e318b0bd1a1ccdad07f36386e0024ec",
+      "message": "Bump MSRV to 1.81.0\n\nAlso use workspace to specify that.",
+      "modifiedFiles": [
+        ".builds/freebsd.yml",
+        ".builds/linux.yml",
+        ".github/workflows/ci.yml",
+        "CHANGELOG.md",
+        "Cargo.toml",
+        "alacritty/Cargo.toml",
+        "alacritty_config/Cargo.toml",
+        "alacritty_config_derive/Cargo.toml",
+        "alacritty_terminal/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "00a516abc78f54fe16ec820e58613bd8ac394d44",
+      "message": "Fix search for fullwidth chars in the last column\n\nThis fixes an issue for fullwidth characters where the `WRAPLINE` flag\nwould be checked for the cell containing the wide character, ignoring\nthe spacer after it.\n\nTo work around this, the wrapline character is now always checked based\non the cell *after* fullwidth expansion, instead of the original cell.\n\nCloses #8586.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty_terminal/src/term/search.rs"
+      ]
+    },
+    {
+      "sha": "b02e4fce05c513eb9c375d461dd325ad18f9f63a",
+      "message": "Add changelog entry for 71feeee",
+      "modifiedFiles": [
+        "CHANGELOG.md"
+      ]
+    },
+    {
+      "sha": "4db89382f657cff9092fdfec671fc440a44af841",
+      "message": "Fix hint binding IPC overrides\n\nThis fixes an issue where changes made to the bindings of a hint through\nIPC were completely ignored, since the hint key bindings were only\ngenerated on config load without regeneration on IPC config override.\n\nWhile it would be possible to just filter out remove hint key bindings\nbased on their action and then repopulate them on IPC config reload,\nthis solution would be quite hacky.\n\nTo have a better distinction between traditional and hint key bindings,\nthe two have been entirely separated and hint bindings are just\nconverted to key bindings on demand. This allows easily replacing the\nentire hint array without any post-processing, making it simpler to\nmaintain for future changes.\n\nCloses #8568.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/config/mod.rs",
+        "alacritty/src/config/ui_config.rs",
+        "alacritty/src/input/keyboard.rs"
+      ]
+    },
+    {
+      "sha": "71feeeeccc422d8092bda56b0d38693290f7585f",
+      "message": "Add * # { } vi motions\n\nThis patch adds Vi\u0027s semantic search and paragraph motion.\n\nThe semantic search uses either the selection or the semantic word under\nthe cursor and jumps to the next match in the desired direction.\n\nParagraph motion jumps to just above or below the current paragraph.\n\nCloses #7961.\n\nCo-authored-by: Fletcher Gornick \u003cfletcher@gornick.dev\u003e",
+      "modifiedFiles": [
+        "alacritty/src/config/bindings.rs",
+        "alacritty/src/event.rs",
+        "alacritty/src/input/mod.rs",
+        "alacritty_terminal/src/vi_mode.rs",
+        "extra/man/alacritty-bindings.5.scd",
+        "extra/man/alacritty.5.scd"
+      ]
+    },
+    {
+      "sha": "2bc1bb49e9c9a4861a2bc3eafcbaa652cda26ded",
+      "message": "Add missing build dependency to zypper docs",
+      "modifiedFiles": [
+        "INSTALL.md"
+      ]
+    },
+    {
+      "sha": "cd2be6663ebb90a55437c7528089348b32069b8c",
+      "message": "Remove libfreetype6-dev from Debian build deps\n\nCloses #8115.",
+      "modifiedFiles": [
+        "INSTALL.md"
+      ]
+    },
+    {
+      "sha": "def47a5dd511ed20607eb5d9e5e7140afd16b31d",
+      "message": "Fix disambiguation for Enter/Tab/Backspace\n\nThe keys were not disambiguated, but they should be. Was just an\noversight.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/config/bindings.rs",
+        "alacritty/src/input/keyboard.rs"
+      ]
+    },
+    {
+      "sha": "a0c4dfe962fdb0ee00b85de1cd2af16a0e8e2e9e",
+      "message": "Update yanked 0.5.13 crossbeam-channel version",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "d716fe4e835369b4d4d98e768b309b5e4088f1af",
+      "message": "Apply glyph offset to strikeout position",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/renderer/text/glyph_cache.rs"
+      ]
+    },
+    {
+      "sha": "15f1278d695776860ebcd939d30604b253788278",
+      "message": "Clamp offscreen damage\n\nThis could happen if the terminal is very small and cell is not entirely\nvisible, thus having bounds outside the terminal width/height.",
+      "modifiedFiles": [
+        "alacritty/src/display/damage.rs"
+      ]
+    },
+    {
+      "sha": "5a68e98db062f2de49f980b8b30a2f9d3aecfae1",
+      "message": "Fix selection clearing in kitty keyboard mode\n\nWhen Kitty\u0027s keyboard protocol is used and Report all keys as escape\ncodes flag (8) is enabled, modifier key escape codes trigger the usual\n\"write something to the terminal\" code path, which clears the selection\n/ scrolls down etc.\n\nThis behavior is mostly unexpected, and makes some actions more painful\nto perform (for instance copying text becomes harder: hitting CTRL to\nbegin the CTRL+SHIFT+C sequence clears the selection).\n\nThis patch clears the selection only if the key event is not a modifier\nkey, which aligns with Alacritty\u0027s usual behavior.\n\nFixes #8509.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/input/keyboard.rs"
+      ]
+    },
+    {
+      "sha": "03c2907b44b4189aac5fdeaea331f5aab5c7072e",
+      "message": "Hide macOS login message with ~/.hushlogin present\n\nOn macOS every shell is a login shell, which will always print\ninformation about the last login when the terminal is started. The macOS\nstandard for disabling this is to place a `.hushlogin` file in the\nuser\u0027s home directory, but this did not work with Alacritty since\n`login` only looks for this file in the current directory.\n\nTo ensure the login message is properly suppressed, Alacritty\u0027s default\nshell will now check for the presence of the `.hushlogin` file in the\nuser\u0027s home directory and append `-q` to the `login` arguments if it is\npresent, which will behave as if a `.hushlogin` file was found by\n`login`.\n\nCo-authored-by: Thomas \u003cthomas@zed.dev\u003e\nCo-authored-by: Anthony \u003canthony@zed.dev\u003e",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty_terminal/CHANGELOG.md",
+        "alacritty_terminal/src/tty/unix.rs"
+      ]
+    },
+    {
+      "sha": "be911fead8b568797862ebfd41bbad32b46d42bf",
+      "message": "Add latest release to changelog\n\nThis is only an update to the development version and does not represent\na stable release.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "Cargo.lock",
+        "alacritty/Cargo.toml",
+        "alacritty_terminal/CHANGELOG.md",
+        "alacritty_terminal/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "6fefa78eafa43f13998439cb9eaf15bc0441f004",
+      "message": "Don\u0027t report unshifted key when Shift was not pressed",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/input/keyboard.rs"
+      ]
+    },
+    {
+      "sha": "3c7a323ef5b0cb0631f857a96d7d874008ee515a",
+      "message": "Dont fail exec() on deleted directories\n\nUse the `std::env::set_current_dir` from the `pre_exec` and ignore\nerror, since not changing working directory is a side effect which\nshouldn\u0027t break spawning a program or block window creation.\n\nSigned-off-by: Tycho Andersen \u003ctycho@tycho.pizza\u003e\nCo-authored-by: Kirill Chibisov \u003ccontact@kchibisov.com\u003e\nCo-authored-by: Christian Duerr \u003ccontact@christianduerr.com\u003e",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/daemon.rs",
+        "alacritty/src/event.rs",
+        "alacritty_terminal/src/tty/unix.rs"
+      ]
+    },
+    {
+      "sha": "441c9c6eb39a101c9d8d8cd633c61a9c20f7e1a6",
+      "message": "Bump winit to 0.30.9\n\nFixes #7916.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "Cargo.lock",
+        "alacritty/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "463a86798401927d463424aff3639dda18a7a27d",
+      "message": "Bump vte to 0.15.0",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "alacritty_terminal/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "5b189bca684c046a43be7f1c168c3bc37109fc5b",
+      "message": "Add backslash to invalid characters for URL regex\n\nThis adds the `\\` character to the list of characters which will\nterminate matches in Alacritty\u0027s default hint for URL recognition.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/config/ui_config.rs",
+        "extra/man/alacritty.5.scd"
+      ]
+    },
+    {
+      "sha": "5e78d20c709cb1ab8d44ca7a8702cc26d779227c",
+      "message": "Add option to drain PTY on shutdown\n\nThis patch removes the `hold` option on `alacritty_terminal` in favor of\na `drain_on_exit` option, which will drain the PTY before shutdown. The\nhold logic is instead handled in `alacritty`.",
+      "modifiedFiles": [
+        "alacritty/src/cli.rs",
+        "alacritty/src/config/ui_config.rs",
+        "alacritty/src/display/window.rs",
+        "alacritty/src/event.rs",
+        "alacritty/src/input/mod.rs",
+        "alacritty/src/window_context.rs",
+        "alacritty_terminal/CHANGELOG.md",
+        "alacritty_terminal/src/event_loop.rs",
+        "alacritty_terminal/src/tty/mod.rs"
+      ]
+    },
+    {
+      "sha": "c9c41e637ac49f3cd67cf0362c596ae9d947f896",
+      "message": "Fix OpenGL reset changelog entry",
+      "modifiedFiles": [
+        "CHANGELOG.md"
+      ]
+    },
+    {
+      "sha": "bc3b7a2c1f4137f3879de6317f24171643c925c9",
+      "message": "Error when failed to create socket with --daemon\n\nThe daemon without socket is not that useful.",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "alacritty/src/ipc.rs",
+        "alacritty/src/main.rs"
+      ]
+    },
+    {
+      "sha": "05368ea6a7061fa5e88b01d3e2982cbfd202f15a",
+      "message": "Bump vte to 0.14.1\n\nThis fixes a crash with partial utf8 input and also speeds up parsing\nin some cases.",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "alacritty_terminal/Cargo.toml"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "alacritty",
+      "ownerLogin": "ltratt",
+      "commitCount": 6
+    },
+    {
+      "name": "alacritty",
+      "ownerLogin": "bruuuuuce",
+      "commitCount": 6
+    },
+    {
+      "name": "alacritty",
+      "ownerLogin": "spacaps",
+      "commitCount": 8
+    },
+    {
+      "name": "alacritty",
+      "ownerLogin": "szallol",
+      "commitCount": 6
+    },
+    {
+      "name": "tilde",
+      "ownerLogin": "henrybon806",
+      "commitCount": 4
+    },
+    {
+      "name": "alacritty",
+      "ownerLogin": "dbuvc",
+      "commitCount": 3
+    },
+    {
+      "name": "alacritty",
+      "ownerLogin": "vaknin",
+      "commitCount": 3
+    },
+    {
+      "name": "alacritty",
+      "ownerLogin": "shenzhen6367",
+      "commitCount": 6
+    },
+    {
+      "name": "alacritty.alacritty",
+      "ownerLogin": "lcretan",
+      "commitCount": 3
+    },
+    {
+      "name": "alacritty",
+      "ownerLogin": "JustinStowe",
+      "commitCount": 3
+    },
+    {
+      "name": "alacritty",
+      "ownerLogin": "lloydmckie-lang",
+      "commitCount": 3
+    },
+    {
+      "name": "alacritty-windows-blur",
+      "ownerLogin": "EJ-S",
+      "commitCount": 3
+    },
+    {
+      "name": "alacritty",
+      "ownerLogin": "Morganamilo",
+      "commitCount": 2
+    },
+    {
+      "name": "velacritty",
+      "ownerLogin": "CoderDayton",
+      "commitCount": 27
+    },
+    {
+      "name": "alacritty",
+      "ownerLogin": "lexi-the-cute",
+      "commitCount": 2
+    },
+    {
+      "name": "alacritty",
+      "ownerLogin": "dzania",
+      "commitCount": 2
+    },
+    {
+      "name": "ppp-by-bay-agent20-00",
+      "ownerLogin": "jarenasd2015350-lang",
+      "commitCount": 2
+    },
+    {
+      "name": "alacritty",
+      "ownerLogin": "Odins3y3",
+      "commitCount": 1
+    },
+    {
+      "name": "alacritty",
+      "ownerLogin": "nineteen-ninety-six",
+      "commitCount": 6
+    },
+    {
+      "name": "Alacrynix",
+      "ownerLogin": "VoidNxSEC",
+      "commitCount": 0
+    }
+  ]
+}

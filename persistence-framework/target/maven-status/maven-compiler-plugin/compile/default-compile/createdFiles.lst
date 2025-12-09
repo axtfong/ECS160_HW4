@@ -1,0 +1,5 @@
+com/ecs160/persistence/annotations/Id.class
+com/ecs160/persistence/annotations/LazyLoad.class
+com/ecs160/persistence/annotations/PersistableObject.class
+com/ecs160/persistence/annotations/PersistableField.class
+com/ecs160/persistence/RedisDB.class

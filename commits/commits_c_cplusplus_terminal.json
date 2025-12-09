@@ -1,0 +1,741 @@
+{
+  "name": "terminal",
+  "ownerLogin": "microsoft",
+  "language": "C++",
+  "commits": [
+    {
+      "sha": "5ae95d7df0ee3050ad36b98cd8f3f8d55005f0d2",
+      "message": "Allow creating new windows on another virtual desktop (#19458)\n\nWhoops. Closes #18652\n\n\u003cDHowett\u003e I chatted with Leonard to figure out why I kept\nmisunderstanding this PR. The key is that **this function should not\nalways return an existing window.** It\u0027s supposed to find an existing\nwindow on the current virtual desktop, not literally any window\nanywhere.",
+      "modifiedFiles": [
+        "src/cascadia/WindowsTerminal/WindowEmperor.cpp"
+      ]
+    },
+    {
+      "sha": "b357de9897611767772316c1100584a042af535f",
+      "message": "Fix cursor being hidden when pressing modifier keys (#19473)\n\nCloses #19445",
+      "modifiedFiles": [
+        "src/cascadia/WindowsTerminal/WindowEmperor.cpp"
+      ]
+    },
+    {
+      "sha": "b8f35a31c26febbe153642488c88549f93e5980c",
+      "message": "Update of the sr-Cyrl-RS translation (#19472)",
+      "modifiedFiles": [
+        "src/cascadia/TerminalApp/Resources/sr-Cyrl-RS/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/LaunchViewModel.cpp"
+      ]
+    },
+    {
+      "sha": "b7bd4f7dcfa94554dc3006049bcc8c526e5207d6",
+      "message": "Community Localization to Serbian (sr-Cyrl-RS) (#17995)",
+      "modifiedFiles": [
+        "src/cascadia/Remoting/Resources/sr-Cyrl-RS/Resources.resw",
+        "src/cascadia/TerminalConnection/Resources/sr-Cyrl-RS/Resources.resw",
+        "src/cascadia/TerminalControl/Resources/sr-Cyrl-RS/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/Resources/sr-Cyrl-RS/Resources.resw",
+        "src/cascadia/TerminalSettingsModel/Resources/sr-Cyrl-RS/Resources.resw",
+        "src/cascadia/UIHelpers/Resources/sr-Cyrl-RS/Resources.resw"
+      ]
+    },
+    {
+      "sha": "f5ddecd1d49d306e1e82543515a12da27c1bbe80",
+      "message": "Fix the casing on an image URL in the FTCS marks spec (#19440)",
+      "modifiedFiles": [
+        ".github/actions/spelling/expect/74d92373e136649071b3c04dc8773f18deaf5e04.txt",
+        ".github/actions/spelling/expect/expect.txt",
+        "doc/specs/#11000 - Marks/Shell-Integration-Marks.md"
+      ]
+    },
+    {
+      "sha": "fcf32351ff6d42097d1c8550e365bb3002a0c8b3",
+      "message": "README: Capitalize \u0027Download\u0027 links in distribution table (#19437)\n\nIt\u0027s more consistent.",
+      "modifiedFiles": [
+        "README.md"
+      ]
+    },
+    {
+      "sha": "0e3d136dad1263e36b136b66adbc7e7d4789d56e",
+      "message": "Make sure UIHelpers\u0027 resources are included in the final PRI file (#19461)\n\nOCWildcardResource requires the inclusion of a magic MSBuild target that\nwe wrote. We forgot to include it here. Oops.\n\nCloses #19444",
+      "modifiedFiles": [
+        "src/cascadia/UIHelpers/UIHelpers.vcxproj"
+      ]
+    },
+    {
+      "sha": "7f6ab5520ee75e5bcda870998061fd120dbf4966",
+      "message": "Localization Updates - main - 10/15/2025 02:48:19 (#19451)\n\nCloses #18849\nCloses #19412\n\nCo-authored-by: Console Service Bot \u003cconsvc@microsoft.com\u003e",
+      "modifiedFiles": [
+        "src/cascadia/TerminalApp/Resources/ja-JP/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/Resources/zh-TW/Resources.resw"
+      ]
+    },
+    {
+      "sha": "84cc3e3e52fba14edb54b503247b44d98de04378",
+      "message": "Add initial bold font support to the GDI renderer (#19441)\n\nRender SGR1 as bold in 256 and true colors, where \"bold is intense\" is\nnot applicable.\nImplemented by creating 2 extra fonts: bold for 1 and bold italic for 1\n+ 3.\n\nNo non-trivial changes, just extensions.\nLOGFONT also supports Underline and StrikeOut, but they seem to be\nalready covered by other means, so no combinatorial explosion of fonts\nexpected.\n\nRefs #18919\n\nCo-authored-by: Leonard Hecker \u003clhecker@microsoft.com\u003e",
+      "modifiedFiles": [
+        "src/renderer/gdi/gdirenderer.hpp",
+        "src/renderer/gdi/state.cpp"
+      ]
+    },
+    {
+      "sha": "819987c90e17dbf6301c777d2ec553a7d115db75",
+      "message": "Update WinGet CNF for exact command matching (#19432)\n\n## Summary of the Pull Request\nUpdate the WinGet CNF package search to match that of the updated\nPowerShell WinGet CNF module. Now, we\u0027ll only search for matching\ncommands instead of by name and moniker.\n\n## References and Relevant Issues\nhttps://github.com/microsoft/winget-command-not-found/pull/29\n\n## Validation Steps Performed\n✅ In CMD, type \"vim\" and vim packages are suggested",
+      "modifiedFiles": [
+        "src/cascadia/TerminalApp/TerminalPage.cpp"
+      ]
+    },
+    {
+      "sha": "b62cad640b6871be1daf8b3e80f8db848ae0800e",
+      "message": "Fix unfocusedBackground being used as active tab color (#19424)\n\n## Summary of the Pull Request\nTurns out that the `\"TabViewItemHeaderBackground\"` resource should be\nset to the _selected_ color instead of the _deselected_ color.\n\nIn 1.22, (pre-#18109) we actually didn\u0027t set this resource. But we do\nactually need it for high contrast mode! (verified)\n\n## Validation Steps Performed\n✅ High contrast mode looks right\n✅ \"Snazzy\" theme from bug report looks right\n\n## PR Checklist\n Closes #19343",
+      "modifiedFiles": [
+        "src/cascadia/TerminalApp/Tab.cpp"
+      ]
+    },
+    {
+      "sha": "9d7ea77cc8ecbfcf213f6a38fbeb611c71040a34",
+      "message": "Use the actual process image instead of module filename to dedup session (#19415)\n\nApparently, `GetModuleFileNameW` returns exactly the path (or prefix, in\ncase of a DLL) passed to `CreateProcess` casing and all. Since we were\nusing it to generate the uniquing hash for Portable and Unpackaged\ninstances, this meant that `C:\\Terminal\\wt` and `C:\\TeRmInAl\\wt` were\nconsidered different instances. Whoops.\n\nUsing `QueryFullProcessImageNameW` instead results in canonicalization.\nMaybe the kernel does it. I don\u0027t know. What I do know is that it works\nmore correctly.\n\n(`Query...` goes through the kernel, while `GetModule...` goes through\nthe loader. Interesting!)\n\nCloses #19253",
+      "modifiedFiles": [
+        "src/cascadia/WindowsTerminal/WindowEmperor.cpp"
+      ]
+    },
+    {
+      "sha": "6a8b2d10f08257459a506d700d3179d8ce74d142",
+      "message": "chore: remove extra semicolons from ActionArgs (#19411)\n\nRemoves unnecessary extra semicolons at the end of `Equals` method\nimplementations in various ActionArgs classes.\n\nCloses #19404",
+      "modifiedFiles": [
+        "src/cascadia/TerminalSettingsModel/ActionArgs.h"
+      ]
+    },
+    {
+      "sha": "04676bd31a598ccede4517367cbb070c38964f8e",
+      "message": "Only do \"keys\" fixups for non-nested, non-iterable commands (#19408)\n\n## Summary of the Pull Request\nWhen we introduced action IDs, we separated \"commands\" from\n\"keybindings\", and introduced fixup logic to rewrite the legacy-style\ncommand blocks into the new version. However we don\u0027t do any ID logic\nfor nested and iterable commands, so make sure we don\u0027t inform the\nloader for fixups in those cases.\n\n## Validation Steps Performed\nWe no longer repeatedly attempt to fixup the settings file when we see a\n`\"keys\"` entry in a nested/iterable command block\n\n## PR Checklist\n- [x] Closes #18736",
+      "modifiedFiles": [
+        "src/cascadia/TerminalSettingsModel/ActionMapSerialization.cpp"
+      ]
+    },
+    {
+      "sha": "fc2d1078971348a3a3cf3d1eb666e97e99e058c0",
+      "message": "Minor fixes to the settings schema (#19387)\n\n## Summary of the Pull Request\nFixes a couple of minor issues in the settings schema which can result\nin erroneous settings validation failures.\n\n## References and Relevant Issues\nNone\n\n## Detailed Description of the Pull Request / Additional comments\n- `answerbackMessage`  \n  Permit `null` type (corresponds to the default value).\n- `compatibility.input.forceVT`  \n  Add missing setting (previously was `experimental.input.forceVT`).\n- `rendering.graphicsAPI`  \n  Add missing `automatic` enumeration value.\n- Mark several settings as deprecated using the same format and direct\nthe user to the updated settings to use.\n\n## Validation Steps Performed\nTested updated schema against configuration with above settings present.\n\n## PR Checklist\n- [X] Schema updated (if necessary)\n\n---------\n\nCo-authored-by: Carlos Zamora \u003ccarlos.zamora@microsoft.com\u003e",
+      "modifiedFiles": [
+        "doc/cascadia/profiles.schema.json"
+      ]
+    },
+    {
+      "sha": "998ab586e1cccf11a965cab9dc2dcdb7da8eaa6c",
+      "message": "Remove the leading fire from the taskbar progress handler (#19403)\n\nIf the progress state hasn\u0027t been set for more than 200ms, we shouldn\u0027t\neven bother flickering the old state.\n\nThis prevents applications from making the tab (and the taskbar icon)\nflicker.\n\nWe were reviewing #19394 and decided that the _original_ behavior before\nLeonard\u0027s throttling fix was somewhat unfortunate as well. An\napplication that sets an indeterminate state for 10ms and then clears it\nshouldn\u0027t be able to make any part of the application flicker, fast _or_\nslow.\n\nRemoving the leading fire time from the throttled function ensures that\nit will only fire once every 200ms, and only with the state most\nrecently set. It will not debounce (so setting the progress every 150ms\nwill not prevent it from updating.)\n\nCloses #19394",
+      "modifiedFiles": [
+        "src/cascadia/TerminalApp/Tab.cpp"
+      ]
+    },
+    {
+      "sha": "10ef1284d426e2296e96de6c7369430722e5ffce",
+      "message": "Localization Updates - main - 09/30/2025 21:11:05 (#19400)",
+      "modifiedFiles": [
+        "src/cascadia/TerminalSettingsEditor/Resources/de-DE/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/Resources/es-ES/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/Resources/fr-FR/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/Resources/it-IT/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/Resources/ja-JP/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/Resources/ko-KR/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/Resources/pt-BR/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/Resources/qps-ploc/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/Resources/qps-ploca/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/Resources/qps-plocm/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/Resources/ru-RU/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/Resources/zh-CN/Resources.resw",
+        "src/cascadia/TerminalSettingsEditor/Resources/zh-TW/Resources.resw"
+      ]
+    },
+    {
+      "sha": "5976de16000b3e49f3f010c42b23f6a42f6a6405",
+      "message": "Avoid reentrancy issues when dropping AppHost, even harder (#19395)\n\nThe previous fix in #19296 moved the _destruction_ of AppHost into the\ntail end after we manipulate the `_windows` vector; however, it kept the\npart which calls into XAML (`Close`) before the `erase`. I suspect that\nwe still had some reentrancy issues, where we cached an iterator before\nthe list was modified by another window close event.\n\nThat is:\n\n```mermaid\nsequenceDiagram\n\t\tEmperor-\u003e\u003eEmperor: Close Window\n\t\tEmperor-\u003e\u003e+AppHost: Close (a)\n\t\tAppHost-\u003e\u003eXAML: Close\n\t\tXAML--\u003e\u003eEmperor: pump loop\n\t\tEmperor-\u003e\u003eEmperor: Close Window\n\t\tEmperor-\u003e\u003e+AppHost: Close (b)\n\t\tAppHost-\u003e\u003eXAML: Close\n\t\tXAML--\u003e\u003eEmperor: pump loop\n\t\tAppHost-\u003e\u003e-Emperor: Closed\n\t\tEmperor-\u003e\u003eEmperor: erase(b)\n\t\tAppHost-\u003e\u003e-Emperor: Closed\n\t\tEmperor-\u003e\u003eEmperor: erase(a)\n```\n\nMoving the `Close()` to after the `erase` ensures that there are no\ncached iterators that survive beyond XAML pumping the message loop.\n\nFixes 8d41ace3",
+      "modifiedFiles": [
+        "src/cascadia/WindowsTerminal/WindowEmperor.cpp"
+      ]
+    },
+    {
+      "sha": "52f9bd6d2c7a1b3d12035a89b5bea534c8f9684c",
+      "message": "build: switch Touchdown to Federated Identity (#19399)\n\nThis is required as part of offboarding our non-user service account.",
+      "modifiedFiles": [
+        "build/pipelines/daily-loc-submission.yml"
+      ]
+    },
+    {
+      "sha": "05a4afcf35ab287f0a72015d162067a66973e311",
+      "message": " Fix broken MSDN link in gdi/state.cpp (#19375)\n\nCloses #16439\n\nCo-authored-by: Carlos Zamora \u003ccarlos.zamora@microsoft.com\u003e",
+      "modifiedFiles": [
+        "src/renderer/gdi/state.cpp"
+      ]
+    },
+    {
+      "sha": "ad6473d6ae020f3d2417d81df40512fad3556b97",
+      "message": "Add tab color setting to settings UI (#19351)\n\n## Summary of the Pull Request\nAdds the tab color profile setting to the settings UI. It\u0027s positioned\nnext to the tab title at the root of the profile page.\n\nThe new component uses a nullable color picker control to allow the user\nto pick a color. The null color is represented as \"Use theme color\".\n\nThe tricky part is evaluating the `ThemeColor` for `null` (aka \"use\ntheme color\"). Since the value is dependent on the active theme, it can\nbe any of the following values:\n- theme.tab.background...\n   - explicit color\n   - accent color\n   - terminal background color\n- (if no theme.tab.background is defined) theme.window.applicationTheme\n   - light --\u003e #F9F9F9\n   - dark --\u003e #282828\n- default --\u003e one of the above two values depending on the application\ntheme\n\nThe above light/dark values were acquired by using the color picker on\nthe tab when in light/dark theme.\n\n## Validation Steps Performed\n✅ accessible value is read out\n✅ explicit tab color set\n- tab color is null, so we fall back to...\n- ✅ theme.tab.background: explicit color, accent color, terminal\nbackground color\n- ✅ theme.window.applicationTheme (and no theme.tab.background defined):\nlight, dark, default (aka not defined)\n      - ✅ updates when theme is changed locally and via JSON\n\n## PR Checklist\nCloses part of #18318",
+      "modifiedFiles": [
+        "src/cascadia/TerminalSettingsEditor/ProfileViewModel.cpp",
+        "src/cascadia/TerminalSettingsEditor/ProfileViewModel.h",
+        "src/cascadia/TerminalSettingsEditor/ProfileViewModel.idl",
+        "src/cascadia/TerminalSettingsEditor/Profiles_Base.xaml",
+        "src/cascadia/TerminalSettingsEditor/Resources/en-US/Resources.resw"
+      ]
+    },
+    {
+      "sha": "6b428577b95835b95479306d88db8bc74232bea7",
+      "message": "build: separate vpack creation from vpack publication (#19380)\n\nThis will allow us to publish vpacks without making the build fail\nwaiting for us to *merge* those vpacks into Windows. It also gives us\nbetter control over when and where the vpack update gets merged.",
+      "modifiedFiles": [
+        "build/config/GitCheckin.json",
+        "build/pipelines/ob-release.yml",
+        "build/pipelines/templates-v2/pipeline-onebranch-full-release-build.yml"
+      ]
+    },
+    {
+      "sha": "4600c4791b6dbe81c40497f0d0af1d0457ec0b8c",
+      "message": "Rewrite the MSAA/UIA integration into conhost (#19344)\n\nGoal: Remove `CursorBlinker`.\nProblem: Spooky action at a distance via `Cursor::HasMoved`.\nSolution: Moved all the a11y event raising into `_stream.cpp` and pray\nfor the best.\n\nGoal: Prevent node.js from tanking conhost performance via MSAA (WHY).\nProblem: `ServiceLocator`.\nSolution: Unserviced the locator. Debounced event raising. Performance\nincreased by \u003e10x.\nProblem 2: Lots of files changed.\n\nThis PR is a prerequisite for #19330\n\n## Validation Steps Performed\nRan NVDA with and without UIA enabled and with different delays. ✅",
+      "modifiedFiles": [
+        ".github/actions/spelling/expect/expect.txt",
+        "dep/Console/ntcsrdll.h",
+        "dep/Console/ntlpcapi.h",
+        "src/buffer/out/cursor.cpp",
+        "src/buffer/out/cursor.h",
+        "src/cascadia/TerminalCore/Terminal.hpp",
+        "src/cascadia/TerminalCore/TerminalApi.cpp",
+        "src/host/AccessibilityNotifier.cpp",
+        "src/host/AccessibilityNotifier.h",
+        "src/host/CursorBlinker.cpp",
+        "src/host/_output.cpp",
+        "src/host/_stream.cpp",
+        "src/host/ft_uia/VirtualTerminalTests.cs",
+        "src/host/getset.cpp",
+        "src/host/globals.h",
+        "src/host/host-common.vcxitems",
+        "src/host/input.cpp",
+        "src/host/lib/hostlib.vcxproj.filters",
+        "src/host/output.cpp",
+        "src/host/outputStream.cpp",
+        "src/host/outputStream.hpp",
+        "src/host/screenInfo.cpp",
+        "src/host/screenInfo.hpp",
+        "src/host/selection.cpp",
+        "src/host/selection.hpp",
+        "src/host/selectionInput.cpp",
+        "src/host/selectionState.cpp",
+        "src/host/settings.cpp",
+        "src/host/settings.hpp",
+        "src/host/srvinit.cpp",
+        "src/host/stream.cpp",
+        "src/host/ut_host/TextBufferTests.cpp",
+        "src/inc/til/point.h",
+        "src/interactivity/base/HostSignalInputThread.cpp",
+        "src/interactivity/base/InteractivityFactory.cpp",
+        "src/interactivity/base/InteractivityFactory.hpp",
+        "src/interactivity/base/RemoteConsoleControl.cpp",
+        "src/interactivity/base/RemoteConsoleControl.hpp",
+        "src/interactivity/base/ServiceLocator.cpp",
+        "src/interactivity/base/lib/InteractivityBase.vcxproj",
+        "src/interactivity/base/lib/InteractivityBase.vcxproj.filters",
+        "src/interactivity/inc/IAccessibilityNotifier.hpp",
+        "src/interactivity/inc/IConsoleControl.hpp",
+        "src/interactivity/inc/IConsoleWindow.hpp",
+        "src/interactivity/inc/IInteractivityFactory.hpp",
+        "src/interactivity/inc/ServiceLocator.hpp",
+        "src/interactivity/onecore/AccessibilityNotifier.cpp",
+        "src/interactivity/onecore/AccessibilityNotifier.hpp",
+        "src/interactivity/onecore/ConIoSrvComm.cpp",
+        "src/interactivity/onecore/ConIoSrvComm.hpp",
+        "src/interactivity/onecore/ConsoleControl.cpp",
+        "src/interactivity/onecore/ConsoleControl.hpp",
+        "src/interactivity/onecore/ConsoleWindow.cpp",
+        "src/interactivity/onecore/ConsoleWindow.hpp",
+        "src/interactivity/onecore/lib/onecore.LIB.vcxproj",
+        "src/interactivity/onecore/lib/onecore.LIB.vcxproj.filters",
+        "src/interactivity/onecore/sources.inc",
+        "src/interactivity/win32/AccessibilityNotifier.cpp",
+        "src/interactivity/win32/AccessibilityNotifier.hpp",
+        "src/interactivity/win32/ConsoleControl.cpp",
+        "src/interactivity/win32/ConsoleControl.hpp",
+        "src/interactivity/win32/lib/win32.LIB.vcxproj",
+        "src/interactivity/win32/lib/win32.LIB.vcxproj.filters",
+        "src/interactivity/win32/sources.inc",
+        "src/interactivity/win32/window.cpp",
+        "src/interactivity/win32/window.hpp",
+        "src/interactivity/win32/windowUiaProvider.cpp",
+        "src/interactivity/win32/windowUiaProvider.hpp",
+        "src/interactivity/win32/windowio.cpp",
+        "src/interactivity/win32/windowproc.cpp",
+        "src/propslib/RegistrySerialization.cpp",
+        "src/server/IoDispatchers.cpp",
+        "src/server/ProcessList.cpp",
+        "src/terminal/adapter/ITerminalApi.hpp",
+        "src/terminal/adapter/adaptDispatch.cpp",
+        "src/terminal/adapter/ut_adapter/adapterTest.cpp",
+        "src/types/ScreenInfoUiaProviderBase.cpp",
+        "src/types/ScreenInfoUiaProviderBase.h"
+      ]
+    },
+    {
+      "sha": "e80aadd98ba2a461cc5063dac1895b5f535dcff2",
+      "message": "Move newTabMenu creation to Settings fixups (#19353)\n\nSome of the other settings fixups require there to be a valid\nNewTabMenu, rather than just a temporary object. Since the resolving all\nthe menu entries after loading already forces the user to have a\n`newTabMenu`, let\u0027s just codify it as a real fixup.\n\nI\u0027ve moved the SSH folder fixup after the settings fixup because it\nrelies on there being a NTM.\n\nI decided not to make this fixup write back to the user\u0027s settings.\nThere are a couple reasons for this, all of which are flimsy.\n\n- There are a number of tests that test fixup behavior, especially those\naround actions, which would need to be updated for this new mandatory\nkey. I did not think it proper to add `newTabMenu` to ten unrelated\ntests that only contain actions (for example.)\n- We actually don\u0027t currently have mandatory keys. But this one was\nalways being added anyway, in a later phase...\n- It\u0027s consistent with the existing behavior.\n\nCloses #19356",
+      "modifiedFiles": [
+        "src/cascadia/TerminalSettingsModel/CascadiaSettingsSerialization.cpp"
+      ]
+    },
+    {
+      "sha": "1926c4601c489ca724a8586242a667d52da8e45a",
+      "message": "VsDev: reject VS instances which do not actually contain devshell/devcmd (#19352)\n\nCloses #19169",
+      "modifiedFiles": [
+        "src/cascadia/TerminalSettingsModel/VsDevCmdGenerator.h",
+        "src/cascadia/TerminalSettingsModel/VsDevShellGenerator.h"
+      ]
+    },
+    {
+      "sha": "46b9572e60a972f4eeef790bff9adb5a9e87829e",
+      "message": "Avoid generating SSH profiles using stale memory (#19354)\n\nYou can\u0027t return a `string_view` to a temporary. It\u0027s a miracle this\never worked.\n\nBroken since inception in a5f9c85c39\n\nCloses #19355",
+      "modifiedFiles": [
+        "src/cascadia/TerminalSettingsModel/SshHostGenerator.cpp",
+        "src/cascadia/TerminalSettingsModel/SshHostGenerator.h"
+      ]
+    },
+    {
+      "sha": "0aee174e680d889fd6d9ddba6f037002d6f79fdd",
+      "message": "Fix behavior of split-pane for existing windows (#19347)\n\nCloses #18815\n\n## Validation Steps Performed\n* `wt -w 0 sp` splits the current tab ✅",
+      "modifiedFiles": [
+        "src/cascadia/TerminalApp/Remoting.cpp",
+        "src/cascadia/TerminalApp/TerminalWindow.cpp"
+      ]
+    },
+    {
+      "sha": "814f78ed2ccc0aa0dd0f48d0d4417bd7a35da03b",
+      "message": "Add support for VT horizontal mouse wheel events (#19248)\n\nThis adds support for horizontal mouse wheel events (`WM_MOUSEHWHEEL`).\nWith this change, applications running in the terminal can now receive\nand respond to horizontal scroll inputs from the mouse/trackpad.\n\nCloses #19245\nCloses #10329",
+      "modifiedFiles": [
+        "src/cascadia/TerminalControl/ControlInteractivity.cpp",
+        "src/cascadia/TerminalControl/ControlInteractivity.h",
+        "src/cascadia/TerminalControl/ControlInteractivity.idl",
+        "src/cascadia/TerminalControl/IMouseWheelListener.idl",
+        "src/cascadia/TerminalControl/TermControl.cpp",
+        "src/cascadia/TerminalControl/TermControl.h",
+        "src/cascadia/UnitTests_Control/ControlInteractivityTests.cpp",
+        "src/cascadia/WindowsTerminal/AppHost.cpp",
+        "src/cascadia/WindowsTerminal/AppHost.h",
+        "src/cascadia/WindowsTerminal/IslandWindow.cpp",
+        "src/cascadia/WindowsTerminal/IslandWindow.h",
+        "src/interactivity/win32/windowio.cpp",
+        "src/terminal/adapter/ut_adapter/MouseInputTest.cpp",
+        "src/terminal/input/mouseInput.cpp",
+        "src/terminal/input/terminalInput.hpp",
+        "src/terminal/parser/InputStateMachineEngine.cpp",
+        "src/terminal/parser/InputStateMachineEngine.hpp",
+        "src/terminal/parser/ut_parser/InputEngineTest.cpp"
+      ]
+    },
+    {
+      "sha": "eb16eb26ab5d0c3f36a1a2084edcceacdf2a99f9",
+      "message": "Fix terminal profile schema to allow null in keybinding id (#19332)\n\nFixes the terminal profile jsonschema to allow for null in the id. This\nis to match the current implementation when disabling a built in default\nkeybind.",
+      "modifiedFiles": [
+        "doc/cascadia/profiles.schema.json"
+      ]
+    },
+    {
+      "sha": "384932183fcb14067b5d8d50338a03378b57eb9e",
+      "message": "Fix a crash in _makeCursorVisible (#19329)\n\nFixes the crash and also makes `SnapOnOutput` a bit nicer.\n\nCloses #19325\n\n## Validation Steps Performed\n* Launch vim in WSL\n* Exit\n* No crash ✅",
+      "modifiedFiles": [
+        "src/host/screenInfo.cpp",
+        "src/host/screenInfo.hpp"
+      ]
+    },
+    {
+      "sha": "5a05f82f7c5da2af824ab36b635535ca824c3e1c",
+      "message": "Apparently finish the SLNX migration (#19335)",
+      "modifiedFiles": [
+        "OpenConsole.slnx"
+      ]
+    },
+    {
+      "sha": "d6714f3ca94f994321ba6e7848b734a4ca166fbe",
+      "message": "Convert the solution file to the new SLNX format (#19328)",
+      "modifiedFiles": [
+        ".github/actions/spelling/expect/expect.txt",
+        "OpenConsole.sln",
+        "OpenConsole.slnx",
+        "README.md",
+        "build/pipelines/templates-v2/job-build-package-wpf.yml",
+        "build/pipelines/templates-v2/job-build-project.yml",
+        "build/pipelines/templates-v2/steps-restore-nuget.yml",
+        "doc/building.md",
+        "tools/OpenConsole.psm1",
+        "tools/bcz.cmd",
+        "tools/bx.ps1",
+        "tools/razzle.cmd"
+      ]
+    },
+    {
+      "sha": "4a34a765048ae07e42fa15b33e94fa1674c8a77e",
+      "message": "Fix right click on tabs closing them (#19273)\n\nI do not like this.\n\n## Validation Steps Performed\n* Enable close buttons on tabs\n* Open a tab\n* Close the tab with middle click\n* Open a tab\n* Right click the tab\n* Tab doesn\u0027t close, Menu opens ✅",
+      "modifiedFiles": [
+        "src/cascadia/TerminalApp/TabManagement.cpp",
+        "src/cascadia/TerminalApp/TerminalPage.cpp",
+        "src/cascadia/TerminalApp/TerminalPage.h"
+      ]
+    },
+    {
+      "sha": "54aaa4a98a18a9997cbdf16ca8e65410bac6c587",
+      "message": "tests: add UIHelpers and ThemeHelpers to TestHostApp (#19323)\n\nIt can\u0027t actually activate TerminalApp.dll without these... lol.",
+      "modifiedFiles": [
+        "src/cascadia/LocalTests_TerminalApp/TestHostApp/TestHostApp.vcxproj"
+      ]
+    },
+    {
+      "sha": "13ddefa635b5e3ce706215079f23e9f934e2d5fa",
+      "message": "Localization Updates - main - 09/04/2025 03:03:15 (#19319)",
+      "modifiedFiles": [
+        "src/cascadia/TerminalSettingsModel/Resources/de-DE/Resources.resw",
+        "src/cascadia/TerminalSettingsModel/Resources/es-ES/Resources.resw",
+        "src/cascadia/TerminalSettingsModel/Resources/fr-FR/Resources.resw",
+        "src/cascadia/TerminalSettingsModel/Resources/it-IT/Resources.resw",
+        "src/cascadia/TerminalSettingsModel/Resources/ja-JP/Resources.resw",
+        "src/cascadia/TerminalSettingsModel/Resources/ko-KR/Resources.resw",
+        "src/cascadia/TerminalSettingsModel/Resources/pt-BR/Resources.resw",
+        "src/cascadia/TerminalSettingsModel/Resources/qps-ploc/Resources.resw",
+        "src/cascadia/TerminalSettingsModel/Resources/qps-ploca/Resources.resw",
+        "src/cascadia/TerminalSettingsModel/Resources/qps-plocm/Resources.resw",
+        "src/cascadia/TerminalSettingsModel/Resources/ru-RU/Resources.resw",
+        "src/cascadia/TerminalSettingsModel/Resources/zh-CN/Resources.resw",
+        "src/cascadia/TerminalSettingsModel/Resources/zh-TW/Resources.resw"
+      ]
+    },
+    {
+      "sha": "f6303ac1aee81e362a552736eed130389af9ee97",
+      "message": "Add reflection to the ActionArgs in the settings model (#18915)\n\nImplements reflection to the various ActionArg types in the settings\nmodel, which allows these structs to provide information about\nthemselves (i.e. what args they contain and what types they are). This\nis necessary as a pre-requisite for the Settings Editor to display and\nmodify these arg values.\n\n## Detailed Description of the Pull Request / Additional comments\n* The `IActionArgs` interface now has additional methods:\n\t* Get the number of args\n\t* Get/Set an arg at a specific index\n\t* Get a vector of arg descriptions; the arg description contains:\n\t\t* name of the arg\n\t\t* type of the arg\n\t\t* whether the arg is required\n* a tag, this is to cover special cases (for example the ColorScheme\nargument is technically of type \"string\", but only allows specific\nvalues)\n* All the macros in `ActionArgsMagic` have been updated to support the\nnew interface\n* `ActionMap` has been updated to support adding/editing/deleting\nactions and keybindings from outside the SettingsModel\n\t* It also handles ID change requests for commands\n* EnumMappings have been added to various ActionArg enums that weren\u0027t\nthere before\n\n## Validation Steps Performed\nBug bashed in conjunction with #18917",
+      "modifiedFiles": [
+        "src/cascadia/TerminalSettingsModel/ActionAndArgs.cpp",
+        "src/cascadia/TerminalSettingsModel/ActionArgs.h",
+        "src/cascadia/TerminalSettingsModel/ActionArgs.idl",
+        "src/cascadia/TerminalSettingsModel/ActionArgsMagic.h",
+        "src/cascadia/TerminalSettingsModel/ActionMap.cpp",
+        "src/cascadia/TerminalSettingsModel/ActionMap.h",
+        "src/cascadia/TerminalSettingsModel/ActionMap.idl",
+        "src/cascadia/TerminalSettingsModel/CascadiaSettings.cpp",
+        "src/cascadia/TerminalSettingsModel/CascadiaSettings.h",
+        "src/cascadia/TerminalSettingsModel/CascadiaSettings.idl",
+        "src/cascadia/TerminalSettingsModel/Command.cpp",
+        "src/cascadia/TerminalSettingsModel/Command.h",
+        "src/cascadia/TerminalSettingsModel/Command.idl",
+        "src/cascadia/TerminalSettingsModel/EnumMappings.cpp",
+        "src/cascadia/TerminalSettingsModel/EnumMappings.h",
+        "src/cascadia/TerminalSettingsModel/EnumMappings.idl",
+        "src/cascadia/TerminalSettingsModel/GlobalAppSettings.cpp",
+        "src/cascadia/TerminalSettingsModel/GlobalAppSettings.h",
+        "src/cascadia/TerminalSettingsModel/Resources/en-US/Resources.resw"
+      ]
+    },
+    {
+      "sha": "52e60b95e4223560138a09b9fb2a16bd6048633f",
+      "message": "Remove TerminalSettings from the TerminalSettingsModel project (#19262)\n\nThe idea with IControlSettings (and friends) was always that a consumer\nof the terminal control could implement it in whatever way they pleased.\n\nWindows Terminal (the application) was intended to be only one\nconsumer. It has a whole JSON settings model. Nobody wants to think\nabout JSON at the Terminal Control level. We could have an \"adapter\" in\nTerminalApp, which spoke Terminal JSON Settings on one side and Terminal\nControl on the other side.\n\nThat worked until we added the settings editor. The settings editor\nneeded to display a control, and that control\u0027s settings needed to be\nbased on the JSON settings. Oops. We took the expedient route of moving\nthe adapter into TerminalSettingsModel itself, and poking a bunch of\nholes in it so that TerminalApp and TerminalSettingsEditor could tweak\nit as needed.\n\nLater, we doubled down on the control settings interface by having every\nTerminal Control _make its own ControlSettings_ when we were going to do\nthe multi-process model. This reduced the number of IPC round trips for\nevery settings query to 0. Later we built color scheme previewing on top\nof that--adding structs to carry color schemes and stuff which was\nalready in the Appearance config. Sheesh. Layers and layers and layers.\n\nThis pull request moves it back into its own library and strips it from\nthe surface of TerminalSettingsModel. It also deletes `ControlSettings`\nand `struct CoreScheme`. That library is called\n`TerminalSettingsAppAdapterLib`, and it contains a hidden WinRT\n_implements_ type rather than a full-fledged activatable `runtimeclass`.\nIt also implements one-level inheritance on its own rather than using\nIInheritable.\n\nIt adheres to the following principles:\n- The control will never modify its settings in a way that is visible to\n  the control\u0027s consumer; therefore, none of the properties have setters\n- The settings should never contain things of interest only to the\n  Application that the Application uses to communicate data _back to\n  itself_ (see `ProfileName`, removed in 68b723c and `KeyBindings`,\n  removed in fa09141). This generalizes to \"we should never store stuff\n  in an unrelated object passed between layers solely for the purpose of\n  getting it back\".\n\nI made a few changes to the settings interface, including introducing a\nnew `ICoreScheme` interface that _only_ contains color scheme info. This\nis designed to support the Preview/Set color scheme actions, which no\nlonger work by _app backing up the scheme and restoring it later._ All\nof that machinery lives inside TermControl/ControlCore now.\n\n`ICoreScheme` no longer supports `GetColorAtIndex`; you must read all 16\ncolors at the same time. I am not sorry. Every consumer did that\nalready, so now we have 15 fewer COM calls for every color scheme.\n\nThe new TerminalSettings is mostly consumed via\n`com_ptr\u003cTerminalSettings\u003e`, so a bunch of `.` (projected) accesses had\nto turn into `-\u003e` (com_ptr dereferencing) accesses.\n\nI also realized, in the course of this work, that the old\nTerminalSettings contained a partial hand-written reimplementation of\n_every setting_ in `ControlProperties`. Every contributor had to add\nevery new setting to both places--why? I can\u0027t figure it out. I\u0027m using\nControlProperties comprehensively now. I propagated any setting whose\ndefault value was different from that in ControlProperties back to\nControlProperties.\n\nThis is part X in a series of pull requests that will remove all mention\nof Microsoft.Terminal.Control and Microsoft.Terminal.Core from the\nsettings model. Once that is done, the settings model can consume _only_\nthe base WinRT types and build very early and test more easily.\n\nPreviewing is fun. I introduced a new place to stash an entire color\ntable on ControlCore, which we use to save the \"active\" colors while we\ntemporarily overwrite them. SetColorScheme is _also_ fun. We now have a\nslot for overriding only the focused color scheme on ControlCore. It\u0027s\nfine. It\u0027s clearer than \"back up the focused appearance, overwrite the\nfocused appearance, create a child of the user\u0027s settings and apply the\ncolor scheme to it, etc.\".\n\nThere is a bug/design choice in color scheme overriding, which may or\nmay not matter: overlaying a color scheme on a terminal with an\nunfocused appearance which _does not_ have its own color scheme will\nresult in the previously-deleted overridden focused color scheme peeking\nthrough when the terminal is not focused.\n\nI also got rid of our only in-product use of\n`Terminal::CreateFromSettings` which required us to set `InitialRows`\nand `InitialCols` on the incoming settings object (see core tenet 2).\n\nRefs #19261\nRefs #19314\nRefs #19254",
+      "modifiedFiles": [
+        "OpenConsole.sln",
+        "src/cascadia/LocalTests_TerminalApp/SettingsTests.cpp",
+        "src/cascadia/LocalTests_TerminalApp/TabTests.cpp",
+        "src/cascadia/LocalTests_TerminalApp/TerminalApp.LocalTests.vcxproj",
+        "src/cascadia/TerminalApp/ActionPreviewHandlers.cpp",
+        "src/cascadia/TerminalApp/AppActionHandlers.cpp",
+        "src/cascadia/TerminalApp/TabManagement.cpp",
+        "src/cascadia/TerminalApp/TerminalAppLib.vcxproj",
+        "src/cascadia/TerminalApp/TerminalPage.cpp",
+        "src/cascadia/TerminalApp/TerminalPage.h",
+        "src/cascadia/TerminalApp/TerminalPaneContent.cpp",
+        "src/cascadia/TerminalApp/TerminalSettingsCache.cpp",
+        "src/cascadia/TerminalApp/TerminalSettingsCache.h",
+        "src/cascadia/TerminalApp/TerminalWindow.cpp",
+        "src/cascadia/TerminalControl/ControlAppearance.h",
+        "src/cascadia/TerminalControl/ControlCore.cpp",
+        "src/cascadia/TerminalControl/ControlCore.h",
+        "src/cascadia/TerminalControl/ControlCore.idl",
+        "src/cascadia/TerminalControl/ControlSettings.h",
+        "src/cascadia/TerminalControl/ICoreState.idl",
+        "src/cascadia/TerminalControl/TermControl.cpp",
+        "src/cascadia/TerminalControl/TermControl.h",
+        "src/cascadia/TerminalControl/TermControl.idl",
+        "src/cascadia/TerminalCore/ICoreAppearance.idl",
+        "src/cascadia/TerminalCore/ICoreSettings.idl",
+        "src/cascadia/TerminalCore/Terminal.cpp",
+        "src/cascadia/TerminalCore/Terminal.hpp",
+        "src/cascadia/TerminalCore/lib/terminalcore-lib.vcxproj",
+        "src/cascadia/TerminalSettingsAppAdapterLib/TerminalSettings.cpp",
+        "src/cascadia/TerminalSettingsAppAdapterLib/TerminalSettings.h",
+        "src/cascadia/TerminalSettingsAppAdapterLib/TerminalSettingsAppAdapterLib.vcxproj",
+        "src/cascadia/TerminalSettingsAppAdapterLib/TerminalSettingsAppAdapterLib.vcxproj.filters",
+        "src/cascadia/TerminalSettingsAppAdapterLib/pch.cpp",
+        "src/cascadia/TerminalSettingsAppAdapterLib/pch.h",
+        "src/cascadia/TerminalSettingsEditor/Microsoft.Terminal.Settings.Editor.vcxproj",
+        "src/cascadia/TerminalSettingsEditor/ProfileViewModel.cpp",
+        "src/cascadia/TerminalSettingsEditor/ProfileViewModel.h",
+        "src/cascadia/TerminalSettingsEditor/ProfileViewModel.idl",
+        "src/cascadia/TerminalSettingsEditor/Profiles_Appearance.cpp",
+        "src/cascadia/TerminalSettingsModel/ColorScheme.cpp",
+        "src/cascadia/TerminalSettingsModel/ColorScheme.h",
+        "src/cascadia/TerminalSettingsModel/ColorScheme.idl",
+        "src/cascadia/TerminalSettingsModel/Microsoft.Terminal.Settings.ModelLib.vcxproj",
+        "src/cascadia/TerminalSettingsModel/Microsoft.Terminal.Settings.ModelLib.vcxproj.filters",
+        "src/cascadia/TerminalSettingsModel/TerminalSettings.h",
+        "src/cascadia/TerminalSettingsModel/TerminalSettings.idl",
+        "src/cascadia/UnitTests_Control/ControlCoreTests.cpp",
+        "src/cascadia/UnitTests_Control/MockControlSettings.h",
+        "src/cascadia/UnitTests_SettingsModel/SettingsModel.UnitTests.vcxproj",
+        "src/cascadia/UnitTests_SettingsModel/TerminalSettingsTests.cpp",
+        "src/cascadia/UnitTests_SettingsModel/pch.h",
+        "src/cascadia/UnitTests_TerminalCore/MockTermSettings.h",
+        "src/cascadia/inc/ControlProperties.h",
+        "src/cppwinrt.build.pre.props"
+      ]
+    },
+    {
+      "sha": "fa09141a16582a987adb018ebfc5224ab7797438",
+      "message": "Stop using Settings to shuttle IKeyBindings around (#19314)\n\nFor some reason, we went real hard on an architecture where the settings\nobject contained the key bindings handler for the terminal. To make this\nwork, we had to wind it through tons of layers: `TermControl`,\n`ControlInteractivity`, `ControlCore` (which saved it on\n`ControlSettings`), `ControlSettings`. Of course, because we have no\nclear delineation of concerns at the App layer this required us to put\nthe bindings into the Settings Cache[^1].\n\nWell, `TermControl` used `ControlCore` to get the Settings, to get the\nBindings, to dispatch keys.\n\nYes, `TermControl` stored `IKeyBindings` down three layers _only to fish\nit back out and use it itself._\n\nThere is one place in the application where `TermControl`s are hooked up\nto their owners. Instead of passing the key bindings dispatcher in\nthrough nine hundred layers, we can just set it once--definitively!--\nthere.\n\n[^1]: This was the last thing that made the settings cache\npage-specific...",
+      "modifiedFiles": [
+        "src/cascadia/LocalTests_TerminalApp/SettingsTests.cpp",
+        "src/cascadia/TerminalApp/TabManagement.cpp",
+        "src/cascadia/TerminalApp/TerminalPage.cpp",
+        "src/cascadia/TerminalApp/TerminalSettingsCache.cpp",
+        "src/cascadia/TerminalApp/TerminalSettingsCache.h",
+        "src/cascadia/TerminalApp/TerminalWindow.cpp",
+        "src/cascadia/TerminalControl/ControlCore.cpp",
+        "src/cascadia/TerminalControl/ControlCore.h",
+        "src/cascadia/TerminalControl/ControlInteractivity.cpp",
+        "src/cascadia/TerminalControl/ControlInteractivity.h",
+        "src/cascadia/TerminalControl/ControlInteractivity.idl",
+        "src/cascadia/TerminalControl/IControlSettings.idl",
+        "src/cascadia/TerminalControl/TermControl.cpp",
+        "src/cascadia/TerminalControl/TermControl.h",
+        "src/cascadia/TerminalControl/TermControl.idl",
+        "src/cascadia/TerminalSettingsModel/TerminalSettings.cpp",
+        "src/cascadia/TerminalSettingsModel/TerminalSettings.h",
+        "src/cascadia/TerminalSettingsModel/TerminalSettings.idl",
+        "src/cascadia/UnitTests_SettingsModel/TerminalSettingsTests.cpp",
+        "src/cascadia/inc/ControlProperties.h"
+      ]
+    },
+    {
+      "sha": "8011f3e28cd1c58f415be33a88cef7b9ce38ea09",
+      "message": "Adjust \"Dimidium\" color scheme (#19303)\n\n- Add Selection BG color\n- Make Bright white brighter\n\n## Summary of the Pull Request\nFinal tune for Dimidium color scheme before its release.\n\n## References and Relevant Issues\n#18563\n\n## Detailed Description of the Pull Request / Additional comments\nI made little change to Dimidium color scheme.\n\n\u003cimg width\u003d\"640\" height\u003d\"174\" alt\u003d\"cmp-lightness1c\"\nsrc\u003d\"https://github.com/user-attachments/assets/2e4aa6ca-5864-4901-b323-2e2bb2bf00e8\"\n/\u003e\n\n\n![preview-terminal](https://github.com/user-attachments/assets/8a53c54d-942a-44a2-9ee7-9ff8a6d2dfab)\n\n\u003cimg width\u003d\"584\" height\u003d\"207\" alt\u003d\"image\"\nsrc\u003d\"https://github.com/user-attachments/assets/b70b0759-7961-4f8f-aaa7-762fc48e425b\"\n/\u003e\n\n\n- Adjusted \"Bright white\" slightly brighter, hoping it can be\ndistinguished better from \"White\".\n- Defined \"Selection Background\" color.\n\nThis will be the final tune for Dimidum color scheme.",
+      "modifiedFiles": [
+        "src/cascadia/TerminalSettingsModel/defaults.json"
+      ]
+    },
+    {
+      "sha": "8d41ace320216f4c22b0aa7fb4cd42f362096e9c",
+      "message": "Avoid reentrancy issues when dropping AppHost (#19296)\n\ntl;dr: ~Apphost() may pump the message loop.\nThat\u0027s no bueno. See comments in the diff.\n\nAdditionally, this PR enables `_assertIsMainThread` in\nrelease to trace down mysterious crashes in those builds.",
+      "modifiedFiles": [
+        "src/cascadia/WindowsTerminal/WindowEmperor.cpp",
+        "src/cascadia/WindowsTerminal/WindowEmperor.h"
+      ]
+    },
+    {
+      "sha": "7849b00cbddfb4d7f532472bc41fd8d8579bd72e",
+      "message": "Fix CoreWindow being destroyed after handoff (#19298)\n\nAs per: https://github.com/microsoft/terminal/discussions/19280#discussioncomment-14237148\n\n## Validation Steps Performed\n* Launch wtd via handoff (spawn cmd, etc.)\n* Shift+Click the tab bar + button to create a new window\n* Close the initial window\n* UI doesn\u0027t lock up ✅",
+      "modifiedFiles": [
+        "src/cascadia/WindowsTerminal/WindowEmperor.cpp"
+      ]
+    },
+    {
+      "sha": "589934323726f02e84465b973881f36d63b67f1f",
+      "message": "Fix a race condition around Open/CloseClipboard (#19297)\n\ntl;dr: Open/CloseClipboard are surprisingly not thread-safe.\n\n## Validation Steps Performed\n* Copy a large amount of text (\u003e1MB)\n* Run `edit.exe`\n* Press and hold Ctrl+Shift+V\n* Doesn\u0027t crash ✅",
+      "modifiedFiles": [
+        "src/cascadia/TerminalApp/TerminalPage.cpp"
+      ]
+    },
+    {
+      "sha": "1283c0f5b99a2961673249fa77c6b986efb5086c",
+      "message": "Localization Updates - main - 08/26/2025 03:03:22 (#19278)",
+      "modifiedFiles": [
+        "build/StoreSubmission/Preview/PDPs/de-DE/PDP.xml",
+        "build/StoreSubmission/Preview/PDPs/es-ES/PDP.xml",
+        "build/StoreSubmission/Preview/PDPs/fr-FR/PDP.xml",
+        "build/StoreSubmission/Preview/PDPs/it-IT/PDP.xml",
+        "build/StoreSubmission/Preview/PDPs/ja-JP/PDP.xml",
+        "build/StoreSubmission/Preview/PDPs/ko-KR/PDP.xml",
+        "build/StoreSubmission/Preview/PDPs/pt-BR/PDP.xml",
+        "build/StoreSubmission/Preview/PDPs/ru-RU/PDP.xml",
+        "build/StoreSubmission/Preview/PDPs/zh-CN/PDP.xml",
+        "build/StoreSubmission/Preview/PDPs/zh-TW/PDP.xml",
+        "build/StoreSubmission/Stable/PDPs/de-DE/PDP.xml",
+        "build/StoreSubmission/Stable/PDPs/es-ES/PDP.xml",
+        "build/StoreSubmission/Stable/PDPs/fr-FR/PDP.xml",
+        "build/StoreSubmission/Stable/PDPs/it-IT/PDP.xml",
+        "build/StoreSubmission/Stable/PDPs/ja-JP/PDP.xml",
+        "build/StoreSubmission/Stable/PDPs/ko-KR/PDP.xml",
+        "build/StoreSubmission/Stable/PDPs/pt-BR/PDP.xml",
+        "build/StoreSubmission/Stable/PDPs/ru-RU/PDP.xml",
+        "build/StoreSubmission/Stable/PDPs/zh-CN/PDP.xml",
+        "build/StoreSubmission/Stable/PDPs/zh-TW/PDP.xml"
+      ]
+    },
+    {
+      "sha": "4272151adc0b3b4c35077ee690899149d649c5ad",
+      "message": "Include Profile.BellSound as a media resource (#19289)\n\nI legitimately cannot figure out how I forgot this. Bell should support\nall the same validation as other media resources! Technically this means\nyou can set `bellSound` to `desktopWallpaper`, but... we\u0027ll pretend that\nmakes sense.\n\nI reworked the viewmodel to be a little more sensible. It no longer\nrequires somebody else to check that its files exist. The settings UI\nnow also displays `File not found` in the _preview_ for the bell if it\nis a single file which failed validation!",
+      "modifiedFiles": [
+        "src/cascadia/TerminalApp/TerminalPaneContent.cpp",
+        "src/cascadia/TerminalSettingsEditor/ProfileViewModel.cpp",
+        "src/cascadia/TerminalSettingsEditor/ProfileViewModel.h",
+        "src/cascadia/TerminalSettingsEditor/ProfileViewModel.idl",
+        "src/cascadia/TerminalSettingsModel/MTSMSettings.h",
+        "src/cascadia/TerminalSettingsModel/Profile.cpp",
+        "src/cascadia/TerminalSettingsModel/Profile.idl",
+        "src/cascadia/UnitTests_SettingsModel/MediaResourceTests.cpp"
+      ]
+    },
+    {
+      "sha": "bd14f6908026a1d868b6719774ee685433df4fbf",
+      "message": "sb: add appId to the StoreBroker blobs (new AERO requirement) (#19290)\n\n\u003e _I am altering the deal. Pray I do not alter it further._\n\u003e -the AERO team, maybe",
+      "modifiedFiles": [
+        "build/StoreSubmission/Preview/SBConfig.json",
+        "build/StoreSubmission/Stable/SBConfig.json"
+      ]
+    },
+    {
+      "sha": "91c9a14a710af7048d7d8c3d74b1d2bc2744bc97",
+      "message": "env: don\u0027t explode when GetShortPathNameW fails (#19284)\n\nIt fails inside app containers (!) such as the one used by LocalTests.",
+      "modifiedFiles": [
+        "src/inc/til/env.h"
+      ]
+    },
+    {
+      "sha": "9e10436a80d9a3d3e3fd2189098b9a4d599f2c84",
+      "message": "Move adjustProcessPriorityThrottled ctor earlier (#19283)\n\nTest Impact: The LocalTests do not call `Initialize(HWND)`, so we would\nfail on launch.\nAlso, we have `Create()` and `Initialize()` and `event Initialized` (the\nlast of which is not called from either of the first two...)",
+      "modifiedFiles": [
+        "src/cascadia/TerminalApp/TerminalPage.cpp"
+      ]
+    },
+    {
+      "sha": "a9b660cc368640df75d9a0c7b73343d6fb153a8f",
+      "message": "version: bump to 1.25 on main (#19276)",
+      "modifiedFiles": [
+        "custom.props"
+      ]
+    },
+    {
+      "sha": "7b754e3d8e678c52a44f24e7eb936a4b94faac8f",
+      "message": "Localization Updates - 08/25/2025 21:39:33 (#19277)\n\nCo-authored-by: Console Service Bot \u003cconsvc@microsoft.com\u003e",
+      "modifiedFiles": [
+        "build/StoreSubmission/Preview/PDPs/qps-ploc/PDP.xml",
+        "build/StoreSubmission/Preview/PDPs/qps-ploca/PDP.xml",
+        "build/StoreSubmission/Preview/PDPs/qps-plocm/PDP.xml",
+        "build/StoreSubmission/Stable/PDPs/qps-ploc/PDP.xml",
+        "build/StoreSubmission/Stable/PDPs/qps-ploca/PDP.xml",
+        "build/StoreSubmission/Stable/PDPs/qps-plocm/PDP.xml"
+      ]
+    },
+    {
+      "sha": "ad48162f022ff0abca76962fa55b1f897a0b6a87",
+      "message": "Reflect inbox changes from RS (#19258)\n\nReflect inbox changes to `onecore/windows/core/console/open`.\n\n* eed3a6fa5 Merged PR 13076689: Update managed TAEF tests that exist in\nGE branches to use the new publishing locations of TAEF\u0027s managed\nreference binaries.\n* 718d7d02d Merged PR 12483430: build console* with clang\n\nSomebody internal is trying to build the console with Clang (which is\ncool).\n\n---------\n\nCo-authored-by: Dragos Sambotin \u003cdragoss@microsoft.com\u003e\nCo-authored-by: Phil Deets \u003cpdeets@microsoft.com\u003e",
+      "modifiedFiles": [
+        ".github/actions/spelling/expect/expect.txt",
+        "src/host/directio.cpp",
+        "src/host/exe/lto_symbols.inc",
+        "src/host/exe/sources",
+        "src/host/ft_uia/sources",
+        "src/host/sources.inc",
+        "src/host/writeData.hpp",
+        "src/inc/LibraryIncludes.h",
+        "src/interactivity/win32/ConsoleControl.hpp"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "terminal",
+      "ownerLogin": "FrogWarlord",
+      "commitCount": 22
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "Party-VIP",
+      "commitCount": 22
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "Raja-89",
+      "commitCount": 21
+    },
+    {
+      "name": "terminal1",
+      "ownerLogin": "swethaswini",
+      "commitCount": 21
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "Newtonjobs",
+      "commitCount": 21
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "ansh1406",
+      "commitCount": 20
+    },
+    {
+      "name": "bhavesh-terminal",
+      "ownerLogin": "bhavesh-210",
+      "commitCount": 20
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "Pranay22077",
+      "commitCount": 20
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "JDeep1234",
+      "commitCount": 20
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "NtUserFillWindow",
+      "commitCount": 20
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "IOismaelobregon",
+      "commitCount": 20
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "jieziroot",
+      "commitCount": 20
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "theshloksschauhan",
+      "commitCount": 22
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "aguilabarronjoshuamanuel-source",
+      "commitCount": 21
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "Akhila21-6",
+      "commitCount": 20
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "balaraj74",
+      "commitCount": 20
+    },
+    {
+      "name": "terminal-windows",
+      "ownerLogin": "seigneurcui",
+      "commitCount": 20
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "developerthuctap",
+      "commitCount": 20
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "Stellarist",
+      "commitCount": 21
+    },
+    {
+      "name": "terminal",
+      "ownerLogin": "COMPU-GLOBALHYPERMEGANET",
+      "commitCount": 19
+    }
+  ]
+}

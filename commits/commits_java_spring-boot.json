@@ -1,0 +1,574 @@
+{
+  "name": "spring-boot",
+  "ownerLogin": "spring-projects",
+  "language": "Java",
+  "commits": [
+    {
+      "sha": "87954afe37145df94d53de9078bbf13b1f25e59e",
+      "message": "Upgrade to Spring Batch 6.0.0-RC1\n\nCloses gh-47484",
+      "modifiedFiles": [
+        "platform/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "0789b07169378447d4d75d5b153318480f349efe",
+      "message": "Upgrade to Cassandra Driver 4.19.1\n\nCloses gh-47770",
+      "modifiedFiles": [
+        "platform/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "98e124df8fcc466278b34e9a1a575276ea8bed20",
+      "message": "Upgrade to ActiveMQ 6.1.8\n\nCloses gh-47769",
+      "modifiedFiles": [
+        "platform/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "4b3b9168be9f699570111fe0ea2d7250a862e8fd",
+      "message": "Merge branch \u00273.5.x\u0027",
+      "modifiedFiles": []
+    },
+    {
+      "sha": "eaad688dd253601e47b96746a4fe3d51dec1194d",
+      "message": "Upgrade to Spring Batch 5.2.4\n\nCloses gh-47487",
+      "modifiedFiles": [
+        "spring-boot-project/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "edee2de8371dd8d2f25c1fec1121a80849959817",
+      "message": "Upgrade to Cassandra Driver 4.19.1\n\nCloses gh-47768",
+      "modifiedFiles": [
+        "spring-boot-project/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "2bfc31e696e4bd16e737f8709dc30bbd4b6e2f06",
+      "message": "Upgrade to ActiveMQ 6.1.8\n\nCloses gh-47767",
+      "modifiedFiles": [
+        "spring-boot-project/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "15dd5018e2a427dd6da344f51f59a46fb18305bd",
+      "message": "Merge branch \u00273.4.x\u0027 into 3.5.x",
+      "modifiedFiles": []
+    },
+    {
+      "sha": "b361a1f5e315f5813c4a7b567499c81a819e8986",
+      "message": "Upgrade to Spring Batch 5.2.4\n\nCloses gh-47486",
+      "modifiedFiles": [
+        "spring-boot-project/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "923892860f46857e2ec337c4a2f4acb60ce54b03",
+      "message": "Upgrade to ActiveMQ 6.1.8\n\nCloses gh-47766",
+      "modifiedFiles": [
+        "spring-boot-project/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "caf4e9b4173ca63b30e46dc98ac5df5db4f1e422",
+      "message": "Merge pull request #46213 from quaff\n\n* pr/46213:\n  Polish \u0027Introduce a shared abstraction for database initialization\u0027\n  Introduce a shared abstraction for database initialization\n\nCloses gh-46213",
+      "modifiedFiles": [
+        "module/spring-boot-batch-jdbc/src/main/java/org/springframework/boot/batch/jdbc/autoconfigure/BatchDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-batch-jdbc/src/main/java/org/springframework/boot/batch/jdbc/autoconfigure/BatchJdbcProperties.java",
+        "module/spring-boot-batch-jdbc/src/test/java/org/springframework/boot/batch/jdbc/autoconfigure/BatchDataSourceScriptDatabaseInitializerTests.java",
+        "module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationJdbcProperties.java",
+        "module/spring-boot-integration/src/test/java/org/springframework/boot/integration/autoconfigure/IntegrationDataSourceScriptDatabaseInitializerTests.java",
+        "module/spring-boot-jdbc/src/main/java/org/springframework/boot/jdbc/init/DatabaseInitializationProperties.java",
+        "module/spring-boot-jdbc/src/main/java/org/springframework/boot/jdbc/init/PropertiesBasedDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-quartz/src/main/java/org/springframework/boot/quartz/autoconfigure/QuartzDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-quartz/src/main/java/org/springframework/boot/quartz/autoconfigure/QuartzJdbcProperties.java",
+        "module/spring-boot-quartz/src/test/java/org/springframework/boot/quartz/autoconfigure/QuartzDataSourceScriptDatabaseInitializerTests.java",
+        "module/spring-boot-session-jdbc/src/main/java/org/springframework/boot/session/jdbc/autoconfigure/JdbcSessionDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-session-jdbc/src/main/java/org/springframework/boot/session/jdbc/autoconfigure/JdbcSessionProperties.java",
+        "module/spring-boot-session-jdbc/src/test/java/org/springframework/boot/session/jdbc/autoconfigure/JdbcSessionDataSourceScriptDatabaseInitializerTests.java",
+        "module/spring-boot-sql/src/main/java/org/springframework/boot/sql/init/AbstractScriptDatabaseInitializer.java"
+      ]
+    },
+    {
+      "sha": "84274a2b40b4928f4254576138b588928adfc7d2",
+      "message": "Polish \u0027Introduce a shared abstraction for database initialization\u0027\n\nSee gh-46213",
+      "modifiedFiles": [
+        "module/spring-boot-batch-jdbc/src/main/java/org/springframework/boot/batch/jdbc/autoconfigure/BatchDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-batch-jdbc/src/test/java/org/springframework/boot/batch/jdbc/autoconfigure/BatchDataSourceScriptDatabaseInitializerTests.java",
+        "module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-integration/src/test/java/org/springframework/boot/integration/autoconfigure/IntegrationDataSourceScriptDatabaseInitializerTests.java",
+        "module/spring-boot-jdbc/src/main/java/org/springframework/boot/jdbc/init/PropertiesBasedDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-quartz/src/main/java/org/springframework/boot/quartz/autoconfigure/QuartzDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-quartz/src/test/java/org/springframework/boot/quartz/autoconfigure/QuartzDataSourceScriptDatabaseInitializerTests.java",
+        "module/spring-boot-session-jdbc/src/main/java/org/springframework/boot/session/jdbc/autoconfigure/JdbcSessionDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-session-jdbc/src/test/java/org/springframework/boot/session/jdbc/autoconfigure/JdbcSessionDataSourceScriptDatabaseInitializerTests.java",
+        "module/spring-boot-sql/src/main/java/org/springframework/boot/sql/init/AbstractScriptDatabaseInitializer.java"
+      ]
+    },
+    {
+      "sha": "001230c38922466f948177b5ce96017a74d58b86",
+      "message": "Introduce a shared abstraction for database initialization\n\nAdd a new shared abstraction used by Spring Batch,\nSpring Integration, Spring Session and Quartz.\n\nSee gh-46213\n\nSigned-off-by: Yanming Zhou \u003czhouyanming@gmail.com\u003e",
+      "modifiedFiles": [
+        "module/spring-boot-batch-jdbc/src/main/java/org/springframework/boot/batch/jdbc/autoconfigure/BatchDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-batch-jdbc/src/main/java/org/springframework/boot/batch/jdbc/autoconfigure/BatchJdbcProperties.java",
+        "module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationJdbcProperties.java",
+        "module/spring-boot-jdbc/src/main/java/org/springframework/boot/jdbc/init/DatabaseInitializationProperties.java",
+        "module/spring-boot-jdbc/src/main/java/org/springframework/boot/jdbc/init/PropertiesBasedDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-quartz/src/main/java/org/springframework/boot/quartz/autoconfigure/QuartzDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-quartz/src/main/java/org/springframework/boot/quartz/autoconfigure/QuartzJdbcProperties.java",
+        "module/spring-boot-session-jdbc/src/main/java/org/springframework/boot/session/jdbc/autoconfigure/JdbcSessionDataSourceScriptDatabaseInitializer.java",
+        "module/spring-boot-session-jdbc/src/main/java/org/springframework/boot/session/jdbc/autoconfigure/JdbcSessionProperties.java"
+      ]
+    },
+    {
+      "sha": "cb976ba38d7f89c7ced5146820dcb63c32786f7e",
+      "message": "Remove @Primary for auto-configured CBORMapper\n\nCloses gh-47641",
+      "modifiedFiles": [
+        "module/spring-boot-jackson/src/main/java/org/springframework/boot/jackson/autoconfigure/JacksonAutoConfiguration.java"
+      ]
+    },
+    {
+      "sha": "85f330586a12e9ad7be93776239458da95b1dd1e",
+      "message": "Document properties that were removed without a deprecation period\n\nThis commit documents properties that are removed without being\ndeprecated first. Previously those properties were undocumented.\n\nCloses gh-47762",
+      "modifiedFiles": [
+        "configuration-metadata/spring-boot-configuration-metadata-changelog-generator/src/main/java/org/springframework/boot/configurationmetadata/changelog/Difference.java",
+        "configuration-metadata/spring-boot-configuration-metadata-changelog-generator/src/test/java/org/springframework/boot/configurationmetadata/changelog/ChangelogTests.java",
+        "configuration-metadata/spring-boot-configuration-metadata-changelog-generator/src/test/resources/sample-1.0.json",
+        "configuration-metadata/spring-boot-configuration-metadata-changelog-generator/src/test/resources/sample-2.0.json",
+        "configuration-metadata/spring-boot-configuration-metadata-changelog-generator/src/test/resources/sample.adoc"
+      ]
+    },
+    {
+      "sha": "d8be5ca7c30023f57f09afaad8604c33fd2eae84",
+      "message": "Document properties that were added as deprecated\n\nThis commit handles a corner case where we have to add properties in\na release that represents something we mean to remove but that\u0027s not\nready to go away just yet.\n\nThose properties are now considered in the changelog, but  marked as\ndeprecated.\n\nCloses gh-47759",
+      "modifiedFiles": [
+        "configuration-metadata/spring-boot-configuration-metadata-changelog-generator/src/main/java/org/springframework/boot/configurationmetadata/changelog/Changelog.java",
+        "configuration-metadata/spring-boot-configuration-metadata-changelog-generator/src/main/java/org/springframework/boot/configurationmetadata/changelog/ChangelogWriter.java",
+        "configuration-metadata/spring-boot-configuration-metadata-changelog-generator/src/test/java/org/springframework/boot/configurationmetadata/changelog/ChangelogTests.java",
+        "configuration-metadata/spring-boot-configuration-metadata-changelog-generator/src/test/resources/sample-2.0.json",
+        "configuration-metadata/spring-boot-configuration-metadata-changelog-generator/src/test/resources/sample.adoc"
+      ]
+    },
+    {
+      "sha": "1cfba0406eddb6215efdcd1ec452b42683cf9626",
+      "message": "Merge pull request #47706 from var4609\n\n* gh-47706:\n  Migrate from Dokkatoo to Dokka\n\nCloses gh-47706",
+      "modifiedFiles": [
+        "buildSrc/build.gradle",
+        "buildSrc/src/main/java/org/springframework/boot/build/JavaConventions.java",
+        "buildSrc/src/main/java/org/springframework/boot/build/KotlinConventions.java",
+        "core/spring-boot/build.gradle",
+        "documentation/spring-boot-docs/build.gradle",
+        "documentation/spring-boot-docs/src/docs/dokka/dokka-overview.md",
+        "module/spring-boot-resttestclient/build.gradle"
+      ]
+    },
+    {
+      "sha": "f84b17c7519d48eed3f2b07504f48e0f83cc4d6e",
+      "message": "Migrate from Dokkatoo to Dokka\n\nThis commit migrates from Dokkatoo to Dokka for generation of Kotlin\nAPI documentation.\n\nSee gh-47706\n\nSigned-off-by: Varun Patni \u003cvarun.patni1@gmail.com\u003e",
+      "modifiedFiles": [
+        "buildSrc/build.gradle",
+        "buildSrc/src/main/java/org/springframework/boot/build/JavaConventions.java",
+        "buildSrc/src/main/java/org/springframework/boot/build/KotlinConventions.java",
+        "core/spring-boot/build.gradle",
+        "documentation/spring-boot-docs/build.gradle",
+        "documentation/spring-boot-docs/src/docs/dokka/dokka-overview.md",
+        "module/spring-boot-resttestclient/build.gradle"
+      ]
+    },
+    {
+      "sha": "918892fc1a7a1678e378ec1d4a1f1934179e5c4c",
+      "message": "Correct the contents of the Kotlin API documentation\n\nCloses gh-47761",
+      "modifiedFiles": [
+        "documentation/spring-boot-docs/build.gradle"
+      ]
+    },
+    {
+      "sha": "0ffc4649a657655c8655011252633a4de9773754",
+      "message": "Polish",
+      "modifiedFiles": [
+        "module/spring-boot-http-converter/src/main/resources/META-INF/additional-spring-configuration-metadata.json"
+      ]
+    },
+    {
+      "sha": "5862d70725a54cd8ce0caaa790c09788f4b25967",
+      "message": "Polish description of \u0027spring.http.converters.preferred-json-mapper\u0027",
+      "modifiedFiles": [
+        "module/spring-boot-http-converter/src/main/resources/META-INF/additional-spring-configuration-metadata.json"
+      ]
+    },
+    {
+      "sha": "4e94f2693568130739a7d394b3991dd9ee04374d",
+      "message": "Support JMX endpoints when only Jackson 2 is present\n\nCloses gh-47688",
+      "modifiedFiles": [
+        "module/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/endpoint/jmx/JmxEndpointAutoConfiguration.java",
+        "module/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/endpoint/jmx/Jackson2JmxOperationResponseMapper.java",
+        "smoke-test/spring-boot-smoke-test-jackson2-only/src/main/resources/application.properties",
+        "smoke-test/spring-boot-smoke-test-jackson2-only/src/test/java/smoketest/jackson2/only/SampleJackson2OnlyApplicationTests.java"
+      ]
+    },
+    {
+      "sha": "8292954076874062b89c83273a59d7f0962069e1",
+      "message": "Revert \"Use spring.restdocs as prefix for Spring REST Docs properties\"\n\nThis reverts commits a502f4d and 661574b.\n\nCloses gh-47481",
+      "modifiedFiles": [
+        "buildSrc/src/main/java/org/springframework/boot/build/context/properties/DocumentConfigurationProperties.java",
+        "module/spring-boot-restdocs/src/main/java/org/springframework/boot/restdocs/test/autoconfigure/AutoConfigureRestDocs.java",
+        "module/spring-boot-restdocs/src/main/java/org/springframework/boot/restdocs/test/autoconfigure/RestDocsMockMvcBuilderCustomizer.java",
+        "module/spring-boot-restdocs/src/main/java/org/springframework/boot/restdocs/test/autoconfigure/RestDocsProperties.java",
+        "module/spring-boot-restdocs/src/main/java/org/springframework/boot/restdocs/test/autoconfigure/RestDocsWebTestClientBuilderCustomizer.java",
+        "module/spring-boot-restdocs/src/main/resources/META-INF/additional-spring-configuration-metadata.json"
+      ]
+    },
+    {
+      "sha": "704456120a5319a10263c7f80f1ec659b826b4fb",
+      "message": "Merge branch \u00273.5.x\u0027\n\nCloses gh-47670",
+      "modifiedFiles": [
+        "buildSrc/src/main/java/org/springframework/boot/build/context/properties/ConfigurationProperty.java",
+        "buildSrc/src/main/java/org/springframework/boot/build/context/properties/Snippets.java"
+      ]
+    },
+    {
+      "sha": "41092f36e09a818ac054da05e90c7b70a7bf3238",
+      "message": "Merge branch \u00273.4.x\u0027 into 3.5.x\n\nCloses gh-47669",
+      "modifiedFiles": [
+        "buildSrc/src/main/java/org/springframework/boot/build/context/properties/ConfigurationProperty.java",
+        "buildSrc/src/main/java/org/springframework/boot/build/context/properties/Snippets.java"
+      ]
+    },
+    {
+      "sha": "c249d952abe2bb2fd18fbff69e5446c2403fd94c",
+      "message": "Omit properties deprecated at error level from new appendix\n\nCloses gh-47622",
+      "modifiedFiles": [
+        "buildSrc/src/main/java/org/springframework/boot/build/context/properties/ConfigurationProperty.java",
+        "buildSrc/src/main/java/org/springframework/boot/build/context/properties/Snippets.java"
+      ]
+    },
+    {
+      "sha": "635e766aaf4c3e47e4884daa96fbefffced91bff",
+      "message": "Make it easier to create executable and deployable war\n\nCloses gh-46944",
+      "modifiedFiles": [
+        "build-plugin/spring-boot-gradle-plugin/src/docs/antora/modules/gradle-plugin/examples/packaging/war-container-dependency.gradle",
+        "build-plugin/spring-boot-gradle-plugin/src/docs/antora/modules/gradle-plugin/examples/packaging/war-container-dependency.gradle.kts",
+        "build-plugin/spring-boot-gradle-plugin/src/docs/antora/modules/gradle-plugin/pages/packaging.adoc",
+        "documentation/spring-boot-docs/src/docs/antora/modules/how-to/pages/deployment/traditional-deployment.adoc",
+        "module/spring-boot-jetty-runtime/build.gradle",
+        "module/spring-boot-jetty/build.gradle",
+        "module/spring-boot-tomcat-runtime/build.gradle",
+        "module/spring-boot-tomcat/build.gradle",
+        "platform/spring-boot-dependencies/build.gradle",
+        "settings.gradle",
+        "smoke-test/spring-boot-smoke-test-tomcat-jsp/build.gradle",
+        "smoke-test/spring-boot-smoke-test-traditional/build.gradle",
+        "smoke-test/spring-boot-smoke-test-web-jsp/build.gradle",
+        "smoke-test/spring-boot-smoke-test-web-static/build.gradle",
+        "starter/spring-boot-starter-jetty/build.gradle",
+        "starter/spring-boot-starter-tomcat/build.gradle",
+        "system-test/spring-boot-image-system-tests/build.gradle",
+        "system-test/spring-boot-image-system-tests/src/systemTest/resources/org/springframework/boot/image/paketo/PaketoBuilderTests-bootDistZipJarApp.gradle",
+        "system-test/spring-boot-image-system-tests/src/systemTest/resources/org/springframework/boot/image/paketo/PaketoBuilderTests-classDataSharingApp.gradle",
+        "system-test/spring-boot-image-system-tests/src/systemTest/resources/org/springframework/boot/image/paketo/PaketoBuilderTests-executableWarApp.gradle",
+        "system-test/spring-boot-image-system-tests/src/systemTest/resources/org/springframework/boot/image/paketo/PaketoBuilderTests-nativeApp.gradle",
+        "system-test/spring-boot-image-system-tests/src/systemTest/resources/org/springframework/boot/image/paketo/PaketoBuilderTests-plainDistZipJarApp.gradle",
+        "system-test/spring-boot-image-system-tests/src/systemTest/resources/org/springframework/boot/image/paketo/PaketoBuilderTests-plainWarApp.gradle",
+        "system-test/spring-boot-image-system-tests/src/systemTest/resources/org/springframework/boot/image/paketo/PaketoBuilderTests.gradle"
+      ]
+    },
+    {
+      "sha": "a3ca741c56d087acabef079199e748894dfc126a",
+      "message": "Merge branch \u00273.5.x\u0027\n\nCloses gh-47757",
+      "modifiedFiles": [
+        ".github/actions/prepare-gradle-build/action.yml",
+        ".github/workflows/verify.yml"
+      ]
+    },
+    {
+      "sha": "a57b796abf856ed33c63f0342fcbec1b937d622b",
+      "message": "Merge branch \u00273.4.x\u0027 into 3.5.x\n\nCloses gh-47756",
+      "modifiedFiles": [
+        ".github/actions/prepare-gradle-build/action.yml",
+        ".github/workflows/verify.yml"
+      ]
+    },
+    {
+      "sha": "92e61fd328da233cac170d36ff898d6d3bb6a375",
+      "message": "Merge pull request #47416 from dependabot[bot]\n\n* pr/47416:\n  Polish \"Bump gradle/actions from 4.4.4 to 5.0.0\"\n  Bump gradle/actions from 4.4.4 to 5.0.0\n\nCloses gh-47416",
+      "modifiedFiles": [
+        ".github/actions/prepare-gradle-build/action.yml",
+        ".github/workflows/verify.yml"
+      ]
+    },
+    {
+      "sha": "ba27452de040473ace1dff15dc84eb49edeef9f4",
+      "message": "Polish \"Bump gradle/actions from 4.4.4 to 5.0.0\"\n\nSee gh-47416",
+      "modifiedFiles": [
+        ".github/actions/prepare-gradle-build/action.yml"
+      ]
+    },
+    {
+      "sha": "f44def32cae0a93e9e74ced927a7618858518df5",
+      "message": "Bump gradle/actions from 4.4.4 to 5.0.0\n\nBumps [gradle/actions](https://github.com/gradle/actions) from 4.4.4 to 5.0.0.\n- [Release notes](https://github.com/gradle/actions/releases)\n- [Commits](https://github.com/gradle/actions/compare/748248ddd2a24f49513d8f472f81c3a07d4d50e1...4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2)\n\n---\nupdated-dependencies:\n- dependency-name: gradle/actions\n  dependency-version: 5.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSee gh-47416\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/verify.yml"
+      ]
+    },
+    {
+      "sha": "95640adf5e0280bbbab0aa692018dc64d993cb11",
+      "message": "Merge branch \u00273.5.x\u0027",
+      "modifiedFiles": []
+    },
+    {
+      "sha": "250f418126bcd62c1a914738a2eb5c1d08ff0e9c",
+      "message": "Upgrade to GraphQL Java 24.3\n\nCloses gh-47755",
+      "modifiedFiles": [
+        "spring-boot-project/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "bdb7ab77ba11d17adaa20897303741dfdb34da94",
+      "message": "Merge branch \u00273.5.x\u0027",
+      "modifiedFiles": []
+    },
+    {
+      "sha": "8569e2cccc7edace2b2ea9e60835c1cf16ff3e1f",
+      "message": "Merge branch \u00273.4.x\u0027 into 3.5.x",
+      "modifiedFiles": []
+    },
+    {
+      "sha": "8af6500c17a6af52ca0fbce7cb1c85d04aa74a51",
+      "message": "Upgrade to Spring Integration 6.5.3\n\nCloses gh-47615",
+      "modifiedFiles": [
+        "spring-boot-project/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "bb57b713f2ee738decd9c062dced104def371a80",
+      "message": "Upgrade to Spring GraphQL 1.4.3\n\nCloses gh-47754",
+      "modifiedFiles": [
+        "spring-boot-project/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "67c25d9eb65f1d655f7628bf4918c753884b21d3",
+      "message": "Upgrade to Spring Integration 6.4.8\n\nCloses gh-47611",
+      "modifiedFiles": [
+        "spring-boot-project/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "e234684384493f7871fd643ab93aae2d68e3d3f5",
+      "message": "Upgrade to Spring Session 4.0.0-RC1\n\nCloses gh-47500",
+      "modifiedFiles": [
+        "platform/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "0bf9d3a37f4eb5df189f2172fde5dbd5c1db87b4",
+      "message": "Upgrade to Spring Pulsar 2.0.0-RC1\n\nCloses gh-47497",
+      "modifiedFiles": [
+        "platform/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "46a29e903a379901b67e2673512efc248f475263",
+      "message": "Upgrade to Spring Integration 7.0.0-RC1\n\nCloses gh-47494",
+      "modifiedFiles": [
+        "platform/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "7fcfdfe351450cda7d24c0f4c8dea2421592d432",
+      "message": "Upgrade to Spring GraphQL 2.0.0-RC1\n\nCloses gh-47492",
+      "modifiedFiles": [
+        "platform/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "a7c4e9a049f53be61905f0c1e8eb4864444dd461",
+      "message": "Upgrade to Jackson Bom 3.0.1\n\nCloses gh-47753",
+      "modifiedFiles": [
+        "gradle.properties"
+      ]
+    },
+    {
+      "sha": "2eca59c738997d247d4767ef1c18c930b6d72801",
+      "message": "Merge branch \u00273.5.x\u0027",
+      "modifiedFiles": []
+    },
+    {
+      "sha": "55f00cf24cf1d3e675735b447c2ff8196ce6253e",
+      "message": "Fix merge issue causing checkArchitectureMain failure\n\nSee gh-47750",
+      "modifiedFiles": [
+        "spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/metrics/JvmMetricsAutoConfiguration.java",
+        "spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/reactive/ReactiveManagementChildContextConfiguration.java"
+      ]
+    },
+    {
+      "sha": "b6648fcaede432bd3e6a1324237907ae7a6e4f31",
+      "message": "Downgrade to GraphQL Java 2.4.3\n\nSee gh-47492",
+      "modifiedFiles": [
+        "platform/spring-boot-dependencies/build.gradle"
+      ]
+    },
+    {
+      "sha": "350179901ffd6bef044da0d45715ae5b8867b321",
+      "message": "Merge branch \u00273.5.x\u0027\n\nCloses gh-47751",
+      "modifiedFiles": [
+        "buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureCheck.java",
+        "buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureRules.java",
+        "buildSrc/src/test/java/org/springframework/boot/build/architecture/ArchitectureCheckTests.java",
+        "buildSrc/src/test/java/org/springframework/boot/build/architecture/annotations/TestConditionalOnClass.java",
+        "buildSrc/src/test/java/org/springframework/boot/build/architecture/conditionalonclass/OnBeanMethod.java",
+        "documentation/spring-boot-docs/src/docs/antora/modules/reference/pages/testing/test-modules.adoc",
+        "module/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/endpoint/jmx/JmxEndpointAutoConfiguration.java",
+        "module/spring-boot-flyway/src/main/java/org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration.java",
+        "module/spring-boot-health/src/test/java/org/springframework/boot/health/autoconfigure/actuate/endpoint/AvailabilityProbesAutoConfigurationTests.java",
+        "module/spring-boot-micrometer-metrics/src/main/java/org/springframework/boot/micrometer/metrics/autoconfigure/jvm/JvmMetricsAutoConfiguration.java",
+        "module/spring-boot-security/src/main/java/org/springframework/boot/security/autoconfigure/actuate/web/servlet/SecurityRequestMatchersManagementContextConfiguration.java",
+        "module/spring-boot-zipkin/src/main/java/org/springframework/boot/zipkin/autoconfigure/ZipkinAutoConfiguration.java"
+      ]
+    },
+    {
+      "sha": "acaa93805045589a3193e9d37e35bcdde34c6276",
+      "message": "Merge branch \u00273.4.x\u0027 into 3.5.x\n\nCloses gh-47750",
+      "modifiedFiles": [
+        "buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureCheck.java",
+        "buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureRules.java",
+        "buildSrc/src/test/java/org/springframework/boot/build/architecture/ArchitectureCheckTests.java",
+        "buildSrc/src/test/java/org/springframework/boot/build/architecture/annotations/TestConditionalOnClass.java",
+        "buildSrc/src/test/java/org/springframework/boot/build/architecture/conditionalonclass/OnBeanMethod.java",
+        "spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/audit/AuditAutoConfiguration.java",
+        "spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/endpoint/jackson/JacksonEndpointAutoConfiguration.java",
+        "spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/security/servlet/SecurityRequestMatchersManagementContextConfiguration.java",
+        "spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/servlet/ServletManagementChildContextConfiguration.java",
+        "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration.java",
+        "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/hateoas/HypermediaAutoConfiguration.java",
+        "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/pulsar/PulsarReactiveAutoConfiguration.java",
+        "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/reactive/ReactiveWebServerFactoryAutoConfiguration.java",
+        "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryAutoConfiguration.java"
+      ]
+    },
+    {
+      "sha": "a2b967177896b4a2dc9c1811ea49fc8abb41efa5",
+      "message": "Merge pull request #47429 from nosan\n\n* pr/47429:\n  Stop using @ConditionalOnClass on @Bean methods\n\nCloses gh-47429",
+      "modifiedFiles": [
+        "buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureCheck.java",
+        "buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureRules.java",
+        "buildSrc/src/test/java/org/springframework/boot/build/architecture/ArchitectureCheckTests.java",
+        "buildSrc/src/test/java/org/springframework/boot/build/architecture/annotations/TestConditionalOnClass.java",
+        "buildSrc/src/test/java/org/springframework/boot/build/architecture/conditionalonclass/OnBeanMethod.java",
+        "spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/audit/AuditAutoConfiguration.java",
+        "spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/endpoint/jackson/JacksonEndpointAutoConfiguration.java",
+        "spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/security/servlet/SecurityRequestMatchersManagementContextConfiguration.java",
+        "spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/servlet/ServletManagementChildContextConfiguration.java",
+        "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration.java",
+        "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/hateoas/HypermediaAutoConfiguration.java",
+        "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/pulsar/PulsarReactiveAutoConfiguration.java",
+        "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/reactive/ReactiveWebServerFactoryAutoConfiguration.java",
+        "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryAutoConfiguration.java"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "spring-boot",
+      "ownerLogin": "jaxxnitt",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "imerljak",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "vitalogyalive",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "vikash1703",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "alz89",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "mikelhamer",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "Son94JB",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "asato425",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "aniwange33",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "eclipsehx",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "phongttvn",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "Kare0638",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "vinhv",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "Magnauthor",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "TimHiggisonIFM",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "Mjzhao2014",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "Ibjo-King",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "dhkatz",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "superThree123",
+      "commitCount": 100
+    },
+    {
+      "name": "spring-boot",
+      "ownerLogin": "bblack1225",
+      "commitCount": 100
+    }
+  ]
+}

@@ -1,0 +1,880 @@
+{
+  "name": "deno",
+  "ownerLogin": "denoland",
+  "language": "Rust",
+  "commits": [
+    {
+      "sha": "02f6e49276bb4c03634af4aec4487a5a0a9dbebf",
+      "message": "fix(fmt/json): support hexadecimal numbers, plus sign on numbers, and words with underscores (#31057)",
+      "modifiedFiles": [
+        ".dprint.json",
+        "Cargo.lock",
+        "Cargo.toml"
+      ]
+    },
+    {
+      "sha": "18054af79e74b649c25df161aa0b054d1e1605eb",
+      "message": "fix(npm): regression resolving npm bin for default when only one entry (#31055)\n\nCloses #31052",
+      "modifiedFiles": [
+        "libs/node_resolver/resolution.rs"
+      ]
+    },
+    {
+      "sha": "d0db370d5cb5d646f172b8da2c5e46d045676f74",
+      "message": "chore: update urlpattern (#31054)",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml"
+      ]
+    },
+    {
+      "sha": "2b0f277e96768ba345c99c80563b1ba739b90d4f",
+      "message": "fix(ext/node): `fs.read/fs.readSync` and `fs.write/fs.writeSync` compatibility (#31013)\n\nTowards #29972\n\n- `fs.read` and `fs.readSync`: accepts object option parameter.\n- `fs.write` and `fs.writeSync`: negative position value defaults to the\ncurrent seek position.\n- Allows several node compatibility tests to pass.",
+      "modifiedFiles": [
+        "ext/node/polyfills/_fs/_fs_common.ts",
+        "ext/node/polyfills/_fs/_fs_read.ts",
+        "ext/node/polyfills/_fs/_fs_write.ts",
+        "ext/node/polyfills/internal/fs/handle.ts",
+        "ext/node/polyfills/internal/fs/utils.mjs",
+        "ext/node/polyfills/internal/validators.mjs",
+        "tests/node_compat/config.toml",
+        "tests/unit_node/_fs/_fs_read_test.ts",
+        "tests/unit_node/_fs/_fs_write_test.ts"
+      ]
+    },
+    {
+      "sha": "e4289491d7449e35e029e81ebf051de99fbd0ab0",
+      "message": "fix: regex pattern syntax in config-file.v1.json (#31038)\n\nInto `config-file.v1.json`, `compilerOptions.moduleResolution` has in\ninvalid regexp pattern.",
+      "modifiedFiles": [
+        "cli/schemas/config-file.v1.json"
+      ]
+    },
+    {
+      "sha": "9da9db0d46a3ad7faa7bbd3492969814441f154d",
+      "message": "fix(check): error when type checking after deduping packages (#31049)",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "cli/tools/bundle/mod.rs",
+        "cli/tools/clean.rs",
+        "cli/tools/info.rs",
+        "cli/tools/publish/graph.rs",
+        "cli/tsc/mod.rs",
+        "libs/resolver/graph.rs",
+        "libs/resolver/npm/managed/mod.rs",
+        "libs/resolver/npm/mod.rs",
+        "tests/specs/lockfile/run_overlapping_npm_constraints/__test__.jsonc",
+        "tests/specs/lockfile/run_overlapping_npm_constraints/analyzable_dynamic.out",
+        "tests/specs/lockfile/run_overlapping_npm_constraints/analyzable_dynamic.ts",
+        "tests/specs/lockfile/run_overlapping_npm_constraints/non_analyzable_dynamic.out",
+        "tests/specs/node/esm_dir_import/index_js/folder_index_js.out",
+        "tests/specs/node/esm_dir_import/index_js/folder_no_index.out",
+        "tests/specs/npm/nonexistent_file/nonexistent_file/main.out",
+        "tests/specs/npm/nonexistent_file_node_modules_dir/nonexistent_file/main.out"
+      ]
+    },
+    {
+      "sha": "34dea6098ed4ce88ee8fd86f2561cf69c8e58dd0",
+      "message": "feat(unstable): dynamic command-line completions for deno task (#30670)\n\nCloses #14039. Closes #30664.",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "cli/args/flags.rs",
+        "cli/main.rs",
+        "cli/tools/task.rs",
+        "tests/specs/cli/task_completions/__test__.jsonc",
+        "tests/specs/cli/task_completions/basic.out",
+        "tests/specs/cli/task_completions/config_flag.out",
+        "tests/specs/cli/task_completions/deno.json",
+        "tests/specs/cli/task_completions/subdir/deno.json",
+        "tests/specs/cli/task_completions/workspace.out",
+        "tests/specs/cli/task_completions/workspace/deno.json",
+        "tests/specs/cli/task_completions/workspace/member/deno.json",
+        "tests/specs/cli/task_completions/workspace/member2/package.json",
+        "tests/specs/cli/task_completions/workspace_package_json.out"
+      ]
+    },
+    {
+      "sha": "0f8f87288b364c9c1dd63063e5f406b55c2c9fcb",
+      "message": "feat(unstable): add process id to permission broker messages (#31050)\n\nCloses https://github.com/denoland/deno/issues/31005",
+      "modifiedFiles": [
+        "cli/schemas/permission-broker-request.v1.json",
+        "runtime/permissions/broker.rs",
+        "tests/integration/run_tests.rs"
+      ]
+    },
+    {
+      "sha": "3987af2aa108167be733090319c02ca10bd3c8bf",
+      "message": "feat(ext/node): impl sqlite \u0027backup\u0027 capability (#29842)\n\nTowards #29439 \n\nThis commit implements the `backup` function from the `node:sqlite` module.",
+      "modifiedFiles": [
+        "Cargo.toml",
+        "ext/node/lib.rs",
+        "ext/node/ops/sqlite/backup.rs",
+        "ext/node/ops/sqlite/database.rs",
+        "ext/node/ops/sqlite/mod.rs",
+        "ext/node/polyfills/sqlite.ts",
+        "tests/unit_node/sqlite_test.ts"
+      ]
+    },
+    {
+      "sha": "0f81808c8823304b28619b2afb121883a3973f04",
+      "message": "fix(coverage): don\u0027t process coverage for blob: urls (#31035)\n\nFixes #31030.",
+      "modifiedFiles": [
+        "cli/tools/coverage/mod.rs",
+        "tests/specs/coverage/blob_url/__test__.jsonc",
+        "tests/specs/coverage/blob_url/main.out",
+        "tests/specs/coverage/blob_url/main.ts",
+        "tests/specs/coverage/blob_url/main_test.ts"
+      ]
+    },
+    {
+      "sha": "568e247187dba08c812a74b1a5d4415f790eee99",
+      "message": "feat(lsp): Add support for `source.organizeImports` (#31016)",
+      "modifiedFiles": [
+        "cli/lsp/capabilities.rs",
+        "cli/lsp/language_server.rs",
+        "cli/lsp/tsc.rs",
+        "tests/integration/lsp_tests.rs"
+      ]
+    },
+    {
+      "sha": "ec3ece4ec38a0c14b0101761c39b431f0e21e46f",
+      "message": "fix(kv): do not error when creating kv db with relative path and `-A` (#31021)\n\nThis upgrades `deno_path_util` from 0.6.1 to 0.6.3, which includes a fix\nfor path normalization of relative paths. This resolves issues where\n`Deno.openKv()` would fail with \"NotFound\" errors when using `-A` flag\nwith relative paths that don\u0027t exist yet.\n\nFixes #30860\nFixes #30923\n\n---------\n\nCo-authored-by: Bartek Iwańczuk \u003cbiwanczuk@gmail.com\u003e",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "tests/specs/run/kv_path_with_dot/__test__.jsonc",
+        "tests/specs/run/kv_path_with_dot/main.out",
+        "tests/specs/run/kv_path_with_dot/main.ts",
+        "tests/specs/run/kv_relative_path/__test__.jsonc",
+        "tests/specs/run/kv_relative_path/main.out",
+        "tests/specs/run/kv_relative_path/main.ts"
+      ]
+    },
+    {
+      "sha": "d38b20ca7a73b213f2322f3118cd459b40694bf9",
+      "message": "test: disable test-fs-glob.mjs (#31029)\n\nThis test is currently crashing on CI all the time. Disabling for the\ntime being.",
+      "modifiedFiles": [
+        "tests/node_compat/config.toml"
+      ]
+    },
+    {
+      "sha": "243857c362793beb5f048d178bd665fb29ba0696",
+      "message": "fix(ext/node): false deprecation warning on `crypto.createHmac` (#31025)\n\nCo-authored-by: Bartek Iwańczuk \u003cbiwanczuk@gmail.com\u003e",
+      "modifiedFiles": [
+        "ext/node/polyfills/crypto.ts",
+        "tests/unit_node/crypto/crypto_hash_test.ts"
+      ]
+    },
+    {
+      "sha": "9e572c78750bb721ae1ece2b2ffaa0589870112f",
+      "message": "fix(unstable): read npm lazy caching from unstable config in deno.json as well (#31026)",
+      "modifiedFiles": [
+        "cli/args/mod.rs"
+      ]
+    },
+    {
+      "sha": "b252cc78c2b426a3b2ebfacd942aa9908785dfc4",
+      "message": "feat(unstable): typescript-go integration for deno check (#30920)\n\nIntegrated only with deno check (and test, `run --check`, etc)\ncurrently. All spec tests for deno check pass except for 3, which i\u0027ve\ndisabled\n\n---------\n\nCo-authored-by: Bartek Iwańczuk \u003cbiwanczuk@gmail.com\u003e\nCo-authored-by: Divy Srivastava \u003cme@littledivy.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/ci.generate.ts",
+        ".github/workflows/ci.yml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "cli/Cargo.toml",
+        "cli/args/flags.rs",
+        "cli/args/mod.rs",
+        "cli/factory.rs",
+        "cli/lib/args.rs",
+        "cli/lsp/tsc.rs",
+        "cli/standalone/binary.rs",
+        "cli/tsc/97_ts_host.js",
+        "cli/tsc/diagnostics.rs",
+        "cli/tsc/go.rs",
+        "cli/tsc/go/setup.rs",
+        "cli/tsc/go/tsgo_version.rs",
+        "cli/tsc/js.rs",
+        "cli/tsc/mod.rs",
+        "cli/type_checker.rs",
+        "docs/tsgo.md",
+        "libs/node_resolver/package_json.rs",
+        "libs/resolver/cjs/analyzer/mod.rs",
+        "libs/resolver/cjs/mod.rs",
+        "libs/resolver/npm/byonm.rs",
+        "libs/typescript_go_client/Cargo.toml",
+        "libs/typescript_go_client/src/connection.rs",
+        "libs/typescript_go_client/src/lib.rs",
+        "libs/typescript_go_client/src/types.rs",
+        "runtime/features/data.rs",
+        "runtime/features/gen.js",
+        "runtime/features/gen.rs",
+        "tests/integration/compile_tests.rs",
+        "tests/specs/check/ambient_modules/__test__.jsonc",
+        "tests/specs/check/bare_specifier_not_found/__test__.jsonc",
+        "tests/specs/check/byonm_import_missing_types/__test__.jsonc",
+        "tests/specs/check/bytes_and_text_imports/__test__.jsonc",
+        "tests/specs/check/check_all/__test__.jsonc",
+        "tests/specs/check/check_all_local/__test__.jsonc",
+        "tests/specs/check/check_broadcast_channel/__test__.jsonc",
+        "tests/specs/check/check_deno_not_found/__test__.jsonc",
+        "tests/specs/check/check_deno_not_found/deno.json",
+        "tests/specs/check/check_dts/__test__.jsonc",
+        "tests/specs/check/check_exclude_option/__test__.jsonc",
+        "tests/specs/check/check_imported_files_listed_in_exclude_option/__test__.jsonc",
+        "tests/specs/check/check_jsximportsource_importmap_config/__test__.jsonc",
+        "tests/specs/check/check_no_error_truncation/__test__.jsonc",
+        "tests/specs/check/check_node_builtin_modules/__test__.jsonc",
+        "tests/specs/check/check_node_builtin_modules/mod.js.tsgo.out",
+        "tests/specs/check/check_node_builtin_modules/mod.ts.tsgo.out",
+        "tests/specs/check/check_non_normalized_specifier/__test__.jsonc",
+        "tests/specs/check/check_npm_install_diagnostics/__test__.jsonc",
+        "tests/specs/check/check_static_response_json/__test__.jsonc",
+        "tests/specs/check/check_types_dts/__test__.jsonc",
+        "tests/specs/check/check_with_excluded_file_specified/__test__.jsonc",
+        "tests/specs/check/check_workspace/__test__.jsonc",
+        "tests/specs/check/cjs_default_export/__test__.jsonc",
+        "tests/specs/check/compiler_options_paths_and_sloppy_imports/__test__.jsonc",
+        "tests/specs/check/compiler_options_root_dirs_and_sloppy_imports/__test__.jsonc",
+        "tests/specs/check/compiler_options_types/__test__.jsonc",
+        "tests/specs/check/css_import/__test__.jsonc",
+        "tests/specs/check/declaration_header_file_with_no_exports/__test__.jsonc",
+        "tests/specs/check/definitely_typed/__test__.jsonc",
+        "tests/specs/check/dts_importing_non_existent/__test__.jsonc",
+        "tests/specs/check/erasable_syntax_only/__test__.jsonc",
+        "tests/specs/check/export_equals_declaration_file/__test__.jsonc",
+        "tests/specs/check/extensionless/__test__.jsonc",
+        "tests/specs/check/globbing/__test__.jsonc",
+        "tests/specs/check/import_meta_no_errors/__test__.jsonc",
+        "tests/specs/check/import_non_existent_in_remote/__test__.jsonc",
+        "tests/specs/check/instability_fetch/__test__.jsonc",
+        "tests/specs/check/jsdoc_import_decl/__test__.jsonc",
+        "tests/specs/check/jsx_automatic_no_explicit_import_source/__test__.jsonc",
+        "tests/specs/check/jsx_import_source_not_in_graph/__test__.jsonc",
+        "tests/specs/check/jsx_import_source_types/__test__.jsonc",
+        "tests/specs/check/jsx_import_source_types_config/__test__.jsonc",
+        "tests/specs/check/jsx_not_checked/__test__.jsonc",
+        "tests/specs/check/lockfile_types_node/__test__.jsonc",
+        "tests/specs/check/lockfile_types_node_existing/__test__.jsonc",
+        "tests/specs/check/message_chain_formatting/__test__.jsonc",
+        "tests/specs/check/message_chain_formatting/message_chain_formatting_tsgo.out",
+        "tests/specs/check/module_detection_force/__test__.jsonc",
+        "tests/specs/check/module_not_found/__test__.jsonc",
+        "tests/specs/check/module_not_found_npm_pkg_entrypoint/__test__.jsonc",
+        "tests/specs/check/module_not_found_npm_pkg_internal/__test__.jsonc",
+        "tests/specs/check/module_resolution_bundler_sloppy_imports/__test__.jsonc",
+        "tests/specs/check/no_implicit_override/__test__.jsonc",
+        "tests/specs/check/npm_pkg_empty_main_entry/__test__.jsonc",
+        "tests/specs/check/package_json/__test__.jsonc",
+        "tests/specs/check/package_json_auto_install/__test__.jsonc",
+        "tests/specs/check/package_json_fail_check/__test__.jsonc",
+        "tests/specs/check/package_json_with_deno_json/__test__.jsonc",
+        "tests/specs/check/random_extension/__test__.jsonc",
+        "tests/specs/check/reject_string_in_readable_stream_from/__test__.jsonc",
+        "tests/specs/check/remote_missing_override/__test__.jsonc",
+        "tests/specs/check/skip_lib_check/__test__.jsonc",
+        "tests/specs/check/special_specifiers/__test__.jsonc",
+        "tests/specs/check/ts_in_npm_pkg/__test__.jsonc",
+        "tests/specs/check/tsconfig_default_libs/__test__.jsonc",
+        "tests/specs/check/tsconfig_deno_json_priority/__test__.jsonc",
+        "tests/specs/check/tsconfig_exclude/__test__.jsonc",
+        "tests/specs/check/tsconfig_extends/__test__.jsonc",
+        "tests/specs/check/tsconfig_extends_array/__test__.jsonc",
+        "tests/specs/check/tsconfig_extends_node_resolution/__test__.jsonc",
+        "tests/specs/check/tsconfig_files/__test__.jsonc",
+        "tests/specs/check/tsconfig_files_for_globals/__test__.jsonc",
+        "tests/specs/check/tsconfig_files_for_globals/tsconfig.dom.json",
+        "tests/specs/check/tsconfig_include/__test__.jsonc",
+        "tests/specs/check/tsconfig_no_config/__test__.jsonc",
+        "tests/specs/check/tsconfig_no_deno_json/__test__.jsonc",
+        "tests/specs/check/tsconfig_non_strict_defaults/__test__.jsonc",
+        "tests/specs/check/tsconfig_references_dir/__test__.jsonc",
+        "tests/specs/check/tsconfig_root_dirs/__test__.jsonc",
+        "tests/specs/check/type_reference_import_meta/__test__.jsonc",
+        "tests/specs/check/typecheck_doc_duplicate_identifiers/__test__.jsonc",
+        "tests/specs/check/typecheck_doc_failure/__test__.jsonc",
+        "tests/specs/check/typecheck_doc_in_markdown/__test__.jsonc",
+        "tests/specs/check/typecheck_doc_success/__test__.jsonc",
+        "tests/specs/check/types_resolved_relative_config/__test__.jsonc",
+        "tests/specs/check/unstable_suggestion/__test__.jsonc",
+        "tests/specs/check/unstable_suggestion/deno.json",
+        "tests/specs/check/use_unknown_in_catch_variables/__test__.jsonc",
+        "tests/specs/check/wasm/__test__.jsonc",
+        "tests/specs/check/with_bare_import/__test__.jsonc",
+        "tests/specs/check/with_tsconfig_json/__test__.jsonc",
+        "tests/specs/check/workspace/__test__.jsonc",
+        "tests/specs/check/workspace_compiler_option_types/__test__.jsonc",
+        "tests/specs/check/workspace_compiler_options_root_dirs/__test__.jsonc",
+        "tests/specs/mod.rs",
+        "tests/util/server/Cargo.toml",
+        "tests/util/server/src/builders.rs",
+        "tests/util/server/src/servers/mod.rs",
+        "tools/lint.js",
+        "tools/update_tsgo.ts"
+      ]
+    },
+    {
+      "sha": "6e4f7677ea30a71e6f9c44bb1927710cdf75d4f7",
+      "message": "chore: remove repetitive words in comment (#31023)",
+      "modifiedFiles": [
+        "cli/lsp/cache.rs",
+        "runtime/tokio_util.rs"
+      ]
+    },
+    {
+      "sha": "48f273b8c916a3cab5dd3aadc11b541647813790",
+      "message": "fix(ext/node): process.moduleLoadList as undefined (#31022)",
+      "modifiedFiles": [
+        "ext/node/polyfills/process.ts",
+        "tests/unit_node/process_test.ts"
+      ]
+    },
+    {
+      "sha": "9e21ce5532ed3e6ac90d04a90f6c1b5ffb4f52b4",
+      "message": "feat(unstable): ability to specify minimum dependency age in deno.json file (#31007)",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "cli/args/flags.rs",
+        "cli/args/mod.rs",
+        "cli/factory.rs",
+        "cli/jsr.rs",
+        "cli/lsp/jsr.rs",
+        "cli/lsp/language_server.rs",
+        "cli/lsp/resolver.rs",
+        "cli/npm.rs",
+        "cli/schemas/config-file.v1.json",
+        "cli/tools/installer/bin_name_resolver.rs",
+        "cli/tools/pm/deps.rs",
+        "cli/util/date.rs",
+        "cli/util/mod.rs",
+        "libs/config/Cargo.toml",
+        "libs/config/clippy.toml",
+        "libs/config/deno_json/mod.rs",
+        "libs/config/lib.rs",
+        "libs/config/util.rs",
+        "libs/config/workspace/mod.rs",
+        "libs/resolver/factory.rs",
+        "tests/specs/install/minimum_dependency_age/__test__.jsonc",
+        "tests/specs/install/minimum_dependency_age/setup.ts"
+      ]
+    },
+    {
+      "sha": "f54a5466e260ccb6fb1c4e49246b651ac372cf76",
+      "message": "ci: skip running WPT and node compat unless labels present (#31012)\n\nThis commit changes the CI script to not run WPT suite and Node compat\nsuite in PRs unless `ci-wpt-test` and `ci-node-test` labels are present\nrespectively.",
+      "modifiedFiles": [
+        ".github/workflows/ci.generate.ts",
+        ".github/workflows/ci.yml",
+        "tests/node_compat/test_runner.rs"
+      ]
+    },
+    {
+      "sha": "00353e7494b093f9ffd82c11e922718a302806e6",
+      "message": "fix(npm): occasional panic when upgrading npm package constraints (#31006)\n\nCloses https://github.com/denoland/deno/issues/30997",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml"
+      ]
+    },
+    {
+      "sha": "7912110a938bc41c204d94f491bc4b93c6e0385a",
+      "message": "feat(unstable): ability to only install dependencies older than a certain date (#30752)\n\nSupports:\n\n- Relative number of minutes (ex. 120 for two hours)\n- ISO 8601 duration format (ex. P2D for two days)\n- RFC3339 absolute date (ex. 2025-09-16T10:48:01+00:00)",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "cli/args/flags.rs",
+        "cli/jsr.rs",
+        "cli/tools/pm/deps.rs",
+        "cli/util/date.rs",
+        "cli/util/mod.rs",
+        "tests/registry/jsr/@denotest/add/meta.json",
+        "tests/registry/npm/@denotest/add/0.5.0/package.json",
+        "tests/registry/npm/@denotest/add/1.0.0/package.json",
+        "tests/specs/install/minimum_dependency_age/__test__.jsonc",
+        "tests/specs/install/minimum_dependency_age/deno.json",
+        "tests/specs/install/minimum_dependency_age/install.out",
+        "tests/specs/install/minimum_dependency_age/outdated.out",
+        "tests/specs/install/minimum_dependency_age/outdated_no_min_dep_age.out",
+        "tests/specs/install/minimum_dependency_age/package.json",
+        "tests/specs/install/minimum_dependency_age/update.out",
+        "tests/specs/install/peer_dep_specific_constraint/lock.out",
+        "tests/specs/lockfile/adding_npm_dep/lock01.out",
+        "tests/specs/lockfile/adding_npm_dep/lock02.out",
+        "tests/specs/lockfile/out_of_date_npm_info/deno.lock.out",
+        "tests/specs/npm/adding_npm_dep_in_dynamic_import/lock.out",
+        "tests/specs/npm/link_npm_package_top_level/expected_lockfile_after_change.out",
+        "tests/specs/run/dynamic_import_dep_written_runtime_with_npm/lock.out",
+        "tests/specs/run/minimum_dependency_age/__test__.jsonc",
+        "tests/specs/run/minimum_dependency_age/main.out",
+        "tests/specs/run/minimum_dependency_age/main.ts",
+        "tests/util/server/src/npm.rs"
+      ]
+    },
+    {
+      "sha": "05958afda0943917c1d0b5a039c1d9141fb56da0",
+      "message": "fix(npm): handle deno run/install of npm package with only directories.bin (#30919)",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "cli/task_runner.rs",
+        "cli/tools/task.rs",
+        "ext/node/lib.rs",
+        "ext/node/ops/require.rs",
+        "ext/node/ops/worker_threads.rs",
+        "libs/node_resolver/Cargo.toml",
+        "libs/node_resolver/analyze.rs",
+        "libs/node_resolver/errors.rs",
+        "libs/node_resolver/resolution.rs",
+        "libs/package_json/lib.rs",
+        "tests/registry/npm/@denotest/directories-bin/1.0.0/bins/cli",
+        "tests/registry/npm/@denotest/directories-bin/1.0.0/package.json",
+        "tests/specs/install/directories_bin/__test__.jsonc",
+        "tests/specs/install/directories_bin/package.json",
+        "tests/specs/install/directories_bin/verify_setup.ts",
+        "tests/specs/npm/deno_run_no_bin_entrypoint/deno_run_no_bin_entrypoint.out",
+        "tests/specs/npm/deno_run_no_bin_entrypoint_non_existent_subpath/deno_run_no_bin_entrypoint_non_existent_subpath.out",
+        "tests/util/server/src/npm.rs"
+      ]
+    },
+    {
+      "sha": "a44f0cb99fe4b7a4c5117ec91efcc71b6bdc7fe0",
+      "message": "fix(ext/node): support option object parameter on `fs.write` and `fs.writeSync` (#30999)\n\nCloses #30972\n\nOther changes:\n- Re-enables ignored tests on `tests/unit_node/_fs/_fs_write_test.ts`\n- Ported the polyfill to `.ts`, though defining the types are tricky\nsince our implementation (ported from node) mutates a lot of variables.",
+      "modifiedFiles": [
+        "ext/node/lib.rs",
+        "ext/node/polyfills/_fs/_fs_write.ts",
+        "ext/node/polyfills/fs.ts",
+        "ext/node/polyfills/internal/fs/streams.mjs",
+        "ext/node/polyfills/internal/fs/utils.mjs",
+        "ext/node/polyfills/internal/validators.mjs",
+        "tests/unit_node/_fs/_fs_write_test.ts",
+        "tools/core_import_map.json"
+      ]
+    },
+    {
+      "sha": "e8fe235d54ec51bccb553fdce297814df5f722da",
+      "message": "feat(ext/http): make websocket response headers mutable (#31000)",
+      "modifiedFiles": [
+        "ext/http/02_websocket.ts",
+        "tests/unit/http_test.ts"
+      ]
+    },
+    {
+      "sha": "e43662812db4f1c9c51aec875781d80593727313",
+      "message": "fix(lockfile): purged package reqs should be removed from the jsr deps when changing workspace config (#30998)",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml"
+      ]
+    },
+    {
+      "sha": "377aed98509fc48537401f472da180eda9180549",
+      "message": "fix(lsp): refresh configuration when tsconfig.json is changed (#30993)",
+      "modifiedFiles": [
+        "cli/lsp/compiler_options.rs",
+        "cli/lsp/config.rs",
+        "cli/lsp/language_server.rs",
+        "tests/integration/lsp_tests.rs"
+      ]
+    },
+    {
+      "sha": "98f62cee78e85bfc47c62ed703777c6bc8794f1c",
+      "message": "fix(rt): prevent `Event` to be overwritten on bootstrap (#30971)\n\nCloses #30953\n\nEnsures that the `Event` class always use the imported one from\n`ext:deno_web/02_event.js`.",
+      "modifiedFiles": [
+        "runtime/js/99_main.js",
+        "tests/unit/globals_test.ts"
+      ]
+    },
+    {
+      "sha": "6edef5c7c718917338283db70ee9b56272bb2db6",
+      "message": "fix(docs): documented allowed subdomain should be gist and not user for githubusercontent.com (#30913)\n\nhttps://github.com/denoland/deno/blob/415acdd462dcfc1c6fd8098273a9d4d269c15e4d/cli/args/mod.rs#L1111-L1112\n\nCloses https://github.com/denoland/deno/issues/30908",
+      "modifiedFiles": [
+        "cli/args/flags.rs"
+      ]
+    },
+    {
+      "sha": "395ed78151600d6b71bbb3390e667017d00aa8df",
+      "message": "fix(check): respect \"compilerOptions.skipLibCheck\" for graph errors (#30989)",
+      "modifiedFiles": [
+        "cli/lsp/compiler_options.rs",
+        "cli/lsp/diagnostics.rs",
+        "cli/type_checker.rs",
+        "libs/resolver/deno_json.rs",
+        "tests/integration/lsp_tests.rs",
+        "tests/specs/check/skip_lib_check_graph_errors/__test__.jsonc",
+        "tests/specs/check/skip_lib_check_graph_errors/deno.json",
+        "tests/specs/check/skip_lib_check_graph_errors/types.d.ts"
+      ]
+    },
+    {
+      "sha": "5cfc4cfd7fc343fe9e27a12979d31d123d3a2984",
+      "message": "fix(npm): add a deduplication pass and reduce lockfile diffs (#30973)\n\n1. deno_lockfile no longer purges npm deps, but instead just purges the\nroot specifiers that have changed.\n2. deno_npm then reuses more dependencies during dependency resolution.\n3. deno_npm now does a final deduplication pass on the graph in order\nlower the chance of duplicate dependencies. This deduplication pass does\nnot occur once code execution is occurring because the deduplication\npass should not remove npm deps that are currently running.",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "cli/factory.rs",
+        "cli/lsp/resolver.rs",
+        "cli/module_loader.rs",
+        "libs/npm_installer/factory.rs",
+        "libs/npm_installer/graph.rs",
+        "libs/npm_installer/initializer.rs",
+        "libs/npm_installer/lib.rs",
+        "libs/npm_installer/resolution.rs",
+        "libs/resolver/graph.rs",
+        "libs/resolver/npm/managed/resolution.rs",
+        "libs/resolver/workspace.rs",
+        "tests/specs/lockfile/config_remove_npm_deps/__test__.jsonc",
+        "tests/specs/lockfile/config_remove_npm_deps/deno.json",
+        "tests/specs/lockfile/config_remove_npm_deps/lock_after_first_remove.out",
+        "tests/specs/lockfile/config_remove_npm_deps/lock_final.out",
+        "tests/specs/lockfile/config_remove_npm_deps/lock_initial.out",
+        "tests/specs/lockfile/config_remove_npm_deps/main.ts",
+        "tests/specs/lockfile/config_remove_npm_deps/output_lockfile.ts",
+        "tests/specs/lockfile/config_remove_npm_deps/remove_dep.ts",
+        "tests/specs/lockfile/run_overlapping_npm_constraints/__test__.jsonc",
+        "tests/specs/lockfile/run_overlapping_npm_constraints/analyzable_dynamic.out",
+        "tests/specs/lockfile/run_overlapping_npm_constraints/analyzable_dynamic.ts",
+        "tests/specs/lockfile/run_overlapping_npm_constraints/analyzable_dynamic_lock.out",
+        "tests/specs/lockfile/run_overlapping_npm_constraints/deno.json",
+        "tests/specs/lockfile/run_overlapping_npm_constraints/non_analyzable_dynamic.out",
+        "tests/specs/lockfile/run_overlapping_npm_constraints/non_analyzable_dynamic.ts",
+        "tests/specs/lockfile/run_overlapping_npm_constraints/non_analyzable_dynamic_lock.out",
+        "tests/specs/lockfile/run_overlapping_npm_constraints/output_lockfile.ts"
+      ]
+    },
+    {
+      "sha": "dd10efa4ef27f4e2700fb4df6dd2066a1e9bb29b",
+      "message": "fix: show referrer range in deno_core loader errors (#30981)",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "cli/module_loader.rs",
+        "cli/rt/run.rs",
+        "cli/tools/jupyter/mod.rs",
+        "cli/tools/repl/channel.rs",
+        "cli/tools/repl/session.rs",
+        "cli/tools/run/hmr.rs",
+        "ext/node/ops/inspector.rs",
+        "libs/resolver/graph.rs",
+        "runtime/coverage.rs",
+        "runtime/fmt_errors.rs",
+        "runtime/inspector_server.rs",
+        "runtime/worker.rs",
+        "tests/integration/run_tests.rs",
+        "tests/specs/node/cjs_analysis_multiple_errors/main.out",
+        "tests/specs/npm/json_import/missing.out",
+        "tests/specs/npm/typescript_file_in_package/main.out",
+        "tests/specs/run/bytes_and_text_imports/npm_dep_import_local_file/error.out",
+        "tests/specs/run/npm_json_without_attribute_error/__test__.jsonc",
+        "tests/specs/run/npm_json_without_attribute_error/deno.json",
+        "tests/specs/run/npm_json_without_attribute_error/main.out",
+        "tests/specs/run/npm_json_without_attribute_error/main.ts",
+        "tests/specs/run/npm_json_without_attribute_error/node_modules/foo/bar.json"
+      ]
+    },
+    {
+      "sha": "e2b107867ea40395ff7999064fd9494eb09e2153",
+      "message": "fix(napi): Fix misused `napi_callback_info` in `CallbackInfo` (#30983)",
+      "modifiedFiles": [
+        "ext/napi/function.rs",
+        "ext/napi/js_native_api.rs"
+      ]
+    },
+    {
+      "sha": "80e54a81e73038bc984acdbfe963084a801a2206",
+      "message": "fix(ext/node): checking `Symbol` in `env` should not ask for permission (#30965)\n\nDiscovered on #30905, though not directly addressing the main issue\n\nGiven this code: \n```ts\nconsole.log(globalThis.process.env)\n```\n\nDeno 2.5.4:\n```bash\n➜ deno index.ts \n✅ Granted env access to \"Symbol(Deno.customInspect)\".\n✅ Granted env access to \"Symbol(Deno.privateCustomInspect)\".\n✅ Granted env access to \"Symbol(nodejs.util.inspect.custom)\".\n✅ Granted env access to \"constructor\".\n✅ Granted env access to \"Symbol(Symbol.iterator)\".\n✅ Granted env access.\n[..result..]\n```\n\nThis PR:\n```bash\n➜ deno index.ts\n✅ Granted env access to \"constructor\".\n✅ Granted env access.\n[..result..]\n```\n\nFuthermore, it allows the following tests to pass:\n-\nhttps://github.com/nodejs/node/blob/v24.2.0/test/parallel/test-process-env-deprecation.js\n-\nhttps://github.com/nodejs/node/blob/v24.2.0/test/parallel/test-process-env-ignore-getter-setter.js",
+      "modifiedFiles": [
+        "ext/node/polyfills/_process/process.ts",
+        "ext/node/polyfills/internal/errors.ts",
+        "tests/node_compat/config.toml",
+        "tests/unit_node/process_test.ts"
+      ]
+    },
+    {
+      "sha": "24e63b760707b60e02be3767ff2f605f4bc375a4",
+      "message": "chore: document why some packages have bin entry only in packument (#30916)",
+      "modifiedFiles": [
+        "libs/npm_installer/extra_info.rs"
+      ]
+    },
+    {
+      "sha": "878343e3c89a5361ea07d269be22705bbeaf33c9",
+      "message": "ci: fix release script to format semver (#30962)",
+      "modifiedFiles": [
+        "tools/release/00_start_release.ts"
+      ]
+    },
+    {
+      "sha": "710418c097b48e17d15a596ef8ddc1633ba674a2",
+      "message": "fix: Deno.serve correctly passes tcpBacklog option (#30748)\n\nTypo made in https://github.com/denoland/deno/pull/30541",
+      "modifiedFiles": [
+        "ext/http/00_serve.ts"
+      ]
+    },
+    {
+      "sha": "fd3ae4a1f141d01a39957af090e252318c77243a",
+      "message": "fix(docs): Deno.args example doesn\u0027t work (#30969)",
+      "modifiedFiles": [
+        "cli/tsc/dts/lib.deno.ns.d.ts",
+        "tests/integration/lsp_tests.rs"
+      ]
+    },
+    {
+      "sha": "03a5e4531b1e68574b139bf21cb55afb0f1fc8ce",
+      "message": "fix(ext/node): `dns.resolve6` compatibility (#30974)\n\nCloses #30936\n\nThe `compressIPv6` function is causing this issue. Maybe it was used in\nthe past to compress IPv6 address returned from the op function, though\nI might be wrong about this.\n\nBoth `Deno.resolveDns` and the `resolve6` polyfill use `op_dns_resolve`\nop function, which returns a result that already matches with the\nNode.js\u0027 `resolve6`. The incorrect result is due to our `resolve6`\npolyfill applying the `compressIPv6` function to the result.",
+      "modifiedFiles": [
+        "ext/node/polyfills/internal_binding/cares_wrap.ts",
+        "tests/unit_node/net_test.ts"
+      ]
+    },
+    {
+      "sha": "302b6fc5a5d0ae3eb335208a160eeeda1c07a177",
+      "message": "fix(ext/web): fix promise chain leak of ReadableStream (#30871)\n\nCloses #30298\n\nThis problem occurs because promise chain keep growing(like a stack\noverflow caused by a recursive function) while the stream is running. To\nsolve this, used a loop.",
+      "modifiedFiles": [
+        "ext/web/06_streams.js",
+        "tests/unit/streams_test.ts"
+      ]
+    },
+    {
+      "sha": "cce15c39b8e5c22694a4d76e0dc355efa32e0dd3",
+      "message": "fix(ext/node): `path.matchesGlob` compatibility (#30976)",
+      "modifiedFiles": [
+        "ext/node/polyfills/_fs/_fs_glob.ts",
+        "ext/node/polyfills/path/_posix.ts",
+        "ext/node/polyfills/path/_win32.ts",
+        "ext/node/polyfills/path/mod.ts",
+        "tests/node_compat/config.toml",
+        "tools/core_import_map.json"
+      ]
+    },
+    {
+      "sha": "15ef715f20cb0fc204d602029d04ce28ecae5988",
+      "message": "fix(process): case insenstive check for disallowing .bat and .cmd (#30967)",
+      "modifiedFiles": [
+        "ext/process/lib.rs",
+        "tests/unit/command_test.ts"
+      ]
+    },
+    {
+      "sha": "6fbce91e40cc07fc6da74068e5cc56fdd40f7b4c",
+      "message": "2.5.4 (#30961)\n\nBumped versions for 2.5.4\n\n---------\n\nCo-authored-by: bartlomieju \u003cbartlomieju@users.noreply.github.com\u003e\nCo-authored-by: Bartek Iwańczuk \u003cbiwanczuk@gmail.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/ci.generate.ts",
+        ".github/workflows/ci.yml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "Releases.md",
+        "bench_util/Cargo.toml",
+        "cli/Cargo.toml",
+        "cli/lib/Cargo.toml",
+        "cli/lib/version.txt",
+        "cli/rt/Cargo.toml",
+        "cli/snapshot/Cargo.toml",
+        "ext/broadcast_channel/Cargo.toml",
+        "ext/bundle/Cargo.toml",
+        "ext/cache/Cargo.toml",
+        "ext/canvas/Cargo.toml",
+        "ext/console/Cargo.toml",
+        "ext/cron/Cargo.toml",
+        "ext/crypto/Cargo.toml",
+        "ext/fetch/Cargo.toml",
+        "ext/ffi/Cargo.toml",
+        "ext/fs/Cargo.toml",
+        "ext/http/Cargo.toml",
+        "ext/io/Cargo.toml",
+        "ext/kv/Cargo.toml",
+        "ext/napi/Cargo.toml",
+        "ext/napi/sym/Cargo.toml",
+        "ext/net/Cargo.toml",
+        "ext/node/Cargo.toml",
+        "ext/os/Cargo.toml",
+        "ext/process/Cargo.toml",
+        "ext/rt_helper/Cargo.toml",
+        "ext/signals/Cargo.toml",
+        "ext/telemetry/Cargo.toml",
+        "ext/tls/Cargo.toml",
+        "ext/url/Cargo.toml",
+        "ext/web/Cargo.toml",
+        "ext/webgpu/Cargo.toml",
+        "ext/webidl/Cargo.toml",
+        "ext/websocket/Cargo.toml",
+        "ext/webstorage/Cargo.toml",
+        "libs/config/Cargo.toml",
+        "libs/crypto/Cargo.toml",
+        "libs/maybe_sync/Cargo.toml",
+        "libs/node_resolver/Cargo.toml",
+        "libs/npm_cache/Cargo.toml",
+        "libs/npm_installer/Cargo.toml",
+        "libs/package_json/Cargo.toml",
+        "libs/resolver/Cargo.toml",
+        "runtime/Cargo.toml",
+        "runtime/features/Cargo.toml",
+        "runtime/permissions/Cargo.toml",
+        "runtime/subprocess_windows/Cargo.toml"
+      ]
+    },
+    {
+      "sha": "aca48143b5293a6658af47f88ad08e5285d64c8d",
+      "message": "fix(cache): don\u0027t try to set up node_modules with node_modules_dir manual in deno cache (#30957)\n\nFixes #30949. Fixes #30938",
+      "modifiedFiles": [
+        "cli/factory.rs",
+        "cli/tools/installer/mod.rs",
+        "tests/specs/cache/nmd_manual/__test__.jsonc",
+        "tests/specs/cache/nmd_manual/cache.out",
+        "tests/specs/cache/nmd_manual/deno.lock",
+        "tests/specs/cache/nmd_manual/main.ts",
+        "tests/specs/cache/nmd_manual/node_modules/@denotest/add/index.js",
+        "tests/specs/cache/nmd_manual/node_modules/@denotest/esm-basic/index.js",
+        "tests/specs/cache/nmd_manual/package.json"
+      ]
+    },
+    {
+      "sha": "6e80d3167c72b7eca0499f23d84f59ae7aed5f53",
+      "message": "fix(tunnel): unhide --tunnel flag (#30940)",
+      "modifiedFiles": [
+        "cli/args/flags.rs",
+        "cli/main.rs"
+      ]
+    },
+    {
+      "sha": "f20c8cdb892abaecfe1d6a61bbae3768e44db406",
+      "message": "fix(update): preserve tilde in version range (#30946)\n\nFixes https://github.com/denoland/deno/issues/30925",
+      "modifiedFiles": [
+        "cli/tools/pm/outdated/mod.rs",
+        "tests/specs/outdated/preserve_tilde/__test__.jsonc",
+        "tests/specs/outdated/preserve_tilde/deno.json",
+        "tests/specs/outdated/preserve_tilde/deno.json.version.out",
+        "tests/specs/outdated/preserve_tilde/update.out"
+      ]
+    },
+    {
+      "sha": "ee8c4d948390b32062e22503ae7d3c27bfffe859",
+      "message": "feat(internal): support variants of spec tests (#30947)\n\nAdds support for a new key `\"variants\"` that effectively parameterizes a\ntest, allowing you to substitute different values for each scenario. For\ninstance, I\u0027m planning on using this in the tsgo PR, where I\u0027ll have\ntests like\n\n```json\n{\n  \"variants\": {\n    \"tsgo\": {\n      \"maybe_unstable_tsgo\": \"--unstable-tsgo\"\n    },\n    \"tsjs\": {\n      \"maybe_unstable_tsgo\": \"\"\n    }\n  },\n  \"steps\": [\n    {\n      \"args\": \"install\",\n      \"output\": \"[WILDCARD]\"\n    },\n    {\n      \"args\": \"check ${maybe_unstable_tsgo} main.ts\",\n      \"output\": \"check.out\"\n    }\n  ]\n}\n```\nThis effectively expands into two separate tests: one called\n`test_name::tsgo` which runs `check --unstable-tsgo main.ts`, and\nanother called `test_name::tsjs` which runs `check main.ts`\n\nI imagine this to be useful to run tests under the various\n`--node-modules` modes as well\n\nThe way it works is that it generates a test for each variant, and then\nin each variant the values specified for each variant are substituted\nwhenever you refer to them with `${name}` (I added the curly braces to\nmake it unambiguous when you have variables that are prefixes of one\nanother). Right now that substitution only applies to the `\"output\"` key\n(so you can have different output expectations for different variants)\nand `\"args\"`, but we can easily expand that\n\nImplementation is not particularly efficient, but it\u0027s good enough for\nnow",
+      "modifiedFiles": [
+        "tests/specs/mod.rs",
+        "tests/specs/schema.json"
+      ]
+    },
+    {
+      "sha": "b8c133a7e2140810a8f74f0e8d683824b321b706",
+      "message": "test: disable test-fs-cp.mjs (#30954)\n\nThis is failing on main due to too long socket path.",
+      "modifiedFiles": [
+        "tests/node_compat/config.toml"
+      ]
+    },
+    {
+      "sha": "a0172f07c3cbb23d621f3ddae4aff808ff390daa",
+      "message": "test: update autobahn test suite (#30951)",
+      "modifiedFiles": [
+        "ext/websocket/autobahn/fuzzingclient.js",
+        "tests/node_compat/config.toml"
+      ]
+    },
+    {
+      "sha": "3bd08b21c0de52a0ad01587f971bfb00ed279639",
+      "message": "test: use `Deno.execPath()` instead of `deno` (#30914)\n\nCurrently most TS tests use `Deno.execPath()` to identify where `deno`\nlives.\nIn the event deno is not on the `$PATH` these tests will fail.\nIf deno is on the `$PATH` you can end up testing the wrong instance of\n`deno`.",
+      "modifiedFiles": [
+        "tests/unit/process_test.ts"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "deno",
+      "ownerLogin": "lededude",
+      "commitCount": 96
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "lifaon74",
+      "commitCount": 90
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "shannon",
+      "commitCount": 87
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "COMPU-GLOBALHYPERMEGANET",
+      "commitCount": 79
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "withtimezone",
+      "commitCount": 82
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "ajeevsan",
+      "commitCount": 79
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "fraidev",
+      "commitCount": 79
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "pulopreto500-lgtm",
+      "commitCount": 79
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "webcreate123",
+      "commitCount": 73
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "aylaeroglu",
+      "commitCount": 72
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "ryanwtf88",
+      "commitCount": 71
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "CPunisher",
+      "commitCount": 64
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "owonie",
+      "commitCount": 64
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "aionixone",
+      "commitCount": 59
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "010secureng",
+      "commitCount": 59
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "tdchwish",
+      "commitCount": 59
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "Zakaria-CPU301",
+      "commitCount": 58
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "Action-required-verification22",
+      "commitCount": 58
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "Abhijeet911max",
+      "commitCount": 57
+    },
+    {
+      "name": "deno",
+      "ownerLogin": "skpjr001",
+      "commitCount": 57
+    }
+  ]
+}

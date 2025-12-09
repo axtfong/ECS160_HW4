@@ -1,0 +1,700 @@
+{
+  "name": "godot",
+  "ownerLogin": "godotengine",
+  "language": "C++",
+  "commits": [
+    {
+      "sha": "5950fca36cb311edcc72e479effed5c477d20adb",
+      "message": "Merge pull request #111845 from akien-mga/mbedtls-3.6.5\n\nmbedTLS: Update to version 3.6.5",
+      "modifiedFiles": [
+        "thirdparty/README.md",
+        "thirdparty/mbedtls/include/mbedtls/bignum.h",
+        "thirdparty/mbedtls/include/mbedtls/build_info.h",
+        "thirdparty/mbedtls/include/mbedtls/cipher.h",
+        "thirdparty/mbedtls/include/mbedtls/mbedtls_config.h",
+        "thirdparty/mbedtls/include/mbedtls/threading.h",
+        "thirdparty/mbedtls/include/psa/crypto_extra.h",
+        "thirdparty/mbedtls/library/bignum.c",
+        "thirdparty/mbedtls/library/bignum_core.c",
+        "thirdparty/mbedtls/library/bignum_core.h",
+        "thirdparty/mbedtls/library/bignum_core_invasive.h",
+        "thirdparty/mbedtls/library/bignum_internal.h",
+        "thirdparty/mbedtls/library/cipher.c",
+        "thirdparty/mbedtls/library/cipher_invasive.h",
+        "thirdparty/mbedtls/library/dhm.c",
+        "thirdparty/mbedtls/library/ecdsa.c",
+        "thirdparty/mbedtls/library/ecp.c",
+        "thirdparty/mbedtls/library/psa_crypto.c",
+        "thirdparty/mbedtls/library/psa_crypto_cipher.c",
+        "thirdparty/mbedtls/library/psa_crypto_core.h",
+        "thirdparty/mbedtls/library/rsa.c",
+        "thirdparty/mbedtls/library/rsa_alt_helpers.c",
+        "thirdparty/mbedtls/library/rsa_alt_helpers.h",
+        "thirdparty/mbedtls/library/ssl_msg.c",
+        "thirdparty/mbedtls/library/ssl_tls.c",
+        "thirdparty/mbedtls/library/ssl_tls12_client.c",
+        "thirdparty/mbedtls/library/threading.c",
+        "thirdparty/mbedtls/library/threading_internal.h",
+        "thirdparty/mbedtls/patches/0001-msvc-2019-psa-redeclaration.patch"
+      ]
+    },
+    {
+      "sha": "37764110f6c09863ac36ede4895b8cd60f7e766f",
+      "message": "Merge pull request #110271 from BlueCube3310/image-conv-opti-incompatible\n\nImage: Optimize manual format conversion",
+      "modifiedFiles": [
+        "core/io/image.cpp"
+      ]
+    },
+    {
+      "sha": "40eb34833bd008b1361315581766dc6ae54e8617",
+      "message": "Merge pull request #111325 from TokageItLab/state-default-st\n\nMake StateMachinePlayback set `Start` state as default in constructor",
+      "modifiedFiles": [
+        "scene/animation/animation_node_state_machine.h"
+      ]
+    },
+    {
+      "sha": "0d85d43b0c8d7e6188769530a2c41f1e9ba313b1",
+      "message": "Merge pull request #111162 from KoBeWi/tfw_your_side_projects_goes_to_trash\n\nRemove side menu functionality in `EditorFileDialog`",
+      "modifiedFiles": [
+        "doc/classes/EditorFileDialog.xml",
+        "editor/gui/editor_file_dialog.cpp",
+        "editor/gui/editor_file_dialog.h",
+        "modules/gltf/editor/editor_scene_exporter_gltf_plugin.cpp",
+        "modules/gltf/editor/editor_scene_exporter_gltf_plugin.h"
+      ]
+    },
+    {
+      "sha": "4e7511968f175741ad36ef93d470cbc05c5834b9",
+      "message": "Merge pull request #109753 from dsnopek/openxr-ext-threading-docs\n\n`OpenXRExtensionWrapper`: Document how to safely work when rendering with \"Separate\" thread model",
+      "modifiedFiles": [
+        "modules/openxr/doc_classes/OpenXRAPIExtension.xml",
+        "modules/openxr/doc_classes/OpenXRExtensionWrapper.xml"
+      ]
+    },
+    {
+      "sha": "50ac10f40d84e382e83f68119154102e6c2da021",
+      "message": "Merge pull request #111830 from KoBeWi/documentation_on_multiple_levels\n\nAdd multilevel notes to methods",
+      "modifiedFiles": [
+        "doc/classes/Object.xml"
+      ]
+    },
+    {
+      "sha": "04625b0fba83c7cb87756e7e29f88f3945ccc309",
+      "message": "Merge pull request #111921 from kleonc/control_pivot_offset_fix_missing_storage_flag\n\nFix `Control.pivot_offset` missing `PROPERTY_USAGE_STORAGE` flag",
+      "modifiedFiles": [
+        "scene/gui/control.cpp"
+      ]
+    },
+    {
+      "sha": "8f3e76c898f2dce91b37e94f8ba358ea49b3221c",
+      "message": "Merge pull request #111437 from Kaleb-Reid/compat-fix-proximity-fade\n\nUse correct ndc for proximity fade in Compatibility",
+      "modifiedFiles": [
+        "scene/resources/material.cpp"
+      ]
+    },
+    {
+      "sha": "f9460763b1c5b42a50f795632aad3c79adb2404e",
+      "message": "Merge pull request #111847 from akien-mga/akien/embedded-run-respect-override\n\nEditorRun: Load `override.cfg` to get window configuration for embedded mode",
+      "modifiedFiles": [
+        "editor/run/editor_run.cpp"
+      ]
+    },
+    {
+      "sha": "38e20331c8325e7c92a590af6cec670e5c8d2990",
+      "message": "Merge pull request #107303 from passivestar/close-dialog-action\n\nAdd support for closing dialog windows with Cmd+W on macOS",
+      "modifiedFiles": [
+        "core/input/input_map.cpp",
+        "doc/classes/AcceptDialog.xml",
+        "doc/classes/ProjectSettings.xml",
+        "scene/gui/dialogs.cpp"
+      ]
+    },
+    {
+      "sha": "1b84fe745b51ebb24abbf48cf9bbcb086a098c62",
+      "message": "Merge pull request #110308 from BlueCube3310/image-mip-renorm-fix\n\nImage: Fix normalization of mipmaps for half and float formats",
+      "modifiedFiles": [
+        "core/io/image.cpp"
+      ]
+    },
+    {
+      "sha": "e92cc976bd03d2cd1c8e82b1957a5ffa82a48eb6",
+      "message": "Merge pull request #109220 from precup/avoid-spurious-curve-changed-signals\n\nRemove spurious `Curve3D` `changed` signals",
+      "modifiedFiles": [
+        "editor/scene/3d/path_3d_editor_plugin.cpp"
+      ]
+    },
+    {
+      "sha": "73b0ea37b16de8ef70370514cee88af637a70ee3",
+      "message": "Merge pull request #107843 from DexterFstone/fix/tilemap-tool-override\n\nFix: Tilemap tools not overriding main editor tools",
+      "modifiedFiles": [
+        "editor/scene/2d/tiles/tile_map_layer_editor.cpp"
+      ]
+    },
+    {
+      "sha": "c53a181ceaa427358bb8b4e7a0c1c8f30c1e6503",
+      "message": "Merge pull request #85762 from KoBeWi/wait_it\u0027s_all_nodes︖\n\nAdd `change_scene_to_node()`",
+      "modifiedFiles": [
+        "doc/classes/SceneTree.xml",
+        "scene/main/scene_tree.cpp",
+        "scene/main/scene_tree.h"
+      ]
+    },
+    {
+      "sha": "46d1082c9314751107b85bc5aea52584eb9db4b9",
+      "message": "Merge pull request #110433 from devloglogan/custom-monitor-types\n\nAllow custom debug monitors to select desired type",
+      "modifiedFiles": [
+        "core/debugger/remote_debugger.cpp",
+        "doc/classes/Performance.xml",
+        "editor/debugger/editor_performance_profiler.cpp",
+        "editor/debugger/editor_performance_profiler.h",
+        "editor/debugger/script_editor_debugger.cpp",
+        "main/performance.compat.inc",
+        "main/performance.cpp",
+        "main/performance.h",
+        "misc/extension_api_validation/4.5-stable.expected"
+      ]
+    },
+    {
+      "sha": "9de2837cd521f92ad3f18bbe1f1e7d33f10d893e",
+      "message": "mbedTLS: Update to version 3.6.5",
+      "modifiedFiles": [
+        "thirdparty/README.md",
+        "thirdparty/mbedtls/include/mbedtls/bignum.h",
+        "thirdparty/mbedtls/include/mbedtls/build_info.h",
+        "thirdparty/mbedtls/include/mbedtls/cipher.h",
+        "thirdparty/mbedtls/include/mbedtls/mbedtls_config.h",
+        "thirdparty/mbedtls/include/mbedtls/threading.h",
+        "thirdparty/mbedtls/include/psa/crypto_extra.h",
+        "thirdparty/mbedtls/library/bignum.c",
+        "thirdparty/mbedtls/library/bignum_core.c",
+        "thirdparty/mbedtls/library/bignum_core.h",
+        "thirdparty/mbedtls/library/bignum_core_invasive.h",
+        "thirdparty/mbedtls/library/bignum_internal.h",
+        "thirdparty/mbedtls/library/cipher.c",
+        "thirdparty/mbedtls/library/cipher_invasive.h",
+        "thirdparty/mbedtls/library/dhm.c",
+        "thirdparty/mbedtls/library/ecdsa.c",
+        "thirdparty/mbedtls/library/ecp.c",
+        "thirdparty/mbedtls/library/psa_crypto.c",
+        "thirdparty/mbedtls/library/psa_crypto_cipher.c",
+        "thirdparty/mbedtls/library/psa_crypto_core.h",
+        "thirdparty/mbedtls/library/rsa.c",
+        "thirdparty/mbedtls/library/rsa_alt_helpers.c",
+        "thirdparty/mbedtls/library/rsa_alt_helpers.h",
+        "thirdparty/mbedtls/library/ssl_msg.c",
+        "thirdparty/mbedtls/library/ssl_tls.c",
+        "thirdparty/mbedtls/library/ssl_tls12_client.c",
+        "thirdparty/mbedtls/library/threading.c",
+        "thirdparty/mbedtls/library/threading_internal.h",
+        "thirdparty/mbedtls/patches/0001-msvc-2019-psa-redeclaration.patch"
+      ]
+    },
+    {
+      "sha": "afec8a1892ec4c9b1fb97707152a9ebe4c42be30",
+      "message": "Fix Control.pivot_offset missing PROPERTY_USAGE_STORAGE flag",
+      "modifiedFiles": [
+        "scene/gui/control.cpp"
+      ]
+    },
+    {
+      "sha": "4266a4e4eb3db576f8728abcc6fe14abba89cce6",
+      "message": "Image: Fix normalization of mipmaps for half and float formats",
+      "modifiedFiles": [
+        "core/io/image.cpp"
+      ]
+    },
+    {
+      "sha": "1a8306bbc12f531d9ec894413f24316510694a19",
+      "message": "Allow custom monitors to select desired type",
+      "modifiedFiles": [
+        "core/debugger/remote_debugger.cpp",
+        "doc/classes/Performance.xml",
+        "editor/debugger/editor_performance_profiler.cpp",
+        "editor/debugger/editor_performance_profiler.h",
+        "editor/debugger/script_editor_debugger.cpp",
+        "main/performance.compat.inc",
+        "main/performance.cpp",
+        "main/performance.h",
+        "misc/extension_api_validation/4.5-stable.expected"
+      ]
+    },
+    {
+      "sha": "b63ec3d0f02775c2625b99f79331857ff69d3cf4",
+      "message": "Image: Optimize format conversion",
+      "modifiedFiles": [
+        "core/io/image.cpp"
+      ]
+    },
+    {
+      "sha": "33ccc5110e234aedc14da41981b322413251fa71",
+      "message": "Remove side menu functionality in EditorFileDialog",
+      "modifiedFiles": [
+        "doc/classes/EditorFileDialog.xml",
+        "editor/gui/editor_file_dialog.cpp",
+        "editor/gui/editor_file_dialog.h",
+        "modules/gltf/editor/editor_scene_exporter_gltf_plugin.cpp",
+        "modules/gltf/editor/editor_scene_exporter_gltf_plugin.h"
+      ]
+    },
+    {
+      "sha": "88a5cd2fe0be7ae9fd1dae62a138309c821f79fe",
+      "message": "Add change_scene_to_node()",
+      "modifiedFiles": [
+        "doc/classes/SceneTree.xml",
+        "scene/main/scene_tree.cpp",
+        "scene/main/scene_tree.h"
+      ]
+    },
+    {
+      "sha": "979f8fa3422825236e072cb21ad4e0eff3388459",
+      "message": "Add support for closing dialog windows with Cmd+W on macOS",
+      "modifiedFiles": [
+        "core/input/input_map.cpp",
+        "doc/classes/AcceptDialog.xml",
+        "doc/classes/ProjectSettings.xml",
+        "scene/gui/dialogs.cpp"
+      ]
+    },
+    {
+      "sha": "9aa0465a7acf1bc07a8bdd34333cb2de0590a5ff",
+      "message": "Fix: Tilemap tools not overriding main editor tools",
+      "modifiedFiles": [
+        "editor/scene/2d/tiles/tile_map_layer_editor.cpp"
+      ]
+    },
+    {
+      "sha": "9cd297b6f2a0ee660b8f1a6b385582cccf3a9d10",
+      "message": "Merge pull request #107487 from roughbits01/fix-shortcut-names\n\nRemove the need to have a display name for built-in action overrides",
+      "modifiedFiles": [
+        "core/input/input_map.cpp"
+      ]
+    },
+    {
+      "sha": "3f34e38703e3054120510db0208f0ace58779a81",
+      "message": "Merge pull request #109596 from atlasapplications/splash-screen-stretch-mode\n\nAdd Stretch Modes for Splash Screen",
+      "modifiedFiles": [
+        "core/config/project_settings.cpp",
+        "doc/classes/ProjectSettings.xml",
+        "doc/classes/RenderingServer.xml",
+        "drivers/gles3/rasterizer_gles3.cpp",
+        "drivers/gles3/rasterizer_gles3.h",
+        "main/main.cpp",
+        "platform/ios/export/export_plugin.cpp",
+        "platform/web/export/export_plugin.cpp",
+        "servers/rendering/dummy/rasterizer_dummy.h",
+        "servers/rendering/renderer_compositor.cpp",
+        "servers/rendering/renderer_compositor.h",
+        "servers/rendering/renderer_rd/renderer_compositor_rd.cpp",
+        "servers/rendering/renderer_rd/renderer_compositor_rd.h",
+        "servers/rendering/rendering_server.cpp",
+        "servers/rendering/rendering_server.h",
+        "servers/rendering/rendering_server_default.h"
+      ]
+    },
+    {
+      "sha": "84d516fc9134a38c9d51fc736609fe32862839e7",
+      "message": "Merge pull request #111834 from clayjohn/OBS-bug\n\nUse `GL_FRAMEBUFFER` instead of `GL_DRAW_FRAMEBUFFER` when doing final blit to the screen framebuffer to work around OBS bug",
+      "modifiedFiles": [
+        "drivers/gles3/rasterizer_gles3.cpp"
+      ]
+    },
+    {
+      "sha": "201eed71294ba727834ba8e758e1664a532e0299",
+      "message": "Merge pull request #94488 from Alex2782/fix_create_folder_94446\n\nFix `exclusive` child window",
+      "modifiedFiles": [
+        "scene/main/viewport.cpp"
+      ]
+    },
+    {
+      "sha": "81910428e6df4657c88a0b4822251510f08ff43b",
+      "message": "Merge pull request #103478 from KoBeWi/hover_witch\n\nAdd switch on hover to TabBar",
+      "modifiedFiles": [
+        "doc/classes/TabBar.xml",
+        "doc/classes/TabContainer.xml",
+        "editor/docks/editor_dock_manager.cpp",
+        "editor/editor_node.cpp",
+        "editor/inspector/editor_properties.cpp",
+        "editor/scene/scene_tree_editor.cpp",
+        "editor/themes/editor_theme_manager.cpp",
+        "scene/gui/tab_bar.cpp",
+        "scene/gui/tab_bar.h",
+        "scene/gui/tab_container.cpp",
+        "scene/gui/tab_container.h",
+        "scene/theme/default_theme.cpp"
+      ]
+    },
+    {
+      "sha": "ec62f12862c4cfc76526eaf99afa0a24249f8288",
+      "message": "Merge pull request #109971 from clayjohn/hdr2d-mobile\n\nUse half float precision buffer for 3D when HDR2D is enabled",
+      "modifiedFiles": [
+        "servers/rendering/renderer_rd/forward_clustered/render_forward_clustered.cpp",
+        "servers/rendering/renderer_rd/forward_mobile/render_forward_mobile.cpp",
+        "servers/rendering/renderer_rd/forward_mobile/render_forward_mobile.h",
+        "servers/rendering/renderer_rd/renderer_scene_render_rd.cpp",
+        "servers/rendering/renderer_rd/renderer_scene_render_rd.h",
+        "servers/rendering/renderer_rd/shaders/forward_clustered/scene_forward_clustered_inc.glsl",
+        "servers/rendering/renderer_rd/shaders/forward_mobile/scene_forward_mobile.glsl",
+        "servers/rendering/renderer_rd/shaders/forward_mobile/scene_forward_mobile_inc.glsl",
+        "servers/rendering/renderer_rd/shaders/scene_forward_lights_inc.glsl",
+        "servers/rendering/renderer_rd/storage_rd/light_storage.cpp",
+        "servers/rendering/renderer_rd/storage_rd/render_scene_buffers_rd.cpp",
+        "servers/rendering/renderer_rd/storage_rd/render_scene_buffers_rd.h",
+        "servers/rendering/renderer_rd/storage_rd/texture_storage.cpp"
+      ]
+    },
+    {
+      "sha": "70f07467bed9cb7952b5523a720fba33bc7abf0e",
+      "message": "Merge pull request #110127 from AayushSarikhada/android-back-gesture-fail-fix\n\nFix Android back gesture failing after keyboard dismissal",
+      "modifiedFiles": [
+        "platform/android/java/lib/src/org/godotengine/godot/input/GodotEditText.java"
+      ]
+    },
+    {
+      "sha": "e870cd911b89875c0ed635a3bc2e40fea90177ca",
+      "message": "Merge pull request #110895 from Giganzo/input-focus\n\nAdd setting for when to show the focus state for mouse input",
+      "modifiedFiles": [
+        "core/config/project_settings.cpp",
+        "doc/classes/Control.xml",
+        "doc/classes/ProjectSettings.xml",
+        "scene/gui/line_edit.cpp",
+        "scene/gui/text_edit.cpp",
+        "scene/main/viewport.cpp"
+      ]
+    },
+    {
+      "sha": "361ea1153ee0e226947d5f5f8ba862a2bbe3316e",
+      "message": "Merge pull request #111140 from DeeJayLSP/gdinter\n\nUse Inter as the default editor font, features enabled",
+      "modifiedFiles": [
+        "COPYRIGHT.txt",
+        "doc/classes/EditorSettings.xml",
+        "editor/themes/editor_fonts.cpp",
+        "tests/scene/test_fontfile.h",
+        "tests/servers/test_text_server.h",
+        "thirdparty/README.md",
+        "thirdparty/fonts/Inter_Bold.woff2",
+        "thirdparty/fonts/Inter_Regular.woff2",
+        "thirdparty/fonts/LICENSE.Inter.txt",
+        "thirdparty/fonts/NotoSans_Bold.woff2",
+        "thirdparty/fonts/NotoSans_Regular.woff2"
+      ]
+    },
+    {
+      "sha": "682b0f7c54f0fe323f28109c7fd6900821c06d9e",
+      "message": "Add switch on hover to TabBar",
+      "modifiedFiles": [
+        "doc/classes/TabBar.xml",
+        "doc/classes/TabContainer.xml",
+        "editor/docks/editor_dock_manager.cpp",
+        "editor/editor_node.cpp",
+        "editor/inspector/editor_properties.cpp",
+        "editor/scene/scene_tree_editor.cpp",
+        "editor/themes/editor_theme_manager.cpp",
+        "scene/gui/tab_bar.cpp",
+        "scene/gui/tab_bar.h",
+        "scene/gui/tab_container.cpp",
+        "scene/gui/tab_container.h",
+        "scene/theme/default_theme.cpp"
+      ]
+    },
+    {
+      "sha": "b6b3e1ef9ee67fdf996951ee0fae9a7c6b883dff",
+      "message": "Add Stretch Modes for Splash Screen\n\nCo-authored-by: Samuel Pedrajas \u003csamuelpedrajaspz@gmail.com\u003e",
+      "modifiedFiles": [
+        "core/config/project_settings.cpp",
+        "doc/classes/ProjectSettings.xml",
+        "doc/classes/RenderingServer.xml",
+        "drivers/gles3/rasterizer_gles3.cpp",
+        "drivers/gles3/rasterizer_gles3.h",
+        "main/main.cpp",
+        "platform/ios/export/export_plugin.cpp",
+        "platform/web/export/export_plugin.cpp",
+        "servers/rendering/dummy/rasterizer_dummy.h",
+        "servers/rendering/renderer_compositor.cpp",
+        "servers/rendering/renderer_compositor.h",
+        "servers/rendering/renderer_rd/renderer_compositor_rd.cpp",
+        "servers/rendering/renderer_rd/renderer_compositor_rd.h",
+        "servers/rendering/rendering_server.cpp",
+        "servers/rendering/rendering_server.h",
+        "servers/rendering/rendering_server_default.h"
+      ]
+    },
+    {
+      "sha": "f61ee7bdf6bb3a3d7cd1c7e99b1d047dcee47f5c",
+      "message": "Use half float precision buffer for 3D when HDR2D is enabled\n\nThis is necessary for Environment effects like Glow to work correctly.",
+      "modifiedFiles": [
+        "servers/rendering/renderer_rd/forward_clustered/render_forward_clustered.cpp",
+        "servers/rendering/renderer_rd/forward_mobile/render_forward_mobile.cpp",
+        "servers/rendering/renderer_rd/forward_mobile/render_forward_mobile.h",
+        "servers/rendering/renderer_rd/renderer_scene_render_rd.cpp",
+        "servers/rendering/renderer_rd/renderer_scene_render_rd.h",
+        "servers/rendering/renderer_rd/shaders/forward_clustered/scene_forward_clustered_inc.glsl",
+        "servers/rendering/renderer_rd/shaders/forward_mobile/scene_forward_mobile.glsl",
+        "servers/rendering/renderer_rd/shaders/forward_mobile/scene_forward_mobile_inc.glsl",
+        "servers/rendering/renderer_rd/shaders/scene_forward_lights_inc.glsl",
+        "servers/rendering/renderer_rd/storage_rd/light_storage.cpp",
+        "servers/rendering/renderer_rd/storage_rd/render_scene_buffers_rd.cpp",
+        "servers/rendering/renderer_rd/storage_rd/render_scene_buffers_rd.h",
+        "servers/rendering/renderer_rd/storage_rd/texture_storage.cpp"
+      ]
+    },
+    {
+      "sha": "c7b176756073ad974be797bc8d039b1628f1264a",
+      "message": "Merge pull request #110972 from Tcarr20/fix-editor-log-bbcode-search\n\nFix editor log search ignoring BBCode formatting in messages",
+      "modifiedFiles": [
+        "editor/editor_log.cpp",
+        "editor/editor_log.h"
+      ]
+    },
+    {
+      "sha": "10506f88d2bfb7fe8e9bfd9f8c4dac55f32bc12b",
+      "message": "Merge pull request #108534 from Giganzo/breeze-theme-color-update\n\nUpdate Breeze dark theme colors",
+      "modifiedFiles": [
+        "editor/themes/editor_theme_manager.cpp"
+      ]
+    },
+    {
+      "sha": "03ae868b15874963f7605235bf14b797461a897c",
+      "message": "Merge pull request #111478 from HolonProduction/lsp-decl-fix\n\nLSP: Fix goto native declaration",
+      "modifiedFiles": [
+        "modules/gdscript/language_server/gdscript_text_document.cpp"
+      ]
+    },
+    {
+      "sha": "70a2ce974be52e8b4d0ac7af7404657a1566b21e",
+      "message": "Merge pull request #110060 from BlueCube3310/betsy-rgb\n\nBetsy: Convert RGB to RGBA on the GPU for faster compression",
+      "modifiedFiles": [
+        "modules/betsy/SCsub",
+        "modules/betsy/image_compress_betsy.cpp",
+        "modules/betsy/image_compress_betsy.h",
+        "modules/betsy/rgb_to_rgba.glsl"
+      ]
+    },
+    {
+      "sha": "da3bdacf645509a4c64f17a15dd21fca1f2affa9",
+      "message": "Merge pull request #111210 from blueskythlikesclouds/ssr-overhaul\n\nOverhaul screen space reflections.",
+      "modifiedFiles": [
+        "doc/classes/Environment.xml",
+        "doc/classes/ProjectSettings.xml",
+        "doc/classes/RenderingServer.xml",
+        "drivers/gles3/rasterizer_scene_gles3.cpp",
+        "drivers/gles3/rasterizer_scene_gles3.h",
+        "editor/editor_node.cpp",
+        "scene/resources/environment.cpp",
+        "scene/resources/environment.h",
+        "servers/rendering/dummy/rasterizer_scene_dummy.h",
+        "servers/rendering/renderer_rd/effects/ss_effects.cpp",
+        "servers/rendering/renderer_rd/effects/ss_effects.h",
+        "servers/rendering/renderer_rd/forward_clustered/render_forward_clustered.cpp",
+        "servers/rendering/renderer_rd/forward_clustered/render_forward_clustered.h",
+        "servers/rendering/renderer_rd/forward_mobile/render_forward_mobile.h",
+        "servers/rendering/renderer_rd/shaders/effects/screen_space_reflection.glsl",
+        "servers/rendering/renderer_rd/shaders/effects/screen_space_reflection_downsample.glsl",
+        "servers/rendering/renderer_rd/shaders/effects/screen_space_reflection_filter.glsl",
+        "servers/rendering/renderer_rd/shaders/effects/screen_space_reflection_hiz.glsl",
+        "servers/rendering/renderer_rd/shaders/effects/screen_space_reflection_inc.glsl",
+        "servers/rendering/renderer_rd/shaders/effects/screen_space_reflection_resolve.glsl",
+        "servers/rendering/renderer_rd/shaders/effects/screen_space_reflection_scale.glsl",
+        "servers/rendering/renderer_rd/shaders/forward_clustered/scene_forward_clustered.glsl",
+        "servers/rendering/renderer_rd/shaders/forward_clustered/scene_forward_clustered_inc.glsl",
+        "servers/rendering/renderer_scene_cull.h",
+        "servers/rendering/renderer_scene_render.h",
+        "servers/rendering/rendering_method.h",
+        "servers/rendering/rendering_server.cpp",
+        "servers/rendering/rendering_server.h",
+        "servers/rendering/rendering_server_default.h",
+        "servers/rendering/storage/environment_storage.cpp",
+        "servers/rendering/storage/environment_storage.h"
+      ]
+    },
+    {
+      "sha": "1bae99a65dc04cb25e4c2cd2af1ac004fc6469ac",
+      "message": "Merge pull request #101092 from HolonProduction/argument-options-completion-type\n\nAutocompletion: Use correct completion type for argument options",
+      "modifiedFiles": [
+        "modules/gdscript/gdscript_editor.cpp"
+      ]
+    },
+    {
+      "sha": "e9d4b259fbba8365adba2a582a73b5291368f4fc",
+      "message": "Merge pull request #110942 from KoBeWi/the_what_array\n\nFix Script editor state types",
+      "modifiedFiles": [
+        "editor/gui/code_editor.cpp",
+        "scene/gui/code_edit.cpp",
+        "scene/gui/code_edit.h",
+        "tests/scene/test_code_edit.h"
+      ]
+    },
+    {
+      "sha": "fe9cdea92c8d76bb2ccdcd83f41a22dd129e036f",
+      "message": "Merge pull request #106947 from Meorge/feat/quick-load-preview\n\nAllow Quick Open dialog to preview change in scene",
+      "modifiedFiles": [
+        "doc/classes/EditorSettings.xml",
+        "editor/gui/editor_quick_open_dialog.cpp",
+        "editor/gui/editor_quick_open_dialog.h",
+        "editor/inspector/editor_properties.cpp",
+        "editor/inspector/editor_resource_picker.cpp",
+        "editor/inspector/editor_resource_picker.h",
+        "editor/inspector/multi_node_edit.cpp",
+        "editor/inspector/multi_node_edit.h",
+        "editor/settings/editor_settings.cpp"
+      ]
+    },
+    {
+      "sha": "0f897e71b64e2745428f14e290a060a5031697eb",
+      "message": "Merge pull request #110910 from YeldhamDev/texture_region_drag_cancel\n\nFix \"Region Editor\" stuck in drag state when closing",
+      "modifiedFiles": [
+        "editor/scene/texture/texture_region_editor_plugin.cpp",
+        "editor/scene/texture/texture_region_editor_plugin.h"
+      ]
+    },
+    {
+      "sha": "ed4f4d275e80546eba86c47f44fc6164be2929c1",
+      "message": "Merge pull request #110904 from YeldhamDev/tree_drag_unfolding\n\nUnfold tree items on hover while drag-n-dropping",
+      "modifiedFiles": [
+        "doc/classes/EditorSettings.xml",
+        "doc/classes/Tree.xml",
+        "editor/docks/scene_tree_dock.cpp",
+        "editor/editor_node.cpp",
+        "editor/inspector/editor_inspector.cpp",
+        "editor/scene/scene_tree_editor.cpp",
+        "editor/settings/editor_settings.cpp",
+        "editor/themes/editor_theme_manager.cpp",
+        "scene/gui/tree.cpp",
+        "scene/gui/tree.h",
+        "scene/theme/default_theme.cpp"
+      ]
+    },
+    {
+      "sha": "e36dfb02397383e2cf065b23113cc713ed4ca733",
+      "message": "Merge pull request #110647 from arkology/add-meta-dialog\n\nExpand `LineEdit` with metadata name in `AddMetadataDialog`",
+      "modifiedFiles": [
+        "editor/inspector/add_metadata_dialog.cpp"
+      ]
+    },
+    {
+      "sha": "fd4ad29b84c51be337c42c09e334eff01e6d62c6",
+      "message": "Merge pull request #110641 from DallasHuff/new-resource-hotkey\n\nAdd Create Resource Hotkey",
+      "modifiedFiles": [
+        "editor/docks/filesystem_dock.cpp"
+      ]
+    },
+    {
+      "sha": "6e76eb3a5ddc6bb5d2e329db0bc3b410437d4cad",
+      "message": "Merge pull request #102055 from ryevdokimov/condition-editor-viewport-shortcuts\n\nCondition editor viewport nav modifier checks on freelook / mouse is captured",
+      "modifiedFiles": [
+        "editor/scene/3d/node_3d_editor_plugin.cpp"
+      ]
+    },
+    {
+      "sha": "cc2fdc3937b4e69d9dba0d25a3daf9fee61234f7",
+      "message": "Merge pull request #111015 from Alexofp/texture-compression-build-option\n\nScons option to enable CVTT and Betsy compression in export templates",
+      "modifiedFiles": [
+        "modules/betsy/config.py",
+        "modules/cvtt/config.py",
+        "modules/cvtt/register_types.cpp",
+        "modules/cvtt/register_types.h"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "godot",
+      "ownerLogin": "MelonTotoDev",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "OwlInTheCupboard",
+      "commitCount": 100
+    },
+    {
+      "name": "godot_deadReckoning",
+      "ownerLogin": "calzila",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "pgolo",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "elanurudurgucu-netizen",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "PrismaticReflection",
+      "commitCount": 100
+    },
+    {
+      "name": "godot-fork",
+      "ownerLogin": "Garrat85",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "promiseyou8013",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "RomainPlmg",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "davdevtokaekoen",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "angelator312",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "yume9",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "GTr487",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "casseveritt",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "WhenToBen",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "m249orm416",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "GlacierRoad",
+      "commitCount": 100
+    },
+    {
+      "name": "ufdot",
+      "ownerLogin": "uf-os",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "eritschlSC",
+      "commitCount": 100
+    },
+    {
+      "name": "godot",
+      "ownerLogin": "ydxc",
+      "commitCount": 100
+    }
+  ]
+}

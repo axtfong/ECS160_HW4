@@ -1,0 +1,633 @@
+{
+  "name": "llama.cpp",
+  "ownerLogin": "ggml-org",
+  "language": "C++",
+  "commits": [
+    {
+      "sha": "63d2fc46e17a06be5b4b5823a5ada088317f1f0a",
+      "message": "Add experimental ggml-hexagon backend for the Hexagon NPU (#16547)\n\n* model: add support for extra bufs for all devices\n\n* hexagon: add experimental ggml-hexagon backend for the Hexagon NPU\n\nThis commit introduces a new experimental backend `ggml-hexagon` with support for the Hexagon NPU.\n\nHighlights:\n- Supports Hexagon versions: v73, v75, v79, and v81\n- Targets Android devices based on Snapdragon SoCs: Gen3, 8-Elite, and 8-Elite Gen5\n- Supports Q4_0, Q8_0, MXFP4, and FP32 data types\n- Implements core LLM ops: MUL_MAT/MUL_MAT_ID, ADD/SUB/MUL/ADD_ID, RMS_NORM, ROPE, GLU/SWIGLU, SOFTMAX\n\n**Note:** This backend is experimental and may exhibit instability or limited performance across supported devices.\nIt is intended for early testing and feedback from llama.cpp/ggml developer and user community.\n\nCo-Authored-By: Rajdeep Ganguly \u003crganguly@qti.qualcomm.com\u003e\nCo-Authored-By: Todor Boinovski \u003ctodorb@qti.qualcomm.com\u003e\n\n* hexagon: fix format checker errors\n\n* hexagon: update readme and cmake presets\n\n* ci: add android-ndk-build jobs that build plain ARM64 and Snapdragon versions\n\n* hexagon: add simple graph optimizer for stacking MUL_MAT ops with the same input\n\n* hexagon: move ADB helper scripts into scripts/snapdragon/adb\n\n* hexagon: replace all f/printfs with GGML_LOG_...\n\n* readme: add hexagon to the list supported backends\n\n* hexagon: stack malmuts with quantized inputs only\n\n* hexagon: add TODO for fixing issues in hexagon_graph_optimize\n\n* hexagon: update to hex-sdk 6.4.0 and add scripts for running on QDC\n\n* scripts: fix lint errors\n\n* scripts: update qdc pytest script to make linter happy\n\n* hexagon: add reduce sum in fp32\n\n* hexagon: reduce number of vector stores in matmul output\n\n* hexagon: remove the need for vdelta in reduce-multiply-x8\n\n* hexagon: consistent use of reduce_sum_fp32 for row_sums\n\n* hexagon: some more matmul optimizations and comments\n\nOptimize cases where tensor dims are not multiple of 1024 (e.g in Qwen models).\nWe\u0027ve handled those cases already but at a higher overhead.\n\n* hexagon: update cmake presets\n\n* hexagon: add OPMASK support for run-bench.sh wrapper\n\n* hexagon: update to use GGML_BACKEND_API\n\n* hexagon: remove unused logic for setting tensor flags for the views\n\n* hexagon: add asserts to set/get_tensor to make sure we handle complete tensors\n\nSame asserts as the CPU backend.\n\n* hexagon: use cpy_tensor slow path for non-host buffers\n\n* hexagon: error checks in the buffer allocator\n\n* cmake: move include(extProj) under ggml-hexagon\n\n* hexagon: don\u0027t forget to delete the backend on free\n\n* hexagon: set/get_tensor size assert apply only to quantized tensors\n\n* hexagon: reintroduce HEX_VERBOSE wrapper for GGML_LOG_DEBUG for now\n\nGGML_LOG_DEBUG is always enabled for test-backend-ops and the output gets in the way.\nIdeally we need a bit more finer log levels.\n\n* docs: typos in hexagon developer docs (libggm-...)\n\n* hexagon: overhaul error handling in the session/device allocation\n\nthis should handle all failure paths in the session allocation.\n\n* hexagon: update cmake presets to enable fp16 vectors\n\n* hexagon: remove unused time_usec function\n\n* hexagon: don\u0027t forget to release buffer contexts\n\n* hexagon: fixed indents in hvx-utils (missed clang-format auto-format failure)\n\n* hexagon: remove custom can_repeat function and use ggml_can_repeat\n\n---------\n\nCo-authored-by: Rajdeep Ganguly \u003crganguly@qti.qualcomm.com\u003e\nCo-authored-by: Todor Boinovski \u003ctodorb@qti.qualcomm.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/build.yml",
+        "CODEOWNERS",
+        "README.md",
+        "docs/backend/hexagon/CMakeUserPresets.json",
+        "docs/backend/hexagon/README.md",
+        "docs/backend/hexagon/developer.md",
+        "ggml/CMakeLists.txt",
+        "ggml/include/ggml-hexagon.h",
+        "ggml/src/CMakeLists.txt",
+        "ggml/src/ggml-backend-reg.cpp",
+        "ggml/src/ggml-hexagon/CMakeLists.txt",
+        "ggml/src/ggml-hexagon/ggml-hexagon.cpp",
+        "ggml/src/ggml-hexagon/htp-utils.c",
+        "ggml/src/ggml-hexagon/htp-utils.h",
+        "ggml/src/ggml-hexagon/htp/CMakeLists.txt",
+        "ggml/src/ggml-hexagon/htp/act-ops.c",
+        "ggml/src/ggml-hexagon/htp/binary-ops.c",
+        "ggml/src/ggml-hexagon/htp/cmake-toolchain.cmake",
+        "ggml/src/ggml-hexagon/htp/htp-ctx.h",
+        "ggml/src/ggml-hexagon/htp/htp-dma.c",
+        "ggml/src/ggml-hexagon/htp/htp-dma.h",
+        "ggml/src/ggml-hexagon/htp/htp-msg.h",
+        "ggml/src/ggml-hexagon/htp/htp-ops.h",
+        "ggml/src/ggml-hexagon/htp/htp_iface.idl",
+        "ggml/src/ggml-hexagon/htp/hvx-exp.c",
+        "ggml/src/ggml-hexagon/htp/hvx-inverse.c",
+        "ggml/src/ggml-hexagon/htp/hvx-sigmoid.c",
+        "ggml/src/ggml-hexagon/htp/hvx-utils.c",
+        "ggml/src/ggml-hexagon/htp/hvx-utils.h",
+        "ggml/src/ggml-hexagon/htp/main.c",
+        "ggml/src/ggml-hexagon/htp/matmul-ops.c",
+        "ggml/src/ggml-hexagon/htp/ops-utils.h",
+        "ggml/src/ggml-hexagon/htp/rope-ops.c",
+        "ggml/src/ggml-hexagon/htp/softmax-ops.c",
+        "ggml/src/ggml-hexagon/htp/unary-ops.c",
+        "ggml/src/ggml-hexagon/htp/worker-pool.c",
+        "ggml/src/ggml-hexagon/htp/worker-pool.h",
+        "scripts/snapdragon/adb/llama-cli.farf",
+        "scripts/snapdragon/adb/run-bench.sh",
+        "scripts/snapdragon/adb/run-cli.sh",
+        "scripts/snapdragon/adb/run-tool.sh",
+        "scripts/snapdragon/qdc/readme.md",
+        "scripts/snapdragon/qdc/requirements.txt",
+        "scripts/snapdragon/qdc/tests/test_bench.py",
+        "src/llama-model.cpp"
+      ]
+    },
+    {
+      "sha": "a2e0088d9242bd9e57f8b852b05a6e47843b5a45",
+      "message": "Revert \"ggml : Leverage the existing GGML_F32_VEC helpers to vectorize ggml_v…\" (#16723)\n\nThis reverts commit 19a5a3edfd306516cc419679d69d6435943b6816.",
+      "modifiedFiles": [
+        "ggml/src/ggml-cpu/vec.h"
+      ]
+    },
+    {
+      "sha": "9b9201f65a22c02cee8e300f58f480a588591227",
+      "message": "webui: introduce OpenAI-compatible model selector in JSON payload (#16562)\n\n* webui: introduce OpenAI-compatible model selector in JSON payload\n\n* webui: restore OpenAI-Compatible model source of truth and unify metadata capture\n\nThis change re-establishes a single, reliable source of truth for the active model:\nfully aligned with the OpenAI-Compat API behavior\n\nIt introduces a unified metadata flow that captures the model field from both\nstreaming and non-streaming responses, wiring a new onModel callback through ChatService\nThe model name is now resolved directly from the API payload rather than relying on\nserver /props or UI assumptions\n\nChatStore records and persists the resolved model for each assistant message during\nstreaming, ensuring consistency across the UI and database\nType definitions for API and settings were also extended to include model metadata\nand the onModel callback, completing the alignment with OpenAI-Compat semantics\n\n* webui: address review feedback from allozaur\n\n* webui: move model selector into ChatForm (idea by @allozaur)\n\n* webui: make model selector more subtle and integrated into ChatForm\n\n* webui: replaced the Flowbite selector with a native Svelte dropdown\n\n* webui: add developer setting to toggle the chat model selector\n\n* webui: address review feedback from allozaur\n\nNormalized streamed model names during chat updates\nby trimming input and removing directory components before saving\nor persisting them, so the conversation UI shows only the filename\n\nForced model names within the chat form selector dropdown to render as\na single-line, truncated entry with a tooltip revealing the full name\n\n* webui: toggle displayed model source for legacy vs OpenAI-Compat modes\n\nWhen the selector is disabled, it falls back to the active server model name from /props\n\nWhen the model selector is enabled, the displayed model comes from the message metadata\n(the one explicitly selected and sent in the request)\n\n* Update tools/server/webui/src/lib/components/app/chat/ChatForm/ChatFormActions.svelte\n\nCo-authored-by: Aleksander Grygier \u003caleksander.grygier@gmail.com\u003e\n\n* Update tools/server/webui/src/lib/constants/localstorage-keys.ts\n\nCo-authored-by: Aleksander Grygier \u003caleksander.grygier@gmail.com\u003e\n\n* Update tools/server/webui/src/lib/components/app/chat/ChatForm/ChatFormModelSelector.svelte\n\nCo-authored-by: Aleksander Grygier \u003caleksander.grygier@gmail.com\u003e\n\n* Update tools/server/webui/src/lib/components/app/chat/ChatMessages/ChatMessageAssistant.svelte\n\nCo-authored-by: Aleksander Grygier \u003caleksander.grygier@gmail.com\u003e\n\n* Update tools/server/webui/src/lib/services/chat.ts\n\nCo-authored-by: Aleksander Grygier \u003caleksander.grygier@gmail.com\u003e\n\n* Update tools/server/webui/src/lib/services/chat.ts\n\nCo-authored-by: Aleksander Grygier \u003caleksander.grygier@gmail.com\u003e\n\n* webui: refactor model selector and persistence helpers\n\n- Replace inline portal and event listeners with proper Svelte bindings\n- Introduce \u0027persisted\u0027 store helper for localStorage sync without runes\n- Extract \u0027normalizeModelName\u0027 utils + Vitest coverage\n- Simplify ChatFormModelSelector structure and cleanup logic\n\nReplaced the persisted store helper\u0027s use of \u0027$state/$effect\u0027 runes with\na plain TS implementation to prevent orphaned effect runtime errors\noutside component context\n\nCo-authored-by: Aleksander Grygier \u003caleksander.grygier@gmail.com\u003e\n\n* webui: document normalizeModelName usage with inline examples\n\n* Update tools/server/webui/src/lib/components/app/chat/ChatForm/ChatFormModelSelector.svelte\n\nCo-authored-by: Aleksander Grygier \u003caleksander.grygier@gmail.com\u003e\n\n* Update tools/server/webui/src/lib/stores/models.svelte.ts\n\nCo-authored-by: Aleksander Grygier \u003caleksander.grygier@gmail.com\u003e\n\n* Update tools/server/webui/src/lib/stores/models.svelte.ts\n\nCo-authored-by: Aleksander Grygier \u003caleksander.grygier@gmail.com\u003e\n\n* webui: extract ModelOption type into dedicated models.d.ts\n\nCo-authored-by: Aleksander Grygier \u003caleksander.grygier@gmail.com\u003e\n\n* webui: refine ChatMessageAssistant displayedModel source logic\n\n* webui: stabilize dropdown, simplify model extraction, and init assistant model field\n\n* chore: update webui static build\n\n* Update tools/server/webui/src/lib/components/app/chat/ChatMessages/ChatMessageAssistant.svelte\n\nCo-authored-by: Aleksander Grygier \u003caleksander.grygier@gmail.com\u003e\n\n* chore: npm format, update webui static build\n\n* webui: align sidebar trigger position, remove z-index glitch\n\n* chore: update webui build output\n\n---------\n\nCo-authored-by: Aleksander Grygier \u003caleksander.grygier@gmail.com\u003e",
+      "modifiedFiles": [
+        "tools/server/public/index.html.gz",
+        "tools/server/webui/src/lib/components/app/chat/ChatForm/ChatFormActions.svelte",
+        "tools/server/webui/src/lib/components/app/chat/ChatForm/ChatFormModelSelector.svelte",
+        "tools/server/webui/src/lib/components/app/chat/ChatMessages/ChatMessageAssistant.svelte",
+        "tools/server/webui/src/lib/components/app/chat/ChatSettings/ChatSettingsDialog.svelte",
+        "tools/server/webui/src/lib/components/app/index.ts",
+        "tools/server/webui/src/lib/components/ui/select/select-trigger.svelte",
+        "tools/server/webui/src/lib/constants/localstorage-keys.ts",
+        "tools/server/webui/src/lib/constants/settings-config.ts",
+        "tools/server/webui/src/lib/services/chat.ts",
+        "tools/server/webui/src/lib/services/models.ts",
+        "tools/server/webui/src/lib/stores/chat.svelte.ts",
+        "tools/server/webui/src/lib/stores/models.svelte.ts",
+        "tools/server/webui/src/lib/stores/persisted.svelte.ts",
+        "tools/server/webui/src/lib/stores/settings.svelte.ts",
+        "tools/server/webui/src/lib/types/api.d.ts",
+        "tools/server/webui/src/lib/types/models.d.ts",
+        "tools/server/webui/src/lib/types/settings.d.ts",
+        "tools/server/webui/src/lib/utils/model-names.test.ts",
+        "tools/server/webui/src/lib/utils/model-names.ts",
+        "tools/server/webui/src/lib/utils/portal-to-body.ts",
+        "tools/server/webui/src/routes/+layout.svelte"
+      ]
+    },
+    {
+      "sha": "19a5a3edfd306516cc419679d69d6435943b6816",
+      "message": "ggml : Leverage the existing GGML_F32_VEC helpers to vectorize ggml_vec_set_f32 for faster fills (#16522)\n\n* Leverage the existing GGML_F32_VEC helpers to broadcast the fill value across SIMD registers and store in vector-sized chunks, while retaining the scalar tail for leftover elements and non-SIMD builds.\n\n* Vectorize additional f32 helper loops\n\n* Normalize f32 helper tails for ggml vec ops\n\n---------\n\nCo-authored-by: Aaron \u003cshelhamer.aaron@gmail.com\u003e",
+      "modifiedFiles": [
+        "ggml/src/ggml-cpu/vec.h"
+      ]
+    },
+    {
+      "sha": "d8eaa26e4d9228df3aa46a930db60c8eaab67c1b",
+      "message": "tests : fix test-thread-safety when compiling with multiple backends (#16699)\n\n* run one test per backend/device (even if it\u0027s the same device)",
+      "modifiedFiles": [
+        "tests/test-thread-safety.cpp"
+      ]
+    },
+    {
+      "sha": "9285325ce0174631c3cd6121d56084adc4ef2d8f",
+      "message": "CUDA: fix bug in topk-moe softmax (#16711)",
+      "modifiedFiles": [
+        "ggml/src/ggml-cuda/topk-moe.cu"
+      ]
+    },
+    {
+      "sha": "03792ad93609fc67e41041c6347d9aa14e5e0d74",
+      "message": "CUDA: topk-moe: add optional parameter for gpt-oss (#16649)",
+      "modifiedFiles": [
+        "ggml/src/ggml-cuda/ggml-cuda.cu",
+        "ggml/src/ggml-cuda/topk-moe.cu",
+        "ggml/src/ggml-cuda/topk-moe.cuh",
+        "tests/test-backend-ops.cpp"
+      ]
+    },
+    {
+      "sha": "51d1a8c997bd2629ef211a30208058ea87a30982",
+      "message": "CUDA: better error for FA kernel with 0 occupancy (#16643)",
+      "modifiedFiles": [
+        "ggml/src/ggml-cuda/fattn-common.cuh"
+      ]
+    },
+    {
+      "sha": "4926419c4d74a1cf724e7163d937eb72f36e7b26",
+      "message": "ggml: add ggml_can_fuse_subgraph (#16662)\n\n* ggml: add ggml_can_fuse_subgraph\n\n* ggml-cuda: use ggml_can_fuse_subgraph for topk-moe\n\n* format\n\n* 1. remove inputs from signature as they are transient nodes\n2. add check for views: view_src should be part of the subgraph\n\n* - combine check into one loop\n- check all view_src parents\n- other minor review comments\n\n* remove redudant if test\n\n* - rename and other minor review comments\n\n* add assert about count \u003c 32",
+      "modifiedFiles": [
+        "ggml/src/ggml-cuda/ggml-cuda.cu",
+        "ggml/src/ggml-impl.h",
+        "ggml/src/ggml.c"
+      ]
+    },
+    {
+      "sha": "6ea37f57391d27736c35cd3c20c1f990b7952b74",
+      "message": "opencl: fix warnings and clean up profiling (#16688)\n\n* opencl: remove unused headers, fix warnings\n\n* opencl: clean up profiling, only keep kernel time",
+      "modifiedFiles": [
+        "ggml/src/ggml-opencl/ggml-opencl.cpp"
+      ]
+    },
+    {
+      "sha": "fb349848f387f355450c3187556e71e6d32c145f",
+      "message": "vulkan: Handle FA with all -inf mask values (#16447)",
+      "modifiedFiles": [
+        "ggml/src/ggml-vulkan/vulkan-shaders/flash_attn.comp",
+        "ggml/src/ggml-vulkan/vulkan-shaders/flash_attn_cm1.comp",
+        "ggml/src/ggml-vulkan/vulkan-shaders/flash_attn_cm2.comp",
+        "ggml/src/ggml-vulkan/vulkan-shaders/flash_attn_split_k_reduce.comp"
+      ]
+    },
+    {
+      "sha": "6de8ed75196c7cd98c1f34bbf3a7452451ba8ac2",
+      "message": "sycl : add PAD_REFLECT_D1 operator support (#16145)\n\n* sycl: add PAD_REFLECT_D1 operator support\n\n* docs(ops): regenerate docs/ops.md\n\n* remove trailing whitespaces\n\n* style: fix editorconfig issues — trim trailing spaces and normalize EOLs\n\n* fix: move PAD_REFLECT_1D case outside of fall-through block",
+      "modifiedFiles": [
+        "docs/ops.md",
+        "docs/ops/SYCL.csv",
+        "ggml/src/ggml-sycl/backend.hpp",
+        "ggml/src/ggml-sycl/ggml-sycl.cpp",
+        "ggml/src/ggml-sycl/pad_reflect_1d.cpp",
+        "ggml/src/ggml-sycl/pad_reflect_1d.hpp"
+      ]
+    },
+    {
+      "sha": "84bf3c677857279037adf67cdcfd89eaa4ca9281",
+      "message": "model : add BailingMoeV2 support (#16063)\n\n* add BailingMoeV2 support\n\n* update llm types\n\n* undo\n\n* undo\n\n* update llm types\n\n* add model collection link\n\n* update\n\n* almost working\n\n* correct group selection and rename n_group_exp\n\n* avoid large top_k and use argmax instead for now\n\nif we had something like argmax2 that would be equivalent, but this works fine until then\n\n* poke\n\n* skip group selection when there are no tokens\n\n* fix 1T conversion\n\n* hopefully fixed expert group selection\n\nthird time\u0027s the charm?\n\n* make expert group selection generally available\n\nThe new LLaDA2Moe model uses this method too, make it generally available regardless of architecture.\n\n* allow n_expert_groups to be 1 (Kimi K2)\n\n* address review suggestions",
+      "modifiedFiles": [
+        "README.md",
+        "convert_hf_to_gguf.py",
+        "convert_hf_to_gguf_update.py",
+        "gguf-py/gguf/constants.py",
+        "gguf-py/gguf/gguf_writer.py",
+        "gguf-py/gguf/tensor_mapping.py",
+        "src/llama-arch.cpp",
+        "src/llama-arch.h",
+        "src/llama-chat.cpp",
+        "src/llama-chat.h",
+        "src/llama-graph.cpp",
+        "src/llama-hparams.h",
+        "src/llama-model.cpp",
+        "src/llama-model.h",
+        "src/llama-vocab.cpp"
+      ]
+    },
+    {
+      "sha": "c9c1972e2c2cc6a771fcc145bfa138700179f961",
+      "message": "Handle legacy \u0027context\u0027 attachments (#16687)",
+      "modifiedFiles": [
+        "tools/server/public/index.html.gz",
+        "tools/server/webui/src/app.d.ts",
+        "tools/server/webui/src/lib/components/app/chat/ChatAttachments/ChatAttachmentsList.svelte",
+        "tools/server/webui/src/lib/services/chat.ts",
+        "tools/server/webui/src/lib/types/database.d.ts"
+      ]
+    },
+    {
+      "sha": "b617cfd2896edd592a36ebbc041817eb030a1005",
+      "message": "ggml-alloc : fix leak when reusing a tensor with a larger size (#16679)",
+      "modifiedFiles": [
+        "ggml/src/ggml-alloc.c"
+      ]
+    },
+    {
+      "sha": "79068501fac9a74cca7129a8e5a8281b410a853e",
+      "message": "Prevent premature submission on IME input (#16673)\n\n* fix: Prevent premature submission on IME input\n\n* chore: update webui static build\n\n* refactor: Put IME completion checker in a helper function and add checking for `KeyboardEvent.eventKey \u003d\u003d\u003d 229`\n\n* chore: update webui static build\n\n* chore: update webui static build\n\n* chore: update webui static build",
+      "modifiedFiles": [
+        "tools/server/public/index.html.gz",
+        "tools/server/webui/src/lib/components/app/chat/ChatForm/ChatForm.svelte",
+        "tools/server/webui/src/lib/components/app/chat/ChatMessages/ChatMessage.svelte",
+        "tools/server/webui/src/lib/utils/is-ime-composing.ts"
+      ]
+    },
+    {
+      "sha": "0e4a0cf2fae667d3efcf52f2f52398779d986b1d",
+      "message": "Import/Export UX improvements (#16619)\n\n* webui : added download action (#13552)\n\n* webui : import and export (for all conversations)\n\n* webui : fixed download-format, import of one conversation\n\n* webui : add ExportedConversations type for chat import/export\n\n* feat: Update naming \u0026 order\n\n* chore: Linting\n\n* feat: Import/Export UX improvements\n\n* chore: update webui build output\n\n* feat: Update UI placement of Import/Export tab in Chat Settings Dialog\n\n* refactor: Cleanup\n\nchore: update webui build output\n\n* feat: Enable shift-click multiple conversation items selection\n\n* chore: update webui static build\n\n* chore: update webui static build\n\n---------\n\nCo-authored-by: Sascha Rogmann \u003cgithub@rogmann.org\u003e",
+      "modifiedFiles": [
+        "tools/server/public/index.html.gz",
+        "tools/server/webui/src/lib/components/app/chat/ChatSettings/ChatSettingsDialog.svelte",
+        "tools/server/webui/src/lib/components/app/chat/ChatSettings/ConversationSelectionDialog.svelte",
+        "tools/server/webui/src/lib/components/app/chat/ChatSettings/ImportExportTab.svelte",
+        "tools/server/webui/src/lib/components/app/chat/ChatSidebar/ChatSidebarActions.svelte",
+        "tools/server/webui/src/lib/components/app/index.ts",
+        "tools/server/webui/src/lib/stores/chat.svelte.ts",
+        "tools/server/webui/src/lib/utils/conversation-utils.ts"
+      ]
+    },
+    {
+      "sha": "13f2cfad4170c096c51a02c24a6a158cb47f1480",
+      "message": "Enable per-conversation loading states to allow having parallel conversations (#16327)\n\n* feat: Per-conversation loading states and tracking streaming stats\n\n* chore: update webui build output\n\n* refactor: Chat state management\n\nConsolidates loading state management by using a global `isLoading` store synchronized with individual conversation states.\n\nThis change ensures proper reactivity and avoids potential race conditions when updating the UI based on the loading status of different conversations. It also improves the accuracy of statistics displayed.\n\nAdditionally, slots service methods are updated to use conversation IDs for per-conversation state management, avoiding global state pollution.\n\n* feat: Adds loading indicator to conversation items\n\n* chore: update webui build output\n\n* fix: Fix aborting chat streaming\n\nImproves the chat stream abortion process by ensuring that partial responses are saved before the abort signal is sent.\n\nThis avoids a race condition where the onError callback could clear the streaming state before the partial response is saved. Additionally, the stream reading loop and callbacks are now checked for abort signals to prevent further processing after abortion.\n\n* refactor: Remove redundant comments\n\n* chore: build webui static output\n\n* refactor: Cleanup\n\n* chore: update webui build output\n\n* chore: update webui build output\n\n* fix: Conversation loading indicator for regenerating messages\n\n* chore: update webui static build\n\n* feat: Improve configuration\n\n* feat: Install `http-server` as dev dependency to not need to rely on `npx` in CI",
+      "modifiedFiles": [
+        "tools/server/public/index.html.gz",
+        "tools/server/webui/package-lock.json",
+        "tools/server/webui/package.json",
+        "tools/server/webui/playwright.config.ts",
+        "tools/server/webui/src/lib/components/app/chat/ChatProcessingInfo.svelte",
+        "tools/server/webui/src/lib/components/app/chat/ChatScreen/ChatScreen.svelte",
+        "tools/server/webui/src/lib/components/app/chat/ChatSidebar/ChatSidebarConversationItem.svelte",
+        "tools/server/webui/src/lib/services/chat.ts",
+        "tools/server/webui/src/lib/services/slots.ts",
+        "tools/server/webui/src/lib/stores/chat.svelte.ts",
+        "tools/server/webui/src/routes/chat/[id]/+page.svelte",
+        "tools/server/webui/svelte.config.js",
+        "tools/server/webui/vite.config.ts"
+      ]
+    },
+    {
+      "sha": "06332e28672356b964d6dfc2ba4657e20581cd43",
+      "message": "llama-batch: fix build fails with `-Werror\u003dmissing-braces` (#16614)\n\n## Why it failed\n\nWhen compiling with strict compiler flags (-Wmissing-braces -Werror\u003dmissing-braces),\nthe build fails with the following error:\n\n```\ncmake \\\n  -S . \\\n  -B ../llama.cpp.build \\\n  --preset\u003dx64-linux-gcc-debug \\\n  -DCMAKE_INSTALL_PREFIX\u003d/tmp/local \\\n  -DCMAKE_CXX_FLAGS\u003d\"-Wmissing-braces -Werror\u003dmissing-braces\" \u0026\u0026 \\\ncmake --build ../llama.cpp.build/\n...\nIn file included from /home/otegami/work/cpp/llama.cpp/src/llama-graph.h:4,\n                 from /home/otegami/work/cpp/llama.cpp/src/llama-model.h:5,\n                 from /home/otegami/work/cpp/llama.cpp/src/llama.cpp:8:\n/home/otegami/work/cpp/llama.cpp/src/llama-batch.h:126:48: error: missing braces around initializer for \u0027std::__array_traits\u003cint, 1\u003e::_Type\u0027 {aka \u0027int [1]\u0027} [-Werror\u003dmissing-braces]\n  126 |     std::array\u003cllama_seq_id, 1\u003e seq_id_0 \u003d { 0 }; // default sequence id\n      |                                                ^\ncc1plus: some warnings being treated as errors\n```\n\nThe issue is that std::array initialization requires double braces.\n\n## How to fix\n\nThis PR changes `{ 0 }` to `{{ 0 }}` for std::array initialization.\n\nThis is part of a series of commits to fix missing braces warnings across the codebase.\n- src/llama-batch.h \u003c- This PR is here.\n- src/llama-context.cpp\n- tests/test-backend-ops.cpp\n- tests/test-gguf.cpp\n- tools/mtmd/clip.cpp\n\nBenefits:\n- std::array is a struct containing a C-style array, requiring nested braces\n- Enables stricter compiler warnings to catch potential issues",
+      "modifiedFiles": [
+        "src/llama-batch.h"
+      ]
+    },
+    {
+      "sha": "72d53e6c4decee8b339e49aed8cc0e234b9639dc",
+      "message": "readme: update bindings (#16651)\n\nSigned-off-by: deadprogram \u003cron@hybridgroup.com\u003e",
+      "modifiedFiles": [
+        "README.md"
+      ]
+    },
+    {
+      "sha": "2330de7b847ca84eac766df372c604c26db72747",
+      "message": "SYCL: Add support for FLOOR,CEIL,ROUND and TRUNC unary operators (#16613)\n\n* SYCL: Add support for FLOOR,CEIL,ROUND and TRUNC unary operators\n\nClean up unrelated changes from previous commit\n\n* Chore: remove empty lines and fix indentation\n\n* Clean up: remove leftover blank lines and fix spacing\n\n* chore: fix trailing whitespace and ensure final newline\n\n* Cleanup: remove redundant declarations already defined in header\n\n* Sync docs/ops.md with updated backend operation support\n\n* docs: update ops.md after rebase\n\n* docs: update ops.md - Vulkan supports SSM_CONV and SSM_SCAN",
+      "modifiedFiles": [
+        "docs/ops.md",
+        "docs/ops/SYCL.csv",
+        "docs/ops/Vulkan.csv",
+        "ggml/src/ggml-sycl/element_wise.cpp",
+        "ggml/src/ggml-sycl/element_wise.hpp",
+        "ggml/src/ggml-sycl/ggml-sycl.cpp",
+        "tests/test-backend-ops.cpp"
+      ]
+    },
+    {
+      "sha": "7062dd8460685d6700ed7621e50a22c6f3400ca3",
+      "message": "llama-context: only warn on pooling_type when user specified (#16674)\n\nThe unexpeced pooling_type warning was incorrectly shown when users did not\nspecify the --pooling-type parameter. In this case, the parameter\ndefaults to `LLAMA_POOLING_TYPE_UNSPECIFIED (-1)`, and the code\nautomatically applies the model\u0027s default pooling type.\n\nExample of spurious warning:\n```\n$ llama-embedding -hf ggml-org/bge-m3-Q8_0-GGUF -p \"hello\"\n...\nllama_init_from_model: model default pooling_type is [2], but [-1] was specified\n...\n```\n\nThis fix ensures the warning only appears when users explicitly specify\na pooling type that differs from the model\u0027s default (e.g., using\n--pooling-type mean on a model that expects CLS pooling).",
+      "modifiedFiles": [
+        "src/llama-context.cpp"
+      ]
+    },
+    {
+      "sha": "0398752dd450dfabdd1b9e289f6364c2600f6ab5",
+      "message": "model : add Granite Hybrid types (#16635)\n\nadd Granite 4 models mapping their embedding dimensions to the # of\nparameters.\n\nInformation taken from https://huggingface.co/ibm-granite/granite-4.0-h-tiny\n\nSigned-off-by: Giuseppe Scrivano \u003cgscrivan@redhat.com\u003e",
+      "modifiedFiles": [
+        "src/llama-model.cpp",
+        "src/llama-model.h"
+      ]
+    },
+    {
+      "sha": "4f73d0a95120687e2c527739f771330a5271259a",
+      "message": "ci : fix binaries release failure for s390x (binaries may not work yet) (#16664)\n\n* devops: initial patch\n\nSigned-off-by: Aaron Teo \u003caaron.teo1@ibm.com\u003e\n\n* devops: forgot the z15 suffix\n\nSigned-off-by: Aaron Teo \u003caaron.teo1@ibm.com\u003e\n\n* devops: attempt at impl GGML_CPU_ALL_VARIANTS for s390x\n\nSigned-off-by: Aaron Teo \u003caaron.teo1@ibm.com\u003e\n\n* devops: rm baseline version\n\nSigned-off-by: Aaron Teo \u003caaron.teo1@ibm.com\u003e\n\n---------\n\nSigned-off-by: Aaron Teo \u003caaron.teo1@ibm.com\u003e",
+      "modifiedFiles": [
+        "ggml/src/CMakeLists.txt",
+        "ggml/src/ggml-cpu/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "cec5edbcaec69bbf6d5851cabce4ac148be41701",
+      "message": "ci : avoid manual updates of docs/ops.md (#16663)",
+      "modifiedFiles": [
+        ".github/workflows/update-ops-docs.yml"
+      ]
+    },
+    {
+      "sha": "fcb235b46618921cbd826acd49b553b5302233aa",
+      "message": "ci: include s390x release binaries (#16648)\n\nSigned-off-by: Aaron Teo \u003caaron.teo1@ibm.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/release.yml"
+      ]
+    },
+    {
+      "sha": "55754bebd5d570960cde9c0ba991a0b2991f6b1e",
+      "message": "CODEOWNERS: update for ggml-cuda/mmf (#16660)",
+      "modifiedFiles": [
+        "CODEOWNERS"
+      ]
+    },
+    {
+      "sha": "ee09828cb057460b369576410601a3a09279e23c",
+      "message": "HIP: fix GPU_TARGETS (#16642)",
+      "modifiedFiles": [
+        "ci/run.sh",
+        "ggml/src/ggml-hip/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "e56abd2098dd2e2b0804691b93c13b48ae421627",
+      "message": "vulkan: Implement topk_moe fused shader, ported from CUDA (#16641)\n\nThis is similar to the CUDA shader from #16130, but doesn\u0027t use shared memory\nand handles different subgroup sizes.",
+      "modifiedFiles": [
+        "ggml/src/ggml-impl.h",
+        "ggml/src/ggml-vulkan/ggml-vulkan.cpp",
+        "ggml/src/ggml-vulkan/vulkan-shaders/topk_moe.comp",
+        "ggml/src/ggml-vulkan/vulkan-shaders/vulkan-shaders-gen.cpp"
+      ]
+    },
+    {
+      "sha": "38355c6c8e43204e11a22daa7483082c0ff01e71",
+      "message": "CUDA: use registers instead of smem in topk-moe (#16647)\n\nUses the technique used in the vulkan PR #16641. Neat trick!",
+      "modifiedFiles": [
+        "ggml/src/ggml-cuda/topk-moe.cu"
+      ]
+    },
+    {
+      "sha": "81387858f1fbcc1acedbd308486e1016618ca8f8",
+      "message": "opencl: transposed gemm/gemv moe kernel with mxfp4,f32 (#16602)\n\n* opencl: transposed gemm/gemv moe kernel with mxfp4,f32\n\n* add restore kernel for moe transpose\n\n* fix trailing whitespaces\n\n* resolve compilation warnings",
+      "modifiedFiles": [
+        "ggml/src/ggml-opencl/CMakeLists.txt",
+        "ggml/src/ggml-opencl/ggml-opencl.cpp",
+        "ggml/src/ggml-opencl/kernels/cvt.cl",
+        "ggml/src/ggml-opencl/kernels/gemm_moe_mxfp4_f32.cl",
+        "ggml/src/ggml-opencl/kernels/gemv_moe_mxfp4_f32.cl"
+      ]
+    },
+    {
+      "sha": "66b0dbcb2d462e7b70ba5a69ee8c3899ac2efb1c",
+      "message": "llama-model: fix insonsistent ctxs \u003c-\u003e bufs order (#16581)",
+      "modifiedFiles": [
+        "src/llama-model.cpp"
+      ]
+    },
+    {
+      "sha": "41386cf365d894134ee0813d15e2f5d76f6a4d8e",
+      "message": "rpc : report actual free memory (#16616)\n\n* rpc : report actual free memory\n\nStart reporting the free memory on every device instead of using\nfixed values. Now llama-cli users can get a nice memory breakdown\nwhen using RPC devices.\n\n* drop --mem in rpc-server",
+      "modifiedFiles": [
+        "ggml/include/ggml-rpc.h",
+        "ggml/src/ggml-rpc/ggml-rpc.cpp",
+        "tools/rpc/rpc-server.cpp"
+      ]
+    },
+    {
+      "sha": "3d4e86bbeb15f487d6da6174ba6191b7c212cc25",
+      "message": "vulkan: Add State Space Model (SSM) Operations Support (#16463)\n\n* vulkan: implement SSM scan operation\n\nAdd State Space Model scan operation to the Vulkan backend.\n\nSigned-off-by: Giuseppe Scrivano \u003cgscrivan@redhat.com\u003e\n\n* vulkan: implement SSM conv operation\n\nAdd State Space Model conv operation to the Vulkan backend.\n\nSigned-off-by: Giuseppe Scrivano \u003cgscrivan@redhat.com\u003e\n\n---------\n\nSigned-off-by: Giuseppe Scrivano \u003cgscrivan@redhat.com\u003e",
+      "modifiedFiles": [
+        "docs/ops.md",
+        "ggml/src/ggml-vulkan/ggml-vulkan.cpp",
+        "ggml/src/ggml-vulkan/vulkan-shaders/ssm_conv.comp",
+        "ggml/src/ggml-vulkan/vulkan-shaders/ssm_scan.comp",
+        "ggml/src/ggml-vulkan/vulkan-shaders/vulkan-shaders-gen.cpp"
+      ]
+    },
+    {
+      "sha": "342c728d031d50673feded797520a44127d73379",
+      "message": "ggml : fix SpaceMit IME array out-of-bounds in task assignment (#16629)\n\nFix incorrect task-to-batch index calculation in the quantization phase.\n\nThe bug caused out-of-bounds access to qnbitgemm_args array when\ncompute_idx exceeded per_gemm_block_count_m, leading to invalid\npointer dereferences and SIGBUS errors.\n\nCorrectly map tasks to batches by dividing compute_idx by\nper_gemm_block_count_m instead of block_size_m.\n\nExample:\n  batch_feature\u003d1, gemm_m\u003d30, block_size_m\u003d4\n  per_gemm_block_count_m \u003d 8, task_count \u003d 8\n\n  Old: gemm_idx \u003d 4/4 \u003d 1 (out of bounds  New: gemm_idx \u003d 4/8 \u003d 0 (correct)\n\nTested on SpaceMit K1 RISC-V64 with qwen2.5:0.5b model.\n\nCo-authored-by: muggle \u003cmingjun.rong@spacemit.com\u003e",
+      "modifiedFiles": [
+        "ggml/src/ggml-cpu/spacemit/ime.cpp"
+      ]
+    },
+    {
+      "sha": "ababae7e1ec3e9cfdab0322ee55ea3389e82a4d5",
+      "message": "webui: reorganize settings layout (#16607)\n\n* webui: reorganize settings layout\n\n* chore: update webui build output\n\n* fix: remove unused variable\n\n* chore: update webui build output",
+      "modifiedFiles": [
+        "tools/server/public/index.html.gz",
+        "tools/server/webui/src/lib/components/app/chat/ChatSettings/ChatSettingsDialog.svelte"
+      ]
+    },
+    {
+      "sha": "b19491599d4d42c606601d75e95c1d1de3291f8e",
+      "message": "vulkan: fix debug build (add_rms_len/data not found) (#16624)",
+      "modifiedFiles": [
+        "ggml/src/ggml-vulkan/vulkan-shaders/vulkan-shaders-gen.cpp"
+      ]
+    },
+    {
+      "sha": "9ad4f1931ee0f3b41d9355245ef744786aaae0aa",
+      "message": "metal : add `CONV_TRANSPOSE_2D` (#16542)\n\n* initial: headers and metal-device.cpp updates\n\n* adding conv_transpose_2d\n\n* fix type\n\n* fix type: int32-\u003eint64\n\n* Update ggml/src/ggml-metal/ggml-metal.metal\n\nCo-authored-by: Georgi Gerganov \u003cggerganov@gmail.com\u003e\n\n* Update ggml/src/ggml-metal/ggml-metal.metal\n\nCo-authored-by: Georgi Gerganov \u003cggerganov@gmail.com\u003e\n\n* Update ggml/src/ggml-metal/ggml-metal.metal\n\nCo-authored-by: Georgi Gerganov \u003cggerganov@gmail.com\u003e\n\n* add checks for src[0] and src[1]; add type checks\n\n* Update ggml-metal.metal\n\nCo-authored-by: Georgi Gerganov \u003cggerganov@gmail.com\u003e\n\n* add more tests, add optimization to threading\n\n* add dynamic memory allocation in metal\n\n---------\n\nCo-authored-by: Georgi Gerganov \u003cggerganov@gmail.com\u003e",
+      "modifiedFiles": [
+        "ggml/src/ggml-metal/ggml-metal-device.cpp",
+        "ggml/src/ggml-metal/ggml-metal-device.h",
+        "ggml/src/ggml-metal/ggml-metal-device.m",
+        "ggml/src/ggml-metal/ggml-metal-impl.h",
+        "ggml/src/ggml-metal/ggml-metal-ops.cpp",
+        "ggml/src/ggml-metal/ggml-metal-ops.h",
+        "ggml/src/ggml-metal/ggml-metal.metal",
+        "tests/test-backend-ops.cpp"
+      ]
+    },
+    {
+      "sha": "79967ec596c0dacfd2251b085a57e79df292b1cc",
+      "message": "grammar : use int64_t to avoid int overflows in int schema to grammar conversion logic (#16626)",
+      "modifiedFiles": [
+        "common/json-schema-to-grammar.cpp",
+        "tests/test-grammar-integration.cpp"
+      ]
+    },
+    {
+      "sha": "ceff6bb253dd306f5404d7ccb3f11fadafe71b52",
+      "message": "SYCL SET operator optimized for F32 tensors (#16350)\n\n* SYCL/SET: implement operator + wire-up; docs/ops updates; element_wise \u0026 ggml-sycl changes\n\n* sycl(SET): re-apply post-rebase; revert manual docs/ops.md; style cleanups\n\n* move SET op to standalone file, GPU-only implementation\n\n* Update SYCL SET operator for F32\n\n* ci: fix editorconfig issues (LF endings, trailing spaces, final newline)\n\n* fixed ggml-sycl.cpp\n\n---------\n\nCo-authored-by: Gitty Burstein \u003cgitty@example.com\u003e",
+      "modifiedFiles": [
+        "ggml/src/ggml-sycl/ggml-sycl.cpp",
+        "ggml/src/ggml-sycl/presets.hpp",
+        "ggml/src/ggml-sycl/set.cpp",
+        "ggml/src/ggml-sycl/set.hpp"
+      ]
+    },
+    {
+      "sha": "1bb4f43380944e94c9a86e305789ba103f5e62bd",
+      "message": "mtmd : support home-cooked Mistral Small Omni (#14928)",
+      "modifiedFiles": [
+        "tools/mtmd/clip-impl.h",
+        "tools/mtmd/clip.cpp"
+      ]
+    },
+    {
+      "sha": "683fa6ba4ed3a23b939d3e11e6dc860bd47a0ccf",
+      "message": "fix: added a normalization step for MathJax-style \\[\\] and \\(\\) delimiters (#16599)\n\n* fix: added a normalization step for MathJax-style \\[\\] and \\(\\) delimiters\n\nSo inline and block equations are converted before KaTeX rendering,\nenabling proper display of model-generated LaTeX in the WebUI\n\n* chore: update webui build output",
+      "modifiedFiles": [
+        "tools/server/public/index.html.gz",
+        "tools/server/webui/src/lib/components/app/misc/MarkdownContent.svelte"
+      ]
+    },
+    {
+      "sha": "b22572e97dc51757d3ebe917a5a283385010ec68",
+      "message": "sycl : add ARANGE operator (#16362)\n\n* SYCL: update element-wise ops and presets\n\n* clean arange\n\n* Re-trigger CI\n\n---------\n\nCo-authored-by: Gitty Burstein \u003cgitty@example.com\u003e",
+      "modifiedFiles": [
+        "ggml/src/ggml-sycl/element_wise.cpp",
+        "ggml/src/ggml-sycl/element_wise.hpp",
+        "ggml/src/ggml-sycl/ggml-sycl.cpp",
+        "ggml/src/ggml-sycl/presets.hpp"
+      ]
+    },
+    {
+      "sha": "7a50cf388a530127cbbdd2a507ef81a451c9d819",
+      "message": "CANN: format code using .clang-format (#15863)\n\nThis commit applies .clang-format rules to all source files under the\nggml-cann directory to ensure consistent coding style and readability.\nThe .clang-format option `SortIncludes: false` has been set to disable\nautomatic reordering of include directives.\nNo functional changes are introduced.\n\nCo-authored-by: hipudding \u003chuafengchun@gmail.com\u003e",
+      "modifiedFiles": [
+        "ggml/src/ggml-cann/acl_tensor.cpp",
+        "ggml/src/ggml-cann/acl_tensor.h",
+        "ggml/src/ggml-cann/aclnn_ops.cpp",
+        "ggml/src/ggml-cann/aclnn_ops.h",
+        "ggml/src/ggml-cann/common.h",
+        "ggml/src/ggml-cann/ggml-cann.cpp"
+      ]
+    },
+    {
+      "sha": "6f5d924637a15abedb111cbbffd7da5f31c81855",
+      "message": "common : Update the docs on -t --threads (#16236)\n\n* Update the docs on -t --threads\n\n* Revert \"Update the docs on -t --threads\"\n\nThis reverts commit eba97345e2c88d8ca510abec87d00bf6b9b0e0c2.\n\n* docs: clarify -t/--threads parameter uses CPU threads and defaults to all available cores\n\n* Update arg.cpp",
+      "modifiedFiles": [
+        "common/arg.cpp"
+      ]
+    },
+    {
+      "sha": "adc9b60f190c1016a09f439862fa1cbb302262ac",
+      "message": "ggml-cpu: replace putenv with setenv for const-correctness (#16573)\n\n## Why it failed\n\nWhen compiling with strict compiler flags (-Wwrite-strings -Werror\u003ddiscarded-qualifiers),\nthe build fails with the following error:\n\n```\ncmake \\\n  -S . \\\n  -B ../llama.cpp.build \\\n  --preset\u003dx64-linux-gcc-debug \\\n  -DCMAKE_INSTALL_PREFIX\u003d/tmp/local \\\n  -DCMAKE_C_FLAGS\u003d\"-Wwrite-strings -Werror\u003ddiscarded-qualifiers\" \u0026\u0026 \\\ncmake --build ../llama.cpp.build/\n...\n/home/otegami/work/cpp/llama.cpp/ggml/src/ggml-cpu/ggml-cpu.c: In function ‘ggml_cpu_init’:\n/home/otegami/work/cpp/llama.cpp/ggml/src/ggml-cpu/ggml-cpu.c:3572:24: error: passing argument 1 of ‘putenv’ discards ‘const’ qualifier from pointer target type [-Werror\u003ddiscarded-qualifiers]\n 3572 |                 putenv(\"KMP_BLOCKTIME\u003d200\"); // 200ms\n      |                        ^~~~~~~~~~~~~~~~~~~\nIn file included from /home/otegami/work/cpp/llama.cpp/ggml/src/./ggml-impl.h:10,\n                 from /home/otegami/work/cpp/llama.cpp/ggml/src/ggml-cpu/ggml-cpu-impl.h:6,\n                 from /home/otegami/work/cpp/llama.cpp/ggml/src/ggml-cpu/traits.h:3,\n                 from /home/otegami/work/cpp/llama.cpp/ggml/src/ggml-cpu/ggml-cpu.c:6:\n/usr/include/stdlib.h:786:26: note: expected ‘char *’ but argument is of type ‘const char *’\n  786 | extern int putenv (char *__string) __THROW __nonnull ((1));\n      |                    ~~~~~~^~~~~~~~\ncc1: some warnings being treated as errors\nninja: build stopped: subcommand failed.\n```\n\nThe issue is that putenv() expects a non-const char * but receives a string literal (const char *).\n\n## How to fix\n\nThis PR replaces putenv(\"KMP_BLOCKTIME\u003d200\") with setenv(\"KMP_BLOCKTIME\", \"200\", 0).\n\nBenefits of setenv():\n- Accepts const char * parameters (no qualifier warnings)\n- Makes copies of the strings (safer memory handling)\n- The third parameter (0) ensures we don\u0027t overwrite if already set",
+      "modifiedFiles": [
+        "ggml/src/ggml-cpu/ggml-cpu.c"
+      ]
+    },
+    {
+      "sha": "ee50ee1eadff58777ae746827b04de7ba0befc55",
+      "message": "SYCL: Add GGML_OP_MEAN operator support (#16009)\n\n* SYCL: Add GGML_OP_MEAN operator support\n\n* SYCL: Fix formatting for GGML_OP_MEAN case\n\n* Update ggml/src/ggml-sycl/ggml-sycl.cpp\n\nCo-authored-by: Sigbjørn Skjæret \u003csigbjorn.skjaeret@scala.com\u003e\n\n---------\n\nCo-authored-by: Sigbjørn Skjæret \u003csigbjorn.skjaeret@scala.com\u003e",
+      "modifiedFiles": [
+        "ggml/src/ggml-sycl/ggml-sycl.cpp"
+      ]
+    },
+    {
+      "sha": "7adc79c03234de9a20661fd6dbf2d02c32ca7acb",
+      "message": "gguf-py : add support for endian conversion of BF16 data (#16594)\n\nBF16 requires special handling in this script\nwhile it\u0027s a 2-bytes data, but view is 1-byte by default.\nSwitch to correct view before attempting byteswapping.\n\nWith this change correctly byteswapping models like\nMeta-Llama-3-8B-Instruct-bf16-GGUF\nshould be possible.",
+      "modifiedFiles": [
+        "gguf-py/gguf/scripts/gguf_convert_endian.py"
+      ]
+    },
+    {
+      "sha": "466c1911ab736f0b7366127edee99f8ee5687417",
+      "message": "cpu : add FLOOR, CEIL, ROUND and TRUNC unary operators (#16083)\n\n* CPU: Add support for FLOOR,CEIL,ROUND and TRUNC unary operators\n\n- Added the operators to unary op enum\n- Implemented API functions\n- Implemented forward and unary-op logic in CPU backend\n- Updated ggml_get_n_tasks\n- Updated operators names array and static_assert\n- Updated docs and enabled automatic tests\n\n* docs: add documentation for ggml_trunc and ggml_trunc_inplace in ggml.h\n\n* chore: remove trailing whitespace from ggml.h\n\n* Remove unresolved merge markers\n\n* Apply review suggestions: cleanup formatting, enum order and leftover artifacts\n\n* Regenerate ops.md using create_ops_docs.py",
+      "modifiedFiles": [
+        "docs/ops.md",
+        "docs/ops/CPU.csv",
+        "ggml/include/ggml.h",
+        "ggml/src/ggml-cpu/ggml-cpu.c",
+        "ggml/src/ggml-cpu/ops.cpp",
+        "ggml/src/ggml-cpu/unary-ops.cpp",
+        "ggml/src/ggml-cpu/unary-ops.h",
+        "ggml/src/ggml.c"
+      ]
+    },
+    {
+      "sha": "0cb7a0683b0529172472d74d21f05470a607f297",
+      "message": "opencl: add q8_0 mm support (#16469)\n\n* opencl: add mm_q8_0_f32\n\n* opencl: fix data loading for incomplete tile\n\n* opencl: use q8_0 mm for larger matrix\n\n* opencl: add some tests to cover the path",
+      "modifiedFiles": [
+        "ggml/src/ggml-opencl/CMakeLists.txt",
+        "ggml/src/ggml-opencl/ggml-opencl.cpp",
+        "ggml/src/ggml-opencl/kernels/mul_mm_f16_f32_l4_lm.cl",
+        "ggml/src/ggml-opencl/kernels/mul_mm_f32_f32_l4_lm.cl",
+        "ggml/src/ggml-opencl/kernels/mul_mm_q8_0_f32_l4_lm.cl",
+        "tests/test-backend-ops.cpp"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "odrling",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "sultanqasim",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "OpenMOSE",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "maifeeulasad",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "progray",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "JJJYmmm",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "csyslabs",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "hungryDodo",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp.manni",
+      "ownerLogin": "ManfredAabye",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "ZolotarevaLyubov",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "Adityarya11",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "HayzelHan",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "jsess79",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "theo77186",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "cturan",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "tonybaloney",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "antheas",
+      "commitCount": 5
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "orbuskila",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "EmergentMonk",
+      "commitCount": 100
+    },
+    {
+      "name": "llama.cpp",
+      "ownerLogin": "AIxSpace",
+      "commitCount": 100
+    }
+  ]
+}

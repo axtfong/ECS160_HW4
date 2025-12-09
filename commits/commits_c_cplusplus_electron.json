@@ -1,0 +1,911 @@
+{
+  "name": "electron",
+  "ownerLogin": "electron",
+  "language": "C++",
+  "commits": [
+    {
+      "sha": "f784ea6f4f98a12208c9dc42d7e437280e285a06",
+      "message": "fix: icon in Windows toast notification (#48543)",
+      "modifiedFiles": [
+        "shell/browser/notifications/win/notification_presenter_win.cc",
+        "shell/browser/notifications/win/windows_toast_notification.cc"
+      ]
+    },
+    {
+      "sha": "7ec0ebc50a016ed5ea538160602001024d84cb06",
+      "message": "feat: Add `getAccentColor` on Linux (#48027)\n\n* feat: Implement `getAccentColor` on Linux\n\n* doc: Update OS support for accent color APIs",
+      "modifiedFiles": [
+        "docs/api/system-preferences.md",
+        "shell/browser/api/electron_api_system_preferences.cc",
+        "shell/browser/api/electron_api_system_preferences.h",
+        "spec/api-system-preferences-spec.ts"
+      ]
+    },
+    {
+      "sha": "4d329d466b5f9a267fe40f4e4ed65a31fe5b2cbf",
+      "message": "build(deps): bump actions/checkout from 4.2.2 to 5.0.0 (#48051)\n\n* build(deps): bump actions/checkout from 4.2.2 to 5.0.0\n\nBumps [actions/checkout](https://github.com/actions/checkout) from 4.2.2 to 5.0.0.\n- [Release notes](https://github.com/actions/checkout/releases)\n- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/checkout/compare/11bd71901bbe5b1630ceea73d27597364c9af683...08c6903cd8c0fde910a37f88322edcfb5dd907a8)\n\n---\nupdated-dependencies:\n- dependency-name: actions/checkout\n  dependency-version: 5.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\n\n* chore: remove inaccurate version information\n\nVersion can easily be determined from sha\n\n* ci: link node 24 for linux arm testing\n\n---------\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e\nCo-authored-by: John Kleinschmidt \u003cjkleinsc@electronjs.org\u003e",
+      "modifiedFiles": [
+        ".github/workflows/archaeologist-dig.yml",
+        ".github/workflows/build-git-cache.yml",
+        ".github/workflows/build.yml",
+        ".github/workflows/linux-publish.yml",
+        ".github/workflows/macos-publish.yml",
+        ".github/workflows/pipeline-electron-docs-only.yml",
+        ".github/workflows/pipeline-electron-lint.yml",
+        ".github/workflows/pipeline-segment-electron-build.yml",
+        ".github/workflows/pipeline-segment-electron-gn-check.yml",
+        ".github/workflows/pipeline-segment-electron-test.yml",
+        ".github/workflows/pipeline-segment-node-nan-test.yml",
+        ".github/workflows/scorecards.yml",
+        ".github/workflows/windows-publish.yml"
+      ]
+    },
+    {
+      "sha": "e766d378e1b22ce7ea656a1c0bae0e431bbf5b4d",
+      "message": "feat: enable more granular a11y feature management (#48042)\n\n* feat: enable more granular a11y feature management\n\n* Update docs/api/app.md\n\nCo-authored-by: John Kleinschmidt \u003cjkleinsc@electronjs.org\u003e\n\n---------\n\nCo-authored-by: John Kleinschmidt \u003cjkleinsc@electronjs.org\u003e",
+      "modifiedFiles": [
+        "docs/api/app.md",
+        "shell/browser/api/electron_api_app.cc",
+        "shell/browser/api/electron_api_app.h",
+        "spec/api-app-spec.ts"
+      ]
+    },
+    {
+      "sha": "0a1917691744f214f81913d4d9e2b315acbfc63a",
+      "message": "feat: enable resetting accent color (#48274)",
+      "modifiedFiles": [
+        "docs/api/base-window.md",
+        "docs/api/browser-window.md",
+        "shell/browser/api/electron_api_base_window.cc",
+        "spec/api-browser-window-spec.ts"
+      ]
+    },
+    {
+      "sha": "6562d6ed0bdf1cdd99bebe3dde763942d943ea3f",
+      "message": "fix: `systemPreferences.getAccentColor` inverted color (#48511)\n\nfix: systemPreferences.getAccentColor inverted color",
+      "modifiedFiles": [
+        "shell/browser/api/electron_api_system_preferences_win.cc",
+        "spec/api-browser-window-spec.ts"
+      ]
+    },
+    {
+      "sha": "0b179f8f059f9afb2601277cacaa4bc7ea575a96",
+      "message": "fix: devtools crashing on Linux in detach mode (#48600)",
+      "modifiedFiles": [
+        "shell/browser/ui/views/electron_views_delegate.cc"
+      ]
+    },
+    {
+      "sha": "89d3067dd4b001320eca8e35b2d1c4f9968a6196",
+      "message": "fix: `trafficLightPosition` incorrect with `customButtonsOnHover` (#48538)\n\nfix: trafficLightPosition incorrect with customButtonsOnHover",
+      "modifiedFiles": [
+        "shell/browser/ui/cocoa/window_buttons_proxy.mm"
+      ]
+    },
+    {
+      "sha": "00a3031357b90fa29621de4f7395cabae304430c",
+      "message": "chore: bump chromium to 143.0.7483.0 (main) (#48590)\n\n* chore: bump chromium in DEPS to 143.0.7482.0\n\n* chore: bump chromium in DEPS to 143.0.7483.0\n\n* [CodeHealth] Remove RenderWidgetHostImpl::is_hidden() | https://chromium-review.googlesource.com/c/chromium/src/+/7050059\n\n* chore: update mas_avoid_private_macos_api_usage.patch.patch\n\n[graphite] Refactor backpressure fences on Mac to avoid GLContext | https://chromium-review.googlesource.com/c/chromium/src/+/7047167\n\n* chore: update disable_compositor_recycling.patch\n\nno manual changes; patch applied with fuzz\n\n[CodeHealth] Remove RenderWidgetHostImpl::is_hidden() | https://chromium-review.googlesource.com/c/chromium/src/+/7050059\n\n* chore: update allow_disabling_blink_scheduler_throttling_per_renderview.patch\n\n[CodeHealth] Remove RenderWidgetHostImpl::is_hidden() | https://chromium-review.googlesource.com/c/chromium/src/+/7050059\n\n* chore: update feat_allow_code_cache_in_custom_schemes.patch\n\n[url] Change Add*Scheme*(...) functions to accept std::string_view | https://chromium-review.googlesource.com/c/chromium/src/+/7046471\n\n* chore: e patches all\n\n* [memory] Replace bool success with MemoryDumpRequestOutcome enum. | https://chromium-review.googlesource.com/c/chromium/src/+/7029767\n\n* [CodeHealth] Remove RenderWidgetHostImpl::is_hidden() | https://chromium-review.googlesource.com/c/chromium/src/+/7050059\n\n---------\n\nCo-authored-by: electron-roller[bot] \u003c84116207+electron-roller[bot]@users.noreply.github.com\u003e\nCo-authored-by: Charles Kerr \u003ccharles@charleskerr.com\u003e",
+      "modifiedFiles": [
+        "DEPS",
+        "patches/chromium/add_didinstallconditionalfeatures.patch",
+        "patches/chromium/allow_disabling_blink_scheduler_throttling_per_renderview.patch",
+        "patches/chromium/build_do_not_depend_on_packed_resource_integrity.patch",
+        "patches/chromium/can_create_window.patch",
+        "patches/chromium/chore_expose_isolate_parameter_in_script_lifecycle_observers.patch",
+        "patches/chromium/chore_modify_chromium_handling_of_mouse_events.patch",
+        "patches/chromium/chore_partial_revert_of.patch",
+        "patches/chromium/chore_provide_iswebcontentscreationoverridden_with_full_params.patch",
+        "patches/chromium/disable_compositor_recycling.patch",
+        "patches/chromium/disable_hidden.patch",
+        "patches/chromium/enable_reset_aspect_ratio.patch",
+        "patches/chromium/expose_setuseragent_on_networkcontext.patch",
+        "patches/chromium/feat_allow_code_cache_in_custom_schemes.patch",
+        "patches/chromium/feat_configure_launch_options_for_service_process.patch",
+        "patches/chromium/feat_corner_smoothing_css_rule_and_blink_painting.patch",
+        "patches/chromium/fix_aspect_ratio_with_max_size.patch",
+        "patches/chromium/fix_crash_loading_non-standard_schemes_in_iframes.patch",
+        "patches/chromium/fix_on-screen-keyboard_hides_on_input_blur_in_webview.patch",
+        "patches/chromium/fix_remove_caption-removing_style_call.patch",
+        "patches/chromium/fix_resolve_dynamic_background_material_update_issue_on_windows_11.patch",
+        "patches/chromium/fix_restore_original_resize_performance_on_macos.patch",
+        "patches/chromium/frame_host_manager.patch",
+        "patches/chromium/mas_avoid_private_macos_api_usage.patch.patch",
+        "patches/chromium/network_service_allow_remote_certificate_verification_logic.patch",
+        "patches/chromium/notification_provenance.patch",
+        "patches/chromium/refactor_expose_cursor_changes_to_the_webcontentsobserver.patch",
+        "patches/chromium/refactor_unfilter_unresponsive_events.patch",
+        "patches/chromium/revert_code_health_clean_up_stale_macwebcontentsocclusion.patch",
+        "patches/chromium/revert_partial_remove_unused_prehandlemouseevent.patch",
+        "patches/chromium/revert_views_remove_desktopwindowtreehostwin_window_enlargement.patch",
+        "patches/chromium/support_mixed_sandbox_with_zygote.patch",
+        "patches/chromium/web_contents.patch",
+        "patches/chromium/webview_fullscreen.patch",
+        "shell/browser/api/electron_api_web_contents.cc",
+        "shell/common/api/electron_bindings.cc",
+        "shell/common/api/electron_bindings.h"
+      ]
+    },
+    {
+      "sha": "46c344fb1ca611aa144833d486ac40876f2d59bc",
+      "message": "build(deps): bump github/codeql-action from 4.30.8 to 4.30.9 (#48606)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 4.30.8 to 4.30.9.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/f443b600d91635bebf5b0d9ebc620189c0d6fba5...16140ae1a102900babc80a33c44059580f687047)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.30.9\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/scorecards.yml"
+      ]
+    },
+    {
+      "sha": "28cf65eb33d059bb32e46ec0c4d47a5bb313bece",
+      "message": "build(deps): bump actions/setup-node from 5.0.0 to 6.0.0 (#48607)\n\nBumps [actions/setup-node](https://github.com/actions/setup-node) from 5.0.0 to 6.0.0.\n- [Release notes](https://github.com/actions/setup-node/releases)\n- [Commits](https://github.com/actions/setup-node/compare/a0853c24544627f65ddf259abe73b1d18a591444...2028fbc5c25fe9cf00d9f06a71cc4710d4507903)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-node\n  dependency-version: 6.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/archaeologist-dig.yml",
+        ".github/workflows/audit-branch-ci.yml",
+        ".github/workflows/pipeline-segment-electron-build.yml",
+        ".github/workflows/pipeline-segment-electron-test.yml"
+      ]
+    },
+    {
+      "sha": "2a0c3681054cdcb54331357afb100bdeb299d445",
+      "message": "build: use one build target (#48527)\n\nThis reverts commit Optimizes our builds for use with siso/avoids file contention on Windows",
+      "modifiedFiles": [
+        ".github/actions/build-electron/action.yml",
+        "BUILD.gn",
+        "script/gn-check.js"
+      ]
+    },
+    {
+      "sha": "0c27c1a3959bb3088cd4f60540cdffcec4b2b842",
+      "message": "fix: position window titlebar buttons correctly in Ubuntu on Wayland (#48490)",
+      "modifiedFiles": [
+        "docs/api/environment-variables.md",
+        "docs/breaking-changes.md",
+        "lib/browser/init.ts",
+        "shell/common/platform_util_linux.cc"
+      ]
+    },
+    {
+      "sha": "a528547dc87a18e572fa459d450faa1efa38ae44",
+      "message": "chore: exempt tracking-upstream issues from stale (#48574)",
+      "modifiedFiles": [
+        ".github/workflows/stale.yml"
+      ]
+    },
+    {
+      "sha": "413803188d29ba4064ccb1250302496aa1994a20",
+      "message": "fix: background hover contrast for WCO buttons (#48568)",
+      "modifiedFiles": [
+        "shell/browser/ui/views/win_caption_button.cc",
+        "shell/browser/ui/views/win_caption_button.h",
+        "shell/browser/ui/views/win_frame_view.cc",
+        "shell/browser/ui/views/win_frame_view.h"
+      ]
+    },
+    {
+      "sha": "1cc2fce905ab320847d2b95321f5b4d63c65ac37",
+      "message": "chore: bump chromium to 143.0.7477.0 (main) (#48584)\n\n* chore: bump chromium in DEPS to 143.0.7477.0\n\n* 7049117: [CodeCache] Adjust PersistentCache for CodeCache feature\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7049117\n\n* chore: update patches\n\n* chore: add missing includes of ui/gfx/image/image_skia.h\n\n* 7028738: Rename several ipc_* files used by param_traits*\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7028738\n\n---------\n\nCo-authored-by: electron-roller[bot] \u003c84116207+electron-roller[bot]@users.noreply.github.com\u003e\nCo-authored-by: David Sanders \u003cdsanders11@ucsbalum.com\u003e",
+      "modifiedFiles": [
+        "DEPS",
+        "patches/chromium/add_didinstallconditionalfeatures.patch",
+        "patches/chromium/allow_disabling_blink_scheduler_throttling_per_renderview.patch",
+        "patches/chromium/allow_in-process_windows_to_have_different_web_prefs.patch",
+        "patches/chromium/build_add_electron_tracing_category.patch",
+        "patches/chromium/build_allow_electron_mojom_interfaces_to_depend_on_blink.patch",
+        "patches/chromium/build_do_not_depend_on_packed_resource_integrity.patch",
+        "patches/chromium/can_create_window.patch",
+        "patches/chromium/chore_expose_isolate_parameter_in_script_lifecycle_observers.patch",
+        "patches/chromium/chore_partial_revert_of.patch",
+        "patches/chromium/chore_provide_iswebcontentscreationoverridden_with_full_params.patch",
+        "patches/chromium/extend_apply_webpreferences.patch",
+        "patches/chromium/feat_allow_code_cache_in_custom_schemes.patch",
+        "patches/chromium/feat_configure_launch_options_for_service_process.patch",
+        "patches/chromium/feat_corner_smoothing_css_rule_and_blink_painting.patch",
+        "patches/chromium/feat_separate_content_settings_callback_for_sync_and_async_clipboard.patch",
+        "patches/chromium/fix_crash_loading_non-standard_schemes_in_iframes.patch",
+        "patches/chromium/fix_move_autopipsettingshelper_behind_branding_buildflag.patch",
+        "patches/chromium/fix_on-screen-keyboard_hides_on_input_blur_in_webview.patch",
+        "patches/chromium/fix_return_v8_value_from_localframe_requestexecutescript.patch",
+        "patches/chromium/frame_host_manager.patch",
+        "patches/chromium/gritsettings_resource_ids.patch",
+        "patches/chromium/mas_avoid_private_macos_api_usage.patch.patch",
+        "patches/chromium/notification_provenance.patch",
+        "patches/chromium/picture-in-picture.patch",
+        "patches/chromium/refactor_expose_cursor_changes_to_the_webcontentsobserver.patch",
+        "patches/chromium/refactor_patch_electron_permissiontypes_into_blink.patch",
+        "patches/chromium/refactor_unfilter_unresponsive_events.patch",
+        "patches/chromium/resource_file_conflict.patch",
+        "patches/chromium/revert_code_health_clean_up_stale_macwebcontentsocclusion.patch",
+        "patches/chromium/revert_partial_remove_unused_prehandlemouseevent.patch",
+        "patches/chromium/revert_views_remove_desktopwindowtreehostwin_window_enlargement.patch",
+        "patches/chromium/scroll_bounce_flag.patch",
+        "patches/chromium/short-circuit_permissions_checks_in_mediastreamdevicescontroller.patch",
+        "patches/chromium/web_contents.patch",
+        "patches/chromium/webview_fullscreen.patch",
+        "shell/browser/api/electron_api_base_window.cc",
+        "shell/browser/ui/drag_util_views.cc",
+        "shell/browser/ui/tray_icon_linux.cc",
+        "shell/renderer/electron_render_frame_observer.h"
+      ]
+    },
+    {
+      "sha": "3bfe1f236345a7fa6e651ee24782c72a16a58b47",
+      "message": "chore: bump chromium to 143.0.7474.0 (main) (#48572)\n\n* chore: bump chromium in DEPS to 143.0.7474.0\n\n* 7006208: [Mac] Fix rendering bug for manual occlusion detection on macOS 26\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7006208\n\n* chore: update patches\n\n* 7038563: Forward declare more in page_navigator.h\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7038563\n\n* 7023417: Remove ipc/ipc_message_macros.h\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7023417\n\n* 7006340: Move icon_util files to win/ subdrectory\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7006340\n\n---------\n\nCo-authored-by: electron-roller[bot] \u003c84116207+electron-roller[bot]@users.noreply.github.com\u003e\nCo-authored-by: David Sanders \u003cdsanders11@ucsbalum.com\u003e",
+      "modifiedFiles": [
+        "DEPS",
+        "patches/chromium/add_didinstallconditionalfeatures.patch",
+        "patches/chromium/allow_disabling_blink_scheduler_throttling_per_renderview.patch",
+        "patches/chromium/blink_local_frame.patch",
+        "patches/chromium/build_do_not_depend_on_packed_resource_integrity.patch",
+        "patches/chromium/can_create_window.patch",
+        "patches/chromium/chore_expose_isolate_parameter_in_script_lifecycle_observers.patch",
+        "patches/chromium/chore_modify_chromium_handling_of_mouse_events.patch",
+        "patches/chromium/chore_provide_iswebcontentscreationoverridden_with_full_params.patch",
+        "patches/chromium/disable_hidden.patch",
+        "patches/chromium/enable_reset_aspect_ratio.patch",
+        "patches/chromium/feat_corner_smoothing_css_rule_and_blink_painting.patch",
+        "patches/chromium/feat_enable_offscreen_rendering_with_viz_compositor.patch",
+        "patches/chromium/feat_separate_content_settings_callback_for_sync_and_async_clipboard.patch",
+        "patches/chromium/fix_adjust_headless_mode_handling_in_native_widget.patch",
+        "patches/chromium/fix_aspect_ratio_with_max_size.patch",
+        "patches/chromium/fix_crash_loading_non-standard_schemes_in_iframes.patch",
+        "patches/chromium/fix_on-screen-keyboard_hides_on_input_blur_in_webview.patch",
+        "patches/chromium/fix_remove_caption-removing_style_call.patch",
+        "patches/chromium/fix_resolve_dynamic_background_material_update_issue_on_windows_11.patch",
+        "patches/chromium/fix_return_v8_value_from_localframe_requestexecutescript.patch",
+        "patches/chromium/fix_select_the_first_menu_item_when_opened_via_keyboard.patch",
+        "patches/chromium/frame_host_manager.patch",
+        "patches/chromium/mas_avoid_private_macos_api_usage.patch.patch",
+        "patches/chromium/notification_provenance.patch",
+        "patches/chromium/printing.patch",
+        "patches/chromium/refactor_expose_file_system_access_blocklist.patch",
+        "patches/chromium/refactor_patch_electron_permissiontypes_into_blink.patch",
+        "patches/chromium/revert_code_health_clean_up_stale_macwebcontentsocclusion.patch",
+        "patches/chromium/revert_views_remove_desktopwindowtreehostwin_window_enlargement.patch",
+        "patches/chromium/support_mixed_sandbox_with_zygote.patch",
+        "patches/chromium/webview_fullscreen.patch",
+        "patches/devtools_frontend/chore_expose_ui_to_allow_electron_to_set_dock_side.patch",
+        "shell/browser/child_web_contents_tracker.cc",
+        "shell/browser/child_web_contents_tracker.h",
+        "shell/browser/ui/message_box_win.cc",
+        "shell/browser/ui/win/taskbar_host.cc",
+        "shell/common/api/electron_api_native_image.cc",
+        "shell/common/api/electron_api_native_image_win.cc",
+        "shell/common/skia_util.cc",
+        "shell/renderer/electron_render_frame_observer.cc"
+      ]
+    },
+    {
+      "sha": "7e031f7e33dcc66cbe5e0e4153a0fc0544618612",
+      "message": "ci: fix publish for macOS \u003c 26.0 (#48575)",
+      "modifiedFiles": [
+        "build/args/all.gn"
+      ]
+    },
+    {
+      "sha": "7580e3a5e2ce8870cf949795012cfa4d38fb28a1",
+      "message": "chore: update fix_harden_blink_scriptstate_maybefrom.patch (#48566)",
+      "modifiedFiles": [
+        "patches/chromium/fix_harden_blink_scriptstate_maybefrom.patch"
+      ]
+    },
+    {
+      "sha": "471a14432fa1dcae52e1716396521607a59ecd92",
+      "message": "chore: bump chromium to 143.0.7469.0 (main) (#48548)\n\n* chore: bump chromium in DEPS to 143.0.7469.0\n\n* 7021651: [//gpu] Fold handle creation into D3DImageBackingFactory\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7021651\n\n* 7013047: Fix various C++23 build errors in //chrome\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7013047\n\n* 7010850: [//ui] Port screen_mac.mm\u0027s calls to DisplayColorSpaces\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7010850\n\n* 7007933: Remove superfluous mojom includes in //content/public headers\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7007933\n\n* 7023196: Trim os_crypt/sync visibility list\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7023196\n\n* 7008912: Remove GURL::*_piece() method\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7008912\n\n* 7003989: Add wrapper struct for CopyFromSurface output\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7003989\n\n* 7017889: [MemoryPressureListener] Remove type aliases\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7017889\n\n* 7027780: Delete viz::ResourceSizes\n\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/7027780\nRefs https://chromium-review.googlesource.com/c/chromium/src/+/6989572\n\n* 6495189: [api] Delete old String::Write* APIs\n\nRefs https://chromium-review.googlesource.com/c/v8/v8/+/6495189\n\n* chore: update patches\n\n* chore: run script/gen-libc++-filenames.js\n\n---------\n\nCo-authored-by: electron-roller[bot] \u003c84116207+electron-roller[bot]@users.noreply.github.com\u003e\nCo-authored-by: David Sanders \u003cdsanders11@ucsbalum.com\u003e",
+      "modifiedFiles": [
+        "DEPS",
+        "filenames.libcxx.gni",
+        "patches/boringssl/expose_ripemd160.patch",
+        "patches/chromium/add_didinstallconditionalfeatures.patch",
+        "patches/chromium/add_electron_deps_to_license_credits_file.patch",
+        "patches/chromium/adjust_accessibility_ui_for_electron.patch",
+        "patches/chromium/allow_disabling_blink_scheduler_throttling_per_renderview.patch",
+        "patches/chromium/allow_electron_to_depend_on_components_os_crypt_sync.patch",
+        "patches/chromium/blink_local_frame.patch",
+        "patches/chromium/build_do_not_depend_on_packed_resource_integrity.patch",
+        "patches/chromium/build_libc_as_static_library.patch",
+        "patches/chromium/build_run_reclient_cfg_generator_after_chrome.patch",
+        "patches/chromium/can_create_window.patch",
+        "patches/chromium/chore_add_electron_objects_to_wrappablepointertag.patch",
+        "patches/chromium/chore_expose_isolate_parameter_in_script_lifecycle_observers.patch",
+        "patches/chromium/chore_introduce_blocking_api_for_electron.patch",
+        "patches/chromium/chore_partial_revert_of.patch",
+        "patches/chromium/chore_patch_out_partition_attribute_dcheck_for_webviews.patch",
+        "patches/chromium/chore_patch_out_profile_methods.patch",
+        "patches/chromium/chore_provide_iswebcontentscreationoverridden_with_full_params.patch",
+        "patches/chromium/chore_restore_some_deprecated_wrapper_utility_in_gin.patch",
+        "patches/chromium/disable_compositor_recycling.patch",
+        "patches/chromium/disable_hidden.patch",
+        "patches/chromium/expose_setuseragent_on_networkcontext.patch",
+        "patches/chromium/extend_apply_webpreferences.patch",
+        "patches/chromium/feat_add_signals_when_embedder_cleanup_callbacks_run_for.patch",
+        "patches/chromium/feat_allow_code_cache_in_custom_schemes.patch",
+        "patches/chromium/feat_allow_usage_of_sccontentsharingpicker_on_supported_platforms.patch",
+        "patches/chromium/feat_configure_launch_options_for_service_process.patch",
+        "patches/chromium/feat_corner_smoothing_css_rule_and_blink_painting.patch",
+        "patches/chromium/feat_enable_offscreen_rendering_with_viz_compositor.patch",
+        "patches/chromium/feat_enable_passing_exit_code_on_service_process_crash.patch",
+        "patches/chromium/feat_expose_raw_response_headers_from_urlloader.patch",
+        "patches/chromium/feat_separate_content_settings_callback_for_sync_and_async_clipboard.patch",
+        "patches/chromium/fix_adjust_headless_mode_handling_in_native_widget.patch",
+        "patches/chromium/fix_disabling_background_throttling_in_compositor.patch",
+        "patches/chromium/fix_move_autopipsettingshelper_behind_branding_buildflag.patch",
+        "patches/chromium/fix_on-screen-keyboard_hides_on_input_blur_in_webview.patch",
+        "patches/chromium/fix_restore_original_resize_performance_on_macos.patch",
+        "patches/chromium/fix_return_v8_value_from_localframe_requestexecutescript.patch",
+        "patches/chromium/fix_use_delegated_generic_capturer_when_available.patch",
+        "patches/chromium/frame_host_manager.patch",
+        "patches/chromium/gin_enable_disable_v8_platform.patch",
+        "patches/chromium/gritsettings_resource_ids.patch",
+        "patches/chromium/isolate_holder.patch",
+        "patches/chromium/mas_avoid_private_macos_api_usage.patch.patch",
+        "patches/chromium/network_service_allow_remote_certificate_verification_logic.patch",
+        "patches/chromium/notification_provenance.patch",
+        "patches/chromium/osr_shared_texture_remove_keyed_mutex_on_win_dxgi.patch",
+        "patches/chromium/refactor_expose_cursor_changes_to_the_webcontentsobserver.patch",
+        "patches/chromium/refactor_expose_file_system_access_blocklist.patch",
+        "patches/chromium/refactor_expose_hostimportmoduledynamically_and.patch",
+        "patches/chromium/refactor_patch_electron_permissiontypes_into_blink.patch",
+        "patches/chromium/refactor_unfilter_unresponsive_events.patch",
+        "patches/chromium/render_widget_host_view_mac.patch",
+        "patches/chromium/revert_code_health_clean_up_stale_macwebcontentsocclusion.patch",
+        "patches/chromium/revert_partial_remove_unused_prehandlemouseevent.patch",
+        "patches/chromium/revert_views_remove_desktopwindowtreehostwin_window_enlargement.patch",
+        "patches/chromium/scroll_bounce_flag.patch",
+        "patches/chromium/support_mixed_sandbox_with_zygote.patch",
+        "patches/chromium/web_contents.patch",
+        "patches/chromium/webview_fullscreen.patch",
+        "patches/devtools_frontend/chore_expose_ui_to_allow_electron_to_set_dock_side.patch",
+        "patches/nan/.patches",
+        "patches/nan/fix_replace_usage_of_removed_writeutf8_with_writeutf8v2.patch",
+        "patches/node/.patches",
+        "patches/node/node-api_use_writeonebytev2_in_napi_get_value_string_latin1.patch",
+        "patches/node/node-api_use_writev2_in_napi_get_value_string_utf16.patch",
+        "patches/node/src_improve_utf8_string_generation_performance.patch",
+        "patches/node/src_migrate_writeonebyte_to_writeonebytev2.patch",
+        "patches/node/src_refactor_writeucs2_and_remove_flags_argument.patch",
+        "patches/node/src_simplify_string_bytes_with_views.patch",
+        "patches/node/src_use_non-deprecated_utf8lengthv2_method.patch",
+        "patches/node/src_use_non-deprecated_writeutf8v2_method.patch",
+        "patches/node/src_use_string_writev2_in_twobytevalue.patch",
+        "patches/webrtc/fix_handle_pipewire_capturer_initialization_and_management.patch",
+        "shell/browser/api/electron_api_web_contents.cc",
+        "shell/browser/browser_linux.cc",
+        "shell/browser/browser_win.cc",
+        "shell/browser/electron_web_ui_controller_factory.cc",
+        "shell/browser/extensions/api/tabs/tabs_api.cc",
+        "shell/browser/net/proxying_url_loader_factory.cc",
+        "shell/browser/osr/osr_host_display_client.cc",
+        "shell/browser/osr/osr_render_widget_host_view.cc",
+        "shell/browser/osr/osr_render_widget_host_view.h",
+        "shell/browser/ui/inspectable_web_contents.cc",
+        "shell/common/api/electron_api_url_loader.cc",
+        "shell/renderer/api/electron_api_web_frame.cc"
+      ]
+    },
+    {
+      "sha": "676406c9e6664ad94c818475249442100b068bf7",
+      "message": "build: run on macOS 15 (#48563)",
+      "modifiedFiles": [
+        ".github/workflows/macos-publish.yml"
+      ]
+    },
+    {
+      "sha": "357e42d90768635c032a9ddadae176d97ca978e0",
+      "message": "fix: fixed white flash on call to BrowserWindow.show (#47151)",
+      "modifiedFiles": [
+        "shell/browser/api/electron_api_base_window.h",
+        "shell/browser/api/electron_api_browser_window.cc",
+        "shell/browser/api/electron_api_browser_window.h"
+      ]
+    },
+    {
+      "sha": "9b740594fbdd0a205a1c2062c27184bb691a0b05",
+      "message": "fix: enable shader-f16 on windows (#48342)\n\n* fix: Enable shader-f16 on Windows\n\n* fix: include dxil.dll and dxcompiler.dll for windows x64 and arm64\n\n* fix: modified to follow the chromium dawn build configuration\n\n* fix: include dxil.dll and dxcompiler.dll for windows x86\n\n* fix: Modified to avoid explicitly specifying dawn_use_built_dxc",
+      "modifiedFiles": [
+        "build/args/all.gn",
+        "script/zip_manifests/dist_zip.win.arm64.manifest",
+        "script/zip_manifests/dist_zip.win.x64.manifest"
+      ]
+    },
+    {
+      "sha": "9e577ae60e884fcef0e35511b42e190e2ce3672a",
+      "message": "build(deps): bump ossf/scorecard-action from 2.4.2 to 2.4.3 (#48551)\n\nBumps [ossf/scorecard-action](https://github.com/ossf/scorecard-action) from 2.4.2 to 2.4.3.\n- [Release notes](https://github.com/ossf/scorecard-action/releases)\n- [Changelog](https://github.com/ossf/scorecard-action/blob/main/RELEASE.md)\n- [Commits](https://github.com/ossf/scorecard-action/compare/05b42c624433fc40578a4040d5cf5e36ddca8cde...4eaacf0543bb3f2c246792bd56e8cdeffafb205a)\n\n---\nupdated-dependencies:\n- dependency-name: ossf/scorecard-action\n  dependency-version: 2.4.3\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/scorecards.yml"
+      ]
+    },
+    {
+      "sha": "b74bd8fc35aea524aff0d4633402a0882a8b691b",
+      "message": "build(deps): bump github/codeql-action from 3.30.6 to 4.30.8 (#48552)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 3.30.6 to 4.30.8.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/64d10c13136e1c5bce3e5fbde8d4906eeaafc885...f443b600d91635bebf5b0d9ebc620189c0d6fba5)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 4.30.8\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/scorecards.yml"
+      ]
+    },
+    {
+      "sha": "f494dbb6098d41b726510f4ab0c73c83b3e98440",
+      "message": "ci: upload build cache hit rate on Windows as well (#48550)",
+      "modifiedFiles": [
+        ".github/actions/build-electron/action.yml"
+      ]
+    },
+    {
+      "sha": "8dc5999f8bafaca260bdf9b685ebcadb0aecb01a",
+      "message": "build(deps): bump @electron/typescript-definitions to 9.1.5 (#48210)",
+      "modifiedFiles": [
+        "package.json",
+        "yarn.lock"
+      ]
+    },
+    {
+      "sha": "d920c82fc4603484f69c64d87a9baed2cc6af990",
+      "message": "chore: bump chromium to 143.0.7451.0 (main) (#48362)\n\n* chore: bump chromium in DEPS to 142.0.7429.0\n\n* chore: bump chromium in DEPS to 142.0.7430.0\n\n* 6954508: Reland Migrate WrappableWithNamedPropertyInterceptor to gin::Wrappable | https://chromium-review.googlesource.com/c/chromium/src/+/6954508\n\n* https://chromium-review.googlesource.com/c/chromium/src/+/6955633\n\n* 5584820: Fix font face resolution when renderer is blocked | https://chromium-review.googlesource.com/c/chromium/src/+/5584820\n\n* chore: export patches\n\n* chore: remove patch that keeley says is ok to remove in comments\n\n* chore: bump chromium in DEPS to 142.0.7432.0\n\n* chore: export patches\n\n* chore: bump chromium in DEPS to 142.0.7434.0\n\n* 6973697: Use type tags for data stored in V8 internal fields | https://chromium-review.googlesource.com/c/chromium/src/+/6973697\n\n* 6976272: Revert Reland mac: click through content area in main window | https://chromium-review.googlesource.com/c/chromium/src/+/6976272\n\n* chore: export patches\n\n* 6938086: Rename native_widget_types.h -\u003e native_ui_types.h | https://chromium-review.googlesource.com/c/chromium/src/+/6938086\n\n* 6951252: Correct PersistentCache backed code cache context grouping\n\n* chore: bump chromium in DEPS to 142.0.7436.0\n\n* 6981628: Reland Use unordered_map in AcceleratorMap | https://chromium-review.googlesource.com/c/chromium/src/+/6981628\n\n* chore: export patches\n\n* chore: resolve patch conflict with main\n\n* chore: merge conflict with main\n\n* chore: bump chromium in DEPS to 142.0.7438.0\n\n* chore: bump chromium in DEPS to 142.0.7440.0\n\n* chore: bump chromium in DEPS to 142.0.7442.0\n\n* chore: bump chromium in DEPS to 142.0.7444.0\n\n* chore: bump chromium in DEPS to 143.0.7445.0\n\n* chore: bump chromium in DEPS to 143.0.7447.0\n\n* chore: bump chromium in DEPS to 143.0.7449.0\n\n* chore: bump chromium in DEPS to 143.0.7451.0\n\n* 7001364: Migrate GURL accessors to Get* variants in //content | https://chromium-review.googlesource.com/c/chromium/src/+/7001364\n\n* 6986521: Implicit second value \u0027any\u0027 instead of \u0027span-all\u0027 for fallback query | https://chromium-review.googlesource.com/c/chromium/src/+/6986521\n\n* chore: update chromium patches\n\n* chore: update chromium patches\n\n* chore: update patches\n\n* fix: parse macOS SDK version across line break\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6980166\n\n* fix: replace v8::Object::SetPrototype() usage\nhttps://chromium-review.googlesource.com/c/v8/v8/+/6983465\nhttps://github.com/nodejs/node/pull/55453\n\n* fix: regenerate filenames.libcxx.gni\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6980307\n\n* fix: replace additional usages of SetPrototype\nhttps://chromium-review.googlesource.com/c/v8/v8/+/6983465\n\n* build: use macos 15 minimum\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6980166\n\n* ci: ignore missing dir for strip_universal_deep\n\n* fix: js2c compilation failure\n\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6950738\n\nSee patch description explaining MacOS 26 SDK headers incompatibility.\n\n* fixup! chore: export patches\n\n* feat: add new memory-eviction exit reason\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6991933\n\n* fix: set JSON reader parsing options\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6992114\n\n* fix: provide DeviceEmulationCacheBehavior param\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6965238\n\n* fix: views::NonClientFrameView -\u003e views::FrameView\nhttps://chromium-review.googlesource.com/c/chromium/src/+/7005027\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6966937\n\n* fix: check new forced colors enum value\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6944403\n\n* fix: migrate NetworkConditions -\u003e MatchedNetworkConditions\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6827307\n\n* fix: migrate GURL string methods to Get*()\nhttps://chromium-review.googlesource.com/c/chromium/src/+/7007010\n\n* fix: disable C++ modules in electron_lib builds\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6950738\n\n* fix: partially revert is_headless_mode removal\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6955633\n\nThis patch should likely be reworked. For now, this partially reverts the\nremoval of a required class property to restore behavior.\n\n* Revert \"build: use macos 15 minimum\"\n\nThis reverts commit 2fc12d6acc1b24f3cbd0adb03122bf6b21eb14b9.\n\nInitially this change was made to test if it fixes libcxx\ncompilation issues. As that\u0027s now resolved by disabling libcxx\nmodules, this can be reverted.\n\n* fix: disable C++ modules in libnode builds\n\n* fixup! fix: replace v8::Object::SetPrototype() usage https://chromium-review.googlesource.com/c/v8/v8/+/6983465 https://github.com/nodejs/node/pull/55453\n\n* fixup! fix: replace v8::Object::SetPrototype() usage https://chromium-review.googlesource.com/c/v8/v8/+/6983465 https://github.com/nodejs/node/pull/55453\n\n* build: switch to macos-15 runner\n\nbuild/mac/find_sdk.py now requires macOS 15 SDK as a minimum version. The\nmacos 15 runners default to an Xcode using the 15 SDK and removes older\nversions.\n\n* fixup! fix: check new forced colors enum value https://chromium-review.googlesource.com/c/chromium/src/+/6944403\n\n* fixup! fix: migrate GURL string methods to Get*() https://chromium-review.googlesource.com/c/chromium/src/+/7007010\n\n* fix: use std::u16string for Extension::Create() error parameter\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6975452\n\n* fix: add missing image_skia include\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6986762\n\n* fixup! fix: add missing image_skia include https://chromium-review.googlesource.com/c/chromium/src/+/6986762\n\n* fix: remove outdated V8 flag\nhttps://chromium-review.googlesource.com/c/v8/v8/+/6948286\n\n* fix: disable protocol handler DCHECK\n\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6727594\n\nIgnore the extension custom protocol handler registry DCHECK until\nwe invest in supporting it. Replacing this DCHECK seems harmless\nand will unblock the roll.\n\n* fix: replace deprecated usage of SetPrototype\nhttps://chromium-review.googlesource.com/c/v8/v8/+/6983465\n\n* fixup! fix: migrate NetworkConditions -\u003e MatchedNetworkConditions https://chromium-review.googlesource.com/c/chromium/src/+/6827307\n\n* fixup! fix: migrate GURL string methods to Get*() https://chromium-review.googlesource.com/c/chromium/src/+/7007010\n\n* chore: remove patch already included in roll\n\n* chore: remove extraneous formatting added to patch\n\n* chore: remove fix_harden_blink_scriptstate_maybefrom.patch\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6973697\n\nNo longer needed since the above CL landed.\n\n* 6973697: Use type tags for data stored in V8 internal fields\n\nhttps://chromium-review.googlesource.com/c/chromium/src/+/6973697\n\n* chore: update patches\n\n* fixup! chore: export patches\n\n* chore: restore electron embedder data tag patch\n\n---------\n\nCo-authored-by: electron-roller[bot] \u003c84116207+electron-roller[bot]@users.noreply.github.com\u003e\nCo-authored-by: Alice Zhao \u003calicelovescake@anthropic.com\u003e\nCo-authored-by: Keeley Hammond \u003cvertedinde@electronjs.org\u003e\nCo-authored-by: Samuel Maddock \u003csmaddock@slack-corp.com\u003e\nCo-authored-by: John Kleinschmidt \u003cjkleinsc@electronjs.org\u003e",
+      "modifiedFiles": [
+        ".github/actions/free-space-macos/action.yml",
+        ".github/actions/install-build-tools/action.yml",
+        ".github/workflows/build.yml",
+        "BUILD.gn",
+        "DEPS",
+        "docs/api/app.md",
+        "docs/api/structures/render-process-gone-details.md",
+        "filenames.libcxx.gni",
+        "patches/angle/.patches",
+        "patches/angle/cherry-pick-2f564f1ca07b.patch",
+        "patches/boringssl/revert_track_ssl_error_zero_return_explicitly.patch",
+        "patches/chromium/.patches",
+        "patches/chromium/accelerator.patch",
+        "patches/chromium/add_contentgpuclient_precreatemessageloop_callback.patch",
+        "patches/chromium/add_didinstallconditionalfeatures.patch",
+        "patches/chromium/add_electron_deps_to_license_credits_file.patch",
+        "patches/chromium/add_ui_scopedcliboardwriter_writeunsaferawdata.patch",
+        "patches/chromium/allow_disabling_blink_scheduler_throttling_per_renderview.patch",
+        "patches/chromium/allow_electron_to_depend_on_components_os_crypt_sync.patch",
+        "patches/chromium/blink_local_frame.patch",
+        "patches/chromium/build_add_electron_tracing_category.patch",
+        "patches/chromium/build_disable_thin_lto_mac.patch",
+        "patches/chromium/build_do_not_depend_on_packed_resource_integrity.patch",
+        "patches/chromium/build_gn.patch",
+        "patches/chromium/build_libc_as_static_library.patch",
+        "patches/chromium/build_set_mac_sdk_minimum_to_10.patch",
+        "patches/chromium/can_create_window.patch",
+        "patches/chromium/chore_add_electron_deps_to_gitignores.patch",
+        "patches/chromium/chore_add_electron_objects_to_wrappablepointertag.patch",
+        "patches/chromium/chore_disable_protocol_handler_dcheck.patch",
+        "patches/chromium/chore_expose_isolate_parameter_in_script_lifecycle_observers.patch",
+        "patches/chromium/chore_grandfather_in_electron_views_and_delegates.patch",
+        "patches/chromium/chore_modify_chromium_handling_of_mouse_events.patch",
+        "patches/chromium/chore_partial_revert_of.patch",
+        "patches/chromium/chore_patch_out_partition_attribute_dcheck_for_webviews.patch",
+        "patches/chromium/chore_patch_out_profile_methods.patch",
+        "patches/chromium/chore_provide_iswebcontentscreationoverridden_with_full_params.patch",
+        "patches/chromium/chore_remove_check_is_test_on_script_injection_tracker.patch",
+        "patches/chromium/chore_restore_some_deprecated_wrapper_utility_in_gin.patch",
+        "patches/chromium/command-ismediakey.patch",
+        "patches/chromium/crash_allow_setting_more_options.patch",
+        "patches/chromium/custom_protocols_plzserviceworker.patch",
+        "patches/chromium/desktop_media_list.patch",
+        "patches/chromium/disable_compositor_recycling.patch",
+        "patches/chromium/disable_hidden.patch",
+        "patches/chromium/disable_nsautofillheuristiccontroller_on_macos_26.patch",
+        "patches/chromium/enable_reset_aspect_ratio.patch",
+        "patches/chromium/expose_setuseragent_on_networkcontext.patch",
+        "patches/chromium/extend_apply_webpreferences.patch",
+        "patches/chromium/feat_add_set_theme_source_to_allow_apps_to.patch",
+        "patches/chromium/feat_add_signals_when_embedder_cleanup_callbacks_run_for.patch",
+        "patches/chromium/feat_add_support_for_missing_dialog_features_to_shell_dialogs.patch",
+        "patches/chromium/feat_allow_code_cache_in_custom_schemes.patch",
+        "patches/chromium/feat_allow_passing_of_objecttemplate_to_objecttemplatebuilder.patch",
+        "patches/chromium/feat_allow_usage_of_sccontentsharingpicker_on_supported_platforms.patch",
+        "patches/chromium/feat_configure_launch_options_for_service_process.patch",
+        "patches/chromium/feat_corner_smoothing_css_rule_and_blink_painting.patch",
+        "patches/chromium/feat_enable_offscreen_rendering_with_viz_compositor.patch",
+        "patches/chromium/feat_enable_passing_exit_code_on_service_process_crash.patch",
+        "patches/chromium/feat_expose_raw_response_headers_from_urlloader.patch",
+        "patches/chromium/feat_separate_content_settings_callback_for_sync_and_async_clipboard.patch",
+        "patches/chromium/fix_adjust_headless_mode_handling_in_native_widget.patch",
+        "patches/chromium/fix_aspect_ratio_with_max_size.patch",
+        "patches/chromium/fix_crash_loading_non-standard_schemes_in_iframes.patch",
+        "patches/chromium/fix_font_face_resolution_when_renderer_is_blocked.patch",
+        "patches/chromium/fix_harden_blink_scriptstate_maybefrom.patch",
+        "patches/chromium/fix_move_autopipsettingshelper_behind_branding_buildflag.patch",
+        "patches/chromium/fix_non-client_mouse_tracking_and_message_bubbling_on_windows.patch",
+        "patches/chromium/fix_on-screen-keyboard_hides_on_input_blur_in_webview.patch",
+        "patches/chromium/fix_remove_caption-removing_style_call.patch",
+        "patches/chromium/fix_resolve_dynamic_background_material_update_issue_on_windows_11.patch",
+        "patches/chromium/fix_restore_original_resize_performance_on_macos.patch",
+        "patches/chromium/fix_return_v8_value_from_localframe_requestexecutescript.patch",
+        "patches/chromium/fix_select_the_first_menu_item_when_opened_via_keyboard.patch",
+        "patches/chromium/fix_use_delegated_generic_capturer_when_available.patch",
+        "patches/chromium/frame_host_manager.patch",
+        "patches/chromium/gin_enable_disable_v8_platform.patch",
+        "patches/chromium/gritsettings_resource_ids.patch",
+        "patches/chromium/inspectorpageagent_provisional_frame_speculative_fix.patch",
+        "patches/chromium/isolate_holder.patch",
+        "patches/chromium/mas_avoid_private_macos_api_usage.patch.patch",
+        "patches/chromium/network_service_allow_remote_certificate_verification_logic.patch",
+        "patches/chromium/notification_provenance.patch",
+        "patches/chromium/osr_shared_texture_remove_keyed_mutex_on_win_dxgi.patch",
+        "patches/chromium/picture-in-picture.patch",
+        "patches/chromium/port_autofill_colors_to_the_color_pipeline.patch",
+        "patches/chromium/printing.patch",
+        "patches/chromium/refactor_expose_cursor_changes_to_the_webcontentsobserver.patch",
+        "patches/chromium/refactor_expose_file_system_access_blocklist.patch",
+        "patches/chromium/refactor_expose_hostimportmoduledynamically_and.patch",
+        "patches/chromium/refactor_patch_electron_permissiontypes_into_blink.patch",
+        "patches/chromium/refactor_unfilter_unresponsive_events.patch",
+        "patches/chromium/render_widget_host_view_mac.patch",
+        "patches/chromium/resource_file_conflict.patch",
+        "patches/chromium/revert_code_health_clean_up_stale_macwebcontentsocclusion.patch",
+        "patches/chromium/revert_partial_remove_unused_prehandlemouseevent.patch",
+        "patches/chromium/revert_views_remove_desktopwindowtreehostwin_window_enlargement.patch",
+        "patches/chromium/support_mixed_sandbox_with_zygote.patch",
+        "patches/chromium/web_contents.patch",
+        "patches/chromium/webview_fullscreen.patch",
+        "patches/chromium/worker_context_will_destroy.patch",
+        "patches/chromium/worker_feat_add_hook_to_notify_script_ready.patch",
+        "patches/config.json",
+        "patches/devtools_frontend/chore_expose_ui_to_allow_electron_to_set_dock_side.patch",
+        "patches/nan/.patches",
+        "patches/nan/fix_replace_deprecated_get_setprototype.patch",
+        "patches/node/.patches",
+        "patches/node/cli_move_--trace-atomics-wait_to_eol.patch",
+        "patches/node/fix_cppgc_initializing_twice.patch",
+        "patches/node/fix_redefined_macos_sdk_header_symbols.patch",
+        "patches/node/fix_remove_outdated_v8_flags_from_node_cc.patch",
+        "patches/node/fix_replace_deprecated_setprototype.patch",
+        "patches/node/refactor_attach_cppgc_heap_on_v8_isolate_creation.patch",
+        "patches/node/src_switch_from_get_setprototype_to_get_setprototypev2.patch",
+        "patches/v8/.patches",
+        "patches/v8/cherry-pick-ec6c18478382.patch",
+        "shell/browser/api/electron_api_native_theme.cc",
+        "shell/browser/api/electron_api_session.cc",
+        "shell/browser/api/electron_api_web_contents.cc",
+        "shell/browser/electron_browser_client.cc",
+        "shell/browser/extensions/electron_extension_system.cc",
+        "shell/browser/extensions/electron_messaging_delegate.cc",
+        "shell/browser/native_window_mac.h",
+        "shell/browser/native_window_mac.mm",
+        "shell/browser/native_window_views.cc",
+        "shell/browser/native_window_views.h",
+        "shell/browser/osr/osr_host_display_client.h",
+        "shell/browser/osr/osr_paint_event.h",
+        "shell/browser/osr/osr_render_widget_host_view.cc",
+        "shell/browser/ui/devtools_ui_bundle_data_source.cc",
+        "shell/browser/ui/drag_util.h",
+        "shell/browser/ui/inspectable_web_contents_view.h",
+        "shell/browser/ui/tray_icon_linux.h",
+        "shell/browser/ui/views/client_frame_view_linux.cc",
+        "shell/browser/ui/views/client_frame_view_linux.h",
+        "shell/browser/ui/views/electron_views_delegate.cc",
+        "shell/browser/ui/views/electron_views_delegate.h",
+        "shell/browser/ui/views/frameless_view.cc",
+        "shell/browser/ui/views/frameless_view.h",
+        "shell/browser/ui/views/global_menu_bar_x11.h",
+        "shell/browser/ui/views/opaque_frame_view.cc",
+        "shell/browser/ui/views/opaque_frame_view.h",
+        "shell/browser/ui/views/win_frame_view.cc",
+        "shell/browser/ui/views/win_frame_view.h",
+        "shell/browser/web_contents_zoom_controller.cc",
+        "shell/common/asar/archive.cc",
+        "shell/common/asar/archive_win.cc",
+        "shell/common/gin_converters/base_converter.h"
+      ]
+    },
+    {
+      "sha": "d82b8f3b803999d56c49b24e0f4d03e97bb78beb",
+      "message": "build(deps): bump github/codeql-action from 3.30.5 to 3.30.6 (#48478)\n\nBumps [github/codeql-action](https://github.com/github/codeql-action) from 3.30.5 to 3.30.6.\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/3599b3baa15b485a2e49ef411a7a4bb2452e7f93...64d10c13136e1c5bce3e5fbde8d4906eeaafc885)\n\n---\nupdated-dependencies:\n- dependency-name: github/codeql-action\n  dependency-version: 3.30.6\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/scorecards.yml"
+      ]
+    },
+    {
+      "sha": "52929c93dbf5898528094025cec8f5259cf1ced9",
+      "message": "build: fail publish when upload fatal errors (#48537)\n\nWe logged a fatal error but didn\u0027t exit with code 1 so the publish kept going. This was caught by a sanity check later down the release process but would have been quicker to fail out here.\r\n\r\nAlso adds some code to maybe workaround the underlying auth error",
+      "modifiedFiles": [
+        "script/release/uploaders/upload-to-github.ts"
+      ]
+    },
+    {
+      "sha": "dd25a6361bd48e665275f9c674c46c9668c0385a",
+      "message": "fix: auth required websocket crash (#48510)",
+      "modifiedFiles": [
+        "shell/browser/net/proxying_websocket.cc"
+      ]
+    },
+    {
+      "sha": "16b5776b0170a501d8acb8105e14b15846533442",
+      "message": "fix: launch crash when null device is disabled on Windows (#47870)\n\nfix: fix launch crash when null device is disabled on Windows\n\nadd node flag node::ProcessInitializationFlags::kNoStdioInitialization\n\nCo-authored-by: yangzuohui \u003cyangzuohui@bytedance.com\u003e\nCo-authored-by: yangliu \u003cyangliu.leo@bytedance.com\u003e",
+      "modifiedFiles": [
+        "docs/api/command-line-switches.md",
+        "shell/app/node_main.cc",
+        "shell/browser/api/electron_api_utility_process.cc",
+        "shell/browser/electron_browser_client.cc",
+        "shell/common/node_bindings.cc",
+        "shell/common/options_switches.h",
+        "shell/common/platform_util.h",
+        "shell/common/platform_util_win.cc"
+      ]
+    },
+    {
+      "sha": "cbf5c3331ffb03b5594819abd932ab9ef91b9103",
+      "message": "ci: fix release branch name in build stats script (#48533)",
+      "modifiedFiles": [
+        "script/build-stats.mjs"
+      ]
+    },
+    {
+      "sha": "3359f903899dad09a05f9ed964658bb42b1c9fb8",
+      "message": "ci: upload build effective cache hit rate stats to Datadog (#48509)",
+      "modifiedFiles": [
+        ".github/actions/build-electron/action.yml",
+        ".github/workflows/pipeline-segment-electron-build.yml",
+        "script/build-stats.mjs"
+      ]
+    },
+    {
+      "sha": "cf9fa5ef6531f5732381128005a7685344dcd982",
+      "message": "docs: unmark asar integrity as experimental and clean docs (#48434)",
+      "modifiedFiles": [
+        "docs/glossary.md",
+        "docs/tutorial/asar-integrity.md",
+        "docs/tutorial/fuses.md",
+        "docs/tutorial/security.md"
+      ]
+    },
+    {
+      "sha": "550e0541684d4726edae1444a07ab1c3a59e8bb5",
+      "message": "docs: update Azure Trusted Signing availability (#48494)\n\n* docs: update Azure Trusted Signing availability\n\nSource: https://github.com/Azure/trusted-signing-action/issues/93#issuecomment-3383517386\n\n* docs: remove unused link",
+      "modifiedFiles": [
+        "docs/tutorial/code-signing.md"
+      ]
+    },
+    {
+      "sha": "b992ead837179605c6384075cb863b31a27a4372",
+      "message": "fix: `dialog.showMessageBox` defaultid on Windows (#48216)\n\n* fix: dialog.showMessageBox defaultid on Windows\n\n* Update shell/browser/ui/message_box_win.cc\n\nCo-authored-by: Robo \u003chop2deep@gmail.com\u003e\n\n---------\n\nCo-authored-by: Robo \u003chop2deep@gmail.com\u003e",
+      "modifiedFiles": [
+        "shell/browser/ui/message_box_win.cc"
+      ]
+    },
+    {
+      "sha": "11f76118dbdf1f6ca9226790550f368e105799eb",
+      "message": "fix: unexpected `openExternal` dialog on macOS Tahoe (#48502)\n\nfix: unexpected openExternal dialog on macOS Tahoe",
+      "modifiedFiles": [
+        "shell/common/platform_util_mac.mm",
+        "spec/api-shell-spec.ts"
+      ]
+    },
+    {
+      "sha": "37c7487600a8b61ea1b09eee1feebf3e1abad968",
+      "message": "fix: crash when inspector evaluates on provisional frames (#48503)",
+      "modifiedFiles": [
+        "patches/chromium/.patches",
+        "patches/chromium/inspectorpageagent_provisional_frame_speculative_fix.patch"
+      ]
+    },
+    {
+      "sha": "9e46efb8f704416f32ed0c1a1e4e44a678e7346f",
+      "message": "feat: offscreen rendering support rgbaf16 hdr output format. (#48265)\n\n* feat: offscreen rendering support rgbaf16\n\n* docs: update doc\n\n* docs: update doc.",
+      "modifiedFiles": [
+        "docs/api/structures/offscreen-shared-texture.md",
+        "docs/api/structures/web-preferences.md",
+        "shell/browser/api/electron_api_web_contents.cc",
+        "shell/browser/api/electron_api_web_contents.h",
+        "shell/browser/osr/osr_render_widget_host_view.cc",
+        "shell/browser/osr/osr_render_widget_host_view.h",
+        "shell/browser/osr/osr_video_consumer.cc",
+        "shell/browser/osr/osr_web_contents_view.cc",
+        "shell/browser/osr/osr_web_contents_view.h",
+        "shell/common/gin_converters/osr_converter.cc",
+        "shell/common/options_switches.h"
+      ]
+    },
+    {
+      "sha": "9c38917a144f8d75594d1a98e768a1fbb2665fb4",
+      "message": "build(deps): bump actions/github-script from 7.0.1 to 8.0.0 (#48329)\n\nBumps [actions/github-script](https://github.com/actions/github-script) from 7.0.1 to 8.0.0.\n- [Release notes](https://github.com/actions/github-script/releases)\n- [Commits](https://github.com/actions/github-script/compare/60a0d83039c74a4aee543508d2ffcb1c3799cdea...ed597411d8f924073f98dfc5c65a23a2325f34cd)\n\n---\nupdated-dependencies:\n- dependency-name: actions/github-script\n  dependency-version: 8.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/audit-branch-ci.yml",
+        ".github/workflows/branch-created.yml",
+        ".github/workflows/issue-opened.yml"
+      ]
+    },
+    {
+      "sha": "3a53c71324106a49a2d915080f1389cd44093b79",
+      "message": "fix: broken transparent window styles on resizable change (#48378)\n\n* fix: wrong api call\n\n* fix: consistency of the resize state\n\n* fix: edge cases\n\n* chore: add detailed comments\n\n* fix: lint\n\n* chore: only windows\n\n* chore: use transparent",
+      "modifiedFiles": [
+        "shell/browser/native_window_views.cc",
+        "shell/browser/native_window_views.h",
+        "spec/api-browser-window-spec.ts"
+      ]
+    },
+    {
+      "sha": "0d478ec69cf5e7bc955cf799b764e7263769178b",
+      "message": "ci: ignore lost communication with server annotation in audit (#48493)",
+      "modifiedFiles": [
+        ".github/workflows/audit-branch-ci.yml"
+      ]
+    },
+    {
+      "sha": "9143f7c6e297876bdb38e5c2a41e96519c286315",
+      "message": "docs: clarify postinstall requirements (#48485)\n\npostinstall",
+      "modifiedFiles": [
+        "docs/faq.md",
+        "docs/tutorial/installation.md",
+        "docs/tutorial/tutorial-2-first-app.md"
+      ]
+    },
+    {
+      "sha": "df86312e2fff77bc615d498839f2cf2111a06ecf",
+      "message": "docs: add note for `node_modules` for Yarn and pnpm (#48484)\n\n* Add instructions on using node_modules with Yarn\n\n* update text for pnpm\n\n---------\n\nCo-authored-by: CodingOtto \u003cotto+github@fysiker.fi\u003e",
+      "modifiedFiles": [
+        "docs/tutorial/tutorial-2-first-app.md"
+      ]
+    },
+    {
+      "sha": "ffbae02a950dce6c0880d19fa27d7b3f67d306a9",
+      "message": "docs: add security escalation policy (#48317)",
+      "modifiedFiles": [
+        "SECURITY.md"
+      ]
+    },
+    {
+      "sha": "a87ee21f5cd801b84ab25c6565df6ada2bbe465f",
+      "message": "build: bump version in .nvmrc to 22 (#48413)",
+      "modifiedFiles": [
+        ".nvmrc"
+      ]
+    },
+    {
+      "sha": "ea8f43f9b9e52c6d91d25bf6e839e10c4beedbb0",
+      "message": "chore: bump node to v22.20.0 (main) (#48383)\n\n* chore: bump node in DEPS to v22.20.0\n\n* chore: fixup patches\n\n---------\n\nCo-authored-by: electron-roller[bot] \u003c84116207+electron-roller[bot]@users.noreply.github.com\u003e\nCo-authored-by: Shelley Vohr \u003cshelley.vohr@gmail.com\u003e",
+      "modifiedFiles": [
+        "DEPS",
+        "patches/node/add_v8_taskpirority_to_foreground_task_runner_signature.patch",
+        "patches/node/api_remove_deprecated_getisolate.patch",
+        "patches/node/build_add_gn_build_files.patch",
+        "patches/node/build_compile_with_c_20_support.patch",
+        "patches/node/build_enable_perfetto.patch",
+        "patches/node/build_ensure_native_module_compilation_fails_if_not_using_a_new.patch",
+        "patches/node/build_modify_js2c_py_to_allow_injection_of_original-fs_and_custom_embedder_js.patch",
+        "patches/node/build_restore_clang_as_default_compiler_on_macos.patch",
+        "patches/node/chore_expose_importmoduledynamically_and.patch",
+        "patches/node/cli_move_--trace-atomics-wait_to_eol.patch",
+        "patches/node/cli_remove_deprecated_v8_flag.patch",
+        "patches/node/enable_crashpad_linux_node_processes.patch",
+        "patches/node/fix_add_default_values_for_variables_in_common_gypi.patch",
+        "patches/node/fix_add_source_location_for_v8_task_runner.patch",
+        "patches/node/fix_allow_passing_fileexists_fn_to_legacymainresolve.patch",
+        "patches/node/fix_assert_module_in_the_renderer_process.patch",
+        "patches/node/fix_cppgc_initializing_twice.patch",
+        "patches/node/fix_do_not_resolve_electron_entrypoints.patch",
+        "patches/node/fix_expose_readfilesync_override_for_modules.patch",
+        "patches/node/fix_expose_the_built-in_electron_module_via_the_esm_loader.patch",
+        "patches/node/fix_handle_boringssl_and_openssl_incompatibilities.patch",
+        "patches/node/fix_lazyload_fs_in_esm_loaders_to_apply_asar_patches.patch",
+        "patches/node/fix_remove_deprecated_errno_constants.patch",
+        "patches/node/fix_remove_fastapitypedarray_usage.patch",
+        "patches/node/fix_remove_outdated_v8_flags_from_node_cc.patch",
+        "patches/node/refactor_attach_cppgc_heap_on_v8_isolate_creation.patch",
+        "patches/node/src_do_not_use_soon-to-be-deprecated_v8_api.patch",
+        "patches/node/src_remove_dependency_on_wrapper-descriptor-based_cppheap.patch",
+        "patches/node/support_v8_sandboxed_pointers.patch",
+        "patches/node/test_formally_mark_some_tests_as_flaky.patch"
+      ]
+    },
+    {
+      "sha": "e8e91c331a715126271b368782887c36a976dae1",
+      "message": "feat: dynamic ESM import in preload without context isolation (#48375)\n\nDynamic ESM import in non-context-isolated preload\n\nExtend `HostImportModuleWithPhaseDynamically`\u0027s routing to support\nNode.js import resolution in non-context-isolated preloads through\n`v8_host_defined_options` length check. The length of host defined\noptions is distinct between Blink and Node.js and we can use it to\ndetermine which resolver to use.",
+      "modifiedFiles": [
+        "docs/tutorial/esm.md",
+        "patches/chromium/.patches",
+        "patches/chromium/expose_referrerscriptinfo_hostdefinedoptionsindex.patch",
+        "shell/common/node_bindings.cc",
+        "spec/esm-spec.ts"
+      ]
+    },
+    {
+      "sha": "49c1139ab9ba0a24a7fef4c3e04b719252045929",
+      "message": "chore: remove unused reference to `api::BrowserView` (#48474)\n\nchore: remove unused reference to api::BrowserView\n\nUnused since #35658 / 15c60143",
+      "modifiedFiles": [
+        "shell/browser/native_window.h"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "electron",
+      "ownerLogin": "eoinamedot",
+      "commitCount": 78
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "personalizedrefrigerator",
+      "commitCount": 78
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "muthukumardce",
+      "commitCount": 78
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "wanderprograms",
+      "commitCount": 78
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "kyan1823",
+      "commitCount": 78
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "mayakilzy",
+      "commitCount": 78
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "EarlyAnt",
+      "commitCount": 78
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "lnspirafirmaGPK",
+      "commitCount": 78
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "zonnectafrica",
+      "commitCount": 67
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "virajsabhaya23",
+      "commitCount": 66
+    },
+    {
+      "name": "Electron",
+      "ownerLogin": "MaxBladix",
+      "commitCount": 64
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "akshatsinha0",
+      "commitCount": 64
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "KinshukSS2",
+      "commitCount": 63
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "kvii",
+      "commitCount": 63
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "youtube-boop",
+      "commitCount": 63
+    },
+    {
+      "name": "electron_pixar19",
+      "ownerLogin": "pixar19",
+      "commitCount": 62
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "kalbroni7",
+      "commitCount": 62
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "armenchikdev-hue",
+      "commitCount": 62
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "kingofalbania1995-blip",
+      "commitCount": 62
+    },
+    {
+      "name": "electron",
+      "ownerLogin": "COMPU-GLOBALHYPERMEGANET",
+      "commitCount": 62
+    }
+  ]
+}

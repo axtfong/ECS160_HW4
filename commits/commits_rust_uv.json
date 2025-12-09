@@ -1,0 +1,565 @@
+{
+  "name": "uv",
+  "ownerLogin": "astral-sh",
+  "language": "Rust",
+  "commits": [
+    {
+      "sha": "0959763a828418410bdb7393696249b71e536969",
+      "message": "Improve hint on `pip install --system` when externally managed (#16392)\n\nI had some qualms with https://github.com/astral-sh/uv/pull/16318\n\n1. The snapshot was specific to uv\u0027s managed interpreter due to\ninclusion of the externally-managed output. This will break downstream\ndistros. We either need to filter the message, or, as done here, install\na managed interpreter.\n2. It had a custom filter for the interpreter path, which we shouldn\u0027t\nneed. If needed, we should fix that in the test context.\n3. We already had an implicit hint to create a virtual environment. The\nchange in styling of the new hint hint following it is confusing. It\u0027s\nalso confusing to hint creating a virtual environment when `--system`\nwas used.\n4. There were unresolved requested changes to the language for the\nmessage / it didn\u0027t fit stylistic with our existing ones.\n5. The message was also very confusing for a uv-managed interpreter,\nwhich is both a \"system\" Python interpreter (in that it\u0027s global) and\nthe opposite of a \"system\" interpreter per UV_PYTHON_PREFERENCE.\n\nAlso problematic, but not addressed here, is that there are other\ncommands that display an externally-managed message, e.g., `uv pip\nsync`, but #16318 was just limited to `pip install`. We should not just\nimplement this in one place — I\u0027ll open a tracking issue to consolidate\nand reuse the logic.",
+      "modifiedFiles": [
+        "crates/uv/src/commands/pip/install.rs",
+        "crates/uv/tests/it/pip_install.rs"
+      ]
+    },
+    {
+      "sha": "225bffbb6ccbe2b471c93825294aa0ac57a34a69",
+      "message": "Running `uv lock --check` with outdated lockfile will print that `--check` was passed, instead of `--locked`  (#16322)\n\nHello,\n\n# Summary\n\nThis PR fixes the confusing error message when running `uv lock --check`\nwith an outdated lockfile.\n\nPreviously, the error message incorrectly stated that `--locked` was\nprovided, even when the user used `--check`.\n\nNow, the error message correctly indicates which flag was used: either\n`--check` or `--locked`.\n\nThis closes #14105.\n\n# Test plan\n\n- I updated the existing integration test (`check_outdated_lock` in\n`lock.rs`) to verify the new error message includes the correct flag.\n- I ran existing tests to ensure I have no introduced regressions for\nother commands.",
+      "modifiedFiles": [
+        "crates/uv-cli/src/lib.rs",
+        "crates/uv/src/commands/project/add.rs",
+        "crates/uv/src/commands/project/export.rs",
+        "crates/uv/src/commands/project/lock.rs",
+        "crates/uv/src/commands/project/mod.rs",
+        "crates/uv/src/commands/project/remove.rs",
+        "crates/uv/src/commands/project/run.rs",
+        "crates/uv/src/commands/project/sync.rs",
+        "crates/uv/src/commands/project/tree.rs",
+        "crates/uv/src/commands/project/version.rs",
+        "crates/uv/src/lib.rs",
+        "crates/uv/src/settings.rs",
+        "crates/uv/tests/it/lock.rs",
+        "crates/uv/tests/it/show_settings.rs",
+        "docs/reference/cli.md"
+      ]
+    },
+    {
+      "sha": "509a1e8ff6bfc6770e318d77183b620b533c2d6e",
+      "message": "CHANGELOG: include security note + entry for 0.9.5 (#16393)",
+      "modifiedFiles": [
+        "CHANGELOG.md"
+      ]
+    },
+    {
+      "sha": "d5f39331a73d5042e70ab770463dff632e20c127",
+      "message": "Bump version to 0.9.5 (#16389)",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "Cargo.lock",
+        "crates/uv-build/Cargo.toml",
+        "crates/uv-build/pyproject.toml",
+        "crates/uv-version/Cargo.toml",
+        "crates/uv/Cargo.toml",
+        "docs/concepts/build-backend.md",
+        "docs/concepts/projects/init.md",
+        "docs/concepts/projects/workspaces.md",
+        "docs/getting-started/installation.md",
+        "docs/guides/integration/aws-lambda.md",
+        "docs/guides/integration/docker.md",
+        "docs/guides/integration/github.md",
+        "docs/guides/integration/pre-commit.md",
+        "pyproject.toml"
+      ]
+    },
+    {
+      "sha": "1a53701d1df1978fe4dbc4598f463db2a0752d7a",
+      "message": "Deactivate zizmor due to GitHub ratelimiting (#16390)",
+      "modifiedFiles": [
+        ".github/workflows/zizmor.yml"
+      ]
+    },
+    {
+      "sha": "ae450662d1546e9853f67a8c61a506d3a892d963",
+      "message": "deps: bump astral-tokio-tar to 0.5.6 (#16387)",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml"
+      ]
+    },
+    {
+      "sha": "38412a675e3ddbfe199eb0d8988ce9bac8ab0725",
+      "message": "Remove outdated aarch64 musl note (#16385)\n\nWe now build aarch64 musl Python distributions. I\u0027ve also removed the\nrye mention since it\u0027s now officially deprecated.",
+      "modifiedFiles": [
+        "docs/concepts/python-versions.md"
+      ]
+    },
+    {
+      "sha": "2fc5fe2ac099fa0d598c88e559ea1d034cf5a7ff",
+      "message": "fix small typos (#16357)\n\n## Summary\n\nI tried to fix minor typos in the project\n\n---------\n\nCo-authored-by: Samuel Rigaud \u003crigaud@gmail.com\u003e\nCo-authored-by: konstin \u003ckonstin@mailbox.org\u003e",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "changelogs/0.5.x.md",
+        "crates/uv-pep508/src/marker/algebra.rs",
+        "crates/uv/tests/it/edit.rs",
+        "crates/uv/tests/it/pip_install.rs",
+        "crates/uv/tests/it/run.rs"
+      ]
+    },
+    {
+      "sha": "17155c4cca44cf4cd5329e5d2e798beec6967cad",
+      "message": "Fix backtick escaping for PowerShell (#16307)\n\n## Summary\nFixes the logic for escaping a double quoted string in PowerShell by not\nescaping a backslash but escaping the Unicode double quote variants that\nPowerShell treats the same as the ASCII double quotes.\n\n\u003cimg width\u003d\"685\" height\u003d\"99\" alt\u003d\"image\"\nsrc\u003d\"https://github.com/user-attachments/assets/ac1368c2-d915-4e49-b67f-ac71ee0f7d46\"\n/\u003e\n\n## Test Plan\nThere does not seem to be any tests for this. I\u0027m fairly new to rust but\nhappy to add some if someone can point me in the right direction.\n\n---------\n\nCo-authored-by: Aria Desires \u003caria.desires@gmail.com\u003e",
+      "modifiedFiles": [
+        "crates/uv-shell/src/lib.rs"
+      ]
+    },
+    {
+      "sha": "51e8da2d1c7a15cd30901de565fba2c19413f6da",
+      "message": "Move parsing http retries to EnvironmentOptions (#16284)\n\n## Summary\n- Move  parsing `UV_HTTP_RETRIES` to `EnvironmentOptions`\n\nRelates https://github.com/astral-sh/uv/issues/14720\n\n## Test Plan\n\n- Tests with existing tests",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "crates/uv-client/src/base_client.rs",
+        "crates/uv-client/src/lib.rs",
+        "crates/uv-publish/src/lib.rs",
+        "crates/uv-python/src/installation.rs",
+        "crates/uv-settings/Cargo.toml",
+        "crates/uv-settings/src/lib.rs",
+        "crates/uv/Cargo.toml",
+        "crates/uv/src/commands/auth/login.rs",
+        "crates/uv/src/commands/auth/logout.rs",
+        "crates/uv/src/commands/auth/token.rs",
+        "crates/uv/src/commands/project/format.rs",
+        "crates/uv/src/commands/publish.rs",
+        "crates/uv/src/commands/python/install.rs",
+        "crates/uv/src/lib.rs",
+        "crates/uv/src/settings.rs",
+        "crates/uv/tests/it/network.rs",
+        "crates/uv/tests/it/show_settings.rs",
+        "crates/uv/tests/it/venv.rs"
+      ]
+    },
+    {
+      "sha": "29cec24d5cbbfe93414127e0421a1104c43676ee",
+      "message": "fix: Add a hint on `uv pip install` failure if the `--system` flag is used to select an externally managed interpreter (#16318)\n\nHello,\n\n# Summary\nThis PR makes the error message clearer when you try to install packages\ninto an externally managed Python environment with the `--system` flag.\nNow, instead of just failing, the error explains that you\u0027re hitting\nthis because you explicitly used `--system`.\n\nThis closes #15639.\n\n# Test plan\n\n- I added a new integration test (`install_with_system_interpreter` in\n`pip_install.rs`) that checks the error message includes the hint.\n- I tried to run `uv pip install --system -r requirements.txt` to see\nthe actual error message in action, but had permission issues.",
+      "modifiedFiles": [
+        "crates/uv/src/commands/pip/install.rs",
+        "crates/uv/tests/it/pip_install.rs"
+      ]
+    },
+    {
+      "sha": "ed65c2482ccf72b83535c211102589cb037f3bab",
+      "message": "Sync latest Python releases (#16246)\n\nAutomated update for Python releases.\n\nCo-authored-by: zanieb \u003c2586601+zanieb@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "crates/uv-dev/src/generate_sysconfig_mappings.rs",
+        "crates/uv-python/src/sysconfig/generated_mappings.rs"
+      ]
+    },
+    {
+      "sha": "e0fe38eabbf97dfb84e1aa6c27b4c7a01f540cb3",
+      "message": "Improve 403 Forbidden error message to indicate package may not exist (#16353)\n\nFixes #16340\n\n## Summary\n\nSome package registries (PyTorch, corporate PyPI mirrors) return `403\nForbidden` when a package is not found, instead of `404 Not Found`. The\nprevious error message incorrectly suggested this was always an\nauthentication issue, causing confusion for users.\n\nThis PR updates the error hint to clarify that a 403 error could\nindicate either missing authentication credentials OR that the package\ndoesn\u0027t exist on the index.\n\n## Test Plan\n\n- Updated existing snapshot test in `crates/uv/tests/it/edit.rs` to\nreflect the new error message\n- The change is purely a message improvement with no behavioral changes\n\n## Changes\n\n### Before\n\nhint: An index URL (https://example.com/simple) could not be queried due\nto a lack of valid authentication credentials (403 Forbidden).\n\n### After\n\nhint: An index URL (https://example.com/simple) returned a 403 Forbidden\nerror. This could indicate missing authentication credentials, or the\npackage may not exist on this index.\n\n\n## Files Changed\n\n- `crates/uv-resolver/src/pubgrub/report.rs` - Updated error message\n- `crates/uv/tests/it/edit.rs` - Updated snapshot test expectation\n\n---------\n\nCo-authored-by: eun2ce \u003ceun2ce@eun2ceui-MacBookPro.local\u003e\nCo-authored-by: konstin \u003ckonstin@mailbox.org\u003e",
+      "modifiedFiles": [
+        "crates/uv-resolver/src/pubgrub/report.rs",
+        "crates/uv/tests/it/edit.rs"
+      ]
+    },
+    {
+      "sha": "ed3f99a119cd0f64eea634aeb0b5e8d9f6e22ec3",
+      "message": "Add required environment marker example to hint (#16244)\n\n## Summary\nfixes issue #15938 \n- show platform wheel hint with a concrete\n`tool.uv.required-environments` example so users know how to configure\ncompatibility\n- add `WheelTagHint::suggest_environment_marker` to pick a sensible\nenvironment marker based on the available wheel tags\n- update the `sync_required_environment_hint` integration snapshot to\nexpect the new multi-line hint\n\n## Test Plan\n\ncargo test --package uv --test it --\nsync::sync_required_environment_hint",
+      "modifiedFiles": [
+        "crates/uv-resolver/src/lock/export/pylock_toml.rs",
+        "crates/uv-resolver/src/lock/installable.rs",
+        "crates/uv-resolver/src/lock/mod.rs",
+        "crates/uv/src/commands/project/lock.rs",
+        "crates/uv/tests/it/sync.rs"
+      ]
+    },
+    {
+      "sha": "2b0407e277d4c258f39ba544318b3387443982b4",
+      "message": "Update dependency astral-sh/uv to v0.9.4 (#16363)\n\nThis PR contains the following updates:\n\n| Package | Type | Update | Change |\n|---|---|---|---|\n| [astral-sh/uv](https://redirect.github.com/astral-sh/uv) | uses-with |\npatch | `0.9.2` -\u003e `0.9.4` |\n\n---\n\n### Release Notes\n\n\u003cdetails\u003e\n\u003csummary\u003eastral-sh/uv (astral-sh/uv)\u003c/summary\u003e\n\n###\n[`v0.9.4`](https://redirect.github.com/astral-sh/uv/blob/HEAD/CHANGELOG.md#094)\n\n[Compare\nSource](https://redirect.github.com/astral-sh/uv/compare/0.9.3...0.9.4)\n\nReleased on 2025-10-17.\n\n##### Enhancements\n\n- Add CUDA 13.0 support\n([#\u0026#8203;16321](https://redirect.github.com/astral-sh/uv/pull/16321))\n- Add auto-detection for Intel GPU on Windows\n([#\u0026#8203;16280](https://redirect.github.com/astral-sh/uv/pull/16280))\n- Implement display of RFC 9457 HTTP error contexts\n([#\u0026#8203;16199](https://redirect.github.com/astral-sh/uv/pull/16199))\n\n##### Bug fixes\n\n- Avoid obfuscating pyx tokens in `uv auth token` output\n([#\u0026#8203;16345](https://redirect.github.com/astral-sh/uv/pull/16345))\n\n###\n[`v0.9.3`](https://redirect.github.com/astral-sh/uv/blob/HEAD/CHANGELOG.md#093)\n\n[Compare\nSource](https://redirect.github.com/astral-sh/uv/compare/0.9.2...0.9.3)\n\nReleased on 2025-10-14.\n\n##### Python\n\n- Add CPython 3.15.0a1\n- Add CPython 3.13.9\n\n##### Enhancements\n\n- Obfuscate secret token values in logs\n([#\u0026#8203;16164](https://redirect.github.com/astral-sh/uv/pull/16164))\n\n##### Bug fixes\n\n- Fix workspace with relative pathing\n([#\u0026#8203;16296](https://redirect.github.com/astral-sh/uv/pull/16296))\n\n\u003c/details\u003e\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - \"before 4am on Monday\" (UTC),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Disabled by config. Please merge this manually once you\nare satisfied.\n\n♻ **Rebasing**: Whenever PR becomes conflicted, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won\u0027t be reminded about this update\nagain.\n\n---\n\n- [ ] \u003c!-- rebase-check --\u003eIf you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/astral-sh/uv).\n\n\u003c!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MS4xNDMuMSIsInVwZGF0ZWRJblZlciI6IjQxLjE0My4xIiwidGFyZ2V0QnJhbmNoIjoibWFpbiIsImxhYmVscyI6WyJpbnRlcm5hbCJdfQ\u003d\u003d--\u003e\n\nCo-authored-by: renovate[bot] \u003c29139614+renovate[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "sha": "1bdd85b4e87101b857cc0df99a2975b8c525657d",
+      "message": "Update Rust crate globset to v0.4.17 (#16365)\n\nThis PR contains the following updates:\n\n| Package | Type | Update | Change |\n|---|---|---|---|\n|\n[globset](https://redirect.github.com/BurntSushi/ripgrep/tree/master/crates/globset)\n([source](https://redirect.github.com/BurntSushi/ripgrep/tree/HEAD/crates/globset))\n| workspace.dependencies | patch | `0.4.16` -\u003e `0.4.17` |\n\n---\n\n### Release Notes\n\n\u003cdetails\u003e\n\u003csummary\u003eBurntSushi/ripgrep (globset)\u003c/summary\u003e\n\n###\n[`v0.4.17`](https://redirect.github.com/BurntSushi/ripgrep/compare/globset-0.4.16...globset-0.4.17)\n\n[Compare\nSource](https://redirect.github.com/BurntSushi/ripgrep/compare/globset-0.4.16...globset-0.4.17)\n\n\u003c/details\u003e\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - \"before 4am on Monday\" (UTC),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Disabled by config. Please merge this manually once you\nare satisfied.\n\n♻ **Rebasing**: Whenever PR becomes conflicted, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won\u0027t be reminded about this update\nagain.\n\n---\n\n- [ ] \u003c!-- rebase-check --\u003eIf you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/astral-sh/uv).\n\n\u003c!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MS4xNDMuMSIsInVwZGF0ZWRJblZlciI6IjQxLjE0My4xIiwidGFyZ2V0QnJhbmNoIjoibWFpbiIsImxhYmVscyI6WyJpbnRlcm5hbCJdfQ\u003d\u003d--\u003e\n\nCo-authored-by: renovate[bot] \u003c29139614+renovate[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": []
+    },
+    {
+      "sha": "152461bc43fe0fbd797b689c103814bf1c68bf8e",
+      "message": "Update Rust crate ignore to v0.4.24 (#16367)\n\nThis PR contains the following updates:\n\n| Package | Type | Update | Change |\n|---|---|---|---|\n|\n[ignore](https://redirect.github.com/BurntSushi/ripgrep/tree/master/crates/ignore)\n([source](https://redirect.github.com/BurntSushi/ripgrep/tree/HEAD/crates/ignore))\n| workspace.dependencies | patch | `0.4.23` -\u003e `0.4.24` |\n\n---\n\n### Release Notes\n\n\u003cdetails\u003e\n\u003csummary\u003eBurntSushi/ripgrep (ignore)\u003c/summary\u003e\n\n###\n[`v0.4.24`](https://redirect.github.com/BurntSushi/ripgrep/compare/ignore-0.4.23...ignore-0.4.24)\n\n[Compare\nSource](https://redirect.github.com/BurntSushi/ripgrep/compare/ignore-0.4.23...ignore-0.4.24)\n\n\u003c/details\u003e\n\n---\n\n### Configuration\n\n📅 **Schedule**: Branch creation - \"before 4am on Monday\" (UTC),\nAutomerge - At any time (no schedule defined).\n\n🚦 **Automerge**: Disabled by config. Please merge this manually once you\nare satisfied.\n\n♻ **Rebasing**: Whenever PR becomes conflicted, or you tick the\nrebase/retry checkbox.\n\n🔕 **Ignore**: Close this PR and you won\u0027t be reminded about this update\nagain.\n\n---\n\n- [ ] \u003c!-- rebase-check --\u003eIf you want to rebase/retry this PR, check\nthis box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/).\nView the [repository job\nlog](https://developer.mend.io/github/astral-sh/uv).\n\n\u003c!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0MS4xNDMuMSIsInVwZGF0ZWRJblZlciI6IjQxLjE0My4xIiwidGFyZ2V0QnJhbmNoIjoibWFpbiIsImxhYmVscyI6WyJpbnRlcm5hbCJdfQ\u003d\u003d--\u003e\n\nCo-authored-by: renovate[bot] \u003c29139614+renovate[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "c494c2c0b093d5ada2e7a367268b4460bdb218cb",
+      "message": "Update Rust crate goblin to v0.10.3 (#16366)",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "2428a1664ec9cfdd96e618c13da7b7773a95eeb3",
+      "message": "Document metadata consistency expectation (#15683)\n\nAn opinionated write-up on why Python packaging needs metadata\nconsistency, and that we need to extend metadata to accommodate ML and\nscientific users.\n\nI didn\u0027t add a paragraph related to CUDA or accelerators in general and\nwheel variants, as this is currently support neither by wheel tags nor\nby PEP 508 markers, so it\u0027s not a strict metadata consistency concern,\nplus this would get outdated quickly as wheel variants progress.",
+      "modifiedFiles": [
+        "docs/reference/internals/resolver.md"
+      ]
+    },
+    {
+      "sha": "57f56467d96f29ecfee219978a8e218ec361f317",
+      "message": "Fix typo in MissingTopLevel warning (#16351)\n\n\u003c!--\nThank you for contributing to uv! To help us out with reviewing, please\nconsider the following:\n\n- Does this pull request include a summary of the change? (See below.)\n- Does this pull request include a descriptive title?\n- Does this pull request include references to any relevant issues?\n--\u003e\n\n## Summary\n\n\u003c!-- What\u0027s the purpose of the change? What does it do, and why? --\u003e\nThe warning shown when `egg-info` lacks `top_level.txt` incorrectly\nwarns about missing `top-level.txt`\n\nhttps://github.com/astral-sh/uv/blob/ee2649feaa78b847ebcd44daebdce28c2e974842/crates/uv-install-wheel/src/uninstall.rs#L179-L188\n\nhttps://github.com/astral-sh/uv/blob/ee2649feaa78b847ebcd44daebdce28c2e974842/crates/uv/src/commands/pip/operations.rs#L687-L693\n\nThe non fatal warning with incorrect filename was introduced in\nhttps://github.com/astral-sh/uv/pull/6881 which changed previous fatal\nerror https://github.com/astral-sh/uv/issues/6872 with correct\n`top_level.txt` output.\n\n## Test Plan\n\n\u003c!-- How was it tested? --\u003e\nUpdated unit test to reflect change in warning",
+      "modifiedFiles": [
+        "crates/uv/src/commands/pip/operations.rs",
+        "crates/uv/tests/it/pip_install.rs"
+      ]
+    },
+    {
+      "sha": "88f519a3bf9324f4cb83c2d50d6ba88f3b465ffd",
+      "message": "Drop annotations from DockerHub uv images (#16356)",
+      "modifiedFiles": [
+        ".github/workflows/build-docker.yml"
+      ]
+    },
+    {
+      "sha": "70cfc4020a983481e4a4b95de4c5da1aeef45b40",
+      "message": "Drop publish of extended images to DockerHub temporarily (#16355)\n\nTo workaround https://github.com/astral-sh/uv/issues/16350",
+      "modifiedFiles": [
+        ".github/workflows/build-docker.yml"
+      ]
+    },
+    {
+      "sha": "ee2649feaa78b847ebcd44daebdce28c2e974842",
+      "message": "Bump version to 0.9.4 (#16347)",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "Cargo.lock",
+        "crates/uv-build/Cargo.toml",
+        "crates/uv-build/pyproject.toml",
+        "crates/uv-version/Cargo.toml",
+        "crates/uv/Cargo.toml",
+        "docs/concepts/build-backend.md",
+        "docs/concepts/projects/init.md",
+        "docs/concepts/projects/workspaces.md",
+        "docs/getting-started/installation.md",
+        "docs/guides/integration/aws-lambda.md",
+        "docs/guides/integration/docker.md",
+        "docs/guides/integration/github.md",
+        "docs/guides/integration/pre-commit.md",
+        "pyproject.toml"
+      ]
+    },
+    {
+      "sha": "b50c1be100546bace6758b99ceb563900f2e24ae",
+      "message": "Only add actual schema in schemastore PRs (#16346)\n\n## Summary\n\nLast time I ran the `update_schemastore.py` script in ty, due to what I\nassume was a `npm` version mismatch, the `package-lock.json` file was\nupdated while running `npm install` in the `schemastore`. Due to the use\nof `git commit -a`, it was accidentally included in the commit for the\nsemi-automated schemastore PR. The solution here is to only add the\nactual file that we want to commit.\n\nSame as https://github.com/astral-sh/ty/pull/1391\n\n## Test Plan\n\nI did a dry-run of this script (by commenting out the final `push`) and\nverified that the commit did include the schema, but not the updated\n`package-lock.json` file.",
+      "modifiedFiles": [
+        "scripts/update_schemastore.py"
+      ]
+    },
+    {
+      "sha": "7b3a9c2859f85800320f09549768f3ccc3e6af61",
+      "message": "Avoid obfuscating pyx tokens in `uv auth token` output (#16345)",
+      "modifiedFiles": [
+        "crates/uv/src/commands/auth/token.rs"
+      ]
+    },
+    {
+      "sha": "de9f299b801ff34b828b988be8215b776d3006ae",
+      "message": "Add auto-detection for Intel GPU on Windows (#16280)\n\nThis PR enables `--torch-backend\u003dauto` to automatically detect Intel\nGPUs. It follows up on\n[#14386](https://github.com/astral-sh/uv/pull/14386).\nOn Windows, detection is implemented by querying the\n`Win32_VideoController` class via the [WMI\ncrate](https://github.com/ohadravid/wmi-rs/tree/v0.16.0).\n\nCurrently, Intel GPUs (XPU) do not depend on specific driver or toolkit\nversions to determine which PyTorch wheel to use.",
+      "modifiedFiles": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "crates/uv-torch/Cargo.toml",
+        "crates/uv-torch/src/accelerator.rs",
+        "crates/uv-torch/src/backend.rs",
+        "docs/guides/integration/pytorch.md"
+      ]
+    },
+    {
+      "sha": "c12e8bb34376e3d13eb0560344785094923e8846",
+      "message": "Implement RFC9457 compliant messaging (#16199)\n\n\u003c!--\nThank you for contributing to uv! To help us out with reviewing, please\nconsider the following:\n\n- Does this pull request include a summary of the change? (See below.)\n- Does this pull request include a descriptive title?\n- Does this pull request include references to any relevant issues?\n--\u003e\n\n## Summary\n\nHTTP1.1 [RFC 9112 -\nHTTP/1.1](https://www.rfc-editor.org/rfc/rfc9112.html#name-status-line)\nsection 4 defines the response status code to optionally include a text\ndescription (human readable) of the reason for the status code.\n\n[RFC9113 - HTTP/2](https://www.rfc-editor.org/rfc/rfc9113) is the HTTP2\nprotocol standard and the response status only considers the [status\ncode](https://www.rfc-editor.org/rfc/rfc9113#name-response-pseudo-header-fiel)\nand not the reason phrase, and as such important information can be lost\nin helping the client determine a route cause of a failure.\n\nAs per discussion on this\n[PR](https://github.com/astral-sh/uv/pull/15979) the current feeling is\nthat implementing the RFC9457 standard might be the preferred route.\nThis PR makes those changes to aid the discussion which has also been\nmoved to the [PEP\nboard](https://discuss.python.org/t/block-download-of-components-when-violating-policy/104021/1)\n\n## Test Plan\n\nPulling components that violate our policy over HTTP2 and without any\nRFC9457 implementation the following message is presented to the user:\n\u003cimg width\u003d\"1482\" height\u003d\"104\" alt\u003d\"image\"\nsrc\u003d\"https://github.com/user-attachments/assets/0afcd0d8-ca67-4f94-a6c2-131e3b6d8dcc\"\n/\u003e\n\n\nWith the RFC9457 standard implemented, below you can see the advantage\nin the extra context as to why the component has been blocked:\n\u003cimg width\u003d\"2171\" height\u003d\"127\" alt\u003d\"image\"\nsrc\u003d\"https://github.com/user-attachments/assets/25bb5465-955d-4a76-9f30-5477fc2c866f\"\n/\u003e\n\n---------\n\nCo-authored-by: konstin \u003ckonstin@mailbox.org\u003e",
+      "modifiedFiles": [
+        "crates/uv-client/src/cached_client.rs",
+        "crates/uv-client/src/error.rs",
+        "crates/uv/tests/it/network.rs"
+      ]
+    },
+    {
+      "sha": "0a2b160400828f9114092a7cf8f51f163e56cba8",
+      "message": "Migrate from deprecated `macos-13` runner to `macos-15-intel` (#16316)",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "sha": "bf81a5bf0c0803f9e1502c8b63dd9d25f75c0762",
+      "message": "Add CUDA 13.0 support (#16321)\n\n## Summary\n\nCloses https://github.com/astral-sh/uv/issues/16319.",
+      "modifiedFiles": [
+        "crates/uv-torch/src/backend.rs",
+        "docs/reference/cli.md",
+        "uv.schema.json"
+      ]
+    },
+    {
+      "sha": "766bd951cb482fbd76d7640f7d18e8aaf352fcfc",
+      "message": "Use `uv_build` in `make_project` tests (#16298)\n\nSkip downloading and running setuptools.",
+      "modifiedFiles": [
+        "crates/uv/tests/it/common/mod.rs",
+        "crates/uv/tests/it/workspace.rs"
+      ]
+    },
+    {
+      "sha": "52cc3c8b94dd4401ca2a68f75199b6d4f46ceaea",
+      "message": "Add missing `UV_TEST_NO_HTTP_RETRY_DELAY` check and better logging (#16313)\n\nThe `install_http_retries` test goes from 15s to 0.3s. Additionally, we\nlog the retry delay.",
+      "modifiedFiles": [
+        "crates/uv-client/src/base_client.rs",
+        "crates/uv-client/src/cached_client.rs",
+        "crates/uv-publish/src/lib.rs",
+        "crates/uv-python/src/downloads.rs"
+      ]
+    },
+    {
+      "sha": "83635a6c4509ac2730f5a3bd80e4a75ce52eca31",
+      "message": "Update changelog to escape GitHub bad behavior (#16315)",
+      "modifiedFiles": [
+        "CHANGELOG.md"
+      ]
+    },
+    {
+      "sha": "9db7d38cf7aed7f1a60b04692fb5dbee5dff9564",
+      "message": "Bump version to 0.9.3 (#16305)",
+      "modifiedFiles": [
+        "CHANGELOG.md",
+        "Cargo.lock",
+        "crates/uv-build/Cargo.toml",
+        "crates/uv-build/pyproject.toml",
+        "crates/uv-version/Cargo.toml",
+        "crates/uv/Cargo.toml",
+        "docs/concepts/build-backend.md",
+        "docs/concepts/projects/init.md",
+        "docs/concepts/projects/workspaces.md",
+        "docs/getting-started/installation.md",
+        "docs/guides/integration/aws-lambda.md",
+        "docs/guides/integration/docker.md",
+        "docs/guides/integration/github.md",
+        "docs/guides/integration/pre-commit.md",
+        "pyproject.toml"
+      ]
+    },
+    {
+      "sha": "d1413a60d84187355650c546c0fb76bf1711dbfa",
+      "message": "Add CPython 3.15.0a1 and 3.13.9 (#16304)",
+      "modifiedFiles": [
+        "crates/uv-python/download-metadata.json",
+        "crates/uv/tests/it/python_install.rs"
+      ]
+    },
+    {
+      "sha": "b151e0ea3d019ac733a9830466a6bf56b69087b2",
+      "message": "Fix workspace with relative pathing (#16296)\n\n\u003c!--\nThank you for contributing to uv! To help us out with reviewing, please\nconsider the following:\n\n- Does this pull request include a summary of the change? (See below.)\n- Does this pull request include a descriptive title?\n- Does this pull request include references to any relevant issues?\n--\u003e\n\n## Summary\n\nFixes #16285 \n\n## Test Plan\n\n\u003c!-- How was it tested? --\u003e",
+      "modifiedFiles": [
+        "crates/uv-workspace/src/workspace.rs",
+        "crates/uv/tests/it/workspace.rs"
+      ]
+    },
+    {
+      "sha": "8eada1685ccb4bcd63d78bcc808ab23a4585aa7f",
+      "message": "Fix comments on python_no_transparent_upgrade_with_venv_patch_specification (#16294)\n\nI think this was originally intended to behave as the comments\nspecified, but the behavior changed in discussions in #13312 somewhere.",
+      "modifiedFiles": [
+        "crates/uv/tests/it/python_upgrade.rs"
+      ]
+    },
+    {
+      "sha": "f9fbf41f69fdb87ce4b2fdc79eb94acc7a3c96a0",
+      "message": "Update Rust crate ref-cast to v1.0.25 (#16272)",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "45e8b38bb6f82276313ccb7730577cb2e737d4cf",
+      "message": "Update Rust crate thiserror to v2.0.17 (#16276)",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "ae273f35d3ce65b6824b84cd928a77c774a85d67",
+      "message": "Update Rust crate serde to v1.0.228 (#16275)",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "15829bb30a1f1a1dbf17851958c233597832db5e",
+      "message": "Obfuscate Bearer Token values in logs (#16164)\n\nSometimes a credential\u0027s `Debug` formatted value appears in tracing logs\n- make sure the credential doesn\u0027t appear there.\n\n## Test plan\n\nAdded a test case + ran\n```\nuv pip install --default-index $PYX_API_URL/$SOME_INDEX $SOME_PACKAGE -vv\n```\nWith an authenticated uv client and confirmed the tokens are obfuscated.\n\n---------\n\nCo-authored-by: Zsolt Dollenstein \u003czsol.zsol@gmail.com\u003e",
+      "modifiedFiles": [
+        "crates/uv-auth/src/access_token.rs",
+        "crates/uv-auth/src/credentials.rs",
+        "crates/uv-auth/src/providers.rs",
+        "crates/uv-auth/src/pyx.rs",
+        "crates/uv-auth/src/store.rs"
+      ]
+    },
+    {
+      "sha": "01d43382bee0cc5bcfdfa22a41a2782595657012",
+      "message": "Update Rust crate rkyv to v0.8.12 (#16274)",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "e3690e702f6d749b9b576c84891ae930d5e0f4c7",
+      "message": "Update Rust crate regex-automata to v0.4.12 (#16273)",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "15f1dc6269b8eb48f81df6caff2c7c9ef4632a2f",
+      "message": "Update Rust crate petgraph to v0.8.3 (#16270)",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "3837b92cc1b9e4de803cc66d5c258de7e8a235e9",
+      "message": "Update Rust crate owo-colors to v4.2.3 (#16269)",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "dd89bdaab090786c6a80420964d859f484509a87",
+      "message": "Update Rust crate quote to v1.0.41 (#16271)",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "cd859ccd17bfb905f36fd886442d3bfa21529dd2",
+      "message": "Update Rust crate memchr to v2.7.6 (#16268)",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "c741e4bfb553de4d8d7236758abc1f5e65ff2ab4",
+      "message": "Update Rust crate fs-err to v3.1.3 (#16265)",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "7d5795e2a515b5711b0f113a84148ed0ac4c33ea",
+      "message": "Update Rust crate flate2 to v1.1.4 (#16264)",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "1b91b317635379488aa0628be905d5668d4686fc",
+      "message": "Update Rust crate goblin to v0.10.2 (#16266)",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    },
+    {
+      "sha": "2898e5c346e2614837dfbee60c0254dfa7dbb124",
+      "message": "Update Rust crate bytecheck to v0.8.2 (#16262)",
+      "modifiedFiles": [
+        "Cargo.lock"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "uv",
+      "ownerLogin": "ccooketh",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "ImNotDogNow",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "linyu19872008",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "terenteren",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "MGMCN",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "ahundt",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "alipatti",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "belmarca-bia",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "admercs",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "thundersparkf",
+      "commitCount": 100
+    },
+    {
+      "name": "astral-sh_uv",
+      "ownerLogin": "mind-owner-fork",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "jyi428",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "JaclynCodes",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "BlindWarlord",
+      "commitCount": 100
+    },
+    {
+      "name": "uv-",
+      "ownerLogin": "jackkalle",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "tejastn10",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "s-rigaud",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "jgonzales562",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "SorunEngineering",
+      "commitCount": 100
+    },
+    {
+      "name": "uv",
+      "ownerLogin": "eun2ce",
+      "commitCount": 100
+    }
+  ]
+}

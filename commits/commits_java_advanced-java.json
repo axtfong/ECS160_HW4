@@ -1,0 +1,598 @@
+{
+  "name": "advanced-java",
+  "ownerLogin": "doocs",
+  "language": "Java",
+  "commits": [
+    {
+      "sha": "4542b051cb88f0130432e323d7875b691f694831",
+      "message": "chore: use pnpm and update gh actions",
+      "modifiedFiles": [
+        ".github/workflows/compress.yml",
+        ".github/workflows/deploy.yml",
+        ".npmrc",
+        "package-lock.json",
+        "package.json",
+        "pnpm-lock.yaml"
+      ]
+    },
+    {
+      "sha": "8c30d33a31775b5672e81a033ec76e78bf7d1b91",
+      "message": "chore: upgrade vitepress",
+      "modifiedFiles": [
+        "package-lock.json",
+        "package.json"
+      ]
+    },
+    {
+      "sha": "c8790520b617170f7cf76659628636d03fca6ba2",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "c920bcff0131daa17f8d927d8d8ffea667c7228c",
+      "message": "chore: update workflow",
+      "modifiedFiles": [
+        ".github/workflows/deploy.yml"
+      ]
+    },
+    {
+      "sha": "ade569af283a4418f138d37c76716a5f58c903f6",
+      "message": "chore: update workflow (#322)",
+      "modifiedFiles": [
+        ".github/workflows/deploy.yml"
+      ]
+    },
+    {
+      "sha": "a9ceacbe421ce93a67d5b7728574acf84ab83480",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "d0815e386e02254456afec2c78bc29d3201c6f3b",
+      "message": "chore: remove deprecated file",
+      "modifiedFiles": [
+        ".gitattributes",
+        "Main.java",
+        "index.html"
+      ]
+    },
+    {
+      "sha": "794aee18a1433598c0b7c0cfd5ae13a263664bd8",
+      "message": "feat: add custom theme layout",
+      "modifiedFiles": [
+        "docs/.vitepress/theme/Layout.vue",
+        "docs/.vitepress/theme/index.js"
+      ]
+    },
+    {
+      "sha": "d9895ae66af66dfc1664091a866cf0f41ca8da99",
+      "message": "chore: update workflow",
+      "modifiedFiles": [
+        ".github/workflows/deploy.yml"
+      ]
+    },
+    {
+      "sha": "1cac4b20c2125daf4f26b3943bee45372a25195c",
+      "message": "chore: ignore dead links",
+      "modifiedFiles": [
+        "docs/.vitepress/config.mts",
+        "docs/big-data/find-mid-value-in-500-millions.md",
+        "docs/extra-page/cover.md"
+      ]
+    },
+    {
+      "sha": "37836e369c028a2ecabc261fe77d206c751a7d11",
+      "message": "fix: update links",
+      "modifiedFiles": [
+        "docs/distributed-system/README.md",
+        "docs/extra-page/README.md",
+        "docs/extra-page/cover.md",
+        "docs/high-availability/README.md",
+        "docs/high-availability/sentinel-vs-hystrix.md",
+        "docs/high-concurrency/README.md",
+        "docs/high-concurrency/how-to-ensure-high-availability-of-message-queues.md",
+        "docs/high-concurrency/how-to-ensure-high-concurrency-and-high-availability-of-redis.md",
+        "docs/high-concurrency/how-to-ensure-the-reliable-transmission-of-messages.md",
+        "docs/high-concurrency/redis-master-slave.md",
+        "docs/high-concurrency/redis-single-thread-model.md",
+        "docs/high-concurrency/why-cache.md",
+        "docs/high-concurrency/why-mq.md"
+      ]
+    },
+    {
+      "sha": "5d354f0dcdc933f25cafcd05dfef23c18d40ff95",
+      "message": "chore: build site with vitepress",
+      "modifiedFiles": [
+        ".docsifytopdfrc.js",
+        ".github/workflows/deploy.yml",
+        ".github/workflows/sync.yml",
+        ".gitignore",
+        ".prettierignore",
+        ".prettierrc",
+        "CNAME",
+        "docs/.vitepress/config.mts",
+        "docs/.vitepress/theme/index.js",
+        "docs/big-data/count-different-phone-numbers.md",
+        "docs/big-data/find-a-number-if-exists.md",
+        "docs/big-data/find-common-urls.md",
+        "docs/big-data/find-hotest-query-string.md",
+        "docs/big-data/find-mid-value-in-500-millions.md",
+        "docs/big-data/find-no-repeat-number.md",
+        "docs/big-data/find-rank-top-500-numbers.md",
+        "docs/big-data/find-top-1-ip.md",
+        "docs/big-data/find-top-100-words.md",
+        "docs/big-data/sort-the-query-strings-by-counts.md",
+        "docs/big-data/topk-problems-and-solutions.md",
+        "docs/distributed-system/distributed-lock-redis-vs-zookeeper.md",
+        "docs/distributed-system/distributed-session.md",
+        "docs/distributed-system/distributed-system-cap.md",
+        "docs/distributed-system/distributed-system-idempotency.md",
+        "docs/distributed-system/distributed-system-interview.md",
+        "docs/distributed-system/distributed-system-request-sequence.md",
+        "docs/distributed-system/distributed-transaction.md",
+        "docs/distributed-system/dubbo-load-balancing.md",
+        "docs/distributed-system/dubbo-operating-principle.md",
+        "docs/distributed-system/dubbo-rpc-design.md",
+        "docs/distributed-system/dubbo-serialization-protocol.md",
+        "docs/distributed-system/dubbo-service-management.md",
+        "docs/distributed-system/dubbo-spi.md",
+        "docs/distributed-system/why-dubbo.md",
+        "docs/distributed-system/zookeeper-application-scenarios.md",
+        "docs/high-availability/e-commerce-website-detail-page-architecture.md",
+        "docs/high-availability/hystrix-circuit-breaker.md",
+        "docs/high-availability/hystrix-execution-isolation.md",
+        "docs/high-availability/hystrix-fallback.md",
+        "docs/high-availability/hystrix-introduction.md",
+        "docs/high-availability/hystrix-process.md",
+        "docs/high-availability/hystrix-request-cache.md",
+        "docs/high-availability/hystrix-semphore-isolation.md",
+        "docs/high-availability/hystrix-thread-pool-current-limiting.md",
+        "docs/high-availability/hystrix-thread-pool-isolation.md",
+        "docs/high-availability/hystrix-timeout.md",
+        "docs/high-concurrency/database-shard-dynamic-expand.md",
+        "docs/high-concurrency/database-shard-global-id-generate.md",
+        "docs/high-concurrency/database-shard-method.md",
+        "docs/high-concurrency/database-shard.md",
+        "docs/high-concurrency/es-architecture.md",
+        "docs/high-concurrency/es-introduction.md",
+        "docs/high-concurrency/es-optimizing-query-performance.md",
+        "docs/high-concurrency/es-production-cluster.md",
+        "docs/high-concurrency/es-write-query-search.md",
+        "docs/high-concurrency/high-concurrency-design.md",
+        "docs/high-concurrency/how-to-ensure-high-availability-of-message-queues.md",
+        "docs/high-concurrency/how-to-ensure-high-concurrency-and-high-availability-of-redis.md",
+        "docs/high-concurrency/how-to-ensure-that-messages-are-not-repeatedly-consumed.md",
+        "docs/high-concurrency/how-to-ensure-the-order-of-messages.md",
+        "docs/high-concurrency/how-to-ensure-the-reliable-transmission-of-messages.md",
+        "docs/high-concurrency/mq-design.md",
+        "docs/high-concurrency/mq-interview.md",
+        "docs/high-concurrency/mq-time-delay-and-expired-failure.md",
+        "docs/high-concurrency/mysql-read-write-separation.md",
+        "docs/high-concurrency/redis-caching-avalanche-and-caching-penetration.md",
+        "docs/high-concurrency/redis-cas.md",
+        "docs/high-concurrency/redis-cluster.md",
+        "docs/high-concurrency/redis-consistence.md",
+        "docs/high-concurrency/redis-data-types.md",
+        "docs/high-concurrency/redis-expiration-policies-and-lru.md",
+        "docs/high-concurrency/redis-persistence.md",
+        "docs/high-concurrency/redis-production-environment.md",
+        "docs/high-concurrency/redis-rehash.md",
+        "docs/high-concurrency/redis-single-thread-model.md",
+        "docs/high-concurrency/why-cache.md",
+        "docs/high-concurrency/why-mq.md",
+        "docs/index.md",
+        "docs/micro-services/advantages-and-disadvantages-of-microservice.md",
+        "docs/micro-services/choose-microservice-deployment-strategy.md",
+        "docs/micro-services/event-driven-data-management-for-microservices.md",
+        "docs/micro-services/microservices-introduction.md",
+        "docs/micro-services/migrating-from-a-monolithic-architecture-to-a-microservices-architecture.md",
+        "docs/public/favicon-16x16.png",
+        "docs/public/favicon-32x32.png",
+        "docs/public/icon.png",
+        "main.js",
+        "package-lock.json",
+        "package.json",
+        "summary.md",
+        "vercel.json"
+      ]
+    },
+    {
+      "sha": "c6bd5140169b8be39d43c6456c5a220f810d4ffa",
+      "message": "docs: modify how-eureka-enable-service-discovery-and-service-registration.md (#319)",
+      "modifiedFiles": [
+        "docs/micro-services/how-eureka-enable-service-discovery-and-service-registration.md"
+      ]
+    },
+    {
+      "sha": "cb92a241457779ed12af9073efa23e64100e0119",
+      "message": "chore: update logo",
+      "modifiedFiles": [
+        "images/favicon-16x16.png",
+        "images/favicon-32x32.png",
+        "images/icon.png",
+        "images/qrcode-for-doocs.jpg",
+        "images/qrcode-for-yanglbme.jpg"
+      ]
+    },
+    {
+      "sha": "cedb59aeb96305b69d716f3f63b6565a47d3babd",
+      "message": "chore: add cname config",
+      "modifiedFiles": [
+        "CNAME"
+      ]
+    },
+    {
+      "sha": "37bc878016bb7da1d6d747adf64e191a03999cfe",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "3254bc0972753caea3fe45f515a61437d5f864fb",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "5f60952c641894d8887e8bfc5351f51b052d2f63",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "cabcdaf3be0524e487f913275fb682061e206201",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "9ca5129452d01faa765000e48a16544ca1c5b699",
+      "message": "docs: add a missing link (#310)",
+      "modifiedFiles": [
+        "README.md"
+      ]
+    },
+    {
+      "sha": "fd9820d0351d6b255fa102ad044052d50c39f22e",
+      "message": "docs: correct the solution of using Trie Tree in big-data/find-common-urls.md (#309)",
+      "modifiedFiles": [
+        "docs/big-data/find-common-urls.md"
+      ]
+    },
+    {
+      "sha": "ef7ed71dd530391d300725fb520d367552d709d1",
+      "message": "docs: modify database-shard-global-id-generate.md (#307)",
+      "modifiedFiles": [
+        "docs/high-concurrency/database-shard-global-id-generate.md"
+      ]
+    },
+    {
+      "sha": "38e6801a5dce93e0fd590bcd151ee52bac3257a1",
+      "message": "docs: update readme guideline",
+      "modifiedFiles": [
+        "README.md",
+        "docs/extra-page/README.md"
+      ]
+    },
+    {
+      "sha": "e330ffbd7447dc54f6feb81ea735d472c5918631",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "83d6070145e4b1ddc5ffdeb8029e7b3d1e8cbe8d",
+      "message": "chore(deps-dev): bump braces from 3.0.2 to 3.0.3 (#305)",
+      "modifiedFiles": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "sha": "1e2d954f5e6b348ab416148c608d3890af2a14a9",
+      "message": "chore(deps-dev): bump ws from 6.2.2 to 6.2.3 (#304)\n\nBumps [ws](https://github.com/websockets/ws) from 6.2.2 to 6.2.3.\r\n- [Release notes](https://github.com/websockets/ws/releases)\r\n- [Commits](https://github.com/websockets/ws/compare/6.2.2...6.2.3)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: ws\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\r\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "package-lock.json"
+      ]
+    },
+    {
+      "sha": "ed8f9fc70cadcb3528fe44ef7cc3725e2a2b954a",
+      "message": "docs: modify how-to-ensure-the-reliable-transmission-of-messages.md (#303)",
+      "modifiedFiles": [
+        "docs/high-concurrency/how-to-ensure-the-reliable-transmission-of-messages.md"
+      ]
+    },
+    {
+      "sha": "01d4d3fcd94d04ed96cd0edcaa2f02a5cc661021",
+      "message": "fix: update why-mq.md (#302)\n\nmq-1.png和mq-2.png中均为D系统不需要消费",
+      "modifiedFiles": [
+        "docs/high-concurrency/why-mq.md"
+      ]
+    },
+    {
+      "sha": "d5fc58165ff159b4aa1bb810593aadfce804175f",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "1ae7e898b28e2c2855353ad1426bd2da470529d2",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "f4c0654c38ae8f2b6d466ba5e1cc0b024fb25f7c",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "ee0fcd55db25b75f4be8969aaff1cf767875112d",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "78d274c6196979b9712e32f6bf2e9ca40b2ceebb",
+      "message": "fix: database-shard-dynamic-expand document",
+      "modifiedFiles": [
+        "docs/high-concurrency/database-shard-dynamic-expand.md",
+        "index.html"
+      ]
+    },
+    {
+      "sha": "6ddb2268b9374f305765feea233c630acdc7f236",
+      "message": "chore: update resource url",
+      "modifiedFiles": [
+        "README.md",
+        "docs/big-data/README.md",
+        "docs/distributed-system/README.md",
+        "docs/extra-page/README.md",
+        "docs/extra-page/subscriptions-for-doocs.md",
+        "docs/high-availability/README.md",
+        "docs/high-concurrency/README.md",
+        "docs/micro-services/README.md",
+        "main.js"
+      ]
+    },
+    {
+      "sha": "ff33ffedd46296a12d2f13ba688aab92ea1ce57d",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "967a81f6e97008a5733161ce2410372b6432ac46",
+      "message": "docs(micro-services): fix event-driven-data-management-for-microservices.md",
+      "modifiedFiles": [
+        "docs/micro-services/event-driven-data-management-for-microservices.md"
+      ]
+    },
+    {
+      "sha": "50b066de0fb9fa341609387072fea0b56c510cb9",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "60629378adabd798eec84c77e56445b1a415a222",
+      "message": "chore: update workflow\n\nauto deploy gitee pages using https://github.com/yanglbme/gitee-pages-action",
+      "modifiedFiles": [
+        ".github/workflows/sync.yml"
+      ]
+    },
+    {
+      "sha": "dd802a8de934e22024bec659efd06682575df518",
+      "message": "feat: introduce giscus comment system (#292)",
+      "modifiedFiles": [
+        ".gitattributes",
+        "index.html",
+        "main.js"
+      ]
+    },
+    {
+      "sha": "8a9f15ca3279340bd4f7d534b2db1a1decbc5528",
+      "message": "chore: separate configuration (#291)",
+      "modifiedFiles": [
+        "index.html",
+        "main.js",
+        "package.json"
+      ]
+    },
+    {
+      "sha": "806ce10eb0b713db2df00c461fb46f85a44a652f",
+      "message": "style: code format (#290)",
+      "modifiedFiles": [
+        "index.html"
+      ]
+    },
+    {
+      "sha": "24deb280fcbe0476d23bdd87e39afe7dab324e52",
+      "message": "feat: add last modify time at page site (#289)",
+      "modifiedFiles": [
+        "index.html"
+      ]
+    },
+    {
+      "sha": "529e9abdb56769d439fecc4b7950c5a176b4b673",
+      "message": "chore: update sync workflow",
+      "modifiedFiles": [
+        ".github/workflows/sync.yml"
+      ]
+    },
+    {
+      "sha": "218d792a3373a2ac47305cb6eb3b5cff2b007e0d",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "8ff8b65cb55794d3e418cf2ac0f121f3fa0c3d98",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "cf2707680b5ca7f9a8fb8815574377b6c007e9f6",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "43d8ff7212dac2bb15b5f1b3822c2b850257d10d",
+      "message": "chore: add prettier config",
+      "modifiedFiles": [
+        ".docsifytopdfrc.js",
+        ".gitignore",
+        ".prettierignore",
+        ".prettierrc",
+        "docs/high-concurrency/how-to-limit-current.md",
+        "index.html",
+        "package-lock.json",
+        "package.json",
+        "vercel.json"
+      ]
+    },
+    {
+      "sha": "0d29af96c1e419b83676b1c2b70ae13ea3cc7f51",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    },
+    {
+      "sha": "c234200a1658dd23a8a2b36f9b842bf7971bc641",
+      "message": "docs: update workflow status",
+      "modifiedFiles": [
+        "README.md"
+      ]
+    },
+    {
+      "sha": "8660ee5d1ec3255cd5888783a16e5c0c352bdfe1",
+      "message": "chore: auto update starcharts",
+      "modifiedFiles": [
+        "images/starcharts.svg"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "advanced-java",
+      "ownerLogin": "yuleigit",
+      "commitCount": 2
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "pengjinning",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "532780857",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "cookie2013",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "the01333",
+      "commitCount": 1
+    },
+    {
+      "name": "javaFrameworkBasics",
+      "ownerLogin": "dasheng5",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "kec61",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "mufen163",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "xjy0522",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "kingchang",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "linzhangbin",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "vanlinhha",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "yuzfgz",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "Weifeng-31",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "xujiansheng1209",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "cqyyz128",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "flyjavacom",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "sitemjbb",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "Lucky666Prince",
+      "commitCount": 1
+    },
+    {
+      "name": "advanced-java",
+      "ownerLogin": "RaguCS",
+      "commitCount": 1
+    }
+  ]
+}

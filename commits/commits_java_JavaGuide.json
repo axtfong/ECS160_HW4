@@ -1,0 +1,514 @@
+{
+  "name": "JavaGuide",
+  "ownerLogin": "Snailclimb",
+  "language": "Java",
+  "commits": [
+    {
+      "sha": "bda5ab0bd514e9d6ce8fa54b1613f6f1b07ce545",
+      "message": "update: redis 手写跳表代码优化\u0026mysql redo log 刷盘时间完善",
+      "modifiedFiles": [
+        "docs/database/mysql/mysql-logs.md",
+        "docs/database/redis/redis-skiplist.md",
+        "docs/java/basis/java-basic-questions-02.md"
+      ]
+    },
+    {
+      "sha": "da114b08b3c4436e0eb31338e04726613bc325db",
+      "message": "Merge pull request #2731 from PrinceZaZa/patch-1\n\n字符串常量池",
+      "modifiedFiles": [
+        "docs/java/jvm/memory-area.md"
+      ]
+    },
+    {
+      "sha": "6db8743c3951e34e9f322f95a4683040421ef5a4",
+      "message": "update: 排序算法和Spring面试题完善",
+      "modifiedFiles": [
+        "docs/cs-basics/algorithms/10-classical-sorting-algorithms.md",
+        "docs/system-design/framework/spring/spring-knowledge-and-questions-summary.md"
+      ]
+    },
+    {
+      "sha": "6fa1b70f798317795a8f7e85cc7440916175195f",
+      "message": "字符串常量池\n\n关于字符串常量池的定义有一点偏差",
+      "modifiedFiles": [
+        "docs/java/jvm/memory-area.md"
+      ]
+    },
+    {
+      "sha": "578115cb6d9ab2832db7c931dc88e5f34aaa7e11",
+      "message": "fix:一些小错误修正",
+      "modifiedFiles": [
+        "docs/books/java.md",
+        "docs/database/mysql/mysql-questions-01.md",
+        "docs/database/redis/redis-questions-01.md",
+        "docs/high-performance/deep-pagination-optimization.md",
+        "docs/interview-preparation/teach-you-how-to-prepare-for-the-interview-hand-in-hand.md",
+        "docs/java/jvm/classloader.md"
+      ]
+    },
+    {
+      "sha": "877a63797ff181128f546974ae81a712384b1257",
+      "message": "add:JDK25 新特性解读",
+      "modifiedFiles": [
+        "README.md",
+        "docs/.vuepress/sidebar/index.ts",
+        "docs/home.md",
+        "docs/java/new-features/java25.md"
+      ]
+    },
+    {
+      "sha": "e52e698c82571caacdbaf6c01f8da6cb327bd69b",
+      "message": "update: 部分内容完善和格式修正",
+      "modifiedFiles": [
+        "docs/cs-basics/network/other-network-questions.md",
+        "docs/cs-basics/network/other-network-questions2.md",
+        "docs/database/mysql/mysql-index.md",
+        "docs/database/sql/sql-questions-05.md",
+        "docs/java/collection/java-collection-precautions-for-use.md",
+        "docs/java/collection/java-collection-questions-02.md",
+        "docs/java/concurrent/java-concurrent-questions-02.md",
+        "docs/java/concurrent/java-concurrent-questions-03.md",
+        "docs/java/jvm/memory-area.md",
+        "docs/java/new-features/java22-23.md",
+        "docs/java/new-features/java24.md",
+        "docs/system-design/framework/spring/spring-common-annotations.md",
+        "docs/system-design/security/data-validation.md",
+        "docs/zhuanlan/java-mian-shi-zhi-bei.md"
+      ]
+    },
+    {
+      "sha": "ad57ac4f79fc1f178784e3caba4df1a42f38b7e8",
+      "message": "Merge pull request #2718 from suozq1/patch-1\n\nUpdate why-there-only-value-passing-in-java.md",
+      "modifiedFiles": [
+        "docs/java/basis/why-there-only-value-passing-in-java.md"
+      ]
+    },
+    {
+      "sha": "39246539b35f12b7db0fa439f1f1b424405b73d3",
+      "message": "Update why-there-only-value-passing-in-java.md\n\nfix: 引用传递，概念理解有误",
+      "modifiedFiles": [
+        "docs/java/basis/why-there-only-value-passing-in-java.md"
+      ]
+    },
+    {
+      "sha": "1b783606c63985d2509c9360fab6b79a96cf9282",
+      "message": "update：unsafe和线程池部分内容修正完善",
+      "modifiedFiles": [
+        "docs/cs-basics/operating-system/operating-system-basic-questions-02.md",
+        "docs/java/basis/unsafe.md",
+        "docs/java/concurrent/java-thread-pool-summary.md"
+      ]
+    },
+    {
+      "sha": "14ed3bdd40153e5d1f5a195e100264337ab19f60",
+      "message": "update:操作系统面试题总结完善",
+      "modifiedFiles": [
+        "docs/cs-basics/operating-system/operating-system-basic-questions-01.md",
+        "docs/java/basis/proxy.md"
+      ]
+    },
+    {
+      "sha": "5e456effc105d20e7e2cb77b81aaee8f6af5abd3",
+      "message": "Merge pull request #2714 from uncle-lv/main\n\ndocs: fix typo",
+      "modifiedFiles": [
+        "docs/database/mysql/mysql-index.md",
+        "docs/java/concurrent/jmm.md",
+        "docs/system-design/framework/mybatis/mybatis-interview.md"
+      ]
+    },
+    {
+      "sha": "7aed1c8df0b858c8fdc413737a9d52cc20a897b5",
+      "message": "Merge pull request #2713 from Ka1Yann/main\n\n修正\"Java 语法糖详解\"中的错别字",
+      "modifiedFiles": [
+        "docs/java/basis/syntactic-sugar.md"
+      ]
+    },
+    {
+      "sha": "a55d7772286772713ea26ed0b2a31d19874a6aa9",
+      "message": "docs: fix typo",
+      "modifiedFiles": [
+        "docs/database/mysql/mysql-index.md",
+        "docs/java/concurrent/jmm.md",
+        "docs/system-design/framework/mybatis/mybatis-interview.md"
+      ]
+    },
+    {
+      "sha": "8401399ea1fd8567d291ac4d314551dd2b92ae31",
+      "message": "Update syntactic-sugar.md\n\n修复笔误：\r\ntrasient - \u003e transient\r\noutter -\u003e outer\r\n添加注释：\r\n// 反编译代码中的异常标签：break MISSING_BLOCK_LABEL_113\r\n// public enum t -\u003e public final class T extends Enum：Java编译器自动将枚举名处理为合法类名",
+      "modifiedFiles": [
+        "docs/java/basis/syntactic-sugar.md"
+      ]
+    },
+    {
+      "sha": "e225232da1eca1220b4a22cbdeec0d373decbee8",
+      "message": "Merge pull request #2712 from Willy-01/patch-1\n\nUpdate other-network-questions.md",
+      "modifiedFiles": [
+        "docs/cs-basics/network/other-network-questions.md"
+      ]
+    },
+    {
+      "sha": "de8fc1c28846aab23e91aabb2379b4bb10899c27",
+      "message": "Update other-network-questions.md\n\n为了提供更好的用户体验和利用其简单、高效、基于标准 HTTP 的特性，**Server-Sent Events (SSE) 是目前大型语言模型 API（如 OpenAI、DeepSeek 等）实现流式响应的常用甚至可以说是标准的技木选择**。\r\n改为为了提供更好的用户体验和利用其简单、高效、基于标准 HTTP 的特性，**Server-Sent Events (SSE) 是目前大型语言模型 API（如 OpenAI、DeepSeek 等）实现流式响应的常用甚至可以说是标准的技术选择**。",
+      "modifiedFiles": [
+        "docs/cs-basics/network/other-network-questions.md"
+      ]
+    },
+    {
+      "sha": "68b8b05eef71a68f2ccf85d437a246763ea30ddf",
+      "message": "Merge pull request #2711 from Hushihaoooooo/main\n\n修正关于AQS shouldParkAfterFailedAcquire方法的部分描述",
+      "modifiedFiles": [
+        "docs/java/concurrent/reentrantlock.md"
+      ]
+    },
+    {
+      "sha": "cf45ad926be37af0f0883fc1ceee8bf3b54d055e",
+      "message": "Merge pull request #1 from Hushihaoooooo/Hushihaoooooo-patch-1\n\nFix comments for clarity in ReentrantLock documentation",
+      "modifiedFiles": [
+        "docs/java/concurrent/reentrantlock.md"
+      ]
+    },
+    {
+      "sha": "f6363dfeb4c1e6937bfd8eec098ae1e7b0bb1ce8",
+      "message": "Fix comments for clarity in ReentrantLock documentation\n\n该方法应该对应前驱节点，而不是头节点。",
+      "modifiedFiles": [
+        "docs/java/concurrent/reentrantlock.md"
+      ]
+    },
+    {
+      "sha": "6fd1016bd65a3b60b481167254d15f4d5ca3c6ca",
+      "message": "Merge pull request #2710 from little-gray-big-dream/main\n\nUpdate arrayblockingqueue-source-code.md",
+      "modifiedFiles": [
+        "docs/java/collection/arrayblockingqueue-source-code.md"
+      ]
+    },
+    {
+      "sha": "a68ec7b7778f7240dda4019aac6a74636a2d270e",
+      "message": "Update arrayblockingqueue-source-code.md\n\n修改几处笔误，从继承接口改成实现接口重写方法",
+      "modifiedFiles": [
+        "docs/java/collection/arrayblockingqueue-source-code.md"
+      ]
+    },
+    {
+      "sha": "b238202af2cdcedc24a9f79510ea5b44ab60800c",
+      "message": "java学习路线2025最新版",
+      "modifiedFiles": [
+        "docs/interview-preparation/java-roadmap.md"
+      ]
+    },
+    {
+      "sha": "dab09dc30021cb5364909421c457b18fba11508d",
+      "message": "Merge pull request #2708 from zjxjwxk/main\n\n修正跳表遍历描述",
+      "modifiedFiles": [
+        "docs/java/concurrent/java-concurrent-collections.md"
+      ]
+    },
+    {
+      "sha": "03bb822b2fd9ca492e3066c7fe4596ada0d9d631",
+      "message": "fix：图片地址修正",
+      "modifiedFiles": [
+        "docs/cs-basics/network/arp.md"
+      ]
+    },
+    {
+      "sha": "e8c68e96b6bf971f4c4b0965a869f95b8ab8a108",
+      "message": "update: tcp和udp面试题润色优化",
+      "modifiedFiles": [
+        "docs/cs-basics/network/images/arp/2008410143049281.png",
+        "docs/cs-basics/network/other-network-questions2.md",
+        "docs/cs-basics/network/tcp-connection-and-disconnection.md",
+        "docs/interview-preparation/project-experience-guide.md",
+        "docs/interview-preparation/teach-you-how-to-prepare-for-the-interview-hand-in-hand.md",
+        "docs/zhuanlan/java-mian-shi-zhi-bei.md"
+      ]
+    },
+    {
+      "sha": "0ffcc8a6809dfcdf8d89bafaba6ee58433c94308",
+      "message": "修正跳表遍历描述",
+      "modifiedFiles": [
+        "docs/java/concurrent/java-concurrent-collections.md"
+      ]
+    },
+    {
+      "sha": "8f3b0c8ad4fb1a47fcbb10f8333f89486ecc8236",
+      "message": "Merge pull request #2707 from watch308/main\n\ndocs: 链接修正",
+      "modifiedFiles": [
+        "docs/database/redis/redis-questions-02.md"
+      ]
+    },
+    {
+      "sha": "0776e1a8e32ce33381e0499ad00690699f5e45d0",
+      "message": "docs: 链接修正\n\nUpdate redis-questions-02.md.",
+      "modifiedFiles": [
+        "docs/database/redis/redis-questions-02.md"
+      ]
+    },
+    {
+      "sha": "c59f7652271c2c209865e89b41ee18df1ba24db6",
+      "message": "update: Spring 部分内容完善",
+      "modifiedFiles": [
+        "docs/database/redis/redis-persistence.md",
+        "docs/database/sql/sql-questions-05.md",
+        "docs/system-design/framework/spring/spring-knowledge-and-questions-summary.md"
+      ]
+    },
+    {
+      "sha": "e3f51cec669714300b35e970fc311ba33c3b2a65",
+      "message": "update \u0026 feat:vuepress版本升级\u0026网络部分重点⭐️标注",
+      "modifiedFiles": [
+        "docs/cs-basics/network/other-network-questions.md",
+        "docs/cs-basics/network/other-network-questions2.md",
+        "docs/java/concurrent/java-thread-pool-summary.md",
+        "docs/java/new-features/java8-common-new-features.md",
+        "package.json",
+        "pnpm-lock.yaml"
+      ]
+    },
+    {
+      "sha": "0bcf17fdc3a0d4bb1a27199a6b2d5495249361c3",
+      "message": "docs: 链接修正",
+      "modifiedFiles": [
+        "docs/cs-basics/operating-system/linux-intro.md",
+        "docs/java/concurrent/java-concurrent-questions-01.md",
+        "docs/java/concurrent/java-concurrent-questions-02.md",
+        "docs/java/concurrent/java-concurrent-questions-03.md"
+      ]
+    },
+    {
+      "sha": "c366ac16eaca290f19861ab76f18410a1cde534d",
+      "message": "Merge pull request #2703 from Joycn2018/patch-1\n\n修改为带参数的 poll(timeout, unit) 方法，避免误解和混淆",
+      "modifiedFiles": [
+        "docs/java/concurrent/java-concurrent-questions-03.md"
+      ]
+    },
+    {
+      "sha": "282a87f6b8424aabfed4263b52d94a76552088cb",
+      "message": "Merge pull request #2701 from Licox04/main\n\ndocs: (aqs.md) fix typo",
+      "modifiedFiles": [
+        "docs/java/concurrent/aqs.md"
+      ]
+    },
+    {
+      "sha": "151e862d83c00d54a02246769924f3012d859c2f",
+      "message": "Merge pull request #2704 from uncle-lv/fix-typo\n\nFix typo",
+      "modifiedFiles": [
+        "docs/high-performance/message-queue/message-queue.md"
+      ]
+    },
+    {
+      "sha": "eef1e67c04b094119bfbbc288c3f79c66be140b1",
+      "message": "docs: fix typo",
+      "modifiedFiles": [
+        "docs/java/jvm/memory-area.md"
+      ]
+    },
+    {
+      "sha": "99415c107b4f922807cc4dc2e5ab9115878ced20",
+      "message": "docs: fix typo",
+      "modifiedFiles": [
+        "docs/high-performance/message-queue/message-queue.md",
+        "docs/java/jvm/memory-area.md"
+      ]
+    },
+    {
+      "sha": "daa1a1303a7bc5045d9349d7f315abf89b8ebeb6",
+      "message": "修改为带参数的 poll(timeout, unit) 方法，避免误解和混淆\n\n无参 poll() 会立即从队列中取元素，如果队列为空，直接返回 null（不阻塞）；\r\n带超时参数的 poll(timeout, unit)：在指定时间内等待队列有元素可用。如果超时仍未获取到元素，则返回 null。\r\n\r\n建议这里增加参数，避免初学者对阻塞队列的poll()方法有误列",
+      "modifiedFiles": [
+        "docs/java/concurrent/java-concurrent-questions-03.md"
+      ]
+    },
+    {
+      "sha": "ec1874dcc62b879f656b0d31aa0a0694d2129e58",
+      "message": "docs: (aqs.md) fix typo\n\nAQS 中以独占模式获取资源的入口方法是 acquireShared() ，如下：\r\n-\u003e AQS中以**共享模式**获取资源的入口方法是 acquireShared()，如下：",
+      "modifiedFiles": [
+        "docs/java/concurrent/aqs.md"
+      ]
+    },
+    {
+      "sha": "3dc6b21318c176644144fd9db7a7b84c363ff23b",
+      "message": "update:java基础和集合部分的面试问题标注重点",
+      "modifiedFiles": [
+        "docs/README.md",
+        "docs/cs-basics/operating-system/linux-intro.md",
+        "docs/java/basis/java-basic-questions-01.md",
+        "docs/java/basis/java-basic-questions-02.md",
+        "docs/java/basis/java-basic-questions-03.md",
+        "docs/java/collection/java-collection-questions-01.md",
+        "docs/java/collection/java-collection-questions-02.md",
+        "docs/java/concurrent/java-concurrent-questions-01.md",
+        "docs/system-design/framework/spring/spring-design-patterns-summary.md"
+      ]
+    },
+    {
+      "sha": "3973ee5ef3b9b5d14b4f0ba03419b97b516f6b18",
+      "message": "Merge pull request #2694 from blueair5/zgw-main-IO\n\n关于同步非阻塞 IO 增加一点说明",
+      "modifiedFiles": [
+        "docs/java/io/io-model.md"
+      ]
+    },
+    {
+      "sha": "aff05c9a98d2a6abf8d117a7713638e3a5954132",
+      "message": "Merge pull request #2696 from uncle-lv/fix-typo\n\ndocs(java-concurrent-question-03.md): fix typo",
+      "modifiedFiles": [
+        "docs/java/concurrent/java-concurrent-questions-02.md"
+      ]
+    },
+    {
+      "sha": "221372ca76bdc0aa66a93115bf6226f840c7cda1",
+      "message": "Merge pull request #2698 from juwencheng/patch-1\n\nUpdate proxy.md",
+      "modifiedFiles": [
+        "docs/java/basis/proxy.md"
+      ]
+    },
+    {
+      "sha": "546f4c0701fc70b28c187a6cce20157f28455348",
+      "message": "Update proxy.md\n\n修正`intercept`方法参数的说明",
+      "modifiedFiles": [
+        "docs/java/basis/proxy.md"
+      ]
+    },
+    {
+      "sha": "e5422aee95cb4e8ade632388569ef45b23139a81",
+      "message": "docs(java-concurrent-question-03.md): fix typo",
+      "modifiedFiles": [
+        "docs/java/concurrent/java-concurrent-questions-02.md"
+      ]
+    },
+    {
+      "sha": "7624c661ceeb06f83670f3172ea08ce3ccb232a2",
+      "message": "关于同步非阻塞 IO 增加一点说明",
+      "modifiedFiles": [
+        "docs/java/io/io-model.md"
+      ]
+    },
+    {
+      "sha": "1ccf42faad30cb4488040938833301e502a2674d",
+      "message": "Merge pull request #2691 from x0c/x0c-patch-1\n\n修正 Java 10 中的 Optional 增强描述",
+      "modifiedFiles": [
+        "docs/java/new-features/java10.md"
+      ]
+    },
+    {
+      "sha": "a11786e0c99db669344f318ec05100840de055b4",
+      "message": "修正 Java 10 中的 Optional 增强",
+      "modifiedFiles": [
+        "docs/java/new-features/java10.md"
+      ]
+    },
+    {
+      "sha": "31ae380b053f882213fba2689cd1d88a5553bd04",
+      "message": "Merge pull request #2690 from JIANGZEHUI0319/patch-1\n\n修正类加载器详解中一个错误",
+      "modifiedFiles": [
+        "docs/java/jvm/classloader.md"
+      ]
+    },
+    {
+      "sha": "61fa045fec8504bc4d3faa0b2c608615325cdec0",
+      "message": "Update classloader.md\n\n判断一个类加载器是不是被BootstrapClassLoader 加载的，应该使用XXXClaissLoader.getClass().getClassLoader()是不是为null来判断，getParent()只是获取类加载器在委派链中的父类加载器，两个是不同概念。我可以自定义一个类加载器，通过new MyClassLoader(null)主动设置parent为null打破双亲委派。但是我的MyClassLoader这个类是被AppClassLoader加载的。",
+      "modifiedFiles": [
+        "docs/java/jvm/classloader.md"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "JinLongDesigner",
+      "commitCount": 5
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "zhangrun6819",
+      "commitCount": 5
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "896393962",
+      "commitCount": 5
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "springautom",
+      "commitCount": 5
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "532780857",
+      "commitCount": 5
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "objcat",
+      "commitCount": 1
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "kenjianzhi",
+      "commitCount": 1
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "bergsonking",
+      "commitCount": 1
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "justStarNew",
+      "commitCount": 1
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "dyfirst",
+      "commitCount": 1
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "PrinceZaZa",
+      "commitCount": 1
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "liang2600",
+      "commitCount": 1
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "kec61",
+      "commitCount": 2
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "xujiansheng1209",
+      "commitCount": 1
+    },
+    {
+      "name": "Fork-JavaGuide",
+      "ownerLogin": "LL-Crystal",
+      "commitCount": 1
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "linzhangbin",
+      "commitCount": 1
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "fengxianseng",
+      "commitCount": 1
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "sdudc",
+      "commitCount": 1
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "wangjianlinga-cloud",
+      "commitCount": 1
+    },
+    {
+      "name": "JavaGuide",
+      "ownerLogin": "xjy0522",
+      "commitCount": 1
+    }
+  ]
+}

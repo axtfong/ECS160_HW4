@@ -1,0 +1,524 @@
+{
+  "name": "opencv",
+  "ownerLogin": "opencv",
+  "language": "C++",
+  "commits": [
+    {
+      "sha": "09c893477e2b4231948dc8ff616fa49b39538730",
+      "message": "Merge pull request #27443 from ritamelo06:gapi-feature\n\nfeat: G-API: Custom stream sources in Python (#27276)",
+      "modifiedFiles": [
+        "modules/gapi/CMakeLists.txt",
+        "modules/gapi/include/opencv2/gapi/pysrc/python_stream_source.hpp",
+        "modules/gapi/misc/python/pyopencv_gapi.hpp",
+        "modules/gapi/misc/python/test/test_gapi_streaming.py",
+        "modules/gapi/src/pysrc/python_stream_source.cpp"
+      ]
+    },
+    {
+      "sha": "47d71530a729eda8534920ab3c97ffcde2c3b992",
+      "message": "Merge pull request #27866 from JayPol559:4.x\n\nFix HDR tutorial result mismatch by adding gamma note #27866\n\nThis PR fixes #22219 by clarifying the gamma correction value in the HDR tutorial.\n\nThe function cv.createTonemap() has a default gamma value of 1.0. To match the tutorial example results, gamma should be explicitly set to 2.2. This note has been added to the Tonemap HDR image section of the tutorial.",
+      "modifiedFiles": [
+        "doc/py_tutorials/py_photo/py_hdr/py_hdr.markdown"
+      ]
+    },
+    {
+      "sha": "543e9ed01038e0935c6a0fbd8746c4be753a9a58",
+      "message": "Merge pull request #27926 from MaximSmolskiy:add_comments_for_fisheye_undistortPoints\n\nAdd comments for fisheye::undistortPoints",
+      "modifiedFiles": [
+        "modules/calib3d/src/fisheye.cpp"
+      ]
+    },
+    {
+      "sha": "b65d66e797621e3340fdbff3056e3fd6b2483500",
+      "message": "Add comments for fisheye::undistortPoints",
+      "modifiedFiles": [
+        "modules/calib3d/src/fisheye.cpp"
+      ]
+    },
+    {
+      "sha": "50cd7b8b4bfc75279f0b8e4d49a5199bd8846c6e",
+      "message": "Merge pull request #27923 from cudawarped:move_throw_no_cuda_to_stub\n\n[core][cuda] Move throw_no_cuda to it an independant stub",
+      "modifiedFiles": [
+        "modules/core/include/opencv2/core/private.cuda.hpp",
+        "modules/core/include/opencv2/core/private/cuda_stubs.hpp",
+        "modules/photo/CMakeLists.txt",
+        "modules/photo/src/denoising.cuda.cpp",
+        "modules/stitching/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "53a96cdc0bc8dda393383abc9537c9a0f5057170",
+      "message": "Merge pull request #27922 from Kumataro:fix27921\n\nimgcodecs: GDAL: show GDAL version at OpenCV configuration",
+      "modifiedFiles": [
+        "cmake/OpenCVFindLibsGrfmt.cmake"
+      ]
+    },
+    {
+      "sha": "fa276bba3d8cfe01675ea54b5ebdb21254e71907",
+      "message": "Merge pull request #27919 from Kumataro:fix27830\n\nimgcodecs: Workaround for image flipping bug in older GDAL FITS drivers",
+      "modifiedFiles": [
+        "modules/imgcodecs/src/grfmt_gdal.cpp"
+      ]
+    },
+    {
+      "sha": "ff216e879656414cd9af7d722201d03e1012e102",
+      "message": "[core][cuda] Move throw_no_cuda to it an independant stub so it is not included in the same file that requires cudart",
+      "modifiedFiles": [
+        "modules/core/include/opencv2/core/private.cuda.hpp",
+        "modules/core/include/opencv2/core/private/cuda_stubs.hpp",
+        "modules/photo/CMakeLists.txt",
+        "modules/photo/src/denoising.cuda.cpp",
+        "modules/stitching/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "346308124ab0815ae9f5c3e1edc7003026e28014",
+      "message": "imgcodecs: GDAL: show GDAL version at OpenCV configuration",
+      "modifiedFiles": [
+        "cmake/OpenCVFindLibsGrfmt.cmake"
+      ]
+    },
+    {
+      "sha": "11422da957c1c79d250a137a7559fff4bb2f06db",
+      "message": "Merge pull request #27920 from MaximSmolskiy:support_qr_decomposition_for_stereoCalibrate\n\nSupport QR decomposition for stereoCalibrate",
+      "modifiedFiles": [
+        "modules/calib3d/src/calibration.cpp"
+      ]
+    },
+    {
+      "sha": "70d69d07c8889a21b9d28468f12b35c1a4934852",
+      "message": "Merge pull request #27914 from MaximSmolskiy:refactor_minEnclosingCircle\n\nRefactor minEnclosingCircle",
+      "modifiedFiles": [
+        "modules/imgproc/src/shapedescr.cpp"
+      ]
+    },
+    {
+      "sha": "455720aae8ef7539706a5e442bed4a75826d2825",
+      "message": "Support QR decomposition for stereoCalibrate",
+      "modifiedFiles": [
+        "modules/calib3d/src/calibration.cpp"
+      ]
+    },
+    {
+      "sha": "75f738b3d15a2fae7c78dd208312337d7b4a47fe",
+      "message": "imgcodecs: Workaround for image flipping bug in older GDAL FITS drivers",
+      "modifiedFiles": [
+        "modules/imgcodecs/src/grfmt_gdal.cpp"
+      ]
+    },
+    {
+      "sha": "cb8f398a877d74c580b18888682b4190a2b0edf9",
+      "message": "Merge pull request #27915 from MaximSmolskiy:fix_ml_kdtree_findNearest\n\nFix ml::KDTree::findNearest",
+      "modifiedFiles": [
+        "modules/ml/src/knearest.cpp",
+        "modules/ml/test/test_knearest.cpp"
+      ]
+    },
+    {
+      "sha": "f1a99760ad00c1670d24ea4ffa4a5a4b9417a7ca",
+      "message": "Merge pull request #27841 from dkurt:ffmpeg_camera\n\nOpen camera device by index through FFmpeg #27841\n\n### Pull Request Readiness Checklist\n\nresolves https://github.com/opencv/opencv/issues/26812\n\nExample of explicit backend option (similar to `-f v4l2` from command line)\n```\nexport OPENCV_FFMPEG_CAPTURE_OPTIONS\u003d\"f;v4l2\"\n```\nsee https://trac.ffmpeg.org/wiki/Capture/Webcam for available options\n\nSee details at https://github.com/opencv/opencv/wiki/How_to_contribute#making-a-good-pull-request\n\n- [x] I agree to contribute to the project under Apache 2 License.\n- [x] To the best of my knowledge, the proposed patch is not based on a code under GPL or another license that is incompatible with OpenCV\n- [x] The PR is proposed to the proper branch\n- [x] There is a reference to the original bug report and related work\n- [x] There is accuracy test, performance test and test data in opencv_extra repository, if applicable\n      Patch to opencv_extra has the same branch name.\n- [x] The feature is well documented and sample code can be built with the project CMake",
+      "modifiedFiles": [
+        "modules/videoio/cmake/detect_ffmpeg.cmake",
+        "modules/videoio/src/cap_ffmpeg.cpp",
+        "modules/videoio/src/cap_ffmpeg_impl.hpp",
+        "modules/videoio/src/cap_interface.hpp",
+        "modules/videoio/src/videoio_registry.cpp",
+        "modules/videoio/test/test_camera.cpp",
+        "modules/videoio/test/test_v4l2.cpp"
+      ]
+    },
+    {
+      "sha": "98a12515fec3c79021c8a56acab6354e0764c43a",
+      "message": "Fix ml::KDTree::findNearest",
+      "modifiedFiles": [
+        "modules/ml/src/knearest.cpp",
+        "modules/ml/test/test_knearest.cpp"
+      ]
+    },
+    {
+      "sha": "e45d07e95b1ae7a9e9b849f07b45fcd9c5165db6",
+      "message": "Refactor minEnclosingCircle",
+      "modifiedFiles": [
+        "modules/imgproc/src/shapedescr.cpp"
+      ]
+    },
+    {
+      "sha": "c75cd1047b64492acc0fd791c8d74576e9c37306",
+      "message": "Merge pull request #27911 from Kumataro:refix26899\n\ncore: fix lut_data data type",
+      "modifiedFiles": [
+        "modules/core/src/hal_replacement.hpp",
+        "modules/core/src/lut.cpp"
+      ]
+    },
+    {
+      "sha": "f5014c179f0d75984b838c17fef422b7f8d1c854",
+      "message": "Merge pull request #27736 from s-trinh:use_USAC_P3P_in_solvePnP\n\nUpdate Gao P3P with Ding P3P #27736\n\n### Pull Request Readiness Checklist\n\nSee details at https://github.com/opencv/opencv/wiki/How_to_contribute#making-a-good-pull-request\n\n- [x] I agree to contribute to the project under Apache 2 License.\n- [x] To the best of my knowledge, the proposed patch is not based on a code under GPL or another license that is incompatible with OpenCV\n- [x] The PR is proposed to the proper branch\n- [x] There is a reference to the original bug report and related work\n- [ ] There is accuracy test, performance test and test data in opencv_extra repository, if applicable\n      Patch to opencv_extra has the same branch name.\n- [ ] The feature is well documented and sample code can be built with the project CMake\n\n---\n\nThe current Gao P3P implementation does not cover all the degenerate cases, **see last line** in: https://github.com/opencv/opencv/blob/6d889ee74c94124f6492eb8f0d50946d9c31d8e9/modules/calib3d/src/p3p.cpp#L211-L221\n\nSee also:\n- https://github.com/opencv/opencv/issues/4854\n\n---\n\n\u003cdetails\u003e\n\n\u003csummary\u003eOBSOLETE\u003c/summary\u003e\n\nTo fix this, the USAC P3P from OpenCV 5 is used instead: https://github.com/opencv/opencv/blob/7e6da007cddcf83a527dfda95d57228fa5a535d3/modules/3d/src/usac/pnp_solver.cpp#L282\n\n---\n\n## Some results\n\n### Old P3P vs new\n\nIn the following video, I have tried to highlight the viewpoints which cause issues:\n\nhttps://github.com/user-attachments/assets/97bec6a6-4043-4509-b50e-a9856d6423bd\n\n| | Old P3P    | New P3P |\n| -------- | ------- | ------- |\n| Mean (ms)  | 0.045701 | 0.024816 |\n| Median (ms) | 0.025146 | 0.023193 |\n| Std (ms)    | 0.028953    | 0.006124 |\n\n### New P3P vs AP3P\n\nhttps://github.com/user-attachments/assets/eaeb21dc-3ffd-4b6c-9902-4352f824aa45\n\nThe AP3 method is superior both in term of accuracy and computation time:\n\n| | New P3P    | AP3P |\n| -------- | ------- | ------- |\n| Mean (ms)  | 0.043750 | 0.023442 |\n| Median (ms) | 0.023193 | 0.021484 |\n| Std (ms)    | 0.039920 | 0.005265 |\n\n### New P3P vs AP3P (range test)\n\nhttps://github.com/user-attachments/assets/572e7b7a-2966-4bed-8e0c-b93d863987dc\n\nThe implemented P3P method does not work well when the tag is small, at long range.\n\n| | New P3P    | AP3P |\n| -------- | ------- | ------- |\n| Mean (ms)  | 0.031351 | 0.025189 |\n| Median (ms) | 0.022217 | 0.020996 |\n| Std (ms)    | 0.024920 | 0.009633 |\n\n---\n\n- I have tried to simplify the P3P code, hope I did not break the implementation code\n- calculations are performed using double type for simplicity.\n- code such as the following are redundant and no more needed and should be replaced by `cv::Rodrigues`:\n\nhttps://github.com/opencv/opencv/blob/6d889ee74c94124f6492eb8f0d50946d9c31d8e9/modules/calib3d/src/usac/pnp_solver.cpp#L395\n\n\u003c/details\u003e",
+      "modifiedFiles": [
+        "modules/calib3d/doc/calib3d.bib",
+        "modules/calib3d/doc/solvePnP.markdown",
+        "modules/calib3d/include/opencv2/calib3d.hpp",
+        "modules/calib3d/src/p3p.cpp",
+        "modules/calib3d/src/p3p.h",
+        "modules/calib3d/src/solvepnp.cpp",
+        "modules/calib3d/src/usac.hpp",
+        "modules/calib3d/src/usac/dls_solver.cpp",
+        "modules/calib3d/src/usac/pnp_solver.cpp",
+        "modules/calib3d/src/usac/utils.cpp",
+        "modules/calib3d/test/test_solvepnp_ransac.cpp"
+      ]
+    },
+    {
+      "sha": "ec630504a7dcc9063715b594c113a24c09a4000b",
+      "message": "core: fix lut_data data type",
+      "modifiedFiles": [
+        "modules/core/src/hal_replacement.hpp",
+        "modules/core/src/lut.cpp"
+      ]
+    },
+    {
+      "sha": "6c009c2a140147e92e26a1ddcb7050b14e5c409e",
+      "message": "Merge pull request #27903 from victorget:dev/ipp_hal_threading\n\nFixed parallel invoke for warp perspective for best performance",
+      "modifiedFiles": [
+        "hal/ipp/include/ipp_hal_imgproc.hpp",
+        "hal/ipp/src/precomp_ipp.hpp",
+        "hal/ipp/src/warp_ipp.cpp"
+      ]
+    },
+    {
+      "sha": "703f0bb0f2bc64abd24a26a05971751f43ede0ff",
+      "message": "Merge pull request #27906 from asmorkalov:as/cairosvg\n\nUse cairosvg for pattern rendering to get rid of double resize. #27906\n\nDepends on https://github.com/opencv/ci-gha-workflow/pull/269\n\n### Pull Request Readiness Checklist\n\nSee details at https://github.com/opencv/opencv/wiki/How_to_contribute#making-a-good-pull-request\n\n- [x] I agree to contribute to the project under Apache 2 License.\n- [x] To the best of my knowledge, the proposed patch is not based on a code under GPL or another license that is incompatible with OpenCV\n- [ ] The PR is proposed to the proper branch\n- [ ] There is a reference to the original bug report and related work\n- [ ] There is accuracy test, performance test and test data in opencv_extra repository, if applicable\n      Patch to opencv_extra has the same branch name.\n- [ ] The feature is well documented and sample code can be built with the project CMake",
+      "modifiedFiles": [
+        "apps/pattern-tools/test_charuco_board.py"
+      ]
+    },
+    {
+      "sha": "d0d9bd20ed03e6559ef61aa2ac1aceaa6245a64a",
+      "message": "Merge pull request #27890 from Kumataro:fix26899\n\ncore: support 16 bit LUT #27890\n\nClose https://github.com/opencv/opencv/issues/26899\n\n### Pull Request Readiness Checklist\n\nSee details at https://github.com/opencv/opencv/wiki/How_to_contribute#making-a-good-pull-request\n\n- [x] I agree to contribute to the project under Apache 2 License.\n- [x] To the best of my knowledge, the proposed patch is not based on a code under GPL or another license that is incompatible with OpenCV\n- [x] The PR is proposed to the proper branch\n- [x] There is a reference to the original bug report and related work\n- [x] There is accuracy test, performance test and test data in opencv_extra repository, if applicable\n      Patch to opencv_extra has the same branch name.\n- [x] The feature is well documented and sample code can be built with the project CMake",
+      "modifiedFiles": [
+        "modules/core/include/opencv2/core.hpp",
+        "modules/core/src/hal_replacement.hpp",
+        "modules/core/src/lut.cpp",
+        "modules/core/test/test_arithm.cpp"
+      ]
+    },
+    {
+      "sha": "c88b3cb11f580bf5c70da83ba0b5c6a698cdc5f0",
+      "message": "Merge pull request #27910 from MaximSmolskiy:add_corner_cases_tests_for_minEnclosingCircle\n\nAdd corner cases tests for minEnclosingCircle",
+      "modifiedFiles": [
+        "modules/imgproc/test/test_convhull.cpp"
+      ]
+    },
+    {
+      "sha": "1bf1b91a588565a62527dc5c397de4188f25dccc",
+      "message": "Merge pull request #27908 from badshah400:4.x\n\nFixed linking for HighGUI against Qt 6.9 and newer",
+      "modifiedFiles": [
+        "modules/highgui/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "00493e603a1c483df67e1e4db74d3a2ec40ef415",
+      "message": "Merge pull request #27909 from DasoTD:fix-ambiguous-rect-assignment\n\nFix ambiguous operator error in Rect assignment for C++ modules",
+      "modifiedFiles": [
+        "modules/core/include/opencv2/core/types.hpp"
+      ]
+    },
+    {
+      "sha": "b4d3488b02a6c52b7acec313b103aca422be8ae8",
+      "message": "Add corner cases tests for minEnclosingCircle",
+      "modifiedFiles": [
+        "modules/imgproc/test/test_convhull.cpp"
+      ]
+    },
+    {
+      "sha": "da69f6748e52d3e01240d460dc38c46064966402",
+      "message": "Fix ambiguous operator error in Rect assignment for C++ modules",
+      "modifiedFiles": [
+        "modules/core/include/opencv2/core/types.hpp"
+      ]
+    },
+    {
+      "sha": "e7728bb27db9732629bb3f7c7c2c33fe3930b31a",
+      "message": "Fixed linking for HighGUI against Qt 6.9 and newer\n\nUse `link_libraries` instead of `add_defintions` to link against Qt 6.9\nand newer to avoid un-expanded generator expressions from Qt cmake files\nbeing appended to linker flags when building the HighGUI module.\n\nThe actual bug is likely in how Qt cmake files end up with these\nun-expanded generator expressions in the first place — see discussion in\nhttps://bugreports.qt.io/browse/QTBUG-134774 — but the recommended way\nto link against the library is to use `link_libraries` anyway, so this\nfix should do the trick.\n\nFixes issue #27223.",
+      "modifiedFiles": [
+        "modules/highgui/CMakeLists.txt"
+      ]
+    },
+    {
+      "sha": "563ef8ff97b69591984bfa159a0470a61d3a082c",
+      "message": "Merge pull request #27904 from MaximSmolskiy:fix_minEnclosingCircle\n\nFix minEnclosingCircle",
+      "modifiedFiles": [
+        "modules/imgproc/src/shapedescr.cpp",
+        "modules/imgproc/test/test_convhull.cpp"
+      ]
+    },
+    {
+      "sha": "8f0373816aefac01cca3cc2e87166dd5016f66de",
+      "message": "Merge pull request #27900 from MaximSmolskiy:refactor-minEnclosingCircle-tests\n\nRefactor minEnclosingCircle tests #27900\n\n### Pull Request Readiness Checklist\n\nSeparate input points for tests\n\nBefore this, next input points depended on previous ones and it was not obvious which input points specific test checked\n\nSee details at https://github.com/opencv/opencv/wiki/How_to_contribute#making-a-good-pull-request\n\n- [x] I agree to contribute to the project under Apache 2 License.\n- [x] To the best of my knowledge, the proposed patch is not based on a code under GPL or another license that is incompatible with OpenCV\n- [x] The PR is proposed to the proper branch\n- [ ] There is a reference to the original bug report and related work\n- [ ] There is accuracy test, performance test and test data in opencv_extra repository, if applicable\n      Patch to opencv_extra has the same branch name.\n- [ ] The feature is well documented and sample code can be built with the project CMake",
+      "modifiedFiles": [
+        "modules/imgproc/test/test_convhull.cpp"
+      ]
+    },
+    {
+      "sha": "1b09d7390f5bc8514c14099951406f074e73d0c7",
+      "message": "Fix minEnclosingCircle",
+      "modifiedFiles": [
+        "modules/imgproc/src/shapedescr.cpp",
+        "modules/imgproc/test/test_convhull.cpp"
+      ]
+    },
+    {
+      "sha": "9e515caeac2e80fe2d04837f6abcacccbe404107",
+      "message": "- Fixed incorrect implementation of multithreaded call for warp perspective in IPP HAL.\n- Changed splitting logic to improved performance for all warp related functions in IPP HAL for multithreaded mode.\n- Removed IPP 7.0 preprocessor condition from warp in IPP HAL, since unsupported.\n- Added preprocessor condition to enforce IPP warp calls for custom builds.",
+      "modifiedFiles": [
+        "hal/ipp/include/ipp_hal_imgproc.hpp",
+        "hal/ipp/src/precomp_ipp.hpp",
+        "hal/ipp/src/warp_ipp.cpp"
+      ]
+    },
+    {
+      "sha": "0ee9c2796698346e78c640565ec6a0dfb7a95151",
+      "message": "Merge pull request #27810 from D00E:known-foreground-mask\n\n2025-10-14T05:53:31.5387050Z C:\\GHA-OCV-1\\_work\\ci-gha-workflow\\ci-gha-workflow\\opencv\\modules\\imgcodecs\\src\\bitstrm.cpp(156,57): warning C4244: \u0027argument\u0027: conversion from \u0027int64_t\u0027 to \u0027ptrdiff_t\u0027, possible loss of data [C:\\GHA-OCV-1\\_work\\ci-gha-workflow\\ci-gha-workflow\\build\\modules\\imgcodecs\\opencv_imgcodecs.vcxproj]\n\n### Pull Request Readiness Checklist\n\nOptional Known Foreground Mask for Background Subtractors #27810\n\nSee details at https://github.com/opencv/opencv/wiki/How_to_contribute#making-a-good-pull-request\n\n- [x] I agree to contribute to the project under Apache 2 License.\n- [x] To the best of my knowledge, the proposed patch is not based on a code under GPL or another license that is incompatible with OpenCV\n- [x] The PR is proposed to the proper branch\n- [x] There is a reference to the original bug report and related work\n- [x] There is accuracy test, performance test and test data in opencv_extra repository, if applicable\n      Patch to opencv_extra has the same branch name.\n- [x] The feature is well documented and sample code can be built with the project CMake\n\n### Description\nThis adds an optional foreground input mask parameter to the MOG2 and KNN background subtractors, in line with issue https://github.com/opencv/opencv/issues/26476\n\n4 tests are added under test_bgfg2.cpp:\n2 for each subtractor type (1 with shadow detection and 1 without)\nA demo shows the feature with only 3 parameters and with a 4th optional foreground mask for both core subtractor types.\n\nNote: To patch contrib inheritance of the background subtraction class, empty apply method which throws a not implemented error is added to contrib subclasses. This is done to keep the overloaded apply function as pure virtual. Contrib PR to be made and linked shortly.  \nContrib Repo Paired Pull Request: https://github.com/opencv/opencv_contrib/pull/4017",
+      "modifiedFiles": [
+        "modules/video/include/opencv2/video/background_segm.hpp",
+        "modules/video/src/bgfg_KNN.cpp",
+        "modules/video/src/bgfg_gaussmix2.cpp",
+        "modules/video/test/test_bgfg2.cpp",
+        "samples/python/background_subtractor_mask.py"
+      ]
+    },
+    {
+      "sha": "0a25225b7640cb55ec866b788dfce9b84efd63f2",
+      "message": "Merge pull request #27897 from asmorkalov:as/alernative_win_arm_neon_check\n\nEnabled fp16 conversions, but disabled NEON FP16 arithmetics on Windows for ARM for now #27897\n\n### Pull Request Readiness Checklist\n\nSee details at https://github.com/opencv/opencv/wiki/How_to_contribute#making-a-good-pull-request\n\n- [x] I agree to contribute to the project under Apache 2 License.\n- [x] To the best of my knowledge, the proposed patch is not based on a code under GPL or another license that is incompatible with OpenCV\n- [ ] The PR is proposed to the proper branch\n- [ ] There is a reference to the original bug report and related work\n- [ ] There is accuracy test, performance test and test data in opencv_extra repository, if applicable\n      Patch to opencv_extra has the same branch name.\n- [ ] The feature is well documented and sample code can be built with the project CMake",
+      "modifiedFiles": [
+        "cmake/checks/cpu_neon_dotprod.cpp",
+        "cmake/checks/cpu_neon_fp16.cpp"
+      ]
+    },
+    {
+      "sha": "af49e0cc594ac5d1882aa9c2d24a3889369038e2",
+      "message": "Merge pull request #27898 from asmorkalov:as/gapi_warning_fix_more\n\nMore warning fixes G-API on Windows",
+      "modifiedFiles": [
+        "modules/gapi/src/backends/common/serialization.cpp",
+        "modules/gapi/src/compiler/gcompiler.cpp"
+      ]
+    },
+    {
+      "sha": "ca34212b68fb3c5aeb1c729ede232e5c1a525613",
+      "message": "More warning fixes iG-API on Windows.",
+      "modifiedFiles": [
+        "modules/gapi/src/backends/common/serialization.cpp",
+        "modules/gapi/src/compiler/gcompiler.cpp"
+      ]
+    },
+    {
+      "sha": "bcb2f759b6d059f9c79bc347798dfc7059bab88c",
+      "message": "Merge pull request #27895 from asmorkalov:as/unreachible_gapi\n\nRemoved unreachible code reported by MS Visual Studio on Windows",
+      "modifiedFiles": [
+        "modules/gapi/src/api/s11n.cpp",
+        "modules/gapi/src/backends/common/serialization.cpp",
+        "modules/gapi/src/backends/fluid/gfluidbackend.cpp",
+        "modules/gapi/src/backends/fluid/gfluidbuffer.cpp",
+        "modules/gapi/src/executor/gstreamingexecutor.cpp",
+        "modules/gapi/test/streaming/gapi_streaming_tests.cpp"
+      ]
+    },
+    {
+      "sha": "34aee6cb28242817c86365f7ba7c58f75cc15a2b",
+      "message": "Removed unreachible code reported by MS Visual Studio on Windows.",
+      "modifiedFiles": [
+        "modules/gapi/src/api/s11n.cpp",
+        "modules/gapi/src/backends/common/serialization.cpp",
+        "modules/gapi/src/backends/fluid/gfluidbackend.cpp",
+        "modules/gapi/src/backends/fluid/gfluidbuffer.cpp",
+        "modules/gapi/src/executor/gstreamingexecutor.cpp",
+        "modules/gapi/test/streaming/gapi_streaming_tests.cpp"
+      ]
+    },
+    {
+      "sha": "24640ec65fd551f57174cc370e557476a13c2898",
+      "message": "Merge pull request #27893 from asmorkalov:as/no_return_fix\n\nFixed -Wretrun-type warning in Highgui",
+      "modifiedFiles": [
+        "modules/highgui/src/window.cpp"
+      ]
+    },
+    {
+      "sha": "029c0817199ee393e28120e59856caede3d4e727",
+      "message": "Fixed -Wretrun-type warning in Highgui.",
+      "modifiedFiles": [
+        "modules/highgui/src/window.cpp"
+      ]
+    },
+    {
+      "sha": "514d362ad88023d6f7b543b909e1ea1bc363e2f3",
+      "message": "Merge pull request #27876 from MaximSmolskiy:fix_charuco_board_pattern_in_generate_pattern.py\n\nFix charuco_board_pattern in generate_pattern.py #27876\n\n### Pull Request Readiness Checklist\n\nFix #27871 \n\nSee details at https://github.com/opencv/opencv/wiki/How_to_contribute#making-a-good-pull-request\n\n- [x] I agree to contribute to the project under Apache 2 License.\n- [x] To the best of my knowledge, the proposed patch is not based on a code under GPL or another license that is incompatible with OpenCV\n- [x] The PR is proposed to the proper branch\n- [x] There is a reference to the original bug report and related work\n- [ ] There is accuracy test, performance test and test data in opencv_extra repository, if applicable\n      Patch to opencv_extra has the same branch name.\n- [ ] The feature is well documented and sample code can be built with the project CMake",
+      "modifiedFiles": [
+        "apps/pattern-tools/generate_pattern.py",
+        "doc/charuco_board_pattern.png"
+      ]
+    },
+    {
+      "sha": "a74374d1ed9b34d3a13a077499a1160107a2d8d5",
+      "message": "Merge pull request #27889 from Xingchen1224:4.x\n\nfix: Refactor tuple creation in nlm.cu for fixing nvcc build…",
+      "modifiedFiles": [
+        "modules/photo/src/cuda/nlm.cu"
+      ]
+    },
+    {
+      "sha": "f74d4817244b266d0a1cb0225a738dafda4ef839",
+      "message": "fix: Refactor tuple creation in NLM CUDA kernel for fixing nvcc build error",
+      "modifiedFiles": [
+        "modules/photo/src/cuda/nlm.cu"
+      ]
+    },
+    {
+      "sha": "833918781e5a1e1cbd1e6baa891922d722d97592",
+      "message": "Merge pull request #27887 from asmorkalov:as/flacky_gapi\n\nSkip LimitedSourceInfer.ReleaseFrameAsync test in CI as it hangs sporadically",
+      "modifiedFiles": [
+        "modules/gapi/test/infer/gapi_infer_ie_test.cpp"
+      ]
+    },
+    {
+      "sha": "e7d046f31a19fc5873effe0146fcdd16577d0165",
+      "message": "Skip LimitedSourceInfer.ReleaseFrameAsync test in CI as it hangs sporadically.",
+      "modifiedFiles": [
+        "modules/gapi/test/infer/gapi_infer_ie_test.cpp"
+      ]
+    },
+    {
+      "sha": "34f6c0764efb306c9e3469788fa211a599a8e046",
+      "message": "Merge pull request #27883 from asmorkalov:as/win32_warning_fix\n\nFixed warnings produced by x86 builds on Windows.",
+      "modifiedFiles": [
+        "modules/imgcodecs/src/grfmt_gif.cpp",
+        "modules/imgcodecs/src/utils.cpp",
+        "modules/imgcodecs/src/utils.hpp"
+      ]
+    },
+    {
+      "sha": "b5e96d76ebbea7996091780657f5ac09faf6a7e4",
+      "message": "Fixed warnings produced by x86 builds on Windows.",
+      "modifiedFiles": [
+        "modules/imgcodecs/src/grfmt_gif.cpp",
+        "modules/imgcodecs/src/utils.cpp",
+        "modules/imgcodecs/src/utils.hpp"
+      ]
+    },
+    {
+      "sha": "75598e5377af6edb6c080da6c2a4b437cc8f0675",
+      "message": "Merge pull request #27877 from MaximSmolskiy:fix_QRCodeDetector_detectAndDecode_crash\n\nFix QRCodeDetector::detectAndDecode crash #27877\n\n### Pull Request Readiness Checklist\n\nFix #27807 \n\nThe problem is that when we find closest points from hull, we can get same closest point for several different points\n\nSee details at https://github.com/opencv/opencv/wiki/How_to_contribute#making-a-good-pull-request\n\n- [x] I agree to contribute to the project under Apache 2 License.\n- [x] To the best of my knowledge, the proposed patch is not based on a code under GPL or another license that is incompatible with OpenCV\n- [x] The PR is proposed to the proper branch\n- [x] There is a reference to the original bug report and related work\n- [ ] There is accuracy test, performance test and test data in opencv_extra repository, if applicable\n      Patch to opencv_extra has the same branch name.\n- [ ] The feature is well documented and sample code can be built with the project CMake",
+      "modifiedFiles": [
+        "modules/objdetect/src/qrcode.cpp",
+        "modules/objdetect/test/test_qrcode.cpp"
+      ]
+    },
+    {
+      "sha": "b6447542269e5c7788f372affc68a594b7863f6b",
+      "message": "Merge pull request #27865 from MaximSmolskiy:fix_invalid_memory_access_in_usac\n\nFix invalid memory access in USAC #27865\n\n### Pull Request Readiness Checklist\n\nFix #27863 \n\nSee details at https://github.com/opencv/opencv/wiki/How_to_contribute#making-a-good-pull-request\n\n- [x] I agree to contribute to the project under Apache 2 License.\n- [x] To the best of my knowledge, the proposed patch is not based on a code under GPL or another license that is incompatible with OpenCV\n- [x] The PR is proposed to the proper branch\n- [x] There is a reference to the original bug report and related work\n- [ ] There is accuracy test, performance test and test data in opencv_extra repository, if applicable\n      Patch to opencv_extra has the same branch name.\n- [ ] The feature is well documented and sample code can be built with the project CMake",
+      "modifiedFiles": [
+        "modules/calib3d/src/usac/fundamental_solver.cpp",
+        "modules/calib3d/src/usac/homography_solver.cpp"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "opencv",
+      "ownerLogin": "Adam-s-tech",
+      "commitCount": 88
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "hdminh-git",
+      "commitCount": 88
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "vito-c",
+      "commitCount": 88
+    },
+    {
+      "name": "opencv-vedioio-G330-macOS-support",
+      "ownerLogin": "sirudoi",
+      "commitCount": 89
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "dheermrt",
+      "commitCount": 88
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "572004umesh-sketch",
+      "commitCount": 88
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "GraphiteTest",
+      "commitCount": 87
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "GrainRainLoss",
+      "commitCount": 86
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "nishith-fujitsu",
+      "commitCount": 84
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "donboose",
+      "commitCount": 82
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "longlongago-zsc",
+      "commitCount": 78
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "loudefang",
+      "commitCount": 78
+    },
+    {
+      "name": "open_cv",
+      "ownerLogin": "AmrEslim",
+      "commitCount": 74
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "zhangchenhaobest",
+      "commitCount": 74
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "Insyte-Bio-Inc",
+      "commitCount": 74
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "COMPU-GLOBALHYPERMEGANET",
+      "commitCount": 74
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "chenjf2025",
+      "commitCount": 74
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "dckthulhu",
+      "commitCount": 72
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "fxagro",
+      "commitCount": 71
+    },
+    {
+      "name": "opencv",
+      "ownerLogin": "rivija21",
+      "commitCount": 66
+    }
+  ]
+}

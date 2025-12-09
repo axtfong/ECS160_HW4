@@ -1,0 +1,923 @@
+{
+  "name": "hello-algo",
+  "ownerLogin": "krahets",
+  "language": "Java",
+  "commits": [
+    {
+      "sha": "6cdc5ca0e44cee9155aff2f9198fbaa8321178d7",
+      "message": "Update ja/README (#1819)\n\n* Update ja/README\n\n* Update ja/README\n\n* Update README.md",
+      "modifiedFiles": [
+        "ja/README.md"
+      ]
+    },
+    {
+      "sha": "954c45864b0e60d6834fde2292158ea39d899a54",
+      "message": "docs: add Japanese translate documents (#1812)\n\n* docs: add Japanese documents (`ja/docs`)\n\n* docs: add Japanese documents (`ja/codes`)\n\n* docs: add Japanese documents\n\n* Remove pythontutor blocks in ja/\n\n* Add an empty at the end of each markdown file.\n\n* Add the missing figures (use the English version temporarily).\n\n* Add index.md for Japanese version.\n\n* Add index.html for Japanese version.\n\n* Add missing index.assets\n\n* Fix backtracking_algorithm.md for Japanese version.\n\n* Add avatar_eltociear.jpg. Fix image links on the Japanese landing page.\n\n* Add the Japanese banner.\n\n---------\n\nCo-authored-by: krahets \u003ckrahets@163.com\u003e",
+      "modifiedFiles": [
+        "README.md",
+        "docs/assets/avatar/avatar_eltociear.jpg",
+        "en/README.md",
+        "ja/CONTRIBUTING.md",
+        "ja/README.md",
+        "ja/codes/cpp/chapter_array_and_linkedlist/array.cpp",
+        "ja/codes/cpp/chapter_array_and_linkedlist/linked_list.cpp",
+        "ja/codes/cpp/chapter_array_and_linkedlist/list.cpp",
+        "ja/codes/cpp/chapter_array_and_linkedlist/my_list.cpp",
+        "ja/codes/cpp/chapter_backtracking/n_queens.cpp",
+        "ja/codes/cpp/chapter_backtracking/permutations_i.cpp",
+        "ja/codes/cpp/chapter_backtracking/permutations_ii.cpp",
+        "ja/codes/cpp/chapter_backtracking/preorder_traversal_i_compact.cpp",
+        "ja/codes/cpp/chapter_backtracking/preorder_traversal_ii_compact.cpp",
+        "ja/codes/cpp/chapter_backtracking/preorder_traversal_iii_compact.cpp",
+        "ja/codes/cpp/chapter_backtracking/preorder_traversal_iii_template.cpp",
+        "ja/codes/cpp/chapter_backtracking/subset_sum_i.cpp",
+        "ja/codes/cpp/chapter_backtracking/subset_sum_i_naive.cpp",
+        "ja/codes/cpp/chapter_backtracking/subset_sum_ii.cpp",
+        "ja/codes/cpp/chapter_computational_complexity/iteration.cpp",
+        "ja/codes/cpp/chapter_computational_complexity/recursion.cpp",
+        "ja/codes/cpp/chapter_computational_complexity/space_complexity.cpp",
+        "ja/codes/cpp/chapter_computational_complexity/time_complexity.cpp",
+        "ja/codes/cpp/chapter_computational_complexity/worst_best_time_complexity.cpp",
+        "ja/codes/cpp/chapter_divide_and_conquer/binary_search_recur.cpp",
+        "ja/codes/cpp/chapter_divide_and_conquer/build_tree.cpp",
+        "ja/codes/cpp/chapter_divide_and_conquer/hanota.cpp",
+        "ja/codes/cpp/chapter_dynamic_programming/climbing_stairs_backtrack.cpp",
+        "ja/codes/cpp/chapter_dynamic_programming/climbing_stairs_constraint_dp.cpp",
+        "ja/codes/cpp/chapter_dynamic_programming/climbing_stairs_dfs.cpp",
+        "ja/codes/cpp/chapter_dynamic_programming/climbing_stairs_dfs_mem.cpp",
+        "ja/codes/cpp/chapter_dynamic_programming/climbing_stairs_dp.cpp",
+        "ja/codes/cpp/chapter_dynamic_programming/coin_change.cpp",
+        "ja/codes/cpp/chapter_dynamic_programming/coin_change_ii.cpp",
+        "ja/codes/cpp/chapter_dynamic_programming/edit_distance.cpp",
+        "ja/codes/cpp/chapter_dynamic_programming/knapsack.cpp",
+        "ja/codes/cpp/chapter_dynamic_programming/min_cost_climbing_stairs_dp.cpp",
+        "ja/codes/cpp/chapter_dynamic_programming/min_path_sum.cpp",
+        "ja/codes/cpp/chapter_dynamic_programming/unbounded_knapsack.cpp",
+        "ja/codes/cpp/chapter_graph/graph_adjacency_list.cpp",
+        "ja/codes/cpp/chapter_graph/graph_adjacency_matrix.cpp",
+        "ja/codes/cpp/chapter_graph/graph_bfs.cpp",
+        "ja/codes/cpp/chapter_graph/graph_dfs.cpp",
+        "ja/codes/cpp/chapter_greedy/coin_change_greedy.cpp",
+        "ja/codes/cpp/chapter_greedy/fractional_knapsack.cpp",
+        "ja/codes/cpp/chapter_greedy/max_capacity.cpp",
+        "ja/codes/cpp/chapter_greedy/max_product_cutting.cpp",
+        "ja/codes/cpp/chapter_hashing/array_hash_map.cpp",
+        "ja/codes/cpp/chapter_hashing/array_hash_map_test.cpp",
+        "ja/codes/cpp/chapter_hashing/built_in_hash.cpp",
+        "ja/codes/cpp/chapter_hashing/hash_map.cpp",
+        "ja/codes/cpp/chapter_hashing/hash_map_chaining.cpp",
+        "ja/codes/cpp/chapter_hashing/hash_map_open_addressing.cpp",
+        "ja/codes/cpp/chapter_hashing/simple_hash.cpp",
+        "ja/codes/cpp/chapter_heap/heap.cpp",
+        "ja/codes/cpp/chapter_heap/my_heap.cpp",
+        "ja/codes/cpp/chapter_heap/top_k.cpp",
+        "ja/codes/cpp/chapter_searching/binary_search.cpp",
+        "ja/codes/cpp/chapter_searching/binary_search_edge.cpp",
+        "ja/codes/cpp/chapter_searching/binary_search_insertion.cpp",
+        "ja/codes/cpp/chapter_searching/hashing_search.cpp",
+        "ja/codes/cpp/chapter_searching/linear_search.cpp",
+        "ja/codes/cpp/chapter_searching/two_sum.cpp",
+        "ja/codes/cpp/chapter_sorting/bubble_sort.cpp",
+        "ja/codes/cpp/chapter_sorting/bucket_sort.cpp",
+        "ja/codes/cpp/chapter_sorting/counting_sort.cpp",
+        "ja/codes/cpp/chapter_sorting/heap_sort.cpp",
+        "ja/codes/cpp/chapter_sorting/insertion_sort.cpp",
+        "ja/codes/cpp/chapter_sorting/merge_sort.cpp",
+        "ja/codes/cpp/chapter_sorting/quick_sort.cpp",
+        "ja/codes/cpp/chapter_sorting/radix_sort.cpp",
+        "ja/codes/cpp/chapter_sorting/selection_sort.cpp",
+        "ja/codes/cpp/chapter_stack_and_queue/array_deque.cpp",
+        "ja/codes/cpp/chapter_stack_and_queue/array_queue.cpp",
+        "ja/codes/cpp/chapter_stack_and_queue/array_stack.cpp",
+        "ja/codes/cpp/chapter_stack_and_queue/deque.cpp",
+        "ja/codes/cpp/chapter_stack_and_queue/linkedlist_deque.cpp",
+        "ja/codes/cpp/chapter_stack_and_queue/linkedlist_queue.cpp",
+        "ja/codes/cpp/chapter_stack_and_queue/linkedlist_stack.cpp",
+        "ja/codes/cpp/chapter_stack_and_queue/queue.cpp",
+        "ja/codes/cpp/chapter_stack_and_queue/stack.cpp",
+        "ja/codes/cpp/chapter_tree/array_binary_tree.cpp",
+        "ja/codes/cpp/chapter_tree/avl_tree.cpp",
+        "ja/codes/cpp/chapter_tree/binary_search_tree.cpp",
+        "ja/codes/cpp/chapter_tree/binary_tree.cpp",
+        "ja/codes/cpp/chapter_tree/binary_tree_bfs.cpp",
+        "ja/codes/cpp/chapter_tree/binary_tree_dfs.cpp",
+        "ja/codes/cpp/utils/common.hpp",
+        "ja/codes/cpp/utils/list_node.hpp",
+        "ja/codes/cpp/utils/print_utils.hpp",
+        "ja/codes/cpp/utils/tree_node.hpp",
+        "ja/codes/cpp/utils/vertex.hpp",
+        "ja/codes/java/chapter_array_and_linkedlist/array.java",
+        "ja/codes/java/chapter_array_and_linkedlist/linked_list.java",
+        "ja/codes/java/chapter_array_and_linkedlist/list.java",
+        "ja/codes/java/chapter_array_and_linkedlist/my_list.java",
+        "ja/codes/java/chapter_backtracking/n_queens.java",
+        "ja/codes/java/chapter_backtracking/permutations_i.java",
+        "ja/codes/java/chapter_backtracking/permutations_ii.java",
+        "ja/codes/java/chapter_backtracking/preorder_traversal_i_compact.java",
+        "ja/codes/java/chapter_backtracking/preorder_traversal_ii_compact.java",
+        "ja/codes/java/chapter_backtracking/preorder_traversal_iii_compact.java",
+        "ja/codes/java/chapter_backtracking/preorder_traversal_iii_template.java",
+        "ja/codes/java/chapter_backtracking/subset_sum_i.java",
+        "ja/codes/java/chapter_backtracking/subset_sum_i_naive.java",
+        "ja/codes/java/chapter_backtracking/subset_sum_ii.java",
+        "ja/codes/java/chapter_computational_complexity/iteration.java",
+        "ja/codes/java/chapter_computational_complexity/recursion.java",
+        "ja/codes/java/chapter_computational_complexity/space_complexity.java",
+        "ja/codes/java/chapter_computational_complexity/time_complexity.java",
+        "ja/codes/java/chapter_computational_complexity/worst_best_time_complexity.java",
+        "ja/codes/java/chapter_divide_and_conquer/binary_search_recur.java",
+        "ja/codes/java/chapter_divide_and_conquer/build_tree.java",
+        "ja/codes/java/chapter_divide_and_conquer/hanota.java",
+        "ja/codes/java/chapter_dynamic_programming/climbing_stairs_backtrack.java",
+        "ja/codes/java/chapter_dynamic_programming/climbing_stairs_constraint_dp.java",
+        "ja/codes/java/chapter_dynamic_programming/climbing_stairs_dfs.java",
+        "ja/codes/java/chapter_dynamic_programming/climbing_stairs_dfs_mem.java",
+        "ja/codes/java/chapter_dynamic_programming/climbing_stairs_dp.java",
+        "ja/codes/java/chapter_dynamic_programming/coin_change.java",
+        "ja/codes/java/chapter_dynamic_programming/coin_change_ii.java",
+        "ja/codes/java/chapter_dynamic_programming/edit_distance.java",
+        "ja/codes/java/chapter_dynamic_programming/knapsack.java",
+        "ja/codes/java/chapter_dynamic_programming/min_cost_climbing_stairs_dp.java",
+        "ja/codes/java/chapter_dynamic_programming/min_path_sum.java",
+        "ja/codes/java/chapter_dynamic_programming/unbounded_knapsack.java",
+        "ja/codes/java/chapter_graph/graph_adjacency_list.java",
+        "ja/codes/java/chapter_graph/graph_adjacency_matrix.java",
+        "ja/codes/java/chapter_graph/graph_bfs.java",
+        "ja/codes/java/chapter_graph/graph_dfs.java",
+        "ja/codes/java/chapter_greedy/coin_change_greedy.java",
+        "ja/codes/java/chapter_greedy/fractional_knapsack.java",
+        "ja/codes/java/chapter_greedy/max_capacity.java",
+        "ja/codes/java/chapter_greedy/max_product_cutting.java",
+        "ja/codes/java/chapter_hashing/array_hash_map.java",
+        "ja/codes/java/chapter_hashing/built_in_hash.java",
+        "ja/codes/java/chapter_hashing/hash_map.java",
+        "ja/codes/java/chapter_hashing/hash_map_chaining.java",
+        "ja/codes/java/chapter_hashing/hash_map_open_addressing.java",
+        "ja/codes/java/chapter_hashing/simple_hash.java",
+        "ja/codes/java/chapter_heap/heap.java",
+        "ja/codes/java/chapter_heap/my_heap.java",
+        "ja/codes/java/chapter_heap/top_k.java",
+        "ja/codes/java/chapter_searching/binary_search.java",
+        "ja/codes/java/chapter_searching/binary_search_edge.java",
+        "ja/codes/java/chapter_searching/binary_search_insertion.java",
+        "ja/codes/java/chapter_searching/hashing_search.java",
+        "ja/codes/java/chapter_searching/linear_search.java",
+        "ja/codes/java/chapter_searching/two_sum.java",
+        "ja/codes/java/chapter_sorting/bubble_sort.java",
+        "ja/codes/java/chapter_sorting/bucket_sort.java",
+        "ja/codes/java/chapter_sorting/counting_sort.java",
+        "ja/codes/java/chapter_sorting/heap_sort.java",
+        "ja/codes/java/chapter_sorting/insertion_sort.java",
+        "ja/codes/java/chapter_sorting/merge_sort.java",
+        "ja/codes/java/chapter_sorting/quick_sort.java",
+        "ja/codes/java/chapter_sorting/radix_sort.java",
+        "ja/codes/java/chapter_sorting/selection_sort.java",
+        "ja/codes/java/chapter_stack_and_queue/array_deque.java",
+        "ja/codes/java/chapter_stack_and_queue/array_queue.java",
+        "ja/codes/java/chapter_stack_and_queue/array_stack.java",
+        "ja/codes/java/chapter_stack_and_queue/deque.java",
+        "ja/codes/java/chapter_stack_and_queue/linkedlist_deque.java",
+        "ja/codes/java/chapter_stack_and_queue/linkedlist_queue.java",
+        "ja/codes/java/chapter_stack_and_queue/linkedlist_stack.java",
+        "ja/codes/java/chapter_stack_and_queue/queue.java",
+        "ja/codes/java/chapter_stack_and_queue/stack.java",
+        "ja/codes/java/chapter_tree/array_binary_tree.java",
+        "ja/codes/java/chapter_tree/avl_tree.java",
+        "ja/codes/java/chapter_tree/binary_search_tree.java",
+        "ja/codes/java/chapter_tree/binary_tree.java",
+        "ja/codes/java/chapter_tree/binary_tree_bfs.java",
+        "ja/codes/java/chapter_tree/binary_tree_dfs.java",
+        "ja/codes/java/utils/ListNode.java",
+        "ja/codes/java/utils/PrintUtil.java",
+        "ja/codes/java/utils/TreeNode.java",
+        "ja/codes/java/utils/Vertex.java",
+        "ja/codes/python/chapter_array_and_linkedlist/array.py",
+        "ja/codes/python/chapter_array_and_linkedlist/linked_list.py",
+        "ja/codes/python/chapter_array_and_linkedlist/list.py",
+        "ja/codes/python/chapter_array_and_linkedlist/my_list.py",
+        "ja/codes/python/chapter_backtracking/n_queens.py",
+        "ja/codes/python/chapter_backtracking/permutations_i.py",
+        "ja/codes/python/chapter_backtracking/permutations_ii.py",
+        "ja/codes/python/chapter_backtracking/preorder_traversal_i_compact.py",
+        "ja/codes/python/chapter_backtracking/preorder_traversal_ii_compact.py",
+        "ja/codes/python/chapter_backtracking/preorder_traversal_iii_compact.py",
+        "ja/codes/python/chapter_backtracking/preorder_traversal_iii_template.py",
+        "ja/codes/python/chapter_backtracking/subset_sum_i.py",
+        "ja/codes/python/chapter_backtracking/subset_sum_i_naive.py",
+        "ja/codes/python/chapter_backtracking/subset_sum_ii.py",
+        "ja/codes/python/chapter_computational_complexity/iteration.py",
+        "ja/codes/python/chapter_computational_complexity/recursion.py",
+        "ja/codes/python/chapter_computational_complexity/space_complexity.py",
+        "ja/codes/python/chapter_computational_complexity/time_complexity.py",
+        "ja/codes/python/chapter_computational_complexity/worst_best_time_complexity.py",
+        "ja/codes/python/chapter_divide_and_conquer/binary_search_recur.py",
+        "ja/codes/python/chapter_divide_and_conquer/build_tree.py",
+        "ja/codes/python/chapter_divide_and_conquer/hanota.py",
+        "ja/codes/python/chapter_dynamic_programming/climbing_stairs_backtrack.py",
+        "ja/codes/python/chapter_dynamic_programming/climbing_stairs_constraint_dp.py",
+        "ja/codes/python/chapter_dynamic_programming/climbing_stairs_dfs.py",
+        "ja/codes/python/chapter_dynamic_programming/climbing_stairs_dfs_mem.py",
+        "ja/codes/python/chapter_dynamic_programming/climbing_stairs_dp.py",
+        "ja/codes/python/chapter_dynamic_programming/coin_change.py",
+        "ja/codes/python/chapter_dynamic_programming/coin_change_ii.py",
+        "ja/codes/python/chapter_dynamic_programming/edit_distance.py",
+        "ja/codes/python/chapter_dynamic_programming/knapsack.py",
+        "ja/codes/python/chapter_dynamic_programming/min_cost_climbing_stairs_dp.py",
+        "ja/codes/python/chapter_dynamic_programming/min_path_sum.py",
+        "ja/codes/python/chapter_dynamic_programming/unbounded_knapsack.py",
+        "ja/codes/python/chapter_graph/graph_adjacency_list.py",
+        "ja/codes/python/chapter_graph/graph_adjacency_matrix.py",
+        "ja/codes/python/chapter_graph/graph_bfs.py",
+        "ja/codes/python/chapter_graph/graph_dfs.py",
+        "ja/codes/python/chapter_greedy/coin_change_greedy.py",
+        "ja/codes/python/chapter_greedy/fractional_knapsack.py",
+        "ja/codes/python/chapter_greedy/max_capacity.py",
+        "ja/codes/python/chapter_greedy/max_product_cutting.py",
+        "ja/codes/python/chapter_hashing/array_hash_map.py",
+        "ja/codes/python/chapter_hashing/built_in_hash.py",
+        "ja/codes/python/chapter_hashing/hash_map.py",
+        "ja/codes/python/chapter_hashing/hash_map_chaining.py",
+        "ja/codes/python/chapter_hashing/hash_map_open_addressing.py",
+        "ja/codes/python/chapter_hashing/simple_hash.py",
+        "ja/codes/python/chapter_heap/heap.py",
+        "ja/codes/python/chapter_heap/my_heap.py",
+        "ja/codes/python/chapter_heap/top_k.py",
+        "ja/codes/python/chapter_searching/binary_search.py",
+        "ja/codes/python/chapter_searching/binary_search_edge.py",
+        "ja/codes/python/chapter_searching/binary_search_insertion.py",
+        "ja/codes/python/chapter_searching/hashing_search.py",
+        "ja/codes/python/chapter_searching/linear_search.py",
+        "ja/codes/python/chapter_searching/two_sum.py",
+        "ja/codes/python/chapter_sorting/bubble_sort.py",
+        "ja/codes/python/chapter_sorting/bucket_sort.py",
+        "ja/codes/python/chapter_sorting/counting_sort.py",
+        "ja/codes/python/chapter_sorting/heap_sort.py",
+        "ja/codes/python/chapter_sorting/insertion_sort.py",
+        "ja/codes/python/chapter_sorting/merge_sort.py",
+        "ja/codes/python/chapter_sorting/quick_sort.py",
+        "ja/codes/python/chapter_sorting/radix_sort.py",
+        "ja/codes/python/chapter_sorting/selection_sort.py",
+        "ja/codes/python/chapter_stack_and_queue/array_deque.py",
+        "ja/codes/python/chapter_stack_and_queue/array_queue.py",
+        "ja/codes/python/chapter_stack_and_queue/array_stack.py",
+        "ja/codes/python/chapter_stack_and_queue/deque.py",
+        "ja/codes/python/chapter_stack_and_queue/linkedlist_deque.py",
+        "ja/codes/python/chapter_stack_and_queue/linkedlist_queue.py",
+        "ja/codes/python/chapter_stack_and_queue/linkedlist_stack.py",
+        "ja/codes/python/chapter_stack_and_queue/queue.py",
+        "ja/codes/python/chapter_stack_and_queue/stack.py",
+        "ja/codes/python/chapter_tree/array_binary_tree.py",
+        "ja/codes/python/chapter_tree/avl_tree.py",
+        "ja/codes/python/chapter_tree/binary_search_tree.py",
+        "ja/codes/python/chapter_tree/binary_tree.py",
+        "ja/codes/python/chapter_tree/binary_tree_bfs.py",
+        "ja/codes/python/chapter_tree/binary_tree_dfs.py",
+        "ja/codes/python/modules/__init__.py",
+        "ja/codes/python/modules/list_node.py",
+        "ja/codes/python/modules/print_util.py",
+        "ja/codes/python/modules/tree_node.py",
+        "ja/codes/python/modules/vertex.py",
+        "ja/codes/python/test_all.py",
+        "ja/docs/assets/covers/chapter_appendix.jpg",
+        "ja/docs/assets/covers/chapter_array_and_linkedlist.jpg",
+        "ja/docs/assets/covers/chapter_backtracking.jpg",
+        "ja/docs/assets/covers/chapter_complexity_analysis.jpg",
+        "ja/docs/assets/covers/chapter_data_structure.jpg",
+        "ja/docs/assets/covers/chapter_divide_and_conquer.jpg",
+        "ja/docs/assets/covers/chapter_dynamic_programming.jpg",
+        "ja/docs/assets/covers/chapter_graph.jpg",
+        "ja/docs/assets/covers/chapter_greedy.jpg",
+        "ja/docs/assets/covers/chapter_hashing.jpg",
+        "ja/docs/assets/covers/chapter_heap.jpg",
+        "ja/docs/assets/covers/chapter_hello_algo.jpg",
+        "ja/docs/assets/covers/chapter_introduction.jpg",
+        "ja/docs/assets/covers/chapter_preface.jpg",
+        "ja/docs/assets/covers/chapter_searching.jpg",
+        "ja/docs/assets/covers/chapter_sorting.jpg",
+        "ja/docs/assets/covers/chapter_stack_and_queue.jpg",
+        "ja/docs/assets/covers/chapter_tree.jpg",
+        "ja/docs/chapter_appendix/contribution.assets/edit_markdown.png",
+        "ja/docs/chapter_appendix/contribution.md",
+        "ja/docs/chapter_appendix/index.md",
+        "ja/docs/chapter_appendix/installation.assets/vscode_extension_installation.png",
+        "ja/docs/chapter_appendix/installation.assets/vscode_installation.png",
+        "ja/docs/chapter_appendix/installation.md",
+        "ja/docs/chapter_appendix/terminology.md",
+        "ja/docs/chapter_array_and_linkedlist/array.assets/array_definition.png",
+        "ja/docs/chapter_array_and_linkedlist/array.assets/array_insert_element.png",
+        "ja/docs/chapter_array_and_linkedlist/array.assets/array_memory_location_calculation.png",
+        "ja/docs/chapter_array_and_linkedlist/array.assets/array_remove_element.png",
+        "ja/docs/chapter_array_and_linkedlist/array.md",
+        "ja/docs/chapter_array_and_linkedlist/index.md",
+        "ja/docs/chapter_array_and_linkedlist/linked_list.assets/linkedlist_common_types.png",
+        "ja/docs/chapter_array_and_linkedlist/linked_list.assets/linkedlist_definition.png",
+        "ja/docs/chapter_array_and_linkedlist/linked_list.assets/linkedlist_insert_node.png",
+        "ja/docs/chapter_array_and_linkedlist/linked_list.assets/linkedlist_remove_node.png",
+        "ja/docs/chapter_array_and_linkedlist/linked_list.md"
+      ]
+    },
+    {
+      "sha": "2487a270369793417f148b4636799127afb36de8",
+      "message": "Update the Warp link. (#1815)\n\n* Bug fixes.\n\n* Update the Warp link.",
+      "modifiedFiles": [
+        "README.md",
+        "docs/index.html",
+        "en/README.md",
+        "en/docs/index.html",
+        "zh-hant/README.md",
+        "zh-hant/docs/index.html"
+      ]
+    },
+    {
+      "sha": "44effb07e6a64bb3e10a627726a86abe81487439",
+      "message": "Bug fixes and improvements (#1813)\n\n* Sync zh and zh-hant version.\n\n* Add the Warp sponsor banner.\n\n* Update README with acknowledgments and Warp recommendation\n\nAdded acknowledgments and a recommendation for the Warp terminal application.\n\n* Update README.md\n\n* Update links in README.md to use HTTPS\n\n* Sync zh and zh-hant versions.\n\n* Add special thanks for Warp spnsorship.\n\n* Use official warp image link.",
+      "modifiedFiles": [
+        "README.md",
+        "docs/index.html",
+        "en/README.md",
+        "en/docs/index.html",
+        "zh-hant/README.md",
+        "zh-hant/codes/c/chapter_greedy/max_capacity.c",
+        "zh-hant/codes/python/chapter_hashing/array_hash_map.py",
+        "zh-hant/codes/rust/chapter_graph/graph_adjacency_list.rs",
+        "zh-hant/codes/rust/chapter_graph/graph_adjacency_matrix.rs",
+        "zh-hant/codes/rust/chapter_graph/graph_bfs.rs",
+        "zh-hant/codes/zig/build.zig",
+        "zh-hant/codes/zig/chapter_array_and_linkedlist/array.zig",
+        "zh-hant/codes/zig/chapter_array_and_linkedlist/linked_list.zig",
+        "zh-hant/codes/zig/chapter_array_and_linkedlist/list.zig",
+        "zh-hant/codes/zig/chapter_array_and_linkedlist/my_list.zig",
+        "zh-hant/codes/zig/chapter_computational_complexity/iteration.zig",
+        "zh-hant/codes/zig/chapter_computational_complexity/recursion.zig",
+        "zh-hant/codes/zig/chapter_computational_complexity/space_complexity.zig",
+        "zh-hant/codes/zig/chapter_computational_complexity/time_complexity.zig",
+        "zh-hant/codes/zig/chapter_computational_complexity/worst_best_time_complexity.zig",
+        "zh-hant/codes/zig/include/PrintUtil.zig",
+        "zh-hant/codes/zig/include/include.zig",
+        "zh-hant/codes/zig/main.zig",
+        "zh-hant/codes/zig/utils/ListNode.zig",
+        "zh-hant/codes/zig/utils/TreeNode.zig",
+        "zh-hant/codes/zig/utils/format.zig",
+        "zh-hant/codes/zig/utils/utils.zig",
+        "zh-hant/docs/chapter_array_and_linkedlist/array.md",
+        "zh-hant/docs/chapter_computational_complexity/performance_evaluation.md",
+        "zh-hant/docs/chapter_computational_complexity/summary.md",
+        "zh-hant/docs/chapter_dynamic_programming/dp_solution_pipeline.md",
+        "zh-hant/docs/chapter_hashing/hash_map.md",
+        "zh-hant/docs/chapter_hashing/summary.md",
+        "zh-hant/docs/chapter_searching/searching_algorithm_revisited.md",
+        "zh-hant/docs/chapter_searching/summary.md",
+        "zh-hant/docs/chapter_stack_and_queue/stack.md",
+        "zh-hant/docs/index.html"
+      ]
+    },
+    {
+      "sha": "790a6d17e1b1f37d4435ea6cde42997d8c9e6580",
+      "message": "Update Q\u0026A of hash_table and time_complexity Chapter (#1760)\n\n* Update summary.md\n\n@Richard-Zhao93 的回答非常好,同时觉得\"如果在开头能了解到这部分s，对初学者来说，可能更容易接受这些陌生的概念。\"的建议很有道理\n\n* Update QA of time_complexity\n\n* Enhance explanation of hash tables vs arrays\n\nClarify the advantages of hash tables over arrays for key-value mapping.\n\n* Update summary.md\n\n---------\n\nCo-authored-by: Yudong Jin \u003ckrahets@163.com\u003e",
+      "modifiedFiles": [
+        "docs/chapter_computational_complexity/summary.md",
+        "docs/chapter_hashing/summary.md"
+      ]
+    },
+    {
+      "sha": "32dde5f82f0bd8b51c6bb3ecf5bb04d6052ebd14",
+      "message": "translation: Update `chapter_data_structure/classification_of_data_structure.md` (#1800)\n\n* Update classification_of_data_structure.md\n\n* Update classification_of_data_structure.md\n\n* Fix punctuation and formatting in data structure chapter\n\n---------\n\nCo-authored-by: Yudong Jin \u003ckrahets@163.com\u003e",
+      "modifiedFiles": [
+        "en/docs/chapter_data_structure/classification_of_data_structure.md"
+      ]
+    },
+    {
+      "sha": "a69b5ef93bdd2129e3c9234fa28d0dae71369af8",
+      "message": "Update hash_map.md (#1802)\n\n* Update hash_map.md\n\n对目标句子的表达略微修改，使得前后句子的语义更加一致。\n\n* Fix wording for bucket index calculation\n\n---------\n\nCo-authored-by: Yudong Jin \u003ckrahets@163.com\u003e",
+      "modifiedFiles": [
+        "docs/chapter_hashing/hash_map.md"
+      ]
+    },
+    {
+      "sha": "218e21e8004abab16ced2d0930929587ecc1fe08",
+      "message": "Update stack.md (#1788)\n\n* Update stack.md\n\nK大好，小白建议在这句话前面增加一个条件 -- \"每次只能移动一个盘子\"，如此不仅可以对应后面的 `将上面的盘子**依次**移走`，从而避免了 \"可以将上面的盘子一次移走\" 的歧义；而且对应了每次移除一个元素的出栈逻辑。\n\n* Refine explanation of stack data structure\n\nCorrected phrasing for clarity in stack explanation.\n\n---------\n\nCo-authored-by: Yudong Jin \u003ckrahets@163.com\u003e",
+      "modifiedFiles": [
+        "docs/chapter_stack_and_queue/stack.md"
+      ]
+    },
+    {
+      "sha": "909b89680f55641a0b61a3c7ecf6554f3da06cbf",
+      "message": "fix: correct String.format() parameter passing error in climbing_stairs_*.java (#1807)",
+      "modifiedFiles": [
+        "en/codes/java/chapter_dynamic_programming/climbing_stairs_backtrack.java",
+        "en/codes/java/chapter_dynamic_programming/climbing_stairs_constraint_dp.java",
+        "en/codes/java/chapter_dynamic_programming/climbing_stairs_dfs.java",
+        "en/codes/java/chapter_dynamic_programming/climbing_stairs_dfs_mem.java",
+        "en/codes/java/chapter_dynamic_programming/climbing_stairs_dp.java"
+      ]
+    },
+    {
+      "sha": "1e6a84119a02b2523d17845d771d22a836491572",
+      "message": "Update array_hash_map.py (#1803)\n\n基于数组实现的哈希表中，`get()` 函数的返回值还可能会 None；且 `put()` 函数不仅可添加键值对、还可更新表中已有键值对的值；",
+      "modifiedFiles": [
+        "codes/python/chapter_hashing/array_hash_map.py"
+      ]
+    },
+    {
+      "sha": "3709a97ca7b140c8a1db25c6f4738e3b4f703359",
+      "message": "Update dp_solution_pipeline.md (#1806)\n\n错别字",
+      "modifiedFiles": [
+        "docs/chapter_dynamic_programming/dp_solution_pipeline.md"
+      ]
+    },
+    {
+      "sha": "7b320e14fea9b093d9eb7ebca487509446800c57",
+      "message": "Sync zh and zh-hant versions (#1801)\n\n* Sync zh and zh-hant versions.\n\n* Unifying \"数据体量\" -\u003e \"数据规模\".",
+      "modifiedFiles": [
+        "docs/chapter_computational_complexity/performance_evaluation.md",
+        "docs/chapter_searching/searching_algorithm_revisited.md",
+        "docs/chapter_searching/summary.md",
+        "zh-hant/codes/rust/chapter_array_and_linkedlist/my_list.rs",
+        "zh-hant/codes/rust/chapter_heap/heap.rs",
+        "zh-hant/codes/rust/chapter_stack_and_queue/array_deque.rs",
+        "zh-hant/codes/rust/chapter_stack_and_queue/array_queue.rs",
+        "zh-hant/codes/rust/chapter_stack_and_queue/linkedlist_deque.rs",
+        "zh-hant/codes/rust/chapter_stack_and_queue/linkedlist_queue.rs",
+        "zh-hant/codes/rust/chapter_stack_and_queue/linkedlist_stack.rs",
+        "zh-hant/codes/rust/src/include/tree_node.rs",
+        "zh-hant/docs/chapter_computational_complexity/time_complexity.md"
+      ]
+    },
+    {
+      "sha": "803c0e09c7679e6ce4cdfb449b282e2567e80dbe",
+      "message": "code: update zig 0.14.1 for the chapter of array_and_linkedlist and computational_complexity (#1787)\n\n* update zig array list chapter\n\n* update not need change codes.\n\n* fix some pr issues and update time space chapter",
+      "modifiedFiles": [
+        "codes/zig/.gitignore",
+        "codes/zig/.vscode/launch.json",
+        "codes/zig/.vscode/settings.json",
+        "codes/zig/.vscode/tasks.json",
+        "codes/zig/build.zig",
+        "codes/zig/chapter_array_and_linkedlist/array.zig",
+        "codes/zig/chapter_array_and_linkedlist/linked_list.zig",
+        "codes/zig/chapter_array_and_linkedlist/list.zig",
+        "codes/zig/chapter_array_and_linkedlist/my_list.zig",
+        "codes/zig/chapter_computational_complexity/iteration.zig",
+        "codes/zig/chapter_computational_complexity/recursion.zig",
+        "codes/zig/chapter_computational_complexity/space_complexity.zig",
+        "codes/zig/chapter_computational_complexity/time_complexity.zig",
+        "codes/zig/chapter_computational_complexity/worst_best_time_complexity.zig",
+        "codes/zig/include/PrintUtil.zig",
+        "codes/zig/include/include.zig",
+        "codes/zig/main.zig",
+        "codes/zig/utils/ListNode.zig",
+        "codes/zig/utils/TreeNode.zig",
+        "codes/zig/utils/format.zig",
+        "codes/zig/utils/utils.zig",
+        "docs/chapter_array_and_linkedlist/array.md"
+      ]
+    },
+    {
+      "sha": "0918fd06f26ab0c3afff9a9bffd7edab3fe4f09d",
+      "message": "polish rust (#1790)\n\n* polish graph\n\n* Update graph",
+      "modifiedFiles": [
+        "codes/rust/chapter_graph/graph_adjacency_list.rs",
+        "codes/rust/chapter_graph/graph_adjacency_matrix.rs",
+        "codes/rust/chapter_graph/graph_bfs.rs"
+      ]
+    },
+    {
+      "sha": "83a806a6023d5ad6f8e94283627e50e17c77fc6e",
+      "message": "greedy/max_capacity: fix myMax algorithm error (#1784)\n\nCo-authored-by: wujing \u003crealwujing@qq.com\u003e",
+      "modifiedFiles": [
+        "codes/c/chapter_greedy/max_capacity.c"
+      ]
+    },
+    {
+      "sha": "5c085b559257d35d06c3cf1d515a47bcd43c3e73",
+      "message": "Update performance_evaluation.md (#1770)\n\n* Update performance_evaluation.md\n\n**修改内容：**\r\n把本节使用的 “输入数据大小” 统一修改为 “输入数据规模”。\r\n\r\n**修改原因：**\r\n今天在分析一个函数的复杂度时回看本节，发现这处表述好像存在歧义。阅读本节内容可知，复杂度分析实际是分析算法的运行时间和空间占用与数据规模的关系。 从字面理解，“输入数据的大小” 更像指输入数据的数值大小，而非数据规模。虽然多数场景下，输入数据的数值大小可以通过迭代/递归反映数据规模，但在个别场景下并非如此，如 5.1.2 节 \"基于链表实现的栈\" 中的 `to_list() `函数:\r\n```python\r\n def to_list(self) -\u003e list[int]:\r\n        \"\"\"转化为列表用于打印\"\"\"\r\n        arr \u003d []\r\n        node \u003d self._peek\r\n        while node:\r\n            arr.append(node.val)\r\n            node \u003d node.next\r\n        arr.reverse()\r\n        return arr\r\n```\r\n该函数无形参，其时间复杂度实际指，函数运行时间随着栈中数据数量的增加而呈现的增长趋势，而非随栈中数据数值大小的增加呈现的增长趋势。 因此，为规避歧义，小白提议将本节的“输入数据大小” 改为 “输入数据规模”。\r\n\r\n然而，一百个读者有一百个哈姆雷特，或许其他读者读到这里未感觉歧义，且本章后续章节还有多处使用这一表述，若本节修改可能后面也需与其保持统一。或许也可以在本章2.1节插入一个Tip约定这一表述的实际意义。考虑不周，欢迎 K大及评阅大佬指正！\n\n* Update performance_evaluation.md\n\n---------\n\nCo-authored-by: Yudong Jin \u003ckrahets@163.com\u003e",
+      "modifiedFiles": [
+        "docs/chapter_computational_complexity/performance_evaluation.md"
+      ]
+    },
+    {
+      "sha": "ee4d27dc17da509fb20a9bc69d79b17f517b23e0",
+      "message": "Update time_complexity.md (#1772)\n\n* Update time_complexity.md\n\n对于多项式函数 c * f(n)， 系数 c 好像不能称为常数项，遂查阅《算法导论 第三版》相关章节，在其 26 页使用了常量因子这一表述，该表述好像晦涩了些，小白提议这里将 ”常数项“ 改为 ”常数“。 \r\n欢迎 K大及评阅大佬指正！\n\n* Update time_complexity.md\n\n---------\n\nCo-authored-by: Yudong Jin \u003ckrahets@163.com\u003e",
+      "modifiedFiles": [
+        "docs/chapter_computational_complexity/time_complexity.md"
+      ]
+    },
+    {
+      "sha": "301adcf4163e9467e6db6729f1a6183506bf6e29",
+      "message": "translation: Update algorithms_are_everywhere.md (#1733)\n\n* Improve English Translation for algorithms_are_everywhere.md\n\n* Fixed line 5, 7, 10\n\n* Keep initial alt text for binary search demonstration\n\n* Update Example 3 English translation\n\n* Update algorithms_are_everywhere.md\n\n* Update algorithms_are_everywhere.md\n\n---------\n\nCo-authored-by: Yudong Jin \u003ckrahets@163.com\u003e",
+      "modifiedFiles": [
+        "en/docs/chapter_introduction/algorithms_are_everywhere.md"
+      ]
+    },
+    {
+      "sha": "f47d3710359355500e8eeb86254bd096cd9d6a45",
+      "message": "translation: Update EN translation for Introduction Chapter (#1739)\n\n* doc: update en translation of algorithm_are_everywhere\n\n* doc: update en translation of what_is_dsa\n\n* doc: update en translation of summary\n\n* feat: en translation for Q\u0026A\n\n* doc: update en translation to make it more concise\n\n* Update algorithms_are_everywhere.md\n\n---------\n\nCo-authored-by: Yudong Jin \u003ckrahets@163.com\u003e",
+      "modifiedFiles": [
+        "en/docs/chapter_introduction/algorithms_are_everywhere.md",
+        "en/docs/chapter_introduction/summary.md",
+        "en/docs/chapter_introduction/what_is_dsa.md"
+      ]
+    },
+    {
+      "sha": "e058e14253e983dbf045982969d3951e4129fca7",
+      "message": "translation: Update en translation for preface (#1738)\n\n* doc: update en translation for preface\n\n* doc: fix blank line and other typos\n\n* doc: fix period",
+      "modifiedFiles": [
+        "en/docs/chapter_hello_algo/index.md"
+      ]
+    },
+    {
+      "sha": "b0c147b67c698559287a951699c7ef7d38ec45f3",
+      "message": "Polish rust (#1777)\n\n* Polish rust\n\n* Update array queue and linkedlist queue\n\n* Update linkedlist deque\n\n* make array deque generic",
+      "modifiedFiles": [
+        "codes/rust/chapter_array_and_linkedlist/my_list.rs",
+        "codes/rust/chapter_heap/heap.rs",
+        "codes/rust/chapter_stack_and_queue/array_deque.rs",
+        "codes/rust/chapter_stack_and_queue/array_queue.rs",
+        "codes/rust/chapter_stack_and_queue/linkedlist_deque.rs",
+        "codes/rust/chapter_stack_and_queue/linkedlist_queue.rs",
+        "codes/rust/chapter_stack_and_queue/linkedlist_stack.rs",
+        "codes/rust/src/include/tree_node.rs"
+      ]
+    },
+    {
+      "sha": "e8dc4736a2300e5a2a9a9ae864dbbf570a86b27b",
+      "message": "Bug fixes and improvements. (#1780)\n\n* Fix the \"尾递归优化\" to \"递归深度优化\" in quick_sort.\n\n* Update landing pages.\n\n* Sync zh and zh-hant versions.\n\n* Sync zh and zh-hant versions.",
+      "modifiedFiles": [
+        "codes/c/chapter_sorting/quick_sort.c",
+        "codes/cpp/chapter_sorting/quick_sort.cpp",
+        "codes/csharp/chapter_sorting/quick_sort.cs",
+        "codes/dart/chapter_sorting/quick_sort.dart",
+        "codes/go/chapter_sorting/quick_sort.go",
+        "codes/go/chapter_sorting/quick_sort_test.go",
+        "codes/java/chapter_sorting/quick_sort.java",
+        "codes/javascript/chapter_sorting/quick_sort.js",
+        "codes/kotlin/chapter_sorting/quick_sort.kt",
+        "codes/python/chapter_sorting/quick_sort.py",
+        "codes/ruby/chapter_sorting/quick_sort.rb",
+        "codes/rust/chapter_sorting/quick_sort.rs",
+        "codes/swift/chapter_sorting/quick_sort.swift",
+        "codes/typescript/chapter_sorting/quick_sort.ts",
+        "codes/zig/chapter_sorting/quick_sort.zig",
+        "docs/chapter_sorting/quick_sort.md",
+        "docs/chapter_sorting/summary.md",
+        "docs/index.html",
+        "en/docs/index.html",
+        "zh-hant/codes/c/chapter_sorting/quick_sort.c",
+        "zh-hant/codes/cpp/chapter_sorting/quick_sort.cpp",
+        "zh-hant/codes/csharp/chapter_sorting/quick_sort.cs",
+        "zh-hant/codes/dart/chapter_sorting/quick_sort.dart",
+        "zh-hant/codes/go/chapter_sorting/quick_sort.go",
+        "zh-hant/codes/go/chapter_sorting/quick_sort_test.go",
+        "zh-hant/codes/java/chapter_sorting/quick_sort.java",
+        "zh-hant/codes/javascript/chapter_sorting/quick_sort.js",
+        "zh-hant/codes/kotlin/chapter_sorting/quick_sort.kt",
+        "zh-hant/codes/python/chapter_sorting/quick_sort.py",
+        "zh-hant/codes/ruby/chapter_sorting/quick_sort.rb",
+        "zh-hant/codes/rust/chapter_heap/heap.rs",
+        "zh-hant/codes/rust/chapter_sorting/quick_sort.rs",
+        "zh-hant/codes/swift/chapter_sorting/quick_sort.swift",
+        "zh-hant/codes/typescript/chapter_sorting/quick_sort.ts",
+        "zh-hant/codes/zig/chapter_sorting/quick_sort.zig",
+        "zh-hant/docs/chapter_array_and_linkedlist/list.md",
+        "zh-hant/docs/chapter_backtracking/subset_sum_problem.md",
+        "zh-hant/docs/chapter_data_structure/character_encoding.md",
+        "zh-hant/docs/chapter_data_structure/summary.md",
+        "zh-hant/docs/chapter_greedy/max_product_cutting_problem.md",
+        "zh-hant/docs/chapter_sorting/quick_sort.md",
+        "zh-hant/docs/chapter_sorting/summary.md",
+        "zh-hant/docs/index.html"
+      ]
+    },
+    {
+      "sha": "6a4d62449cdd8a8c1292ec468ccc3084e410777b",
+      "message": "Update max_product_cutting_problem.md (#1758)\n\n* Update max_product_cutting_problem.md\n\n本节结尾的正确性证明中，\r\n\r\n\"使用反证法，只分析 n \u003e\u003d 3 的情况。\"\r\n\r\n这句是否应该改为 “只分析 n \u003e\u003d 4 的情况”，因为 n \u003d\u003d 3 时，由于题目要求至少将 n 切分为两个正整数，所以此时应该切分为 1 * 2 ，切分方案里是包含 1 的 😁；\r\n此外，对于这句描述：\r\n\r\n“假设最优切分方案中存在 \u003e\u003d 4 的因子 x ，那么一定可以将其继续划分为 2(x-2) ，从而获得更大的乘积。”\r\n\r\n最后半句改为“从而获得更大或可替代的乘积”是否更好，因为当切分方案中存在 4 作为因子时，将其划分为 2 * 2，乘积相对划分前是相等的。不过这处改动不影响“所有因子 \u003c\u003d 3” 的结论，因为因子 4 是可以被替代的。\n\n* Update max_product_cutting_problem.md\n\n---------\n\nCo-authored-by: Yudong Jin \u003ckrahets@163.com\u003e",
+      "modifiedFiles": [
+        "docs/chapter_greedy/max_product_cutting_problem.md"
+      ]
+    },
+    {
+      "sha": "ceec0eaa3a07e00466bebed6dfa150d877a22324",
+      "message": "Specify currency unit in the \"Price\" row of the storage compar… (#1755)\n\n* Specify currency unit as CNY in the \"Price\" row of the storage comparison table\n\n* Revert changes to the English version\n\n* Change currency unit to USD\n\n* fix\n\n* fix space\n\n* Update ram_and_cache.md\n\n---------\n\nCo-authored-by: Yudong Jin \u003ckrahets@163.com\u003e",
+      "modifiedFiles": [
+        "docs/chapter_array_and_linkedlist/ram_and_cache.md",
+        "en/docs/chapter_array_and_linkedlist/ram_and_cache.md",
+        "zh-hant/docs/chapter_array_and_linkedlist/ram_and_cache.md"
+      ]
+    },
+    {
+      "sha": "7751ea125658e95c9ae4c30052b9d9f2fc5a875e",
+      "message": "update rust heap (#1761)",
+      "modifiedFiles": [
+        "codes/rust/chapter_heap/heap.rs"
+      ]
+    },
+    {
+      "sha": "5a4aa8c554f7ebe7b3c972b43debd66de2c9e088",
+      "message": "en: fix picture file name (#1764)",
+      "modifiedFiles": [
+        "en/docs/chapter_divide_and_conquer/build_binary_tree_problem.md"
+      ]
+    },
+    {
+      "sha": "db64108e5dea7dca4c745ed4fb700cab4dd22d8b",
+      "message": "Bug fixes (#1766)\n\n* Sync zh and zh-hant versions.\n\n* Bug fixes.",
+      "modifiedFiles": [
+        "docs/chapter_computational_complexity/space_complexity.md",
+        "en/docs/chapter_computational_complexity/space_complexity.md",
+        "zh-hant/codes/javascript/chapter_sorting/counting_sort.js",
+        "zh-hant/codes/javascript/chapter_sorting/radix_sort.js",
+        "zh-hant/codes/typescript/chapter_sorting/counting_sort.ts",
+        "zh-hant/codes/typescript/chapter_sorting/radix_sort.ts",
+        "zh-hant/docs/chapter_computational_complexity/space_complexity.md",
+        "zh-hant/docs/chapter_data_structure/basic_data_types.md",
+        "zh-hant/docs/chapter_searching/binary_search.md"
+      ]
+    },
+    {
+      "sha": "f42cec0f883e299eb2e84ffc52ae14ce8333b246",
+      "message": "fix(graph): enhance the judgment of boundary conditions for removeEdge functions (#1412)",
+      "modifiedFiles": [
+        "codes/javascript/chapter_graph/graph_adjacency_list.js",
+        "codes/typescript/chapter_graph/graph_adjacency_list.ts",
+        "zh-hant/codes/javascript/chapter_graph/graph_adjacency_list.js",
+        "zh-hant/codes/typescript/chapter_graph/graph_adjacency_list.ts"
+      ]
+    },
+    {
+      "sha": "09f7223067b5dfd32db1732ce7d600e5278b009f",
+      "message": "optimized the js api use of counting_sort chapter for Math.max() (#1748)\n\n* Update counting_sort.ts optimized the Math.max\n\n* Update counting_sort.ts\n\n* Update counting_sort.js\n\n* Update radix_sort.ts\n\n* Update radix_sort.js",
+      "modifiedFiles": [
+        "codes/javascript/chapter_sorting/counting_sort.js",
+        "codes/javascript/chapter_sorting/radix_sort.js",
+        "codes/typescript/chapter_sorting/counting_sort.ts",
+        "codes/typescript/chapter_sorting/radix_sort.ts"
+      ]
+    },
+    {
+      "sha": "e79a56f54092bf27b83abf12ec6008abfee25c6d",
+      "message": "Update Zig example code (#1737)",
+      "modifiedFiles": [
+        "docs/chapter_data_structure/basic_data_types.md"
+      ]
+    },
+    {
+      "sha": "e4f57876850a10a722641a9dc286f53bc8a8909e",
+      "message": "Translation: Update intro_to_dynamic_programming.md (#1751)\n\n* Update intro_to_dynamic_programming.md\n\n* Update intro_to_dynamic_programming.md\n\nMade corrections and improvements to the introduction of dynamic programming based on reviewer suggestions.\n\n* Update intro_to_dynamic_programming.md\n\nAgain, I made corrections and improvements to the introduction of dynamic programming based on reviewer suggestions.\n\n* Update intro_to_dynamic_programming.md\n\nchore: corrected missed feedback/suggestion from review",
+      "modifiedFiles": [
+        "en/docs/chapter_dynamic_programming/intro_to_dynamic_programming.md"
+      ]
+    },
+    {
+      "sha": "3ad70167db83a24875a5a1dbbe26e721f04ace6d",
+      "message": "Fix typo in Traditional Chinese translation of binary search (#1750)\n\n線上性查詢 -\u003e 線性查詢",
+      "modifiedFiles": [
+        "zh-hant/docs/chapter_searching/binary_search.md"
+      ]
+    },
+    {
+      "sha": "f9d37e0d16d49e60dd3363881050e161364762d5",
+      "message": "Update en/README. Bug fixes. (#1742)\n\n* Fix graph_operations.md\n\n* Update README\n\n* Sync zh and zh-hant versions.",
+      "modifiedFiles": [
+        "docs/chapter_graph/graph_operations.md",
+        "en/README.md",
+        "zh-hant/docs/chapter_graph/graph_operations.md"
+      ]
+    },
+    {
+      "sha": "1904bb8afc09514bad6bd2cca96e8a41485ead06",
+      "message": "Add origins in giscus.json. Update en/README.md. (#1740)\n\n* Fix the definition of \"complete binary tree\" in binary_tree.md\n\n* Update en/README.md\n\n* Add origins in giscus.json",
+      "modifiedFiles": [
+        "giscus.json"
+      ]
+    },
+    {
+      "sha": "e1f0903bf7684c99a50a214afa3eff05f5230a16",
+      "message": "translation: Update n_queens_problem.md (#1676)\n\n* Update n_queens_problem.md\n\n* translation: Update n_queens_problem.md",
+      "modifiedFiles": [
+        "en/docs/chapter_backtracking/n_queens_problem.md"
+      ]
+    },
+    {
+      "sha": "cc0852fae885f8a3ab23486a730eb3d437fb906e",
+      "message": "translation: update chapter_backtracking/summary.md (#1671)\n\n* update chapter_backtracking/summary.md\n\n* translation: update chapter_backtracking/summary.md\n\n* translation: update chapter_backtracking/summary.md",
+      "modifiedFiles": [
+        "en/docs/chapter_backtracking/summary.md"
+      ]
+    },
+    {
+      "sha": "9997c2822c7c5b81745ebc507eb58000ddf663fe",
+      "message": "translation: backtracking algorithm (#1669)\n\n* translation: backtracking algorithm\n\n* resolve comments",
+      "modifiedFiles": [
+        "en/docs/chapter_backtracking/backtracking_algorithm.md"
+      ]
+    },
+    {
+      "sha": "d97611629293fa64bb9dfd955bcea5b87d00fbc9",
+      "message": "Bug fixes and improvements (#1735)\n\n* Fix the definition of \"complete binary tree\" in binary_tree.md\n\n* Update en/README.md",
+      "modifiedFiles": [
+        "docs/chapter_tree/binary_tree.md",
+        "en/README.md",
+        "en/docs/chapter_tree/binary_tree.md",
+        "zh-hant/docs/chapter_tree/binary_tree.md"
+      ]
+    },
+    {
+      "sha": "8e38c6145516948ce90a088f53853c3fde125535",
+      "message": "Bug fixes and improvements (#1732)\n\n* Bug fixes\n\n* Sync zh and zh-hant versions.\n\n* \"入列列\" -\u003e \"入佇列\"\n\n* Fix hello_algo_mindmap.png",
+      "modifiedFiles": [
+        "docs/chapter_preface/about_the_book.assets/hello_algo_mindmap.png",
+        "en/docs/chapter_computational_complexity/index.md",
+        "zh-hant/codes/javascript/chapter_hashing/simple_hash.js",
+        "zh-hant/codes/python/chapter_sorting/counting_sort.py",
+        "zh-hant/codes/rust/chapter_array_and_linkedlist/my_list.rs",
+        "zh-hant/codes/rust/chapter_hashing/hash_map_chaining.rs",
+        "zh-hant/codes/rust/chapter_stack_and_queue/linkedlist_deque.rs",
+        "zh-hant/codes/rust/chapter_stack_and_queue/linkedlist_queue.rs",
+        "zh-hant/codes/rust/chapter_stack_and_queue/linkedlist_stack.rs",
+        "zh-hant/codes/typescript/chapter_hashing/simple_hash.ts",
+        "zh-hant/docs/chapter_backtracking/summary.md",
+        "zh-hant/docs/chapter_greedy/fractional_knapsack_problem.md",
+        "zh-hant/docs/chapter_preface/about_the_book.assets/hello_algo_mindmap.png",
+        "zh-hant/docs/chapter_stack_and_queue/queue.md"
+      ]
+    },
+    {
+      "sha": "a9d44c3a2583f21097f9e867302e8ebcb63478a1",
+      "message": "fix(zh-hant translation): graph_traversal.md (#1711)\n\n* 修正 graph_traversal.md 繁體中文版錯誤的文字\n\n`列列` -\u003e `隊列`\n\n* Update graph_traversal.md\n\n---------\n\nCo-authored-by: Yudong Jin \u003ckrahets@163.com\u003e",
+      "modifiedFiles": [
+        "zh-hant/docs/chapter_graph/graph_traversal.md"
+      ]
+    },
+    {
+      "sha": "3177d35eb28e7e3dbbd2bc5e5f06587f99a571c9",
+      "message": "Update the description of time and space complexity of fractional_knapsack problem. (#1688)\n\n* 优化分数背包的部分复杂度描述，使其更加严谨\n\n* Update fractional_knapsack_problem.md\n\n---------\n\nCo-authored-by: Yudong Jin \u003ckrahets@163.com\u003e",
+      "modifiedFiles": [
+        "docs/chapter_greedy/fractional_knapsack_problem.md"
+      ]
+    },
+    {
+      "sha": "1db2001e9b56f724e8335e2128cd5e4588be75ad",
+      "message": "tanslation: Update chapter_backtracking / permutations_problem.md (#1664)\n\n* tanslation: Update chapter_backtracking / permutations_problem.md\n\n* Update permutations_problem.md\n\n* Update permutations_problem.md\n\n* Update permutations_problem.md\n\n* Update permutations_problem.md\n\n* Update permutations_problem.md",
+      "modifiedFiles": [
+        "en/docs/chapter_backtracking/permutations_problem.md"
+      ]
+    },
+    {
+      "sha": "0a3d3940c416a2be68d671aa6bbc8230f4f917ad",
+      "message": "Merge pull request #1681 from rongyi/main\n\ntiny fix, more readable rust",
+      "modifiedFiles": [
+        "codes/rust/chapter_hashing/hash_map_chaining.rs"
+      ]
+    },
+    {
+      "sha": "bd03b8c66e6ac440d0a5d8e9982965f4afd5975c",
+      "message": "tiny fix, more readable rust",
+      "modifiedFiles": [
+        "codes/rust/chapter_hashing/hash_map_chaining.rs"
+      ]
+    },
+    {
+      "sha": "7e904c8ff685ebbdf76e9a3b4cdbc4b40bb654a8",
+      "message": "Update counting_sort.py (#1677)\n\nSince the max function is called to find the maximum value, it doesn\u0027t seem necessary to traverse the list and call the max function several times to select the larger value.",
+      "modifiedFiles": [
+        "codes/python/chapter_sorting/counting_sort.py"
+      ]
+    },
+    {
+      "sha": "82fa8cb222913aea243a03b5c5544dd97edc76b3",
+      "message": "Fix the typo in backtracking/summary.md (#1673)",
+      "modifiedFiles": [
+        "docs/chapter_backtracking/summary.md"
+      ]
+    },
+    {
+      "sha": "f45f84774286fadbf9a202c903e51dd919a440a4",
+      "message": "translation: Update chatpter_dynamic_programming / index.md (#1668)\n\n* translation: Update chatpter_dynamic_programming / index.md\n\n* Update index.md",
+      "modifiedFiles": [
+        "en/docs/chapter_dynamic_programming/index.md"
+      ]
+    },
+    {
+      "sha": "8e3b795599c33259a1e43625cd04c27784d06c06",
+      "message": "translation: chapter_divide_and _conquer / Update hanota_problem.md (#1657)\n\n* translation: chapter_divide_and _conquer / Update hanota_problem.md\n\n* Update hanota_problem.md\n\n* Update hanota_problem.md",
+      "modifiedFiles": [
+        "en/docs/chapter_divide_and_conquer/hanota_problem.md"
+      ]
+    },
+    {
+      "sha": "59bd8439536bb0ea71a06ab5f8a0da8543d67e65",
+      "message": "translation: Update chapter_divide_and_conquer / build_binary_tree_pr… (#1653)\n\n* translation: Update chapter_divide_and_conquer / build_binary_tree_problem.md\n\n* Update build_binary_tree_problem.md\n\npreorder-\u003e pre-order\r\ninorder -\u003e in-order\n\n* Update build_binary_tree_problem.md\n\n* Update build_binary_tree_problem.md\n\n* Update build_binary_tree_problem.md\n\n* Update build_binary_tree_problem.md\n\n* Update build_binary_tree_problem.md\n\n* Update build_binary_tree_problem.md",
+      "modifiedFiles": [
+        "en/docs/chapter_divide_and_conquer/build_binary_tree_problem.md"
+      ]
+    },
+    {
+      "sha": "2fcdd499eaf87b3652fc7bb5bd20573fb1657ff3",
+      "message": "translation: Update chapter_sorting / bubble_sort.md (#1646)\n\n* translation: Update chapter_sorting / bubble_sort.md\n\n* Update bubble_sort.md\n\nline 3 updated. \u0027reminiscent of\u0027 - \u003e \u0027like\u0027\n\n* Update bubble_sort.md\n\n* Update bubble_sort.md\n\n* Update bubble_sort.md\n\n* Update bubble_sort.md",
+      "modifiedFiles": [
+        "en/docs/chapter_sorting/bubble_sort.md"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "hello-algo",
+      "ownerLogin": "littlepaddy03",
+      "commitCount": 4
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "iMsazy",
+      "commitCount": 4
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "LiHao-XUPT",
+      "commitCount": 4
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "level211",
+      "commitCount": 4
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "Mylexstar",
+      "commitCount": 4
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "F0rEveR3",
+      "commitCount": 4
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "pxlhc121",
+      "commitCount": 4
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "gylautorun",
+      "commitCount": 4
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "r7raul1984",
+      "commitCount": 4
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "baibaichen",
+      "commitCount": 4
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "presscad",
+      "commitCount": 4
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "Caster-Yang",
+      "commitCount": 4
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "rainbowsky911",
+      "commitCount": 4
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "SpringCat1024",
+      "commitCount": 4
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "JiangnanFu",
+      "commitCount": 2
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "ZHflyleo",
+      "commitCount": 2
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "hnyu-1009-dev",
+      "commitCount": 2
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "afangz",
+      "commitCount": 2
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "liu983",
+      "commitCount": 2
+    },
+    {
+      "name": "hello-algo",
+      "ownerLogin": "AragornZJF",
+      "commitCount": 2
+    }
+  ]
+}

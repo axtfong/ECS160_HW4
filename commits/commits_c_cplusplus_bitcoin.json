@@ -1,0 +1,664 @@
+{
+  "name": "bitcoin",
+  "ownerLogin": "bitcoin",
+  "language": "C++",
+  "commits": [
+    {
+      "sha": "7d27af98c7cf858b5ab5a02e64f89a857cc53172",
+      "message": "Merge bitcoin/bitcoin#33461: ci: add Valgrind fuzz\n\ne4b04630bcf59ea03c1373777a0167af699f92a4 ci: add Valgrind fuzz (fanquake)\n\nPull request description:\n\n  Valgrind fuzz runtime?\n\nACKs for top commit:\n  dergoegge:\n    ACK e4b04630bcf59ea03c1373777a0167af699f92a4\n\nTree-SHA512: 0d62da6baf10fb59e3a32df8af72bd0f371e72a725fdea8dfd08f0242634b3c8bcdbf86ff8777ccada0570d13f20ebf8e21a2f935570f3463097b9d411e7b3ce",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "sha": "1569bcc387fedb865ad6fd039be55ea66dc98b60",
+      "message": "Merge bitcoin/bitcoin#33639: ci: Only write docker build images to Cirrus cache\n\nfabe0e07de1ad2f26da62f3ebe0e9be3f939b1f8 ci: Only write docker build images to Cirrus cache (MarcoFalke)\nfab64a5d6fd7d2c19f73342e11f33d50cddff512 ci: Move buildx command to python script (MarcoFalke)\nfa72a2bd5c80d27d4875744dc01bec943e6b43f0 ci: Remove unused MAYBE_CPUSET (MarcoFalke)\n\nPull request description:\n\n  The `DOCKER_BUILD_CACHE_ARG` env var holds the options on how to use cache providers. Storing the image layers is useful for the Cirrus cache provider, because it offers 10GB per runner (https://cirrus-runners.app/setup/#speeding-up-the-cache). The cached image layers can help to avoid issues when the upstream package manager infra (apt native, apt llvm, pip, apk, git clone, ...) has outages or network issues.\n\n  However, on the GitHub Actions cache provider, a *total* cache of 10GB is offered for the whole repo. This cache must be shared with the depends cache, and the ccache, as well as the previous releases cache. So it is already full and trying to put the docker build layers into it will lead to an overflow.\n\n  Fix it by only writing to the docker cache on Cirrus.\n\n  Also, `DOCKER_BUILD_CACHE_ARG` requires a `shellcheck disable\u003dSC2086` on the full build command. Fix that as well by using `shlex.split` from Python on just this variable.\n\nACKs for top commit:\n  m3dwards:\n    ACK fabe0e07de1ad2f26da62f3ebe0e9be3f939b1f8\n  cedwies:\n    reACK fabe0e0\n  l0rinc:\n    Code review ACK fabe0e07de1ad2f26da62f3ebe0e9be3f939b1f8\n  willcl-ark:\n    ACK fabe0e07de1ad2f26da62f3ebe0e9be3f939b1f8\n\nTree-SHA512: 4f471f080007fdd0c3bc97b0cfe0e9c0457e5029a7ccde1d784d30eb4752e5eb309cd4b122b182bce31f1b986c8a9f3e9a49da1768bedbb2b1f64f70183680ba",
+      "modifiedFiles": [
+        ".github/actions/configure-docker/action.yml",
+        "ci/test/02_run_container.py",
+        "ci/test/02_run_container.sh"
+      ]
+    },
+    {
+      "sha": "98c4994d0f36890c7bd82d86332c9def87600612",
+      "message": "Merge bitcoin/bitcoin#33570: randomenv: Fix MinGW dllimport warning for `environ`\n\n9610b0d1e28aeda02a2ddcf1f0591ae577c3e88e randomenv: Fix MinGW dllimport warning for `environ` (Lőrinc)\n\nPull request description:\n\n  Related to https://github.com/bitcoin/bitcoin/pull/33550#issuecomment-3378978210\n\n  Extends 7703884 to guard environ declaration on all Windows builds, not just MSVC.\n\n  In the `mingw-w64` headers (used by `llvm-mingw`), `environ` is defined as a macro which  expands through [`_environ`](https://github.com/msys2-contrib/mingw-w64/blob/cdb052f1d4056cd510cb83197b55868427b87476/mingw-w64-headers/crt/stdlib.h#L262-L264) to `(* __p__environ())`, a call to a `dllimport` function, causing the same inconsistent linkage warning as MSVC.\n\n  Use `WIN32` instead of `_MSC_VER` to match the platform-specific guards already used throughout the file.\n\n  The warning occurs with `llvm-mingw` (both `UCRT` and `MSVCRT` variants as tested by Hebasto), but not with the `mingw-w64` toolchain currently used in CI (as mentioned by fanquake).\n\n  ----\n\n  The error was reproduced by adding a temporary [nightly build](https://github.com/l0rinc/bitcoin-core-nightly/pull/4) pointing to https://github.com/l0rinc/bitcoin/pull/45. On `master` the failure can be seen in https://github.com/l0rinc/bitcoin-core-nightly/pull/2\n\n  before:\n  https://github.com/l0rinc/bitcoin-core-nightly/actions/runs/18327936488/job/52196728885?pr\u003d2\n\n  \u003cdetails\u003e\n  \u003csummary\u003eDetails\u003c/summary\u003e\n\n  ```\n  /home/runner/work/bitcoin-core-nightly/bitcoin-core-nightly/src/randomenv.cpp:61:15: warning: \u0027__p__environ\u0027 redeclared without \u0027dllimport\u0027 attribute: previous \u0027dllimport\u0027 ignored [-Winconsistent-dllimport]\n     61 | extern char** environ; // NOLINT(readability-redundant-declaration): Necessary on some platforms\n        |               ^\n  /home/runner/work/bitcoin-core-nightly/bitcoin-core-nightly/llvm_mingw_toolchain/aarch64-w64-mingw32/include/stdlib.h:656:17: note: expanded from macro \u0027environ\u0027\n    656 | #define environ _environ\n        |                 ^\n  /home/runner/work/bitcoin-core-nightly/bitcoin-core-nightly/llvm_mingw_toolchain/aarch64-w64-mingw32/include/stdlib.h:225:21: note: expanded from macro \u0027_environ\u0027\n    225 | #define _environ (* __p__environ())\n        |                     ^\n  /home/runner/work/bitcoin-core-nightly/bitcoin-core-nightly/llvm_mingw_toolchain/aarch64-w64-mingw32/include/stdlib.h:221:27: note: previous declaration is here\n    221 |   _CRTIMP char ***__cdecl __p__environ(void);\n        |                           ^\n  /home/runner/work/bitcoin-core-nightly/bitcoin-core-nightly/llvm_mingw_toolchain/aarch64-w64-mingw32/include/stdlib.h:221:3: note: previous attribute is here\n    221 |   _CRTIMP char ***__cdecl __p__environ(void);\n        |   ^\n  /home/runner/work/bitcoin-core-nightly/bitcoin-core-nightly/llvm_mingw_toolchain/aarch64-w64-mingw32/include/_mingw.h:52:40: note: expanded from macro \u0027_CRTIMP\u0027\n     52 | #      define _CRTIMP  __attribute__ ((__dllimport__))\n        |                                        ^\n  1 warning generated.\n  ```\n\n  \u003c/details\u003e\n\n  after:\n  https://github.com/l0rinc/bitcoin-core-nightly/actions/runs/18329616268/job/52201940831?pr\u003d4\n\n  \u003cdetails\u003e\n  \u003csummary\u003eDetails\u003c/summary\u003e\n\n  ```\n  [ 28%] Building CXX object src/util/CMakeFiles/bitcoin_util.dir/__/randomenv.cpp.obj\n  ```\n\n  \u003c/details\u003e\n\n  Note that there are some other remaining warnings in the logs that will be fixed in separate PRs\n\nACKs for top commit:\n  sipa:\n    utACK 9610b0d1e28aeda02a2ddcf1f0591ae577c3e88e if this makes the compilers happy\n  laanwj:\n    Code review ACK 9610b0d1e28aeda02a2ddcf1f0591ae577c3e88e\n  hebasto:\n    re-ACK 9610b0d1e28aeda02a2ddcf1f0591ae577c3e88e.\n\nTree-SHA512: a9e39d288b663ed24cbbbae228850e6f02d417d8781a3ac3d0b3db0b7ff734bbd62fddb9f57b8f77daab4e9c016ff66906ebc5fb2de7635ef539ef7f4dc2eaba",
+      "modifiedFiles": [
+        "src/randomenv.cpp"
+      ]
+    },
+    {
+      "sha": "c211d183221104a357d581600ccafa2004ae4837",
+      "message": "Merge bitcoin/bitcoin#33670: test: Use unassigned p2p_port instead of hardcoded 60000 in p2p_i2p_ports.py\n\nfa20275db32c5b9b0fe35effe2d1cf3d958e7310 test: Use unassigned p2p_port instead of hardcoded 60000 in p2p_i2p_ports.py (MarcoFalke)\n\nPull request description:\n\n  The goal is to fix https://github.com/bitcoin/bitcoin/issues/30030.\n\n  The root cause it unclear. However, hard-coding the port to 60000 does not seem ideal anyway. This could break in an unlikely setting where so many functional tests are run, such that the port is occupied. Also, it could fail when `TEST_RUNNER_PORT_MIN` is set sufficiently high. (This is purely theoretical, as I don\u0027t think anyone would run a command like this, but on current master it fails, and on this pull it passes: `TEST_RUNNER_PORT_MIN\u003d60000 ./bld-cmake/test/functional/p2p_i2p_ports.py --portseed\u003d0`)\n\n  So fix those issues (and hopefully also 30030) by using an unoccupied p2p_port.\n\n  The logic is similar to the `extra_port()` logic in the `feature_bind_extra.py` test.\n\nACKs for top commit:\n  laanwj:\n    Code review ACK fa20275db32c5b9b0fe35effe2d1cf3d958e7310\n  mzumsande:\n    ACK fa20275db32c5b9b0fe35effe2d1cf3d958e7310\n\nTree-SHA512: ac5487ca195db9ca746b78b8add91d0b9ef59cc3be0cdb7fbd9f76d42549eea68a61c32b4f5a162e01f3777959110f9f8d56ff05af6a13a9f61ea5be5b7d8631",
+      "modifiedFiles": [
+        "test/functional/p2p_i2p_ports.py"
+      ]
+    },
+    {
+      "sha": "e4b04630bcf59ea03c1373777a0167af699f92a4",
+      "message": "ci: add Valgrind fuzz",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "sha": "3fee0754a2ec282a25b4072433093560aa6796a0",
+      "message": "Merge bitcoin/bitcoin#33550: Fix windows libc++ `fs::path` `fstream` compile errors\n\nc864a4c1940d682f7eb6fdb3b91b18d638b59330 Simplify fs::path by dropping filename() and make_preferred() overloads (Ryan Ofsky)\nb0113afd44b4c7c0d0da9883424bd2978de3d18c Fix windows libc++ fs::path fstream compile errors (Ryan Ofsky)\n\nPull request description:\n\n  Drop support for passing `fs::path` directly to `std::ifstream` and `std::ofstream` constructors and `open()` functions, because as reported by hebasto in https://github.com/bitcoin/bitcoin/issues/33545, after https://wg21.link/lwg3430 there is no way this can continue to work in windows builds, and there are already compile errors compiling for windows with newer versions of libc++.\n\n  Instead, add an `fs::path::std_path()` method that returns `std::filesystem::path` references and use it where needed.\n\nACKs for top commit:\n  hebasto:\n    ACK c864a4c1940d682f7eb6fdb3b91b18d638b59330.\n  l0rinc:\n    Code review ACK c864a4c1940d682f7eb6fdb3b91b18d638b59330\n  maflcko:\n    re-ACK c864a4c1940d682f7eb6fdb3b91b18d638b59330 🌥\n\nTree-SHA512: d22372692ab86244e2b2caf4c5e9c9acbd9ba38df5411606b75e428474eabead152fc7ca1afe0bb0df6b818351211a70487e94b40a17b68db5aa757604a0ddf6",
+      "modifiedFiles": [
+        "src/bench/bench.cpp",
+        "src/bitcoin.cpp",
+        "src/common/config.cpp",
+        "src/common/settings.cpp",
+        "src/init.cpp",
+        "src/qt/guiutil.cpp",
+        "src/qt/test/optiontests.cpp",
+        "src/rpc/request.cpp",
+        "src/test/fs_tests.cpp",
+        "src/test/logging_tests.cpp",
+        "src/test/script_assets_tests.cpp",
+        "src/test/settings_tests.cpp",
+        "src/test/util_tests.cpp",
+        "src/util/fs.h",
+        "src/wallet/db.cpp",
+        "src/wallet/dump.cpp",
+        "src/wallet/test/init_test_fixture.cpp"
+      ]
+    },
+    {
+      "sha": "fa20275db32c5b9b0fe35effe2d1cf3d958e7310",
+      "message": "test: Use unassigned p2p_port instead of hardcoded 60000 in p2p_i2p_ports.py",
+      "modifiedFiles": [
+        "test/functional/p2p_i2p_ports.py"
+      ]
+    },
+    {
+      "sha": "c862936d16a640690ef4c89456738fe4bb99be54",
+      "message": "Merge bitcoin/bitcoin#33370: ci: use Mold linker for asan-lsan-ubsan-integer-no-depends-usdt workflow\n\nf031536f2d267655a0fb40ab84d03e7ffa903d4c ci: use Mold linker for asan-lsan-ubsan-integer-no-depends-usdt workflow (Brandon Odiwuor)\n\nPull request description:\n\n  Follow up to https://github.com/bitcoin/bitcoin/pull/32888#pullrequestreview-2993523631 and https://github.com/bitcoin/bitcoin/pull/32888#issuecomment-3044773485\n\n  \u003e\u003eCan we use `mold` as a linker in other Linux based system workflows ? dependencies [we have](https://github.com/bitcoin/bitcoin/blob/master/doc/dependencies.md#compiler) seem to satisfy the deps here https://github.com/rui314/mold?tab\u003dreadme-ov-file#how-to-build\n  \u003e\n  \u003e Sure, happy to review a follow-up. Only place to avoid it would probably the ci tasks that mirror the guix build (win-cross, mac-cross)\n\n  Updated the `ASan + LSan + UBSan + integer, no depends, USDT` workflow to use `mold` linker\n\nACKs for top commit:\n  maflcko:\n    lgtm ACK f031536f2d267655a0fb40ab84d03e7ffa903d4c\n\nTree-SHA512: 35a4cb3eec732bee3f18a3ea70e49b1c99b8e88624a0bb28eca8f3d72ed0835af8773307a27c750b89fc6d969ff20dd87b840d755b7fd14d3cb6ab68d9f587b9",
+      "modifiedFiles": [
+        "ci/test/00_setup_env_native_asan.sh"
+      ]
+    },
+    {
+      "sha": "fabe0e07de1ad2f26da62f3ebe0e9be3f939b1f8",
+      "message": "ci: Only write docker build images to Cirrus cache\n\nOther cache providers offer too little space for this to be useful.",
+      "modifiedFiles": [
+        ".github/actions/configure-docker/action.yml"
+      ]
+    },
+    {
+      "sha": "fab64a5d6fd7d2c19f73342e11f33d50cddff512",
+      "message": "ci: Move buildx command to python script\n\nThis has a few benefits:\n\n* The shellcheck SC2086 warning is disabled for the whole command, but\n  is only needed for the DOCKER_BUILD_CACHE_ARG env var.  So in Python,\n  only pass this one env var to shlex.split() for proper word splitting.\n* Future logic improvements can be implemented in Python.\n\nThe comments are moved, which can be checked via the git options:\n--color-moved\u003ddimmed-zebra --color-moved-ws\u003dignore-all-space",
+      "modifiedFiles": [
+        "ci/test/02_run_container.py",
+        "ci/test/02_run_container.sh"
+      ]
+    },
+    {
+      "sha": "fa72a2bd5c80d27d4875744dc01bec943e6b43f0",
+      "message": "ci: Remove unused MAYBE_CPUSET\n\nThe option is currently unused. If it is used again in the future, it\ncould trivially be added back.\n\nAlso, the logic is just a single undocumented python command one-liner.\n\nSo remove it for now.",
+      "modifiedFiles": [
+        "ci/test/02_run_container.sh"
+      ]
+    },
+    {
+      "sha": "abe7cbfe1a4e55900a326b508a1d7a83f1ca17ec",
+      "message": "Merge bitcoin/bitcoin#33470: build: Move CMAKE_SKIP_INSTALL_RPATH from CMake to Guix script\n\n4b41f99d57d822dfc258865d1dad03204fe0380f build: Move CMAKE_SKIP_INSTALL_RPATH from CMake to Guix script (Henry Romp)\n\nPull request description:\n\n  Remove `CMAKE_SKIP_INSTALL_RPATH` from CMakeLists.txt and add `CMAKE_SKIP_RPATH` to the Guix build script. This keeps build-environment-specific settings in the build scripts rather than hardcoded in the CMake configuration.\n\nACKs for top commit:\n  purpleKarrot:\n    ACK 4b41f99d57d822dfc258865d1dad03204fe0380f\n  janb84:\n    re ACK 4b41f99d57d822dfc258865d1dad03204fe0380f\n\nTree-SHA512: 74d6af382476d731f10f9833978d670e9981c160ba306d0e9d4b1ad1e9b9960b8d03a3b9b608e234edb1c0c2c7a2b4f9f606a2a7887b7a153792159e71ae9b21",
+      "modifiedFiles": [
+        "CMakeLists.txt",
+        "contrib/guix/libexec/build.sh"
+      ]
+    },
+    {
+      "sha": "689ec28d1d1e923ea968cedfcd6f9974a10ac654",
+      "message": "Merge bitcoin/bitcoin#33633: test: [move-only] binary utils to utils.py\n\nfa75ef4328f638221bcf85fcbefa885122084622 test: Move export_env_build_path to util.py (MarcoFalke)\nfa9f495308afdc3c9c1a98a8a28234340986eb53 test: Move get_binary_paths and Binaries to util.py (MarcoFalke)\n\nPull request description:\n\n  Having the binary related utils sit in the test_framework.py is fine. However, they are mostly stand-alone utils, which may be used externally.\n\n  So move them to utils.py, to allow easier external use. The diff is trivial and can be reviewed via the git options `--color-moved\u003ddimmed-zebra --color-moved-ws\u003dignore-all-space`.\n\nACKs for top commit:\n  kevkevinpal:\n    ACK [fa75ef4](https://github.com/bitcoin/bitcoin/pull/33633/commits/fa75ef4328f638221bcf85fcbefa885122084622)\n  Sjors:\n    lgtm ACK fa75ef4328f638221bcf85fcbefa885122084622\n  yuvicc:\n    Code review ACK fa75ef4328f638221bcf85fcbefa885122084622\n  janb84:\n    ACK fa75ef4328f638221bcf85fcbefa885122084622\n  musaHaruna:\n    Code Review ACK [fa75ef4](https://github.com/bitcoin/bitcoin/pull/33633/commits/fa75ef4328f638221bcf85fcbefa885122084622)\n  enirox001:\n    ACK [fa75ef4](https://github.com/bitcoin/bitcoin/commit/fa75ef4328f638221bcf85fcbefa885122084622)\n\nTree-SHA512: f382118484cb5495e8888214437e72c81727d54f97b3c09dfd996faab6cb6643c4c2d816b89ab82de73fc091c36ed7b8744c7d34a443b6adc415eb06697ef6ea",
+      "modifiedFiles": [
+        "test/functional/test_framework/test_framework.py",
+        "test/functional/test_framework/util.py"
+      ]
+    },
+    {
+      "sha": "0eeae4d174a41c3fc2eae41e76b929fa3114d6f3",
+      "message": "Merge bitcoin/bitcoin#33625: Update secp256k1 subtree to latest master\n\n3cbf7cb3e6ac51492b354732bddbb4f58ce97ed3 Squashed \u0027src/secp256k1/\u0027 changes from b9313c6e1a..d543c0d917 (fanquake)\n\nPull request description:\n\n  Updates the subtree to https://github.com/bitcoin-core/secp256k1/commit/d543c0d917a76a201578948701cc30ef336e0fe6\n  Related to #33284.\n\nACKs for top commit:\n  hebasto:\n    ACK 879c21045eba64b3dc875f6f2c2c579abecde1d0.\n  janb84:\n    ACK 879c21045eba64b3dc875f6f2c2c579abecde1d0\n\nTree-SHA512: 1802cd84959b5c935170792f458651f30431fe8340ead7966ff381c1c0c3a9f6c21bbb8dd96a07482ffed49642ded49e80b61802e688b8351956b111dffd5a78",
+      "modifiedFiles": [
+        "src/secp256k1/.github/actions/run-in-docker-action/action.yml",
+        "src/secp256k1/.github/workflows/ci.yml",
+        "src/secp256k1/CMakeLists.txt",
+        "src/secp256k1/CONTRIBUTING.md",
+        "src/secp256k1/Makefile.am",
+        "src/secp256k1/README.md",
+        "src/secp256k1/build-aux/m4/bitcoin_secp.m4",
+        "src/secp256k1/ci/linux-debian.Dockerfile",
+        "src/secp256k1/cmake/CheckX86_64Assembly.cmake",
+        "src/secp256k1/configure.ac",
+        "src/secp256k1/include/secp256k1.h",
+        "src/secp256k1/include/secp256k1_ellswift.h",
+        "src/secp256k1/include/secp256k1_recovery.h",
+        "src/secp256k1/src/CMakeLists.txt",
+        "src/secp256k1/src/bench.h",
+        "src/secp256k1/src/checkmem.h",
+        "src/secp256k1/src/ecmult_gen_impl.h",
+        "src/secp256k1/src/field_impl.h",
+        "src/secp256k1/src/group_impl.h",
+        "src/secp256k1/src/hash_impl.h",
+        "src/secp256k1/src/modules/ecdh/bench_impl.h",
+        "src/secp256k1/src/modules/ecdh/main_impl.h",
+        "src/secp256k1/src/modules/ecdh/tests_impl.h",
+        "src/secp256k1/src/modules/ellswift/main_impl.h",
+        "src/secp256k1/src/modules/ellswift/tests_impl.h",
+        "src/secp256k1/src/modules/extrakeys/tests_impl.h",
+        "src/secp256k1/src/modules/musig/session_impl.h",
+        "src/secp256k1/src/modules/musig/tests_impl.h",
+        "src/secp256k1/src/modules/recovery/tests_impl.h",
+        "src/secp256k1/src/modules/schnorrsig/main_impl.h",
+        "src/secp256k1/src/modules/schnorrsig/tests_impl.h",
+        "src/secp256k1/src/scalar_impl.h",
+        "src/secp256k1/src/secp256k1.c",
+        "src/secp256k1/src/tests.c",
+        "src/secp256k1/src/tests_common.h",
+        "src/secp256k1/src/testutil.h",
+        "src/secp256k1/src/unit_test.c",
+        "src/secp256k1/src/unit_test.h",
+        "src/secp256k1/src/util.h",
+        "src/secp256k1/src/wycheproof/WYCHEPROOF_COPYING",
+        "src/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json",
+        "src/secp256k1/tools/check-abi.sh"
+      ]
+    },
+    {
+      "sha": "4b41f99d57d822dfc258865d1dad03204fe0380f",
+      "message": "build: Move CMAKE_SKIP_INSTALL_RPATH from CMake to Guix script\n\nRemove CMAKE_SKIP_INSTALL_RPATH from CMakeLists.txt and add CMAKE_SKIP_RPATH to the Guix build script. This keeps build-environment-specific settings in the build scripts rather than hardcoded in the CMake configuration.",
+      "modifiedFiles": [
+        "CMakeLists.txt",
+        "contrib/guix/libexec/build.sh"
+      ]
+    },
+    {
+      "sha": "d30f149360d10de31bd7f7369aa61ce8be0837b5",
+      "message": "Merge bitcoin/bitcoin#33630: doc: correct topology requirements in submitpackage helptext\n\n3d222825642bfb052ce40cbc1c69318a0d8835bf [doc] correct topology requirements in submitpackage helptext (glozow)\n\nPull request description:\n\n  This doc is outdated since #31385. Also made it explicit that a singleton is ok.\n\n  Can be backported to 30.x, but doesn\u0027t need to be backported earlier (\"if any\" covers #31096).\n\nACKs for top commit:\n  janb84:\n    ACK 3d222825642bfb052ce40cbc1c69318a0d8835bf\n  instagibbs:\n    ACK 3d222825642bfb052ce40cbc1c69318a0d8835bf\n\nTree-SHA512: 95e40630a5b2a571029c0657c20a5e2a1cf1789913b868cee314c1a9fcb9a09fccdd3c87f3f15a8eb95c5ff9b83f8adee0661f86619bf21965866b6f6a76dfd0",
+      "modifiedFiles": [
+        "src/rpc/mempool.cpp"
+      ]
+    },
+    {
+      "sha": "3d222825642bfb052ce40cbc1c69318a0d8835bf",
+      "message": "[doc] correct topology requirements in submitpackage helptext",
+      "modifiedFiles": [
+        "src/rpc/mempool.cpp"
+      ]
+    },
+    {
+      "sha": "e744fd1249bf9577274614eaf3997bf4bbb612ff",
+      "message": "Merge bitcoin/bitcoin#33641: Update leveldb subtree to latest master\n\nf21162d8193319d3cdd43cecd66ee5389632533b Squashed \u0027src/leveldb/\u0027 changes from aba469ad6a..cad64b151d (fanquake)\n\nPull request description:\n\n  Rather than continue to close PRs/\"Send these upstream\" i.e: #33638, #33148, #22664, #13781; just fix the typos.\n\n  Includes https://github.com/bitcoin-core/leveldb-subtree/pull/57.\n\nACKs for top commit:\n  l0rinc:\n    ACK 54ffe3de5b1d15f10516ea536a12e13cd7d338f3\n  cedwies:\n    ACK 54ffe3d\n  stickies-v:\n    ACK 54ffe3de5b1d15f10516ea536a12e13cd7d338f3\n\nTree-SHA512: cc4d758ee95a1943f14e800472dfef24d5598a1dfafede32300821bc27e02a80ae97ea12ee87643b395b204262c7bc28e64d421a3d375d46bef7782381fd4362",
+      "modifiedFiles": [
+        "src/leveldb/README.md",
+        "src/leveldb/db/db_test.cc",
+        "src/leveldb/db/snapshot.h",
+        "src/leveldb/doc/benchmark.html",
+        "src/leveldb/doc/index.md",
+        "src/leveldb/util/env_posix.cc",
+        "src/leveldb/util/env_windows.cc"
+      ]
+    },
+    {
+      "sha": "4371740bebfad18bffd555585df1bb76817ee778",
+      "message": "Merge bitcoin/bitcoin#33642: doc: archive release notes for v28.3\n\nceea24b92153d799dfaed1874c86d91c5d002d68 doc: archive release notes for v28.3 (fanquake)\n\nPull request description:\n\nACKs for top commit:\n  stickies-v:\n    ACK ceea24b92153d799dfaed1874c86d91c5d002d68 - matches https://github.com/bitcoin/bitcoin/blob/da5f5de4055ecad75490820c0f51db007a0a7d8f/doc/release-notes.md\n\nTree-SHA512: 56b449c456c221cfb15722356ee3028de8f788c6d35ea6055161024dd03b860a38deeca5f6cf3a70e62a6d02b0d07793fed17aeae514306cdd2bd79aa703f65a",
+      "modifiedFiles": [
+        "doc/release-notes/release-notes-28.3.md"
+      ]
+    },
+    {
+      "sha": "ceea24b92153d799dfaed1874c86d91c5d002d68",
+      "message": "doc: archive release notes for v28.3",
+      "modifiedFiles": [
+        "doc/release-notes/release-notes-28.3.md"
+      ]
+    },
+    {
+      "sha": "54ffe3de5b1d15f10516ea536a12e13cd7d338f3",
+      "message": "Update leveldb subtree to latest master",
+      "modifiedFiles": [
+        "src/leveldb/README.md",
+        "src/leveldb/db/db_test.cc",
+        "src/leveldb/db/snapshot.h",
+        "src/leveldb/doc/benchmark.html",
+        "src/leveldb/doc/index.md",
+        "src/leveldb/util/env_posix.cc",
+        "src/leveldb/util/env_windows.cc"
+      ]
+    },
+    {
+      "sha": "f21162d8193319d3cdd43cecd66ee5389632533b",
+      "message": "Squashed \u0027src/leveldb/\u0027 changes from aba469ad6a..cad64b151d\n\ncad64b151d Merge bitcoin-core/leveldb-subtree#57: doc: fix typos\n157ed16be9 doc: fix typos\n\ngit-subtree-dir: src/leveldb\ngit-subtree-split: cad64b151dabe9ffe9771a54d7c9dbfb3355cefb",
+      "modifiedFiles": [
+        "README.md",
+        "db/db_test.cc",
+        "db/snapshot.h",
+        "doc/benchmark.html",
+        "doc/index.md",
+        "util/env_posix.cc",
+        "util/env_windows.cc"
+      ]
+    },
+    {
+      "sha": "e14451ac87339ed61b8c872f027184a978dd96eb",
+      "message": "Merge bitcoin/bitcoin#33469: TxGraph: change m_excluded_clusters\n\n9b43428c96872f0fbbbab4c066c6010fc18c6cc4 TxGraph: change m_excluded_clusters (Greg Sanders)\n\nPull request description:\n\n  Change BlockBuilderImpl\u0027s m_excluded_clusters to unordered set since ordering is not used.\n\n  Change the set to a set of sequence numbers for a modest stability increase under fuzz testing.\n\nACKs for top commit:\n  sipa:\n    ACK 9b43428c96872f0fbbbab4c066c6010fc18c6cc4\n  marcofleon:\n    tACK 9b43428c96872f0fbbbab4c066c6010fc18c6cc4\n  glozow:\n    ACK 9b43428c96872f0fbbbab4c066c6010fc18c6cc4\n\nTree-SHA512: 140a492af93f3eff756847a8168aab2624bb7df407f177dde6f3b07e9db2d0ced6b125e2b126f4957ccd054272056bedf74f9f0e64a80d90c16fd94e0fa86a44",
+      "modifiedFiles": [
+        "src/txgraph.cpp"
+      ]
+    },
+    {
+      "sha": "f76e1ae38991bfb76f6b966e3b040bee24e620b3",
+      "message": "Merge bitcoin/bitcoin#32313: coins: fix `cachedCoinsUsage` accounting in `CCoinsViewCache`\n\n24d861da7894add47747eff69dd3fc71fbcdd7d0 coins: only adjust `cachedCoinsUsage` on `EmplaceCoinInternalDANGER` insert (Lőrinc)\nd7c9d6c2914aadd711544908d0fad8857a809c72 coins: fix `cachedCoinsUsage` accounting to prevent underflow (Lőrinc)\n39cf8bb3d0d9ee84544d161bf66d90d5e2a1a140 refactor: remove redundant usage tracking from `CoinsViewCacheCursor` (Lőrinc)\n67cff8bec9094e968f36d351fb2e38c9bf563757 refactor: assert newly-created parent cache entry has zero memory usage (Lőrinc)\n\nPull request description:\n\n  ### Summary\n\n  This PR fixes `cachedCoinsUsage` accounting bugs in `CCoinsViewCache` that caused UBSan `unsigned-integer-overflow` violations during testing. The issues stemmed from incorrect decrement timing in `AddCoin()`, unconditional reset in `Flush()` on failure, and incorrect increment in `EmplaceCoinInternalDANGER()` when insertion fails.\n\n  ### Problems Fixed\n\n  **1. `AddCoin()` underflow on exception**\n  - Previously decremented `cachedCoinsUsage` *before* the `possible_overwrite` validation\n  - If validation threw, the map entry remained unchanged but counter was decremented\n  - This corrupted accounting and later caused underflow\n  - **Impact**: Test-only in current codebase, but unsound accounting that could affect future changes\n\n  **2. `Flush()` accounting drift on failure**\n  - Unconditionally reset `cachedCoinsUsage` to 0, even when `BatchWrite()` failed\n  - Left the map populated while the counter read zero\n  - **Impact**: Test-only (production `BatchWrite()` returns `true`), but broke accounting consistency\n\n  **3. Cursor redundant usage tracking**\n  - `CoinsViewCacheCursor::NextAndMaybeErase()` subtracted usage when erasing spent entries\n  - However, `SpendCoin()` already decremented and cleared the `scriptPubKey`, leaving `DynamicMemoryUsage()` at 0\n  - **Impact**: Redundant code that obscured actual accounting behavior\n\n  **4. `EmplaceCoinInternalDANGER()` double-counting**\n  - Incremented `cachedCoinsUsage` even when `try_emplace` did not insert (duplicate key)\n  - Inflated the counter on duplicate attempts\n  - **Impact**: Mostly test-reachable (AssumeUTXO doesn\u0027t overwrite in production), but incorrect accounting\n\n  ### Testing\n\n  To reproduce the historical UBSan failures on the referenced baseline and to verify the fix, run:\n  ```\n  MAKEJOBS\u003d\"-j$(nproc)\" FILE_ENV\u003d\"./ci/test/00_setup_env_native_fuzz.sh\" ./ci/test_run_all.sh\n  ```\n\n  The change was tested with the related unit and fuzz test, and asserted before/after each `cachedCoinsUsage` change (in production code and fuzz) that the calculations are still correct by recalculating them from scratch.\n\n  \u003cdetails\u003e\n  \u003csummary\u003eDetails\u003c/summary\u003e\n\n  ```C++\n  bool CCoinsViewCache::CacheUsageValid() const\n  {\n      size_t actual{0};\n      for (auto\u0026 entry : cacheCoins | std::views::values) actual +\u003d entry.coin.DynamicMemoryUsage();\n      return actual \u003d\u003d cachedCoinsUsage;\n  }\n  ```\n  or\n  ```patch\n  diff --git a/src/coins.cpp b/src/coins.cpp\n  --- a/src/coins.cpp(revision fd3b1a7f4bb2ac527f23d4eb4cfa40a3215906e5)\n  +++ b/src/coins.cpp(revision 872a05633bfdbd06ad82190d7fe34b42d13ebfe9)\n  @@ -96,6 +96,7 @@\n           fresh \u003d !it-\u003esecond.IsDirty();\n       }\n       if (!inserted) {\n  +        Assert(cachedCoinsUsage \u003e\u003d it-\u003esecond.coin.DynamicMemoryUsage());\n           cachedCoinsUsage -\u003d it-\u003esecond.coin.DynamicMemoryUsage();\n       }\n       it-\u003esecond.coin \u003d std::move(coin);\n  @@ -133,6 +134,7 @@\n   bool CCoinsViewCache::SpendCoin(const COutPoint \u0026outpoint, Coin* moveout) {\n       CCoinsMap::iterator it \u003d FetchCoin(outpoint);\n       if (it \u003d\u003d cacheCoins.end()) return false;\n  +    Assert(cachedCoinsUsage \u003e\u003d it-\u003esecond.coin.DynamicMemoryUsage());\n       cachedCoinsUsage -\u003d it-\u003esecond.coin.DynamicMemoryUsage();\n       TRACEPOINT(utxocache, spent,\n              outpoint.hash.data(),\n  @@ -226,10 +228,12 @@\n               if (itUs-\u003esecond.IsFresh() \u0026\u0026 it-\u003esecond.coin.IsSpent()) {\n                   // The grandparent cache does not have an entry, and the coin\n                   // has been spent. We can just delete it from the parent cache.\n  +                Assert(cachedCoinsUsage \u003e\u003d itUs-\u003esecond.coin.DynamicMemoryUsage());\n                   cachedCoinsUsage -\u003d itUs-\u003esecond.coin.DynamicMemoryUsage();\n                   cacheCoins.erase(itUs);\n               } else {\n                   // A normal modification.\n  +                Assert(cachedCoinsUsage \u003e\u003d itUs-\u003esecond.coin.DynamicMemoryUsage());\n                   cachedCoinsUsage -\u003d itUs-\u003esecond.coin.DynamicMemoryUsage();\n                   if (cursor.WillErase(*it)) {\n                       // Since this entry will be erased,\n  @@ -279,6 +283,7 @@\n   {\n       CCoinsMap::iterator it \u003d cacheCoins.find(hash);\n       if (it !\u003d cacheCoins.end() \u0026\u0026 !it-\u003esecond.IsDirty() \u0026\u0026 !it-\u003esecond.IsFresh()) {\n  +        Assert(cachedCoinsUsage \u003e\u003d it-\u003esecond.coin.DynamicMemoryUsage());\n           cachedCoinsUsage -\u003d it-\u003esecond.coin.DynamicMemoryUsage();\n           TRACEPOINT(utxocache, uncache,\n                  hash.hash.data(),\n  ```\n\n  \u003c/details\u003e\n\nACKs for top commit:\n  optout21:\n    reACK 24d861da7894add47747eff69dd3fc71fbcdd7d0\n  andrewtoth:\n    ACK 24d861da7894add47747eff69dd3fc71fbcdd7d0\n  sipa:\n    ACK 24d861da7894add47747eff69dd3fc71fbcdd7d0\n  w0xlt:\n    ACK https://github.com/bitcoin/bitcoin/pull/32313/commits/24d861da7894add47747eff69dd3fc71fbcdd7d0\n\nTree-SHA512: ff1b756b46220f278ab6c850626a0f376bed64389ef7f66a95c994e1c7cceec1d1843d2b24e8deabe10e2bdade2a274d9654ac60eb2b9bf471a71db8a2ff496c",
+      "modifiedFiles": [
+        "src/coins.cpp",
+        "src/coins.h",
+        "src/test/coins_tests.cpp",
+        "src/test/fuzz/coins_view.cpp",
+        "test/sanitizer_suppressions/ubsan"
+      ]
+    },
+    {
+      "sha": "fa75ef4328f638221bcf85fcbefa885122084622",
+      "message": "test: Move export_env_build_path to util.py",
+      "modifiedFiles": [
+        "test/functional/test_framework/test_framework.py",
+        "test/functional/test_framework/util.py"
+      ]
+    },
+    {
+      "sha": "fa9f495308afdc3c9c1a98a8a28234340986eb53",
+      "message": "test: Move get_binary_paths and Binaries to util.py\n\nCan be reviewed with the git options\n--color-moved\u003ddimmed-zebra --color-moved-ws\u003dignore-all-space",
+      "modifiedFiles": [
+        "test/functional/test_framework/test_framework.py",
+        "test/functional/test_framework/util.py"
+      ]
+    },
+    {
+      "sha": "40e7d4cd0d7f1d922b92b0c640d3d89eef059411",
+      "message": "Merge bitcoin/bitcoin#33549: ci: Add macOS cross task for arm64-apple-darwin\n\nfad5a7101cc3dccbb525cfe9afc105aace8da88e ci: Add macOS cross task for arm64 (MarcoFalke)\nfa8c750a0aff9c03270b71a91536639f3922eed8 ci: Refactor get_previous_releases step in win-test-cross task (MarcoFalke)\n\nPull request description:\n\n  Cross compiling to Intel macOS seems fine, but it would be good to cross compile to arm64-apple-darwin as well.\n\n  Further reading:\n\n  * https://en.wikipedia.org/wiki/Mac_transition_to_Apple_silicon#Timeline.\n  * It is harder to find native Intel macOS hardware (E.g. GitHub is in the process of dropping it: https://github.blog/changelog/2025-07-11-upcoming-changes-to-macos-hosted-runners-macos-latest-migration-and-xcode-support-policy-updates/#macos-13-is-closing-down)\n\nACKs for top commit:\n  Sjors:\n    utACK fad5a7101cc3dccbb525cfe9afc105aace8da88e\n  hodlinator:\n    crACK fad5a7101cc3dccbb525cfe9afc105aace8da88e\n\nTree-SHA512: ce96ac9f68f594584dc910555bd34590084e3e45ca02a22d4949e88bb569de3bf87ebf6b5c6718ae82d7750a98212b72f6dab80bddfc9652a57180fbdda97f42",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml",
+        "ci/test/00_setup_env_mac_cross.sh",
+        "ci/test/00_setup_env_mac_cross_intel.sh",
+        "depends/README.md"
+      ]
+    },
+    {
+      "sha": "ea17618c1167ab0036fc2d1b8a8461ebd236e3c6",
+      "message": "Merge bitcoin/bitcoin#33480: ci: Turn CentOS config into Alpine musl config\n\n444409ff2b78d8f3e541bd6e883af8da7adfd264 ci: Reduce Alpine musl task to md runner size (MarcoFalke)\nfa6b2e9efece2d728bdc257c36c95db03e1a7bc4 ci: Turn centos config into alpine musl config (MarcoFalke)\n\nPull request description:\n\n  Fixes https://github.com/bitcoin/bitcoin/issues/33437\n\n  Historically, the centos task was added to add CI coverage for old packages and 32-bit depends builds, but both are now covered by different tasks.\n\n  The CentOS task aligns with Ubuntu/Debian CI tasks in terms of libc usage, but (slightly) differs in package naming and update philosophy. I am not aware of the task ever discovering a centos-related issue, so it seems fine to recycle it into an Alpine Linux task.\n\n  The main difference would be that musl libc is now used. Also, busybox is used in Alpine, so in theory the busybox install could be removed from the arm CI task in the future.\n\n  Packaging considerations: All packages should roughly be the same (gcc remains at version 14, python remains at version 3.12, etc). Also, all packages are from the Alpine main track, coming with 2 years of support. The only exception is the py3-pip package (https://pkgs.alpinelinux.org/packages?name\u003dpy3-pip\u0026branch\u003dv3.22\u0026repo\u003d\u0026arch\u003driscv64) from the community track, however, I don\u0027t expect any issues arising from that.\n\nACKs for top commit:\n  janb84:\n    reACK 444409ff2b78d8f3e541bd6e883af8da7adfd264\n  willcl-ark:\n    ACK 444409ff2b78d8f3e541bd6e883af8da7adfd264\n\nTree-SHA512: fd1a1da0fd766591e44a57dbdb84f9b3b47ca92113a429bba139ee5fef54714b8fe509c321e7b3a470c29b4af7d9eab9786e1660b9effb862ecea52824f458aa",
+      "modifiedFiles": [
+        ".github/workflows/ci.yml",
+        "ci/test/00_setup_env_native_alpine_musl.sh",
+        "ci/test/01_base_install.sh",
+        "ci/test/03_test_script.sh",
+        "ci/test_imagefile"
+      ]
+    },
+    {
+      "sha": "b1f8a13702e8cb246e863ffe0a6269be33504eb6",
+      "message": "Merge bitcoin/bitcoin#33624: test: P2SH sig ops are only counted with `SCRIPT_VERIFY_P2SH`\n\n3a10d700bc1889b3690097efc935c5a4ba5966bb test: P2SH sig ops are only counted with `SCRIPT_VERIFY_P2SH` flag (brunoerg)\n\nPull request description:\n\n  This PR adds a test case for `GetTransactionSigOpCost` to check that P2SH sig ops are only counted when `SCRIPT_VERIFY_P2SH` flag is set.\n\n  Kills the following [mutant](https://corecheck.dev/mutation/src/consensus/tx_verify.cpp#L150):\n\n  ```diff\n  diff --git a/src/consensus/tx_verify.cpp b/src/consensus/tx_verify.cpp\n  index 9d09872597..cc7cdaaf8f 100644\n  --- a/src/consensus/tx_verify.cpp\n  +++ b/src/consensus/tx_verify.cpp\n  @@ -147,7 +147,7 @@ int64_t GetTransactionSigOpCost(const CTransaction\u0026 tx, const CCoinsViewCache\u0026 i\n       if (tx.IsCoinBase())\n           return nSigOps;\n\n  -    if (flags \u0026 SCRIPT_VERIFY_P2SH) {\n  +    if (1\u003d\u003d1) {\n           nSigOps +\u003d GetP2SHSigOpCount(tx, inputs) * WITNESS_SCALE_FACTOR;\n       }\n  ```\n\nACKs for top commit:\n  l0rinc:\n    Tested ACK 3a10d700bc1889b3690097efc935c5a4ba5966bb\n  maflcko:\n    re-lgtm ACK 3a10d700bc1889b3690097efc935c5a4ba5966bb\n  instagibbs:\n    ACK 3a10d700bc1889b3690097efc935c5a4ba5966bb\n  janb84:\n    tested ACK 3a10d700bc1889b3690097efc935c5a4ba5966bb\n\nTree-SHA512: f560b4f9f2ce5c5fdd0a86e7e1f8ea27a8c6fda0327a6186a0c21e2c06ef13beeb017686db1688cace68812a01701abe46e8e1a095afefc6f2aed6ed96ba8288",
+      "modifiedFiles": [
+        "src/test/sigopcount_tests.cpp"
+      ]
+    },
+    {
+      "sha": "879c21045eba64b3dc875f6f2c2c579abecde1d0",
+      "message": "Update secp256k1 subtree to latest master",
+      "modifiedFiles": [
+        "src/secp256k1/.github/actions/run-in-docker-action/action.yml",
+        "src/secp256k1/.github/workflows/ci.yml",
+        "src/secp256k1/CMakeLists.txt",
+        "src/secp256k1/CONTRIBUTING.md",
+        "src/secp256k1/Makefile.am",
+        "src/secp256k1/README.md",
+        "src/secp256k1/build-aux/m4/bitcoin_secp.m4",
+        "src/secp256k1/ci/linux-debian.Dockerfile",
+        "src/secp256k1/cmake/CheckX86_64Assembly.cmake",
+        "src/secp256k1/configure.ac",
+        "src/secp256k1/include/secp256k1.h",
+        "src/secp256k1/include/secp256k1_ellswift.h",
+        "src/secp256k1/include/secp256k1_recovery.h",
+        "src/secp256k1/src/CMakeLists.txt",
+        "src/secp256k1/src/bench.h",
+        "src/secp256k1/src/checkmem.h",
+        "src/secp256k1/src/ecmult_gen_impl.h",
+        "src/secp256k1/src/field_impl.h",
+        "src/secp256k1/src/group_impl.h",
+        "src/secp256k1/src/hash_impl.h",
+        "src/secp256k1/src/modules/ecdh/bench_impl.h",
+        "src/secp256k1/src/modules/ecdh/main_impl.h",
+        "src/secp256k1/src/modules/ecdh/tests_impl.h",
+        "src/secp256k1/src/modules/ellswift/main_impl.h",
+        "src/secp256k1/src/modules/ellswift/tests_impl.h",
+        "src/secp256k1/src/modules/extrakeys/tests_impl.h",
+        "src/secp256k1/src/modules/musig/session_impl.h",
+        "src/secp256k1/src/modules/musig/tests_impl.h",
+        "src/secp256k1/src/modules/recovery/tests_impl.h",
+        "src/secp256k1/src/modules/schnorrsig/main_impl.h",
+        "src/secp256k1/src/modules/schnorrsig/tests_impl.h",
+        "src/secp256k1/src/scalar_impl.h",
+        "src/secp256k1/src/secp256k1.c",
+        "src/secp256k1/src/tests.c",
+        "src/secp256k1/src/tests_common.h",
+        "src/secp256k1/src/testutil.h",
+        "src/secp256k1/src/unit_test.c",
+        "src/secp256k1/src/unit_test.h",
+        "src/secp256k1/src/util.h",
+        "src/secp256k1/src/wycheproof/WYCHEPROOF_COPYING",
+        "src/secp256k1/src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json",
+        "src/secp256k1/tools/check-abi.sh"
+      ]
+    },
+    {
+      "sha": "3cbf7cb3e6ac51492b354732bddbb4f58ce97ed3",
+      "message": "Squashed \u0027src/secp256k1/\u0027 changes from b9313c6e1a..d543c0d917\n\nd543c0d917 Merge bitcoin-core/secp256k1#1734: Introduce (mini) unit test framework\nf44c1ebd96 Merge bitcoin-core/secp256k1#1719: ci: DRY workflow using anchors\na44a339384 Merge bitcoin-core/secp256k1#1750: ci: Use clang-snapshot in \"MSan\" job\n15d014804e ci: Drop default for `inputs.command` in `run-in-docker-action`\n1decc49a1f ci: Use YAML anchor and aliases for repeated \"CI script\" steps\ndff1bc107d ci, refactor: Generalize use of `matrix.configuration.env_vars`\n4b644da199 ci: Use YAML anchor and aliases for repeated \"Print logs\" steps\na889cd93df ci: Bump `actions/checkout` version\n574c2f3080 ci: Use YAML anchor and aliases for repeated \"Checkout\" steps\n53585f93b7 ci: Use clang-snapshot in \"MSan\" job\n6894c964f3 Fix Clang 21+ `-Wuninitialized-const-pointer` warning when using MSan\n2b7337f63a Merge bitcoin-core/secp256k1#1756: ci: Fix image caching and apply other improvements\nf163c35897 ci: Set `DEBIAN_FRONTEND\u003dnoninteractive`\n70ae177ca0 ci: Bump `docker/build-push-action` version\nb2a95a420f ci: Drop `tags` input for `docker/build-push-action`\n122014edb3 ci: Add `scope` parameter to `cache-{to,from}` options\n2f4546ce56 test: add --log option to display tests execution\n95b9953ea4 test: Add option to display all available tests\n953f7b0088 test: support running specific tests/modules targets\n0302c1a3d7 test: add --help for command-line options\n9ec3bfe22d test: adapt modules to the new test infrastructure\n48789dafc2 test: introduce (mini) unit test framework\nbaa265429f Merge bitcoin-core/secp256k1#1727: docs: Clarify that callback can be called more than once\n4d90585fea docs: Improve API docs of _context_set_illegal_callback\n895f53d1cf docs: Clarify that callback can be called more than once\nde6af6ae35 Merge bitcoin-core/secp256k1#1748: bench: improve context creation in ECDH benchmark\n5817885153 Merge bitcoin-core/secp256k1#1749: build: Fix warnings in x86_64 assembly check\nab560078aa build: Fix warnings in x86_64 assembly check\n10dab907e7 Merge bitcoin-core/secp256k1#1741: doc: clarify API doc of `secp256k1_ecdsa_recover` return value\ndfe284ed2d bench: improve context creation in ECDH benchmark\n7321bdf27b doc: clarify API doc of `secp256k1_ecdsa_recover` return value\nb475654302 Merge bitcoin-core/secp256k1#1745: test: introduce group order byte-array constant for deduplication\n9cce703863 refactor: move \u0027gettime_i64()\u0027 to tests_common.h\n0c91c56041 test: introduce group order byte-array constant for deduplication\n88be4e8d86 Merge bitcoin-core/secp256k1#1735: musig: Invalidate secnonce in secp256k1_musig_partial_sign\n36e76952cb Merge bitcoin-core/secp256k1#1738: check-abi: remove support for obsolete CMake library output location (src/libsecp256k1.so)\n399b582a5f Split memclear into two versions\n4985ac0f89 Merge bitcoin-core/secp256k1#1737: doc: mention ctx requirement for `_ellswift_create` (not secp256k1_context_static)\n7ebaa134a7 check-abi: remove support for obsolete CMake library output location (src/libsecp256k1.so)\n806de38bfc doc: mention ctx requirement for `_ellswift_create` (not secp256k1_context_static)\n03fb60ad2e Merge bitcoin-core/secp256k1#1681: doc: Recommend clang-cl when building on Windows\nd93380fb35 Merge bitcoin-core/secp256k1#1731: schnorrsig: Securely clear buf containing k or its negation\n8113671f80 Merge bitcoin-core/secp256k1#1729: hash: Use size_t instead of int for RFC6979 outlen copy\n325d65a8cf Rename and clear var containing k or -k\n960ba5f9c6 Use size_t instead of int for RFC6979 outlen copy\n737912430d ci: Add more tests for clang-cl\n7379a5bed3 doc: Recommend clang-cl when building on Windows\nf36afb8b3d Merge bitcoin-core/secp256k1#1725: tests: refactor tagged hash verification\n5153cf1c91 tests: refactor tagged hash tests\nd2dcf52091 Merge bitcoin-core/secp256k1#1726: docs: fix broken link to Tromer\u0027s cache.pdf paper\n489a43d1bf docs: fix broken link to eprint cache.pdf paper\nd599714147 Merge bitcoin-core/secp256k1#1722: docs: Exclude modules\u0027 `bench_impl.h` headers from coverage report\n0458def51e doc: Add `--gcov-ignore-parse-errors\u003dall` option to `gcovr` invocations\n1aecce5936 doc: Add `--merge-mode-functions\u003dseparate` option to `gcovr` invocations\n106a7cbf41 doc: Exclude modules\u0027 `bench_impl.h` headers from coverage report\na9e955d3ea autotools, docs: Adjust help string for `--enable-coverage` option\ne523e4f90e Merge bitcoin-core/secp256k1#1720: chore(ci): Fix typo in Dockerfile comment\n24ba8ff168 chore(ci): Fix typo in Dockerfile comment\n74b8068c5d Merge bitcoin-core/secp256k1#1717: test: update wycheproof test vectors\nc25c3c8a88 test: update wycheproof test vectors\n20e3b44746 Merge bitcoin-core/secp256k1#1688: cmake: Avoid contaminating parent project\u0027s cache with `BUILD_SHARED_LIBS`\n2c076d907a Merge bitcoin-core/secp256k1#1711: tests: update Wycheproof\n7b07b22957 cmake: Avoid contaminating parent project\u0027s cache with BUILD_SHARED_LIBS\n5433648ca0 Fix typos and spellings\n9ea54c69b7 tests: update Wycheproof files\n\ngit-subtree-dir: src/secp256k1\ngit-subtree-split: d543c0d917a76a201578948701cc30ef336e0fe6",
+      "modifiedFiles": [
+        ".github/actions/run-in-docker-action/action.yml",
+        ".github/workflows/ci.yml",
+        "CMakeLists.txt",
+        "CONTRIBUTING.md",
+        "Makefile.am",
+        "README.md",
+        "build-aux/m4/bitcoin_secp.m4",
+        "ci/linux-debian.Dockerfile",
+        "cmake/CheckX86_64Assembly.cmake",
+        "configure.ac",
+        "include/secp256k1.h",
+        "include/secp256k1_ellswift.h",
+        "include/secp256k1_recovery.h",
+        "src/CMakeLists.txt",
+        "src/bench.h",
+        "src/checkmem.h",
+        "src/ecmult_gen_impl.h",
+        "src/field_impl.h",
+        "src/group_impl.h",
+        "src/hash_impl.h",
+        "src/modules/ecdh/bench_impl.h",
+        "src/modules/ecdh/main_impl.h",
+        "src/modules/ecdh/tests_impl.h",
+        "src/modules/ellswift/main_impl.h",
+        "src/modules/ellswift/tests_impl.h",
+        "src/modules/extrakeys/tests_impl.h",
+        "src/modules/musig/session_impl.h",
+        "src/modules/musig/tests_impl.h",
+        "src/modules/recovery/tests_impl.h",
+        "src/modules/schnorrsig/main_impl.h",
+        "src/modules/schnorrsig/tests_impl.h",
+        "src/scalar_impl.h",
+        "src/secp256k1.c",
+        "src/tests.c",
+        "src/tests_common.h",
+        "src/testutil.h",
+        "src/unit_test.c",
+        "src/unit_test.h",
+        "src/util.h",
+        "src/wycheproof/WYCHEPROOF_COPYING",
+        "src/wycheproof/ecdsa_secp256k1_sha256_bitcoin_test.json",
+        "tools/check-abi.sh"
+      ]
+    },
+    {
+      "sha": "2f7a50f67cdbda0813d2ea5b6cb18eee5434aef4",
+      "message": "Merge bitcoin/bitcoin#33462: ci: add libcpp hardening flags to macOS fuzz job\n\ne4c04f7759b0b390189410f5ef3ad5faa5354698 ci: add libcpp hardening flags to macOS fuzz job (fanquake)\n\nPull request description:\n\n  Follows up to https://github.com/bitcoin/bitcoin/pull/33425#issuecomment-3323149107.\n\nACKs for top commit:\n  maflcko:\n    lgtm ACK e4c04f7759b0b390189410f5ef3ad5faa5354698. The qa-assets repo has a libc++ debug run, so this isn\u0027t required, but it seems fast enough to not hurt.\n\nTree-SHA512: 6c0dc90528ca867df49027eebf2d1c417a7395f9f94779076ace48e3e4b21771e7d99e8b3ed75ca56da87153418a446075429aa6b9ec5cd4b6b8cb5b0c25c1d7",
+      "modifiedFiles": [
+        "ci/test/00_setup_env_mac_native_fuzz.sh"
+      ]
+    },
+    {
+      "sha": "48aa0e98d0b70244658b41d7378c295f3e1dadcd",
+      "message": "Merge bitcoin/bitcoin#29675: wallet: Be able to receive and spend inputs involving MuSig2 aggregate keys\n\nac599c4a9cb3b2d424932d3fd91f9eed17426827 test: Test MuSig2 in the wallet (Ava Chow)\n68ef954c4c59802a6810a462eaa8dd61728ba820 wallet: Keep secnonces in DescriptorScriptPubKeyMan (Ava Chow)\n4a273edda0ec10f0c5ae5d94b9925fa334d1c6e6 sign: Create MuSig2 signatures for known MuSig2 aggregate keys (Ava Chow)\n258db938899409c8ee1cef04e16ba1795ea0038d sign: Add CreateMuSig2AggregateSig (Ava Chow)\nbf69442b3f5004dc3df5a1b1d752114ba68fa5f4 sign: Add CreateMuSig2PartialSig (Ava Chow)\n512b17fc56eac3a2e2b9ba489b5423d098cce0db sign: Add CreateMuSig2Nonce (Ava Chow)\n82ea67c607cde6187d7082429d27b927dc21c0c6 musig: Add MuSig2AggregatePubkeys variant that validates the aggregate (Ava Chow)\nd99a081679e16668458512aba2fd13a3e1bdb09f psbt: MuSig2 data in Fill/FromSignatureData (Ava Chow)\n4d8b4f53363f013ed3972997f0b05b9c19e9db9d signingprovider: Add musig2 secnonces (Ava Chow)\nc06a1dc86ff2347538e95041ab7b97af25342958 Add MuSig2SecNonce class for secure allocation of musig nonces (Ava Chow)\n9baff05e494443cd82708490f384aa3034ad43bd sign: Include taproot output key\u0027s KeyOriginInfo in sigdata (Ava Chow)\n4b24bfeab9d6732aae3e69efd33105792ef1198f pubkey: Return tweaks from BIP32 derivation (Ava Chow)\nf14876213aad0e67088b75cae24323db9f2576d8 musig: Move synthetic xpub construction to its own function (Ava Chow)\nfb8720f1e09f4e41802f07be53fb220d6f6c127f sign: Refactor Schnorr sighash computation out of CreateSchnorrSig (Ava Chow)\na4cfddda644f1fc9a815b2d16c997716cd63554a tests: Clarify why musig derivation adds a pubkey and xpub (Ava Chow)\n39a63bf2e7e38dd3f30b5d1a8f6b2fff0e380d12 descriptors: Add a doxygen comment for has_hardened output_parameter (Ava Chow)\n2320184d0ea87279558a8e6cbb3bccf5ba1bb781 descriptors: Fix meaning of any_key_parsed (Ava Chow)\n\nPull request description:\n\n  This PR implements MuSig2 signing so that the wallet can receive and spend from imported `musig(0` descriptors.\n\n  The libsecp musig module is enabled so that it can be used for all of the MuSig2 cryptography.\n\n  Secnonces are handled in a separate class which holds the libsecp secnonce object in a `secure_unique_ptr`. Since secnonces must not be used, this class has no serialization and will only live in memory. A restart of the software will require a restart of the MuSig2 signing process.\n\nACKs for top commit:\n  fjahr:\n    tACK ac599c4a9cb3b2d424932d3fd91f9eed17426827\n  rkrux:\n    lgtm tACK ac599c4a9cb3b2d424932d3fd91f9eed17426827\n  theStack:\n    Code-review ACK ac599c4a9cb3b2d424932d3fd91f9eed17426827 :old_key:\n\nTree-SHA512: 626b9adc42ed2403e2f4405321eb9ce009a829c07d968e95ab288fe4940b195b0af35ca279a4a7fa51af76e55382bad6f63a23bca14a84140559b3c667e7041e",
+      "modifiedFiles": [
+        "src/key.cpp",
+        "src/key.h",
+        "src/musig.cpp",
+        "src/musig.h",
+        "src/psbt.cpp",
+        "src/psbt.h",
+        "src/pubkey.cpp",
+        "src/pubkey.h",
+        "src/script/descriptor.cpp",
+        "src/script/sign.cpp",
+        "src/script/sign.h",
+        "src/script/signingprovider.cpp",
+        "src/script/signingprovider.h",
+        "src/test/descriptor_tests.cpp",
+        "src/wallet/scriptpubkeyman.cpp",
+        "src/wallet/scriptpubkeyman.h",
+        "test/functional/test_runner.py",
+        "test/functional/wallet_musig.py"
+      ]
+    },
+    {
+      "sha": "db4bde0b0347f5141cd6721895e47400239a30e8",
+      "message": "Merge bitcoin/bitcoin#33517: multiprocess: Fix high overhead from message logging\n\n0626b90f507db68610a69feec86deb712dd095a1 multiprocess: align our logging with libmultiprocess\u0027s (Cory Fields)\n9d068225ee2b79da43e264994cd84279655a2210 multiprocess: update multiprocess EventLoop construction to use options (Cory Fields)\n\nPull request description:\n\n  This fixes https://github.com/bitcoin-core/libmultiprocess/issues/215 on Core\u0027s side. ~It depends on https://github.com/bitcoin-core/libmultiprocess/pull/220 being merged upstream, and a PR to update our subtree. I\u0027ve included a subtree merge from my repo here for now, but will rebase on top of the merge from upstream once it\u0027s in.~ Edit: Rebased on top of #33518.\n\n  For context: before https://github.com/bitcoin-core/libmultiprocess/pull/220, libmultiprocess serializesd every log message parameter, even if that message was ultimately going to be discarded. The upstream PR accomplished 2 main things:\n  - Creates logging categories, similar to Core\u0027s\n  - Using macros, avoids serializing parameters for disabled log levels.\n\n  That allowed the expensive serialization to be skipped, but the default log level is `Trace`. This PR updates our usage of libmultiprocess options to honor our log categories and levels.\n\n  Because of the substantial unnecessary overhead (see the [flamegraphs](https://github.com/bitcoin-core/libmultiprocess/issues/215). Logging accounts for 50% of my application\u0027s cpu time, and nearly 10% of bitcoin-node\u0027s, both of which go to ~0% once fixed), it\u0027d be a shame to ship the first multiprocess binaries without this fixed. So I propose that we also backport this (and the required libmultiprocess subtree merge) ~to v30. Sorry about the timing~ :(\n\n  Edit: Didn\u0027t make it for v30, but it would still make sense to backport for a v30.1.\n\nACKs for top commit:\n  Sjors:\n    ACK 0626b90f507db68610a69feec86deb712dd095a1\n  TheCharlatan:\n    ACK 0626b90f507db68610a69feec86deb712dd095a1\n  sipa:\n    utACK 0626b90f507db68610a69feec86deb712dd095a1\n\nTree-SHA512: 70b63b62d1f6de547f4d4775538d7bcaf32f57d8a72c5b26762b57755810c8be6942d9dfebab43cf1c1d8d025a555f72a48e9ebf3d84f8d40d6592ca801cda5d",
+      "modifiedFiles": [
+        "src/ipc/capnp/protocol.cpp"
+      ]
+    },
+    {
+      "sha": "3a10d700bc1889b3690097efc935c5a4ba5966bb",
+      "message": "test: P2SH sig ops are only counted with `SCRIPT_VERIFY_P2SH` flag",
+      "modifiedFiles": [
+        "src/test/sigopcount_tests.cpp"
+      ]
+    },
+    {
+      "sha": "9314113b295af0f4eab6397c5870115b647721d1",
+      "message": "Merge bitcoin/bitcoin#33610: doc: archive release notes for v29.2\n\nc11a3dcc88950d35cc8a97c6afba7d8f7eff9883 doc: archive release notes for v29.2 (fanquake)\n\nPull request description:\n\nACKs for top commit:\n  janb84:\n    ACK c11a3dcc88950d35cc8a97c6afba7d8f7eff9883\n  stickies-v:\n    ACK c11a3dcc88950d35cc8a97c6afba7d8f7eff9883, matches https://github.com/bitcoin/bitcoin/blob/3226616493289b111997bb107e569fef54386743/doc/release-notes.md\n\nTree-SHA512: bb566000d6907f70785f45878208479c01df7aa3a50f46ccf9156478bbc798d56b64f5c3fd6555900e03fe44ad7021c0513ed711c22eec4a783e84cd89f8a73c",
+      "modifiedFiles": [
+        "doc/release-notes/release-notes-29.2.md"
+      ]
+    },
+    {
+      "sha": "9b43428c96872f0fbbbab4c066c6010fc18c6cc4",
+      "message": "TxGraph: change m_excluded_clusters\n\nChange BlockBuilderImpl\u0027s m_excluded_clusters to unordered\nset since ordering is not used.\n\nChange the set to a set of sequence numbers for a modest\nstability increase under fuzz testing.",
+      "modifiedFiles": [
+        "src/txgraph.cpp"
+      ]
+    },
+    {
+      "sha": "6e1adbbaa157cbff5c37238ab0f1567847c38317",
+      "message": "Merge bitcoin/bitcoin#33612: test: change log rate limit version gate\n\n7b544341c0021dd713f05bc439ee190de911930c test: change log rate limit version gate from 299900 to 290100 (Eugene Siegel)\n\nPull request description:\n\n  Change the version gate from 299900 to 290100 for bypassing the log rate limit in case an explicit version is set in the functional test framework.\n\n  See discussion here: https://github.com/bitcoin/bitcoin/pull/33225#discussion_r2287838255\n\nACKs for top commit:\n  maflcko:\n    lgtm ACK 7b544341c0021dd713f05bc439ee190de911930c\n  janb84:\n    ACK 7b544341c0021dd713f05bc439ee190de911930c\n  stickies-v:\n    ACK 7b544341c0021dd713f05bc439ee190de911930c\n\nTree-SHA512: c07c8741dfdeca87c49748b7082c2ecb829da391908316f35daef7292bc017814a89f04e16e738f3a105541bbc38e4feb5bca3fb6ab718a1dc1de7c70a9c8a58",
+      "modifiedFiles": [
+        "test/functional/test_framework/test_node.py"
+      ]
+    },
+    {
+      "sha": "fdcf67de8033e1807bdd277311074c325c998287",
+      "message": "Merge bitcoin/bitcoin#33157: cluster mempool: control/optimize TxGraph memory usage\n\n023cd5a5469ad61205bf7bb1135895f2b4a20ea9 txgraph: add SingletonClusterImpl (mem optimization) (Pieter Wuille)\ne34625073253132c4b711b3c33ee50be60290e35 txgraph: give Clusters a range of intended tx counts (preparation) (Pieter Wuille)\ne93b0f09cc2ad7b743f896a09c48d584dfcc2787 txgraph: abstract out creation of empty Clusters (refactor) (Pieter Wuille)\n6baf12621f66f124cadffe4bb00cd11b75a7c3ea txgraph: comment fixes (doc fix) (Pieter Wuille)\n726b995739ab7b88fb5d1c85a33e6c68a4e146bc txgraph: make Cluster an abstract class (refactor) (Pieter Wuille)\n2602d89edd04693d0ebbc6b3c87a7c3fe90dcf40 txgraph: avoid accessing other Cluster internals (refactor) (Pieter Wuille)\n04c808ac4c47dcbaffa06476403db649c757436e txgraph: expose memory usage estimate function (feature) (Pieter Wuille)\n7680bb8fd48d2357d3c1a7b8121a6ad88d2f6ccf txgraph: keep track of Cluster memory usage (preparation) (Pieter Wuille)\n4ba562e5f4e4aa2f390e6f3e871be9b0d216794e txgraph: keep data structures compact (mem optimization) (Pieter Wuille)\nbb5cb222ae55a61646cb721ed19618ed332d37ff depgraph: add memory usage control (feature) (Pieter Wuille)\nb1637a90deb8528a6892dbc1065876583b5075d6 txgraph: avoid holes in DepGraph positions (mem optimization) (Pieter Wuille)\n2b1d30250877ba2576cfc6d56fe5aa0d9e77f706 txgraph: move some sanity checks from Cluster to TxGraphImpl (refactor) (Pieter Wuille)\nd40302fbaf41bcb70939db534111f490d7eed5c1 txgraph: Make level of Cluster implicit (optimization) (Pieter Wuille)\n\nPull request description:\n\n  Part of #30289.\n\n  This adds a few optimizations to reduce `TxGraph`\u0027s memory usage, and makes sure that dynamic memory it uses doesn\u0027t linger after shrinking clusters. Finally, it exposes a function `GetMainMemoryUsage()` to compute `TxGraph`\u0027s approximate memory usage.\n\n  It makes the `Cluster` type abstract, with two instances (`SingletonClusterImpl` for 1-transaction clusters, and `GenericClusterImpl` for others).\n\n  On my 64-bit system, I obtain the following numbers:\n  * `SingletonClusterImpl`: 48 bytes, plus 16 bytes malloc overhead in its `unique_ptr`, plus 8-byte pointer in `m_clusters`\n  * `GenericClusterImpl`: 104 bytes, plus 16 bytes malloc overhead in its `unique_ptr`, plus 8-byte pointer in `m_clusters`, plus 72 bytes malloc overhead inside its vectors and `DepGraph`, plus 40 bytes per transaction in those.\n  * `TxGraphImpl::Entry`: 72 bytes per transaction\n  * `TxGraphImpl::ChunkData`: 8 bytes, plus 56 bytes in `std::set` overhead + malloc overhead, all per chunk.\n  * `TxGraph::Ref`: 16 bytes per transaction\n\n  This overall amounts to 200 bytes per cluster, plus 64 bytes per chunk, plus 128 bytes per transaction, but only 224 bytes overall per singleton cluster.\n\nACKs for top commit:\n  l0rinc:\n    code review reACK 023cd5a5469ad61205bf7bb1135895f2b4a20ea9\n  instagibbs:\n    reACK 023cd5a5469ad61205bf7bb1135895f2b4a20ea9\n  ismaelsadeeq:\n    reACK 023cd5a5469ad61205bf7bb1135895f2b4a20ea9  🚢\n  glozow:\n    reACK 023cd5a5469ad61205bf7bb1135895f2b4a20ea9\n\nTree-SHA512: c957b27f47318be7c25d71453df2ae9d4e7bf21dab13b6e5e975cca122a221a99b15c584872491225785d276a9165f090675ee0f4460a2775bd3271933e3b246",
+      "modifiedFiles": [
+        "src/cluster_linearize.h",
+        "src/test/fuzz/cluster_linearize.cpp",
+        "src/test/fuzz/txgraph.cpp",
+        "src/txgraph.cpp",
+        "src/txgraph.h"
+      ]
+    },
+    {
+      "sha": "7b544341c0021dd713f05bc439ee190de911930c",
+      "message": "test: change log rate limit version gate from 299900 to 290100",
+      "modifiedFiles": [
+        "test/functional/test_framework/test_node.py"
+      ]
+    },
+    {
+      "sha": "9610b0d1e28aeda02a2ddcf1f0591ae577c3e88e",
+      "message": "randomenv: Fix MinGW dllimport warning for `environ`\n\nExtends 7703884 to guard environ declaration on all Windows builds, not just MSVC.\nIn the mingw-w64 headers (used by llvm-mingw), environ is defined as a macro which expands through _environ to (* __p__environ()), a call to a dllimport function, causing the same inconsistent linkage warning as MSVC.\n\nUse WIN32 instead of _MSC_VER to match the platform-specific guards already used throughout the file.\n\nThe warning occurs with llvm-mingw (both UCRT and MSVCRT variants as tested by Hebasto), but not with the mingw-w64 toolchain currently used in CI (as mentioned by fanquake).\n\nCo-authored-by: Hennadii Stepanov \u003c32963518+hebasto@users.noreply.github.com\u003e",
+      "modifiedFiles": [
+        "src/randomenv.cpp"
+      ]
+    },
+    {
+      "sha": "6c4fe401e908cff1b67d80035b117aae15fe7db6",
+      "message": "Merge bitcoin/bitcoin#33508: ci: fix buildx gha cache authentication on forks\n\nbc706955d740f8a59bec78e44d33e80d1cca373b ci: expose all ACTIONS_* vars (willcl-ark)\n\nPull request description:\n\n  When using `docker buildx build` in conjunction with the `gha` backend cache type (as we do in our CI) it\u0027s important to specify the URL and TOKEN needed to authenticate.\n\n  On Cirrus runners this is working with only `ACTIONS_CACHE_URL` and `ACTIONS_RUNTIME_TOKEN`, but this is not enough for the GitHub backend.\n\n  Fix this by exporting all `ACTIONS_*` variables.\n\n  This fixes docker build layer cache restore/save on forks or where GH-hosted runners are being used, and addresses https://github.com/bitcoin/bitcoin/issues/31965#issuecomment-3324707093\n\nACKs for top commit:\n  m3dwards:\n    ACK bc706955d740f8a59bec78e44d33e80d1cca373b\n  maflcko:\n    lgtm ACK bc706955d740f8a59bec78e44d33e80d1cca373b\n\nTree-SHA512: 13e973bb1c1ca5448dd6c3c176fb5ce39c725886ba2012d3253158205309a7038a1430135b37400e1f2f69408a9d0f4e2b3c5f0515154a593ec382ab7db10266",
+      "modifiedFiles": [
+        ".github/actions/configure-docker/action.yml"
+      ]
+    },
+    {
+      "sha": "c11a3dcc88950d35cc8a97c6afba7d8f7eff9883",
+      "message": "doc: archive release notes for v29.2",
+      "modifiedFiles": [
+        "doc/release-notes/release-notes-29.2.md"
+      ]
+    },
+    {
+      "sha": "64a7c7cbb975cb3c3f25a3f784779f32cd95ebaa",
+      "message": "Merge bitcoin/bitcoin#33558: ci: Use native platform for win-cross task\n\nfa6fd16f36e1240cda58a46e1717b02e8d3172a3 ci: Use native platform for win-cross task (MarcoFalke)\n\nPull request description:\n\n  Forcing the architecture to amd64 is no longer required. Dropping it should have some benefits:\n\n  * Faster CI speed on other arches (riscv64, arm, ...)\n  * Unlock the CI task to run on riscv64 at all\n\nACKs for top commit:\n  hebasto:\n    ACK fa6fd16f36e1240cda58a46e1717b02e8d3172a3, tested on Ubuntu 24.04, RISC-V.\n\nTree-SHA512: 68a3fc90cc22ab085d6946deb106e50b22e06eebc61523a9dcb53b38a50021a19da26cc29e2cd20f4673ffc5cc10f441dacca7cc799782258351609d9fa04969",
+      "modifiedFiles": [
+        "ci/test/00_setup_env_win64.sh"
+      ]
+    },
+    {
+      "sha": "93b56e95c0287f5b2bb10321561fabc280965036",
+      "message": "Merge bitcoin/bitcoin#33601: doc: archive release notes for v30.0\n\n8d6e49158e3a1b3215484b5d139c5d8a3fffc4c9 doc: archive release notes for v30.0 (fanquake)\n\nPull request description:\n\n  Archive v30.0 release notes.\n\nACKs for top commit:\n  janb84:\n    ACK 8d6e49158e3a1b3215484b5d139c5d8a3fffc4c9\n  willcl-ark:\n    ACK 8d6e49158e3a1b3215484b5d139c5d8a3fffc4c9\n\nTree-SHA512: 322daee16e8d46808c3b669d9c893172eccefe5dafcd79646c9d265360bd606df7be1222a6c12c16517dec88ae1fee6d1aaa7e71761cc5d7fdc8b5e0bdc82292",
+      "modifiedFiles": [
+        "doc/release-notes/release-notes-30.0.md"
+      ]
+    },
+    {
+      "sha": "563747971be492a8da772fb2f3e45dd5ee05da86",
+      "message": "Merge bitcoin/bitcoin#33580: depends: Use $(package)_file_name when downloading from the fallback\n\n671b774d1b58c491b53f2b2f6ee42fb6b65a0e71 depends: Use $(package)_file_name when downloading from the fallback (Ava Chow)\n\nPull request description:\n\n  The server hosting the fallbacks uses `make download` so the files are only available with their overridden names rather than the original name on the upstream source. We should therefore also use the overridden name when downloading from the fallback.\n\n  Fixes https://github.com/bitcoin-core/bitcoincore.org/issues/1168\n\nACKs for top commit:\n  theuni:\n    utACK 671b774d1b58c491b53f2b2f6ee42fb6b65a0e71. I was going to PR the same change.\n  janb84:\n    ut ACK 671b774d1b58c491b53f2b2f6ee42fb6b65a0e71\n  hebasto:\n    ACK 671b774d1b58c491b53f2b2f6ee42fb6b65a0e71, tested with the following patch:\n\nTree-SHA512: ba010adb64900d8d748487cc1a658e2b163872354f4e7b38c4dfc37a14fcb22fec4379a635d2c6788c64dd46bef0d94aa3eb6f522ec700680e886d5468678031",
+      "modifiedFiles": [
+        "depends/funcs.mk"
+      ]
+    },
+    {
+      "sha": "24d861da7894add47747eff69dd3fc71fbcdd7d0",
+      "message": "coins: only adjust `cachedCoinsUsage` on `EmplaceCoinInternalDANGER` insert\n\n`EmplaceCoinInternalDANGER()` incremented `cachedCoinsUsage` even when `try_emplace` did not insert (duplicate key), inflating the counter.\nThis is mostly reachable in tests today since `AssumeUTXO` does not overwrite.\n\nIncrement only on successful insert, and capture `coin.DynamicMemoryUsage()` before the move so accounting uses the correct value.\n\nFuzz: add an `EmplaceCoinInternalDANGER` path to exercise insert-only accounting.\nUnit test: emplace two different coins at the same outpoint (with different `DynamicMemoryUsage()`), verify `SelfTest()` passes and `AccessCoin(outpoint)` returns the first coin.\n\nCo-authored-by: Andrew Toth \u003candrewstoth@gmail.com\u003e\nCo-authored-by: w0xlt \u003cwoltx@protonmail.com\u003e",
+      "modifiedFiles": [
+        "src/coins.cpp",
+        "src/test/coins_tests.cpp",
+        "src/test/fuzz/coins_view.cpp"
+      ]
+    },
+    {
+      "sha": "d7c9d6c2914aadd711544908d0fad8857a809c72",
+      "message": "coins: fix `cachedCoinsUsage` accounting to prevent underflow\n\nMove the `cachedCoinsUsage` subtract in `AddCoin()` to after the `possible_overwrite` check.\nPreviously a throw before assignment decremented the counter without changing the entry, which corrupted accounting and later underflowed.\n\nIn `Flush()`, reset `cachedCoinsUsage` to `0` only when `BatchWrite()` succeeds and `cacheCoins` is actually cleared. In production `BatchWrite()` returns `true`, so this mostly affects tests. On failure, leave the counter unchanged to keep it in sync with the cache.\n\nThe existing `Flush()` workaround in fuzzing was also removed now that the source of the problem was fixed, so the fuzzer no longer needs `coins_view_cache.Flush()` to realign `cachedCoinsUsage` after an exception.\nReplace the prior `expected_code_path` tracking with direct assertions. The role of the variable was to verify that code execution follows only expected paths, either successful addition, or if it\u0027s an exception, the message is verified and checked that overwrite was disallowed.\n\nWith these changes the counter stays consistent across success and exception paths, so we can finally remove the `UBSan` suppressions for `CCoinsViewCache` that were masking the issue.\n\nIncluded a unit test as well, attempting to add a different coin to the same outpoint without allowing overwrites and make sure it throws.\nWe use `SelfTest()` to validates accounting, and check that the cache remains usable.\n\nCo-authored-by: Ryan Ofsky \u003cryan@ofsky.org\u003e\nCo-authored-by: w0xlt \u003cwoltx@protonmail.com\u003e",
+      "modifiedFiles": [
+        "src/coins.cpp",
+        "src/test/coins_tests.cpp",
+        "src/test/fuzz/coins_view.cpp",
+        "test/sanitizer_suppressions/ubsan"
+      ]
+    },
+    {
+      "sha": "39cf8bb3d0d9ee84544d161bf66d90d5e2a1a140",
+      "message": "refactor: remove redundant usage tracking from `CoinsViewCacheCursor`\n\nWhen a coin is spent via `SpendCoin()`, `cachedCoinsUsage` is already decremented and the coin\u0027s `scriptPubKey` is cleared, so `DynamicMemoryUsage()` is `0`.\n\n`CoinsViewCacheCursor::NextAndMaybeErase()` was subtracting usage again when erasing spent entries.\nReplace it with an assert that documents spent coins have zero dynamic memory usage by the time the cursor encounters them.\n\nRemove the now-unnecessary `usage` reference from the cursor\u0027s constructor and member variables.",
+      "modifiedFiles": [
+        "src/coins.cpp",
+        "src/coins.h",
+        "src/test/coins_tests.cpp",
+        "src/test/fuzz/coins_view.cpp"
+      ]
+    },
+    {
+      "sha": "67cff8bec9094e968f36d351fb2e38c9bf563757",
+      "message": "refactor: assert newly-created parent cache entry has zero memory usage\n\nDuring `BatchWrite`, the parent entry is created under a guard that guarantees insertion, so the new `Coin` is default-constructed and empty.\nAssert this invariant to document why there is no `cachedCoinsUsage` decrement before the assignment at this site.\n\nCo-authored-by: Andrew Toth \u003candrewstoth@gmail.com\u003e",
+      "modifiedFiles": [
+        "src/coins.cpp"
+      ]
+    }
+  ],
+  "forks": [
+    {
+      "name": "bitcoin",
+      "ownerLogin": "Adam-s-tech",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "Julian3721",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "jotapea",
+      "commitCount": 35
+    },
+    {
+      "name": "elvercoin",
+      "ownerLogin": "MarcoElvani",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "zhangxpower",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "oliwkaeth",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "pajratos",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "pysznybimber",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "zacieros",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "merynoseth",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "Ph03nix-T3ars",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "kinglil957",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "MChuanying001",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "han-daehoon",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "FilipeGundim",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "ilkinsufi",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "Morothox",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "0xAvinash",
+      "commitCount": 100
+    },
+    {
+      "name": "RudraCoin",
+      "ownerLogin": "Rudra2701",
+      "commitCount": 100
+    },
+    {
+      "name": "bitcoin",
+      "ownerLogin": "vivekgh0sh",
+      "commitCount": 100
+    }
+  ]
+}
