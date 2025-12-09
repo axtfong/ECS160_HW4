@@ -1,91 +1,105 @@
-# ECS160 HW2 - LLMs for Bug Detection
-
-This project implements a bug detection validation system using LLMs (Large Language Models) to cross-reference findings with real GitHub issue reports.
-
-## Project Structure
-
-- `persistence-framework/` - Redis persistence framework with annotation-based persistence
-- `microservice-framework/` - Microservice framework with annotation-based routing
-- `application/` - Main application that uses both frameworks to analyze repositories
+# ECS160 HW4 - Spring Boot Microservices
 
 ## Prerequisites
 
-- Java 11 or higher
+- Java 21 or higher
 - Maven 3.6+
-- Redis server running on localhost:6379
-- Ollama server running on localhost:11434 with deepcoder:1.5b model installed
-
-### Installing Ollama and the Model
-
-1. Install Ollama from https://ollama.ai
-2. Pull the deepcoder:1.5b model:
-   ```bash
-   ollama pull deepcoder:1.5b
-   ```
+- Redis server
+- Ollama with deepcoder:1.5b model
 
 ## Setup
 
-1. Make sure Redis is running:
-   ```bash
-   redis-server
-   ```
+### 1. Install Ollama and Model
+```bash
+# Install Ollama from https://ollama.ai
+ollama pull deepcoder:1.5b
+```
 
-2. Build and install the frameworks:
-   ```bash
-   ./script.sh
-   ```
+### 2. Start Redis
+```bash
+redis-server
+```
 
-   This will:
-   - Build the persistence framework
-   - Build the microservice framework
-   - Build the application
-   - Run tests
+### 3. Build Project
+```bash
+cd /path/to/ECS160_HW4
+mvn clean install -DskipTests
+```
 
-## Usage
+## Running the Application
 
-1. First, run HW1 to populate Redis with repository and issue data in the required format.
+### Start Microservices (3 separate terminals)
 
-2. Create a `selected_repo.dat` file with:
-   - First line: Repository ID (e.g., "repo-101")
-   - Subsequent lines: Paths to C files to analyze (e.g., "src/main.c", "src/utils.c")
+Terminal 1 - Issue Summarizer (Port 30000):
+```bash
+cd microservices/issue-summarizer
+mvn spring-boot:run
+```
 
-3. Run the application:
-   ```bash
-   cd application
-   mvn exec:java
-   ```
+Terminal 2 - Bug Finder (Port 30001):
+```bash
+cd microservices/bug-finder
+mvn spring-boot:run
+```
 
-The application will:
-- Load the selected repository from Redis
-- Start microservices
-- Summarize GitHub issues using Microservice A
-- Find bugs in C files using Microservice B
-- Compare and find common issues using Microservice C
-- Generate an ANALYSIS.md file with results
+Terminal 3 - Issue Comparator (Port 30002):
+```bash
+cd microservices/issue-comparator
+mvn spring-boot:run
+```
 
-## Components
+Wait for all three to show: "Tomcat started on port XXXXX"
 
-### Part A: Redis Persistence Framework
-- `@PersistableObject` - Class-level annotation
-- `@PersistableField` - Field-level annotation
-- `@Id` - ID field annotation
-- `@LazyLoad` - Lazy loading annotation (extra credit)
-- `RedisDB` - Main persistence class with `persist()` and `load()` methods
+### Run Main Application (Terminal 4)
 
-### Part B: Microservice Framework
-- `@Microservice` - Class-level annotation
-- `@Endpoint` - Method-level annotation with URL mapping
-- `MicroserviceLauncher` - Launches HTTP server and routes requests
+```bash
+cd main-app
+mvn exec:java
+```
 
-### Part C: Microservices
-- **Issue Summarizer** (`summarize_issue`) - Summarizes GitHub issues
-- **Bug Finder** (`find_bugs`) - Finds bugs in C files
-- **Issue Comparator** (`check_equivalence`) - Compares two lists of issues
+## Project Structure
 
-## Notes
+```
+ECS160_HW4/
+├── persistence-framework/     # Part A: Redis persistence (unchanged)
+├── microservices/            # Part C: Spring Boot microservices
+│   ├── issue-summarizer/    # Port 30000
+│   ├── bug-finder/          # Port 30001
+│   └── issue-comparator/    # Port 30002
+└── main-app/                # Part D: Main application
+```
 
-- The microservice server runs on port 8080 by default
-- Ollama must be running and accessible at http://localhost:11434
-- Redis databases: 0 for repos, 1 for issues
-- The ANALYSIS.md file is automatically generated after running the application
+## Testing Microservices
 
+Test Issue Summarizer:
+```bash
+curl "http://localhost:30000/summarize_issue?input=%7B%22description%22%3A%22Bug%22%7D"
+```
+
+Test Bug Finder:
+```bash
+curl "http://localhost:30001/find_bugs?input=%7B%22filename%22%3A%22test.c%22%2C%22content%22%3A%22int%20main()%7Breturn%200%3B%7D%22%7D"
+```
+
+Test Issue Comparator:
+```bash
+curl "http://localhost:30002/check_equivalence?input=%7B%22list1%22%3A%5B%5D%2C%22list2%22%3A%5B%5D%7D"
+```
+
+## Troubleshooting
+
+### Port already in use
+```bash
+lsof -i :30000  # Find process
+kill -9 <PID>   # Kill process
+```
+
+### Redis not responding
+```bash
+redis-cli ping  # Should return PONG
+```
+
+### Ollama not running
+```bash
+ollama serve
+```

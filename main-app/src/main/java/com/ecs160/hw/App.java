@@ -1,9 +1,5 @@
 package com.ecs160.hw;
 
-import com.ecs160.Launcher;
-import com.ecs160.microservices.BugFinderMicroservice;
-import com.ecs160.microservices.IssueComparatorMicroservice;
-import com.ecs160.microservices.IssueSummarizerMicroservice;
 import com.ecs160.microservices.model.BugIssue;
 import com.ecs160.hw.model.IssueModel;
 import com.ecs160.hw.model.RepoModel;
@@ -24,19 +20,19 @@ import java.util.List;
 
 public class App {
     private static final String SELECTED_REPO_FILE = "selected_repo.dat";
-    private static final int MICROSERVICE_PORT = 8080;
-    private static final String MICROSERVICE_BASE_URL = "http://localhost:" + MICROSERVICE_PORT;
-    
+    // Spring Boot microservices run on different ports
+    private static final String ISSUE_SUMMARIZER_URL = "http://localhost:30000";
+    private static final String BUG_FINDER_URL = "http://localhost:30001";
+    private static final String ISSUE_COMPARATOR_URL = "http://localhost:30002";
+
     private RedisDB redisDB;
     private RedisDB issueRedisDB;
     private Gson gson;
-    private Launcher launcher;
-    
+
     public App() {
         this.redisDB = new RedisDB("localhost", 6379, 0);
         this.issueRedisDB = new RedisDB("localhost", 6379, 1);
         this.gson = new Gson();
-        this.launcher = new Launcher();
     }
     
     public static void main(String[] args) {
@@ -53,10 +49,12 @@ public class App {
     
     public void run() {
         try {
-            System.out.println("Starting microservices...");
-            startMicroservices();
-            Thread.sleep(2000);
-            
+            System.out.println("NOTE: Make sure all three Spring Boot microservices are running:");
+            System.out.println("  - Issue Summarizer on port 30000");
+            System.out.println("  - Bug Finder on port 30001");
+            System.out.println("  - Issue Comparator on port 30002");
+            System.out.println();
+
             System.out.println("Loading selected repository...");
             String repoId = loadSelectedRepo();
             if (repoId == null) {
@@ -111,7 +109,7 @@ public class App {
             System.out.println("Issues from GitHub: " + issueList1.size());
             System.out.println("Bugs found by LLM: " + issueList2.size());
             System.out.println("Common issues: " + commonIssues.size());
-            
+
             for (BugIssue issue : commonIssues) {
                 String bugType = issue.getBug_type() != null ? issue.getBug_type() : "Unknown";
                 int line = issue.getLine() > 0 ? issue.getLine() : -1;
@@ -119,44 +117,15 @@ public class App {
                 System.out.println("- " + bugType + " at line " + line + ": " + desc);
             }
 
-            launcher.stop();
-            
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
         } finally {
-            // stop microservices before closing Redis
-            launcher.stop();
             redisDB.close();
             issueRedisDB.close();
-            // give threads time to shut down
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
         }
     }
     
-    private void startMicroservices() throws Exception {
-        launcher.registerMicroservice(
-            IssueSummarizerMicroservice.class,
-            BugFinderMicroservice.class,
-            IssueComparatorMicroservice.class
-        );
-        
-        Thread serverThread = new Thread(() -> {
-            boolean started = launcher.launch(MICROSERVICE_PORT);
-            if (!started) {
-                System.err.println("Failed to start microservice server. " +
-                    "Port " + MICROSERVICE_PORT + " may already be in use.");
-                System.err.println("Please stop any existing server or kill the process using");
-                System.exit(1);
-            }
-        });
-        serverThread.setDaemon(true);
-        serverThread.start();
-    }
     
     private String loadSelectedRepo() {
         // try cwd first, then parent directory
@@ -333,17 +302,17 @@ public class App {
     
     private List<BugIssue> summarizeIssues(List<IssueModel> issues) throws IOException {
         List<BugIssue> summarizedIssues = new ArrayList<>();
-        
+
         for (IssueModel issue : issues) {
             // convert IssueModel to json for microservice
             JsonObject issueJson = new JsonObject();
             issueJson.addProperty("description", issue.getDescription());
-            issueJson.addProperty("date", issue.getDate() != null ? 
+            issueJson.addProperty("date", issue.getDate() != null ?
                 new SimpleDateFormat("yyyy-MM-dd").format(issue.getDate()) : "");
-            
+
             String input = issueJson.toString();
-            String response = callMicroservice("summarize_issue", input);
-            
+            String response = callIssueSummarizer(input);
+
             if (response != null && !response.isEmpty()) {
                 try {
                     BugIssue bugIssue = gson.fromJson(response, BugIssue.class);
@@ -353,7 +322,7 @@ public class App {
                 }
             }
         }
-        
+
         return summarizedIssues;
     }
     
@@ -383,10 +352,10 @@ public class App {
             JsonObject inputJson = new JsonObject();
             inputJson.addProperty("filename", filePath);
             inputJson.addProperty("content", content);
-            
+
             String input = inputJson.toString();
-            String response = callMicroservice("find_bugs", input);
-            
+            String response = callBugFinder(input);
+
             if (response != null && !response.isEmpty()) {
                 try {
                     BugIssue[] bugs = gson.fromJson(response, BugIssue[].class);
@@ -408,17 +377,17 @@ public class App {
         JsonObject inputJson = new JsonObject();
         inputJson.add("list1", gson.toJsonTree(list1));
         inputJson.add("list2", gson.toJsonTree(list2));
-        
+
         String input = inputJson.toString();
-        String response = callMicroservice("check_equivalence", input);
-        
+        String response = callIssueComparator(input);
+
         if (response != null && !response.isEmpty()) {
             try {
                 BugIssue[] common = gson.fromJson(response, BugIssue[].class);
                 List<BugIssue> result = new ArrayList<>();
                 // filter out any empty or invalid issues
                 for (BugIssue issue : common) {
-                    if (issue != null && 
+                    if (issue != null &&
                         ((issue.getBug_type() != null && !issue.getBug_type().isEmpty()) ||
                          (issue.getDescription() != null && !issue.getDescription().isEmpty()))) {
                         result.add(issue);
@@ -429,24 +398,36 @@ public class App {
                 System.err.println("Error parsing common issues: " + e.getMessage());
             }
         }
-        
+
         return new ArrayList<>();
     }
     
-    private String callMicroservice(String endpoint, String input) throws IOException {
+    private String callIssueSummarizer(String input) throws IOException {
+        return callSpringBootMicroservice(ISSUE_SUMMARIZER_URL, "summarize_issue", input);
+    }
+
+    private String callBugFinder(String input) throws IOException {
+        return callSpringBootMicroservice(BUG_FINDER_URL, "find_bugs", input);
+    }
+
+    private String callIssueComparator(String input) throws IOException {
+        return callSpringBootMicroservice(ISSUE_COMPARATOR_URL, "check_equivalence", input);
+    }
+
+    private String callSpringBootMicroservice(String baseUrl, String endpoint, String input) throws IOException {
         try {
-            String url = MICROSERVICE_BASE_URL + "/" + endpoint + "?input=" + 
+            String url = baseUrl + "/" + endpoint + "?input=" +
                 java.net.URLEncoder.encode(input, StandardCharsets.UTF_8.toString());
-            
+
             URL urlObj = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) urlObj.openConnection();
             conn.setRequestMethod("GET");
-            
+
             int responseCode = conn.getResponseCode();
             if (responseCode != HttpURLConnection.HTTP_OK) {
                 throw new IOException("Microservice returned error code: " + responseCode);
             }
-            
+
             StringBuilder response = new StringBuilder();
             try (BufferedReader reader = new BufferedReader(
                     new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
@@ -455,10 +436,10 @@ public class App {
                     response.append(line);
                 }
             }
-            
+
             return response.toString();
         } catch (Exception e) {
-            System.err.println("Error calling microservice " + endpoint + ": " + e.getMessage());
+            System.err.println("Error calling microservice " + endpoint + " at " + baseUrl + ": " + e.getMessage());
             return null;
         }
     }

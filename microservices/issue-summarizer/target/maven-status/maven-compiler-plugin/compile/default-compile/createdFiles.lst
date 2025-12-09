@@ -1,0 +1,4 @@
+com/ecs160/microservices/issuesummarizer/controller/IssueSummarizerController.class
+com/ecs160/microservices/issuesummarizer/service/OllamaClient.class
+com/ecs160/microservices/issuesummarizer/IssueSummarizerApplication.class
+com/ecs160/microservices/issuesummarizer/model/BugIssue.class

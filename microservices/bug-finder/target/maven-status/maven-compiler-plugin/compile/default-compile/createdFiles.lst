@@ -1,0 +1,4 @@
+com/ecs160/microservices/bugfinder/BugFinderApplication.class
+com/ecs160/microservices/bugfinder/controller/BugFinderController.class
+com/ecs160/microservices/bugfinder/service/OllamaClient.class
+com/ecs160/microservices/bugfinder/model/BugIssue.class
