@@ -1,4 +1,0 @@
-/Users/alexfong/Documents/ecs160_hw4/ECS160_HW4/microservices/issue-summarizer/src/main/java/com/ecs160/microservices/issuesummarizer/IssueSummarizerApplication.java
-/Users/alexfong/Documents/ecs160_hw4/ECS160_HW4/microservices/issue-summarizer/src/main/java/com/ecs160/microservices/issuesummarizer/controller/IssueSummarizerController.java
-/Users/alexfong/Documents/ecs160_hw4/ECS160_HW4/microservices/issue-summarizer/src/main/java/com/ecs160/microservices/issuesummarizer/model/BugIssue.java
-/Users/alexfong/Documents/ecs160_hw4/ECS160_HW4/microservices/issue-summarizer/src/main/java/com/ecs160/microservices/issuesummarizer/service/OllamaClient.java

@@ -1,6 +1,6 @@
 # HW4 Analysis: Spring Boot Microservices Implementation
 
-### HW4 Implementation
+### Implementation
 - Three independent Spring Boot applications
 - Ports: 30000 (Issue Summarizer), 30001 (Bug Finder), 30002 (Issue Comparator)
 - Spring Boot annotations: @SpringBootApplication, @RestController, @GetMapping
@@ -117,8 +117,6 @@ Key observations:
 
 Conclusion: LLMs show limited effectiveness for bug detection in novel codebases. The model lacks understanding of project-specific context and relies on pattern matching from training data rather than true code comprehension.
 
-Note: Bug detection behavior is identical between HW2 and HW4 implementations since the same LLM prompts and processing logic were preserved.
-
 ## Technical Details
 
 Spring Boot version: 3.2.0
@@ -133,6 +131,3 @@ Key Spring Boot features used:
 - application.properties - External configuration
 - spring-boot-maven-plugin - Executable JAR packaging
 
-## Conclusion
-
-The Spring Boot reimplementation successfully migrates HW2 from a custom microservice framework to an industry-standard solution while maintaining identical functionality and API compatibility. The three microservices operate independently, demonstrating proper microservice architecture principles.
